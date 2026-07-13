@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b0f">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Betynz.com — Smart Betting Predictions</title>
+  <meta name="description" content="Betynz.com delivers smart football predictions powered by data, specialist engines and disciplined risk control.">
+  <link rel="canonical" href="https://betynz.com/">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <style>
+    :root{color-scheme:dark;--bg:#07080b;--panel:#101216;--panel2:#15181e;--line:#252a32;--text:#f6f7f9;--muted:#9ba3af;--orange:#ff7a00;--orange2:#ff9f1c;--green:#39d98a}
+    *{box-sizing:border-box}
+    html,body{min-height:100%;margin:0}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 75% 15%,rgba(255,122,0,.16),transparent 34%),linear-gradient(145deg,#050609,#0b0d11 55%,#090a0d);color:var(--text);overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:auto;min-height:100vh;display:flex;flex-direction:column;position:relative;z-index:1}
+    header{height:86px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:22px}.brand img{width:58px;height:44px;object-fit:cover;object-position:center;border-radius:10px}.brand b{color:var(--orange)}
+    .status{display:flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid rgba(57,217,138,.28);background:rgba(57,217,138,.08);border-radius:999px;color:#b8f5d5;font-size:13px;font-weight:700}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}
+    main{flex:1;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:64px;align-items:center;padding:72px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#ffc07b;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.13em}.eyebrow:before{content:"";width:34px;height:2px;background:linear-gradient(90deg,var(--orange),transparent)}
+    h1{font-size:clamp(52px,7vw,94px);line-height:.94;letter-spacing:-.065em;margin:22px 0 24px;max-width:760px}h1 span{display:block;color:var(--orange)}
+    .lead{font-size:clamp(17px,2vw,21px);line-height:1.65;color:#b9c0cb;max-width:680px;margin:0}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}.chip{padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(20,23,28,.78);font-size:13px;font-weight:700;color:#d8dce3}
+    .note{margin-top:36px;display:flex;gap:13px;align-items:flex-start;color:var(--muted);font-size:14px;line-height:1.55}.note strong{color:#fff}.icon{width:38px;height:38px;flex:0 0 auto;border-radius:11px;display:grid;place-items:center;background:rgba(255,122,0,.13);border:1px solid rgba(255,122,0,.28);color:var(--orange);font-size:18px}
+    .preview{position:relative}.glow{position:absolute;inset:14% 8%;background:var(--orange);filter:blur(90px);opacity:.15;border-radius:50%}.card{position:relative;border:1px solid rgba(255,255,255,.11);background:linear-gradient(145deg,rgba(19,22,27,.94),rgba(10,12,16,.98));border-radius:26px;padding:22px;box-shadow:0 35px 80px rgba(0,0,0,.45);overflow:hidden}.card:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,160,64,.7),transparent)}
+    .logo-shell{border-radius:18px;overflow:hidden;background:#050608;border:1px solid #272b32;aspect-ratio:1.3;display:grid;place-items:center}.logo-shell img{width:100%;height:100%;object-fit:cover}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.metric{padding:14px 12px;border-radius:15px;background:#12151a;border:1px solid #242831}.metric small{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.metric strong{font-size:18px}.metric strong.orange{color:var(--orange2)}
+    .progress{margin-top:18px;padding:16px;border-radius:16px;background:linear-gradient(90deg,rgba(255,122,0,.11),rgba(255,122,0,.02));border:1px solid rgba(255,122,0,.18)}.progress-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:800}.bar{height:7px;margin-top:12px;background:#252831;border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;width:68%;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:inherit}
+    footer{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#707887;font-size:12px;border-top:1px solid rgba(255,255,255,.07)}
+    @media(max-width:860px){header{height:74px}.status{padding:8px 10px}.status .label{display:none}main{grid-template-columns:1fr;gap:42px;padding:52px 0}.preview{max-width:620px}.wrap{width:min(100% - 24px,680px)}h1{font-size:clamp(48px,14vw,76px)}footer{padding:18px 0;align-items:flex-start;flex-direction:column}}
+    @media(max-width:460px){.brand{font-size:18px}.brand img{width:48px;height:38px}.metrics{grid-template-columns:1fr}.card{padding:14px;border-radius:20px}.lead{font-size:16px}.chips{gap:8px}.chip{font-size:12px;padding:9px 11px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><img src="assets/betynz-logo.png" alt="Betynz logo"><span>BETYNZ<b>.com</b></span></div>
+      <div class="status"><span class="dot"></span><span class="label">New prediction platform in development</span></div>
+    </header>
+    <main>
+      <section>
+        <div class="eyebrow">A new prediction experience</div>
+        <h1>Predict smarter.<span>Bet with clarity.</span></h1>
+        <p class="lead">Betynz.com is being built as a focused football-prediction platform with specialist engines, clear confidence levels, disciplined filters and a completely new orange-and-black interface.</p>
+        <div class="chips">
+          <span class="chip">Data-led predictions</span><span class="chip">Specialist AI engines</span><span class="chip">Mobile-first dashboard</span><span class="chip">Transparent performance</span>
+        </div>
+        <div class="note"><span class="icon">↗</span><div><strong>Smart Betting Predictions</strong><br>The full Betynz platform is being prepared for launch.</div></div>
+      </section>
+      <aside class="preview" aria-label="Betynz preview">
+        <div class="glow"></div>
+        <div class="card">
+          <div class="logo-shell"><img src="assets/betynz-logo.png" alt="Betynz Smart Betting Predictions"></div>
+          <div class="metrics"><div class="metric"><small>Platform</small><strong>Betynz</strong></div><div class="metric"><small>Design system</small><strong class="orange">Orange</strong></div><div class="metric"><small>Status</small><strong>Building</strong></div></div>
+          <div class="progress"><div class="progress-row"><span>Launch preparation</span><span>68%</span></div><div class="bar"><span></span></div></div>
+        </div>
+      </aside>
+    </main>
+    <footer><span>© <span id="year"></span> Betynz.com</span><span>Smart Betting Predictions</span></footer>
+  </div>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>

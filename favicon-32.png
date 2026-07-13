@@ -1,0 +1,29 @@
+name: Validate Betynz Site
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["site/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required public files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f site/index.html
+          test -f site/404.html
+          test -f site/manifest.webmanifest
+          test -f site/.htaccess
+          test -f site/assets/betynz-logo.png
+          grep -qi "Betynz.com" site/index.html
+          grep -qi "Smart Betting Predictions" site/index.html
+          echo "Betynz public site files are ready."
