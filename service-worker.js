@@ -1,4 +1,4 @@
-const CACHE='betynz-v1.1-readable-type';
+const CACHE='betynz-v1.2-extra-readable-sharp';
 const CORE=['/','/index.html','/styles.css','/app.js','/banker-engine.js','/data.js','/manifest.webmanifest','/assets/betynz-logo.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

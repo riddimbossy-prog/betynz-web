@@ -83,3 +83,79 @@ footer{font-size:10px}
   .engine-card{min-height:195px;padding:18px}.engine-card h3{font-size:20px}.engine-card>small{font-size:10px}.engine-card p{font-size:12px}.engine-tags span{font-size:10px}
   .mobile-nav button{font-size:9px}.mobile-slip{font-size:10px}.drawer-head h3{font-size:16px}
 }
+
+/* =========================================================
+   BETYNZ v1.2 — EXTRA READABLE + SHARPER TYPE
+   Raises every small label to a practical reading size,
+   brightens secondary text and uses native UI font rendering.
+   ========================================================= */
+:root{
+  --muted:#b4bdc9;
+  --muted2:#929dab;
+  --line:#303743;
+  --line2:#3a4350;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  font-size:18px;
+  line-height:1.52;
+  font-family:"Segoe UI Variable","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:auto;
+  -moz-osx-font-smoothing:auto;
+  text-rendering:optimizeLegibility;
+  font-weight:500;
+}
+button,input,select,textarea{font-size:1rem;text-rendering:optimizeLegibility}
+b,strong,h1,h2,h3,h4{font-weight:800}
+
+/* Brand, navigation and account header */
+.brand{height:64px;gap:12px}.brand img{width:52px;height:43px}.brand span{font-size:23px}.brand em{font-size:15px}
+.nav-item{min-height:54px;padding:0 15px}.nav-item span{font-size:20px}.nav-item b{font-size:17px}
+.premium-card{padding:16px}.premium-card strong{font-size:17px}.premium-card small{font-size:14px;line-height:1.55}.premium-card button{font-size:16px;padding:12px}
+.server-state b{font-size:14px}.server-state small{font-size:13px;line-height:1.45}
+.topbar{height:82px}.search-box{height:46px}.search-box input{font-size:16px}.live-pill{font-size:14px;height:38px}.icon-btn{width:40px;height:40px}.icon-btn sup{font-size:11px}.avatar{font-size:13px}.profile-chip b{font-size:15px}.profile-chip small{font-size:13px}
+
+/* Hero and dashboard cards */
+.eyebrow{font-size:13px}.hero-copy h1{font-size:clamp(38px,4vw,54px)}.hero-copy p{font-size:17px;line-height:1.65}.hero-points{font-size:13px;gap:20px}
+.metric-card{min-height:94px;padding:16px}.metric-icon{width:42px;height:42px;font-size:20px}.metric-card b{font-size:26px}.metric-card small{font-size:13px}.metric-card em{font-size:12px}
+.engine-tab{font-size:13px;padding:0 14px}.filter-row select,.filter-btn{font-size:13px;height:38px;padding:0 13px}
+.fixture-cell b,.market-cell b{font-size:15px;line-height:1.35}.fixture-cell small,.market-cell small{font-size:12px;line-height:1.4}.league-flag{font-size:14px}.engine-cell{font-size:12px}.engine-glyph{font-size:13px}.confidence{font-size:13px}.confidence-ring{font-size:11px}.odds-cell{font-size:17px}.grade{font-size:11px}.add-btn{font-size:18px}.view-more{font-size:13px;min-height:43px}
+.panel-title h3{font-size:17px}.panel-title button,.panel-title>span{font-size:12px}.news-card b{font-size:15px}.news-card p{font-size:13px}.news-card small{font-size:12px}.community-post b{font-size:15px}.community-post b em{font-size:11px}.community-post small{font-size:12px}.community-post p{font-size:13px}.community-post>span:last-child{font-size:12px}
+.count-badge{font-size:12px}.slip-empty{font-size:13px}.slip-item b{font-size:14px}.slip-item small{font-size:12px}.slip-total,.stake-row{font-size:14px}.slip-total b{font-size:20px}.primary-btn{font-size:15px;min-height:42px}.text-btn{font-size:13px}.chart b{font-size:16px}.streak-panel small{font-size:13px}.streak-panel b{font-size:30px}.streak-panel b em{font-size:12px}.streak-panel p{font-size:13px}.recent-result{font-size:12px}
+
+/* Page headings and controls */
+.page-head{padding-top:22px;padding-bottom:22px}.page-head>div>span{font-size:13px}.page-head h2{font-size:42px;line-height:1.08}.page-head p{font-size:16px;line-height:1.55}.engine-summary b{font-size:42px}.engine-summary small,.risk-note{font-size:13px}.date-btn b{font-size:14px}.date-btn small{font-size:12px}
+.match-list.expanded .fixture-cell b,.match-list.expanded .market-cell b{font-size:16px}.match-list.expanded .engine-cell{font-size:13px}.match-row{min-height:64px}
+
+/* Olympian engine cards — main readability target */
+.engine-grid{gap:16px}.engine-card{min-height:280px;padding:23px}.engine-icon{width:48px;height:48px;font-size:25px}.engine-status{font-size:11px;padding:5px 9px}.engine-card h3{font-size:24px;line-height:1.2;margin-top:17px}.engine-card>small{font-size:13px;line-height:1.4}.engine-card p{font-size:15px;line-height:1.72;font-weight:500;margin:15px 0;color:#c0c8d3}.engine-tags{gap:7px}.engine-tags span{font-size:12px;padding:6px 8px;color:#d2d8e0}
+
+/* Results, content and settings */
+.summary-card small{font-size:13px}.summary-card b{font-size:28px}.summary-card em{font-size:12px}.result-head{font-size:12px}.result-row{font-size:14px;min-height:54px}
+.feature-story>span{font-size:12px}.feature-story h3{font-size:31px}.feature-story p,.story-list p{font-size:15px;line-height:1.65}.story-list b{font-size:16px}.community-feed b{font-size:16px}.community-feed small{font-size:12px}.community-feed p{font-size:15px}.community-feed article div div{font-size:12px}.profile-card p{font-size:15px}.settings-card label{font-size:15px}.settings-card select{font-size:14px}footer{font-size:12px}
+.modal-engine-head p{font-size:14px}.engine-modal h4{font-size:16px}.engine-modal ul,.engine-modal .rule-box{font-size:14px;line-height:1.75}.toast{font-size:14px}
+
+/* Keep four cards only on truly wide screens; use three earlier for roomier type. */
+@media(max-width:1540px) and (min-width:981px){.engine-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+@media(max-width:980px){
+  .sidebar{width:278px}
+  .engine-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:700px){
+  body{font-size:17px;line-height:1.5}
+  .topbar{height:68px}.live-pill{font-size:12px}
+  .hero-copy h1{font-size:35px}.hero-copy p{font-size:14px;line-height:1.55}.hero-points{font-size:12px}
+  .metric-card b{font-size:21px}.metric-card small{font-size:11px}
+  .engine-tab{font-size:12px}.filter-row select,.filter-btn{font-size:13px}
+  .fixture-cell b,.market-cell b{font-size:14px}.fixture-cell small,.market-cell small{font-size:12px}
+  .page-head h2{font-size:32px}.page-head p{font-size:14px}
+  .engine-grid{grid-template-columns:1fr}.engine-card{min-height:235px;padding:21px}.engine-icon{width:46px;height:46px}.engine-card h3{font-size:23px}.engine-card>small{font-size:13px}.engine-card p{font-size:15px;line-height:1.65}.engine-tags span{font-size:12px}
+  .mobile-nav{height:70px}.mobile-nav button{font-size:11px;font-weight:700}.mobile-nav button span{font-size:20px}.mobile-slip{font-size:12px}.drawer-head h3{font-size:18px}
+}
+
+@media(max-width:420px){
+  body{font-size:16px}.hero-copy h1{font-size:32px}.hero-copy p{font-size:13px}
+  .engine-card{padding:19px}.engine-card p{font-size:14px}.engine-tags span{font-size:11px}
+}
