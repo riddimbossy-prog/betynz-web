@@ -1,7 +1,16 @@
 {
   "version": "v193",
-  "updated": null,
-  "summary": {"settledFixtures":0,"settledDecisions":0,"reviewedLosses":0,"teamProfiles":0,"leagueProfiles":0,"matchupProfiles":0,"activePatternBreakers":0,"upsetResistantTeams":0},
+  "updated": "2026-07-14T23:11:10.782Z",
+  "summary": {
+    "settledFixtures": 0,
+    "settledDecisions": 0,
+    "reviewedLosses": 0,
+    "teamProfiles": 0,
+    "leagueProfiles": 0,
+    "matchupProfiles": 0,
+    "activePatternBreakers": 0,
+    "upsetResistantTeams": 0
+  },
   "patternBreakers": [],
   "upsetResistant": [],
   "dangerousUnderdogs": [],
@@ -9,5 +18,18 @@
   "stableLeagues": [],
   "commonMissCauses": [],
   "recentLossReviews": [],
-  "methodology": {"forwardOnly":true,"decayHalfLifeDays":120,"positiveAdjustmentCap":2,"oneMarketOnly":true}
+  "methodology": {
+    "forwardOnly": true,
+    "minimumSamples": {
+      "teamFavorite": 5,
+      "teamUnderdog": 5,
+      "league": 12,
+      "matchup": 2,
+      "context": 6,
+      "hardVeto": 8
+    },
+    "decayHalfLifeDays": 120,
+    "positiveAdjustmentCap": 2,
+    "oneMarketOnly": true
+  }
 }
