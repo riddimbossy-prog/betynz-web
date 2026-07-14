@@ -174,6 +174,11 @@
       <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
       <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
       <div class="odds-cell">${p.odds?p.odds.toFixed(2):"—"}</div>
+      <div class="mobile-match-footer" aria-hidden="true">
+        <span class="mobile-engine"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</span>
+        <span class="mobile-confidence">${p.confidence}%</span>
+        <span class="mobile-odds">${p.odds?p.odds.toFixed(2):"No odds"}</span>
+      </div>
       <button class="add-btn ${added?"added":""}" data-add-pick="${esc(slipKey(p))}" aria-label="${added?"Remove from":"Add to"} slip">${added?"✓":"+"}</button>
     </article>`;
   }

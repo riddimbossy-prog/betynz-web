@@ -1,5 +1,5 @@
-const CACHE='betynz-v3.5-engine-pages-modern-rows';
-const CORE=['/','/index.html','/styles.css?v=3.5','/app.js?v=3.5','/olympian-engine-core.js?v=3.5','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
+const CACHE='betynz-v3.6-mobile-cards-deity-nav';
+const CORE=['/','/index.html','/styles.css?v=3.6','/app.js?v=3.6','/olympian-engine-core.js?v=3.6','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(

@@ -565,3 +565,96 @@ button,select,input{letter-spacing:0}
   .market-cell,.engine-cell{padding-left:32px}.fixture-cell b{font-size:12.5px}.pick-detail-link{font-size:12.5px}
   .engine-cell{font-size:9.5px}.odds-cell{font-size:12px}.confidence-ring{width:32px;height:32px}
 }
+
+/* =========================================================
+   BETYNZ v3.6 — MOBILE GAME CARDS, DEITY VISIBILITY & NAV ICONS
+   ========================================================= */
+.mobile-match-footer{display:none}
+
+/* Make the deity artwork easier to recognize without reducing text contrast. */
+.engine-card.deity-card::after{opacity:.64;filter:saturate(.82) brightness(.76)}
+.engine-card.deity-card:hover::after{opacity:.78}
+.engine-picks-hero::before{opacity:.36;filter:saturate(.8) brightness(.54)}
+.engine-picks-hero>img{opacity:.66;filter:saturate(.82) contrast(1.05)}
+.main-shell[data-art-view="picks"]::before{opacity:.09}
+.main-shell[data-art-view="dashboard"]::before{opacity:.145}
+.hero-panel::before{opacity:.19}
+
+@media(max-width:700px){
+  body{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+
+  /* Mobile matches become independent cards with a clear three-line hierarchy. */
+  .match-list,.match-list.expanded{display:grid;gap:9px;padding:9px;background:transparent}
+  .match-row,.match-list.expanded .match-row{
+    position:relative;display:grid;
+    grid-template-columns:minmax(0,1fr) 46px;
+    grid-template-areas:"fixture add" "market add" "mobile mobile";
+    gap:8px 10px;align-items:center;
+    min-height:0;margin:0;padding:13px 11px;
+    border:1px solid var(--line);border-radius:14px;
+    background:linear-gradient(145deg,rgba(18,21,27,.985),rgba(11,14,18,.99));
+    box-shadow:0 8px 22px rgba(0,0,0,.16)
+  }
+  .match-row:last-child{border-bottom:1px solid var(--line)}
+  .match-row:hover{background:linear-gradient(145deg,rgba(20,24,30,.99),rgba(12,15,19,.99))}
+  .fixture-cell{grid-area:fixture;grid-template-columns:27px minmax(0,1fr);column-gap:8px;align-items:start;padding-right:2px}
+  .fixture-teams{gap:4px}
+  .team-line{gap:7px;min-width:0}
+  .team-line b{font-size:14px;line-height:1.28;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .team-crest{width:20px;height:20px}
+  .league-flag{width:25px;height:25px}
+  .fixture-cell small{font-size:10.5px;line-height:1.35;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  .market-cell{grid-area:market;min-width:0;padding-left:35px;padding-right:2px}
+  .pick-detail-link{font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .market-cell small{font-size:10.5px;line-height:1.4;white-space:normal}
+
+  .engine-cell,.confidence,.odds-cell{display:none!important}
+  .mobile-match-footer{
+    grid-area:mobile;display:grid;
+    grid-template-columns:minmax(0,1fr) auto auto;
+    align-items:center;gap:8px;
+    margin-left:35px;padding-top:9px;
+    border-top:1px solid rgba(255,255,255,.06)
+  }
+  .mobile-engine{display:flex;align-items:center;gap:6px;min-width:0;color:#b9c1cb;font-size:10.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mobile-engine .engine-glyph{width:23px;height:23px;flex:0 0 auto;font-size:12px}
+  .mobile-confidence,.mobile-odds{display:inline-flex;align-items:center;justify-content:center;min-height:27px;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:850;white-space:nowrap}
+  .mobile-confidence{color:#72e9a5;background:rgba(56,210,126,.1);border:1px solid rgba(56,210,126,.22)}
+  .mobile-odds{color:#eef1f5;background:#191e25;border:1px solid var(--line2)}
+  .add-btn{grid-area:add;align-self:start;justify-self:end;width:42px;height:42px;border-radius:11px;font-size:20px}
+
+  /* Larger, clearer bottom-navigation icons. */
+  .mobile-nav{height:calc(78px + env(safe-area-inset-bottom));padding:3px 4px env(safe-area-inset-bottom);align-items:stretch}
+  .mobile-nav button{font-size:10px;font-weight:780;gap:4px;padding:5px 2px 4px;line-height:1.05;overflow:visible;text-overflow:clip}
+  .mobile-nav button span{display:grid;place-items:center;width:35px;height:35px;border-radius:12px;font-size:27px;line-height:1;transition:.18s}
+  .mobile-nav button.active span{background:rgba(200,119,44,.11);box-shadow:inset 0 0 0 1px rgba(200,119,44,.14)}
+  .mobile-slip{bottom:calc(89px + env(safe-area-inset-bottom))}
+
+  /* Slightly more visible deity artwork on phones and Fold cover screens. */
+  .engine-card.deity-card::after{opacity:.68}
+  .engine-picks-hero::before{opacity:.38}
+  .engine-picks-hero>img{opacity:.58}
+  .main-shell[data-art-view="picks"]::before{opacity:.07}
+  .hero-panel::before{opacity:.14}
+}
+
+@media(max-width:430px){
+  .match-list,.match-list.expanded{gap:8px;padding:7px}
+  .match-row,.match-list.expanded .match-row{grid-template-columns:minmax(0,1fr) 44px;padding:12px 9px;border-radius:13px}
+  .fixture-cell{grid-template-columns:25px minmax(0,1fr)}
+  .team-line b,.pick-detail-link{font-size:13px}
+  .team-crest{width:18px;height:18px}.league-flag{width:23px;height:23px}
+  .market-cell,.mobile-match-footer{margin-left:0;padding-left:32px}
+  .mobile-match-footer{grid-template-columns:minmax(0,1fr) auto auto;gap:6px}
+  .mobile-engine{font-size:9.5px}.mobile-confidence,.mobile-odds{font-size:9.5px;padding-inline:7px}
+  .mobile-nav button{font-size:9.5px}.mobile-nav button span{width:33px;height:33px;font-size:25px}
+}
+
+@media(max-width:360px){
+  .match-row,.match-list.expanded .match-row{padding:11px 8px}
+  .market-cell,.mobile-match-footer{padding-left:30px}
+  .mobile-confidence{display:none}
+  .mobile-match-footer{grid-template-columns:minmax(0,1fr) auto}
+  .mobile-nav button{font-size:8.5px}.mobile-nav button span{font-size:23px;width:31px;height:31px}
+}
