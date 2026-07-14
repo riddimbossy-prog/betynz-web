@@ -3,6 +3,13 @@ name: Deploy Betynz Product
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - data.js
+      - api-status.json
+      - prediction-locks.json
+      - results-history.json
+      - scripts/data.js
+      - scripts/*.json
   workflow_dispatch:
 
 permissions:
@@ -11,8 +18,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages
-  cancel-in-progress: true
+  group: betynz-pages
+  cancel-in-progress: false
 
 jobs:
   build:

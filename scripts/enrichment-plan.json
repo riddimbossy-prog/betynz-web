@@ -1,0 +1,17 @@
+{
+  "generatedAt": null,
+  "mode": "adaptive-two-pass",
+  "coverage": {
+    "fixtures": 0,
+    "leagues": 0
+  },
+  "selected": {
+    "leagues": 0,
+    "fixtures": 0,
+    "leagueIds": [],
+    "leagueSeasons": [],
+    "fixtureIds": [],
+    "tsaFixtureIds": []
+  },
+  "topCandidates": []
+}

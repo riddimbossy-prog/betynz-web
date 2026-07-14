@@ -1,5 +1,5 @@
-const CACHE='betynz-v2-real-product';
-const CORE=['/','/index.html','/styles.css?v=2.0','/app.js?v=2.0','/olympian-engine-core.js?v=2.0','/data.js?v=2.0','/manifest.webmanifest','/assets/betynz-mark.svg'];
+const CACHE='betynz-v2.4-adaptive';
+const CORE=['/','/index.html','/styles.css?v=2.4','/app.js?v=2.4','/olympian-engine-core.js?v=2.4','/data.js?v=2.4','/manifest.webmanifest','/assets/betynz-mark.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{

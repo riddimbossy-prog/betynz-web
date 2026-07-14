@@ -34,15 +34,17 @@ for(const m of matches){
   m.olympianPredictions=preds;
   const fixtureKey=key(m),status=String(m.status||"").toUpperCase(),kickoff=m.kickoff?new Date(m.kickoff):null;
   const hours=kickoff&&Number.isFinite(kickoff.getTime())?(kickoff-now)/36e5:null;
-  const shouldLock=!isDemo&&result.decision&&!FINISHED.has(status)&&(hours==null||hours<=12);
+  const publicDecision=result.decision&&["A1","A2"].includes(String(result.decision.grade||"").toUpperCase())?result.decision:null;
+  m.zeusWatchlist=result.decision&&!publicDecision?{...result.decision,watchlist:true,publishedAt:nowISO}:null;
+  const shouldLock=!isDemo&&publicDecision&&!FINISHED.has(status)&&(hours==null||hours<=12);
   if(shouldLock&&!locks[fixtureKey]){
-    locks[fixtureKey]={fixtureId:fixtureKey,home:m.home,away:m.away,league:m.league,kickoff:iso(m.kickoff),publishedAt:nowISO,engineVersion:core.VERSION,decision:result.decision};
+    locks[fixtureKey]={fixtureId:fixtureKey,home:m.home,away:m.away,league:m.league,kickoff:iso(m.kickoff),publishedAt:nowISO,engineVersion:core.VERSION,decision:publicDecision};
     createdLocks++;
   }
   const lock=locks[fixtureKey];
   if(lock){m.zeusDecision={...lock.decision,locked:true,publishedAt:lock.publishedAt};m.predictionLocked=true;}
-  else if(result.decision){m.zeusDecision={...result.decision,locked:false,provisional:true,publishedAt:nowISO};m.predictionLocked=false;}
-  else {m.zeusDecision=null;m.zeusRejection=result.rejection;}
+  else if(publicDecision){m.zeusDecision={...publicDecision,locked:false,provisional:true,publishedAt:nowISO};m.predictionLocked=false;}
+  else {m.zeusDecision=null;m.zeusRejection=result.rejection||{reasons:["Zeus kept this fixture on the internal watchlist until deep evidence clears the public gate."],warnings:(result.decision&&result.decision.warnings)||[],dataQuality:(result.decision&&result.decision.dataQuality)||null};}
   if(m.zeusDecision)qualified++;
   if(FINISHED.has(status)&&lock&&m.homeGoals!=null&&m.awayGoals!=null){
     const hk=`${fixtureKey}|${lock.decision.market}`;

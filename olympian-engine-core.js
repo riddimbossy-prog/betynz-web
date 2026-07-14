@@ -293,8 +293,27 @@
     if(confidence>=88&&best.items.length>=3&&lead>=0.75)grade="A1";
     else if(confidence>=82&&best.items.length>=2&&lead>=0.35)grade="A2";
     else if(confidence<76)return no(engine,"Consensus score is below the public watchlist threshold.",q.score);
-    const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100.`];
-    return mk(engine,best.market,confidence,reasons,[],{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs});
+
+    // A public banker must be backed by independent deep evidence, not only the
+    // broad coverage layer. This preserves global fixture coverage while making
+    // Zeus stricter about what it releases as A1/A2.
+    const evidence={
+      teamStats:!!m.statsReal,
+      recent10:m.homeRecent10PPG!=null&&m.awayRecent10PPG!=null,
+      leagueTrend:!!(m.leagueTrends&&n(m.leagueTrends.sample,0)>=30),
+      h2h:!!(m.h2h&&n(m.h2h.played,0)>=3),
+      xg:!!m.xgReal,
+      marketDepth:!!(m.odds&&Object.values(m.odds).filter(v=>n(v,null)>1).length>=4),
+      lineup:!!m.lineupConfirmed
+    };
+    const evidenceCount=Object.values(evidence).filter(Boolean).length;
+    const deepTagged=m.enrichmentTier==="deep"||evidence.teamStats||evidence.recent10||evidence.leagueTrend||evidence.xg;
+    const warnings=[];
+    if(grade==="A1"&&(evidenceCount<3||!deepTagged)){grade="A2";confidence=Math.min(confidence,87);warnings.push("A1 downgraded because fewer than three independent deep-evidence pillars were available.");}
+    if(grade==="A2"&&(evidenceCount<2||!deepTagged)){grade="WATCH";confidence=Math.min(confidence,81);warnings.push("Public release withheld until at least two deep-evidence pillars confirm the market.");}
+
+    const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100; deep evidence: ${evidenceCount}/7.`];
+    return mk(engine,best.market,confidence,reasons,warnings,{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs,evidence,evidenceCount});
   }
 
   function evaluateMatch(m){

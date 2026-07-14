@@ -50,6 +50,8 @@ function readConfig() {
     else if (key === "ODDS") cfg.ODDS = !/^(false|no|off|0)$/i.test(val.trim());
     else if (key === "H2H") cfg.H2H = !/^(false|no|off|0)$/i.test(val.trim());
     else if (key === "STATS") cfg.STATS = !/^(false|no|off|0)$/i.test(val.trim());
+    else if (key === "FAST_MODE") cfg.FAST_MODE = !/^(false|no|off|0)$/i.test(val.trim());
+    else if (key === "TODAY_ONLY") cfg.TODAY_ONLY = !/^(false|no|off|0)$/i.test(val.trim());
     else if (key === "LEAGUES") {
       if (/^all$/i.test(val.trim())) { cfg.LEAGUES_ALL = true; cfg.LEAGUES = []; }
       else cfg.LEAGUES = val.split(",").map(s => s.trim()).filter(Boolean).map(s => parseInt(s,10)).filter(n=>!isNaN(n));
@@ -58,14 +60,33 @@ function readConfig() {
   return cfg;
 }
 
-function apiGet(endpoint, key) {
+const API_AGENT = new https.Agent({ keepAlive: true, maxSockets: 8 });
+
+function apiGet(endpoint, key, attempt = 0) {
   return new Promise((resolve, reject) => {
-    const opts = { method:"GET", hostname:"v3.football.api-sports.io", path:endpoint, headers:{ "x-apisports-key":key } };
+    const opts = {
+      method: "GET",
+      hostname: "v3.football.api-sports.io",
+      path: endpoint,
+      agent: API_AGENT,
+      headers: {
+        "x-apisports-key": key,
+        "Accept": "application/json",
+        "User-Agent": "Betynz-Data-Bot/2.3"
+      }
+    };
     const req = https.request(opts, res => {
       let body = "";
       res.on("data", d => (body += d));
       res.on("end", () => {
+        const transient = res.statusCode === 429 || res.statusCode >= 500;
+        if (transient && attempt < 3) {
+          const delay = res.statusCode === 429 ? 2500 * (attempt + 1) : 1000 * (attempt + 1);
+          setTimeout(() => apiGet(endpoint, key, attempt + 1).then(resolve, reject), delay);
+          return;
+        }
         if (res.statusCode === 429) { reject(new Error("RATE_LIMIT")); return; }
+        if (res.statusCode >= 400) { reject(new Error(`HTTP_${res.statusCode}: ${endpoint}`)); return; }
         try {
           const json = JSON.parse(body);
           if (json.errors && !Array.isArray(json.errors) && Object.keys(json.errors).length) {
@@ -75,7 +96,14 @@ function apiGet(endpoint, key) {
         } catch (e) { reject(new Error("Bad JSON from " + endpoint)); }
       });
     });
-    req.on("error", reject);
+    req.setTimeout(25000, () => req.destroy(new Error("REQUEST_TIMEOUT")));
+    req.on("error", err => {
+      if (attempt < 2 && /timeout|ECONNRESET|EAI_AGAIN/i.test(String(err.message))) {
+        setTimeout(() => apiGet(endpoint, key, attempt + 1).then(resolve, reject), 800 * (attempt + 1));
+        return;
+      }
+      reject(err);
+    });
     req.end();
   });
 }
@@ -298,18 +326,26 @@ const FINISHED = new Set(["FT","AET","PEN"]);
     if (season) console.log(`SEASON "${cfg.SEASON}" is invalid — using ${fallback} instead.`);
     season = fallback;
   }
-  // Delay between API calls. Default 1500ms (~40/min) — well within Ultra's
-  // 450/min ceiling while staying clear of burst rejections. Pro users should
-  // keep this higher (e.g. 6500). Tune with SLEEP_MS in config.txt.
-  const SLEEP = (cfg.SLEEP_MS && cfg.SLEEP_MS >= 200) ? cfg.SLEEP_MS : 1500;
-  // --- date window (default: yesterday .. +3) ---
-  const DAYS_BACK = (cfg.DAYS_BACK != null && !isNaN(cfg.DAYS_BACK)) ? cfg.DAYS_BACK : 1;
-  const DAYS_FWD  = (cfg.DAYS_FWD  != null && !isNaN(cfg.DAYS_FWD))  ? cfg.DAYS_FWD  : 3;
+  // FAST_MODE is the broad-coverage path used by the live website. It fetches
+  // every fixture returned by API-Football for today, then adds standings and
+  // available odds without making four or more deep calls per team. This keeps
+  // a busy global fixture day within minutes instead of hours. Deep team/H2H
+  // enrichment can still be run separately by setting FAST_MODE=false.
+  const FAST_MODE = cfg.FAST_MODE === true;
+  const TODAY_ONLY = cfg.TODAY_ONLY === true;
+  const configuredSleep = Number(cfg.SLEEP_MS);
+  const SLEEP = Number.isFinite(configuredSleep) && configuredSleep >= 100
+    ? configuredSleep
+    : (FAST_MODE ? 250 : 1500);
+  // --- date window ---
+  const DAYS_BACK = TODAY_ONLY ? 0 : ((cfg.DAYS_BACK != null && !isNaN(cfg.DAYS_BACK)) ? cfg.DAYS_BACK : 1);
+  const DAYS_FWD  = TODAY_ONLY ? 0 : ((cfg.DAYS_FWD  != null && !isNaN(cfg.DAYS_FWD))  ? cfg.DAYS_FWD  : 3);
   const DATE_WINDOW = buildDateWindow(DAYS_BACK, DAYS_FWD);
   const today = todayStr();
   const k = cfg.API_KEY;
   console.log(`Token read: ${k.length<=8?k:k.slice(0,4)+"…"+k.slice(-4)}  (length ${k.length})`);
-  console.log(`Date window: ${DATE_WINDOW[0]} … ${DATE_WINDOW[DATE_WINDOW.length-1]}  (${DATE_WINDOW.length} days)   Season: ${season}`);
+  console.log(`Date window: ${DATE_WINDOW[0]} … ${DATE_WINDOW[DATE_WINDOW.length-1]}  (${DATE_WINDOW.length} days)   Season fallback: ${season}`);
+  console.log(`Mode: ${FAST_MODE ? "FAST GLOBAL COVERAGE" : "DEEP ENRICHMENT"}${TODAY_ONLY ? " / TODAY ONLY" : ""}`);
   console.log(`Leagues: ${cfg.LEAGUES.length>50?cfg.LEAGUES.length+" ids":cfg.LEAGUES.join(", ")}\n`);
 
   const out = [];
@@ -318,7 +354,7 @@ const FINISHED = new Set(["FT","AET","PEN"]);
   const ALL_MODE = cfg.LEAGUES_ALL === true;
   // optional cap so a very busy day doesn't run for hours. 0 = no cap.
   const MAX_LEAGUES = cfg.MAX_LEAGUES || 0;
-  const wantH2H = cfg.H2H !== false;   // full H2H on every day (per your choice)
+  const wantH2H = !FAST_MODE && cfg.H2H !== false;
   const wantOdds = cfg.ODDS !== false;
 
   // -----------------------------------------------------------------
@@ -330,36 +366,34 @@ const FINISHED = new Set(["FT","AET","PEN"]);
   const leagueGroups = [];
 
   if (ALL_MODE) {
+    // One discovery request per date. The /fixtures date filter already returns
+    // all competitions available to the account and each fixture includes its
+    // real league season, so there is no need to probe three seasons per date.
     for (const date of DATE_WINDOW) {
-      let gotForThisDate = false;
-      for (const s of [...new Set([season, String(parseInt(season,10)-1), String(parseInt(season,10)+1)])]) {
-        try {
-          const r = await apiGet(`/fixtures?date=${date}&season=${s}`, cfg.API_KEY);
-          requests++;
-          const arr = r.response || [];
-          if (arr.length) {
-            const byId = {};
-            for (const fx of arr) {
-              const lid = fx.league && fx.league.id;
-              if (!lid) continue;
-              (byId[lid] = byId[lid] || []).push(fx);
-            }
-            for (const [lid, fxs] of Object.entries(byId)) {
-              leagueGroups.push({ id: parseInt(lid,10), season: s, date, fixtures: fxs });
-            }
-            gotForThisDate = true;
-          }
-        } catch (e) {
-          if (e.message === "RATE_LIMIT") { console.log("RATE LIMIT — wait a minute and run again."); }
-          else if (!firstError) firstError = e.message;
+      try {
+        const r = await apiGet(`/fixtures?date=${date}`, cfg.API_KEY);
+        requests++;
+        const arr = r.response || [];
+        const byLeagueSeason = new Map();
+        for (const fx of arr) {
+          const lid = fx.league && fx.league.id;
+          if (!lid) continue;
+          const fixtureSeason = String((fx.league && fx.league.season) || season);
+          const groupKey = `${lid}|${fixtureSeason}`;
+          if (!byLeagueSeason.has(groupKey)) byLeagueSeason.set(groupKey, { id:Number(lid), season:fixtureSeason, date, fixtures:[] });
+          byLeagueSeason.get(groupKey).fixtures.push(fx);
         }
-        await sleep(SLEEP);
-        if (gotForThisDate) break; // got this date on this season, move to next date
+        leagueGroups.push(...byLeagueSeason.values());
+        console.log(`Discovery ${date}: ${arr.length} fixtures across ${byLeagueSeason.size} league-season groups.`);
+      } catch (e) {
+        if (e.message === "RATE_LIMIT") console.log("RATE LIMIT during fixture discovery — retry the workflow after a minute.");
+        else if (!firstError) firstError = e.message;
       }
+      await sleep(SLEEP);
     }
-    console.log(`ALL mode: ${leagueGroups.length} league-days have fixtures in the window.`);
+    console.log(`ALL mode: ${leagueGroups.length} league-days available in the account for the window.`);
     if (MAX_LEAGUES && leagueGroups.length > MAX_LEAGUES) {
-      console.log(`Capping to ${MAX_LEAGUES} league-days (set MAX_LEAGUES in config to change).`);
+      console.log(`Capping to ${MAX_LEAGUES} league-days (set MAX_LEAGUES=0 for every league).`);
       leagueGroups.length = MAX_LEAGUES;
     }
   } else {
@@ -529,7 +563,9 @@ const FINISHED = new Set(["FT","AET","PEN"]);
     if (standingsCache[cacheKey]) return standingsCache[cacheKey];
     // de-duped season candidates: the one fixtures resolved to, then prev, then next
     const base = parseInt(seasonForStandings, 10);
-    const seasonCandidates = [...new Set([ String(base), String(base-1), String(base+1) ])];
+    const seasonCandidates = FAST_MODE
+      ? [String(base)]
+      : [...new Set([ String(base), String(base-1), String(base+1) ])];
     let parsed = null, usedSeason = seasonForStandings;
     for (const s of seasonCandidates) {
       try {
@@ -554,7 +590,7 @@ const FINISHED = new Set(["FT","AET","PEN"]);
   // odds are per league+date; cache by `${leagueId}|${season}|${date}`
   const oddsCache = {};
   const teamStatsCache = {}; // key `${teamId}|${leagueId}|${season}` -> stats object
-  const wantStats = cfg.STATS !== false; // set STATS=false secret to disable
+  const wantStats = !FAST_MODE && cfg.STATS !== false; // deep per-team calls are disabled in broad-coverage mode
 
   // Fetch a team's finished fixtures this season and compute the CURRENT
   // streaks (of any length) at the most recent game: win / unbeaten / no-loss /
@@ -891,10 +927,12 @@ const FINISHED = new Set(["FT","AET","PEN"]);
     // League Trend data (70-70-70 engine): real league-wide market hit-rates,
     // fetched once per league and cached. null if <50 matches or fetch failed.
     let leagueTrends = null;
-    try { leagueTrends = await getLeagueTrends(leagueId, seasonForStandings, cfg.API_KEY, SLEEP, table, tableSize); requests++;
-      if(!leagueTrends){ TREND_STATS.nullLeagues.add(leagueId); console.log(`    trends: league ${leagueId} -> null (combined sample <30 or empty response)`); }
-      else { TREND_STATS.okLeagues.add(leagueId); if(leagueTrends.backfilled) TREND_STATS.backfilledLeagues.add(leagueId); if(leagueTrends.tierPatterns) TREND_STATS.tierLeagues.add(leagueId); } }
-    catch(e){ leagueTrends = null; TREND_STATS.nullLeagues.add(leagueId); console.log(`    trends: league ${leagueId} FAILED -> ${e.message}`); }
+    if (!FAST_MODE) {
+      try { leagueTrends = await getLeagueTrends(leagueId, seasonForStandings, cfg.API_KEY, SLEEP, table, tableSize); requests++;
+        if(!leagueTrends){ TREND_STATS.nullLeagues.add(leagueId); console.log(`    trends: league ${leagueId} -> null (combined sample <30 or empty response)`); }
+        else { TREND_STATS.okLeagues.add(leagueId); if(leagueTrends.backfilled) TREND_STATS.backfilledLeagues.add(leagueId); if(leagueTrends.tierPatterns) TREND_STATS.tierLeagues.add(leagueId); } }
+      catch(e){ leagueTrends = null; TREND_STATS.nullLeagues.add(leagueId); console.log(`    trends: league ${leagueId} FAILED -> ${e.message}`); }
+    }
 
     for (const fx of fixtures) {
       const st = fx.fixture.status.short;
@@ -1095,12 +1133,15 @@ const FINISHED = new Set(["FT","AET","PEN"]);
   if (!out.length) {
     if (firstError) {
       console.log("\nNo matches saved. First issue: " + firstError);
-      if (firstError.includes("season")) console.log("If it mentions the season, your plan may not cover it. Pro unlocks current seasons.");
-    } else {
-      console.log("\nNo fixtures in the window in your leagues (off-season is normal in summer).");
-      console.log("The World Cup is league ID 1 — make sure it's in config.txt.");
+      if (firstError.includes("season")) console.log("If it mentions the season, your plan may not cover it.");
+      process.exitCode = 1;
+      return;
     }
-    console.log("Leaving your existing data.js untouched (not overwriting with empty).\n");
+    console.log("\nAPI-Football returned no fixtures for the requested window. Publishing an honest empty live board.\n");
+    fs.writeFileSync(path.join(HERE, "data.js"),
+      "/* AUTO-GENERATED empty live board — do not edit by hand. */\n\n" +
+      "window.DATA_UPDATED = " + JSON.stringify(new Date().toISOString()) + ";\n" +
+      "window.MATCHES = [];\n", "utf8");
     return;
   }
 
@@ -1112,8 +1153,10 @@ const FINISHED = new Set(["FT","AET","PEN"]);
   let existing = [];
   try {
     const prev = fs.readFileSync(path.join(HERE, "data.js"), "utf8");
+    const previousWasDemo = /window\.BETYNZ_DEMO\s*=\s*true/.test(prev);
     const m = prev.match(/window\.MATCHES\s*=\s*(\[[\s\S]*\]);?\s*$/);
-    if (m) existing = JSON.parse(m[1]);
+    if (!previousWasDemo && m) existing = JSON.parse(m[1]);
+    if (previousWasDemo) console.log("Discarding packaged demo fixtures before publishing live data.");
   } catch (e) {}
   const windowSet = new Set(DATE_WINDOW);
   const kept = existing.filter(x => x.matchDate && !windowSet.has(x.matchDate));

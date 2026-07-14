@@ -92,6 +92,15 @@ function loadMatches(){
   return { matches: JSON.parse(m[1]), updated, raw };
 }
 
+function loadEnrichmentPlan(){
+  try {
+    const plan = JSON.parse(fs.readFileSync(path.join(HERE,"enrichment-plan.json"),"utf8"));
+    const ids = plan && plan.selected && Array.isArray(plan.selected.tsaFixtureIds)
+      ? plan.selected.tsaFixtureIds.map(String) : [];
+    return new Set(ids);
+  } catch (_) { return new Set(); }
+}
+
 (async function main(){
   const cfg = readConfig();
   if(!cfg.STATS_API_KEY){ console.log("No STATS_API_KEY set — skipping enrichment (site unaffected)."); process.exit(0); }
@@ -100,16 +109,28 @@ function loadMatches(){
   try { loaded = loadMatches(); }
   catch(e){ console.log("Could not read data.js — skipping enrichment:", e.message); process.exit(0); }
   const { matches, updated } = loaded;
+  const plannedIds = loadEnrichmentPlan();
+  const maxMatches = Math.max(1, Number(process.env.TSA_MAX_MATCHES || 24));
+  const scopedMatches = (plannedIds.size ? matches.filter(m=>plannedIds.has(String(m.id))) : matches)
+    .slice(0, maxMatches);
+  console.log(`TheStatsAPI adaptive scope: ${scopedMatches.length}/${matches.length} fixtures.`);
 
-  // only enrich UPCOMING + recently-finished games (today +/- a couple days)
+  // only enrich the priority scope; this keeps calls concentrated on matches
+  // that can realistically become public Zeus selections.
   const dates = new Set();
-  matches.forEach(m=>{ if(m.matchDate) dates.add(m.matchDate); });
+  scopedMatches.forEach(m=>{ if(m.matchDate) dates.add(m.matchDate); });
   const dateList = [...dates].sort().slice(-6); // cap the window
 
   // build a lookup of TheStatsAPI matches by date -> [{home,away,id,xg_available}]
   const tsaByDate = {};
+  const cacheFile = path.join(HERE,"the-stats-cache.json");
+  let persistentCache = { teams:{} };
+  try { persistentCache = JSON.parse(fs.readFileSync(cacheFile,"utf8")); } catch (_) {}
+  if(!persistentCache||typeof persistentCache!=="object") persistentCache={teams:{}};
+  if(!persistentCache.teams||typeof persistentCache.teams!=="object") persistentCache.teams={};
   const teamFormCache = {};      // rolling xG form per TSA team id (cached per run)
   const XG_LOOKBACK = 10;        // recent finished matches to average for form
+  const TEAM_CACHE_TTL_MS = 12 * 60 * 60 * 1000;
   let calls = 0, enriched = 0, matchedGames = 0, multiBookMatches = 0;
   for(const date of dateList){
     try{
@@ -131,7 +152,7 @@ function loadMatches(){
   }
 
   // for each of OUR matches, find the TSA equivalent + pull its premium data
-  for(const m of matches){
+  for(const m of scopedMatches){
     const candidates = tsaByDate[m.matchDate] || [];
     const tsa = candidates.find(c =>
       c.home_team && c.away_team &&
@@ -212,6 +233,11 @@ function loadMatches(){
       const teamXgForm = async (tsaTeamId, teamName)=>{
         if(tsaTeamId==null) return null;
         if(teamFormCache[tsaTeamId]!==undefined) return teamFormCache[tsaTeamId];
+        const persisted=persistentCache.teams[String(tsaTeamId)];
+        if(persisted&&persisted.savedAt&&Date.now()-Date.parse(persisted.savedAt)<TEAM_CACHE_TTL_MS){
+          teamFormCache[tsaTeamId]=persisted.form||null;
+          return teamFormCache[tsaTeamId];
+        }
         let form=null;
         try{
           const r=await api(`/football/matches?team_id=${tsaTeamId}&status=finished&per_page=${XG_LOOKBACK}`, cfg.STATS_API_KEY); calls++;
@@ -237,6 +263,7 @@ function loadMatches(){
           await sleep(200);
         }catch(e){ /* leave form null */ }
         teamFormCache[tsaTeamId]=form;
+        persistentCache.teams[String(tsaTeamId)]={savedAt:new Date().toISOString(),teamName:teamName||null,form};
         return form;
       };
       try{
@@ -248,12 +275,17 @@ function loadMatches(){
       }catch(e){ /* form optional */ }
     }
 
-    // confirmed lineups (announced ~1h pre-kickoff; 404 before that)
-    try{
-      const lu = await api(`/football/matches/${tsa.id}/lineups`, cfg.STATS_API_KEY); calls++;
-      if(lu && lu.data && lu.data.confirmed){ m.lineupConfirmed = true; }
-      await sleep(250);
-    }catch(e){ /* no lineup yet — fine */ }
+    // Confirmed lineups are useful only close to kickoff. Avoid wasting a call
+    // hours earlier when providers cannot have an official XI yet.
+    const kickoffMs = Date.parse(m.kickoff || "");
+    const minsToKickoff = Number.isFinite(kickoffMs) ? (kickoffMs - Date.now()) / 60000 : 9999;
+    if (minsToKickoff >= -30 && minsToKickoff <= 150) {
+      try{
+        const lu = await api(`/football/matches/${tsa.id}/lineups`, cfg.STATS_API_KEY); calls++;
+        if(lu && lu.data && lu.data.confirmed){ m.lineupConfirmed = true; }
+        await sleep(250);
+      }catch(e){ /* no lineup yet — fine */ }
+    }
   }
 
   // write back: preserve DATA_UPDATED, add ENRICHED_AT marker
@@ -262,5 +294,9 @@ function loadMatches(){
     `window.ENRICHED_AT = "${new Date().toISOString()}";\n` +
     `window.MATCHES = ${JSON.stringify(matches, null, 2)};\n`;
   fs.writeFileSync(path.join(HERE,"data.js"), out, "utf8");
+  try {
+    persistentCache.updatedAt=new Date().toISOString();
+    fs.writeFileSync(cacheFile,JSON.stringify(persistentCache,null,2)+"\n","utf8");
+  } catch (_) {}
   console.log(`Enrichment done: ${matchedGames} games matched, ${enriched} got real xG, ${multiBookMatches} got 4+ timestamped books, in ${calls} calls.`);
 })();
