@@ -38,3 +38,48 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:24px 2px 80px
 @media(max-width:980px){.app-shell{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;transform:translateX(-105%);width:248px;box-shadow:20px 0 60px rgba(0,0,0,.55);transition:.25s}.sidebar.open{transform:none}.menu-btn{display:block}.dashboard-grid{grid-template-columns:1fr}.dashboard-rail{display:grid;grid-template-columns:1fr 1fr}.slip-panel{grid-row:1/3}.topbar{padding:0 16px}.profile-chip span:nth-child(2),.profile-chip em{display:none}.search-box{width:min(430px,48vw)}.engine-grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.profile-layout{grid-template-columns:1fr 1.4fr}}
 @media(max-width:700px){body{padding-bottom:76px}.topbar{height:64px;gap:8px}.search-box{display:none}.top-actions{gap:8px}.profile-chip{display:none}.live-pill{height:30px}.main-shell{min-width:0}main{padding:10px 10px 24px}.hero-panel{grid-template-columns:1fr;min-height:180px}.hero-copy{padding:18px}.hero-copy h1{font-size:28px}.hero-copy p{font-size:10px;max-width:80%}.hero-points{gap:10px;font-size:8px}.hero-visual{position:absolute;right:0;top:0;width:44%;height:100%;min-height:0;opacity:.8}.player{font-size:46px;right:20%;top:38px}.ball{font-size:28px;right:14%;bottom:28px}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;overflow:auto}.metric-card{min-width:92px;min-height:72px;display:block;padding:10px}.metric-icon{width:27px;height:27px;font-size:13px;margin-bottom:6px}.metric-card b{font-size:16px}.metric-card small{font-size:7px}.metric-card em{display:none}.engine-tabs{height:43px}.engine-tab{height:43px;padding:0 9px;font-size:8px}.filter-row{padding:8px}.filter-row select,.filter-btn{min-width:max-content;height:31px}.match-row,.match-list.expanded .match-row{grid-template-columns:minmax(0,1fr) 82px 45px 30px;gap:7px;padding:11px 10px}.fixture-cell{grid-template-columns:23px 1fr}.league-flag{width:21px;height:21px}.market-cell{min-width:0}.market-cell b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.engine-cell,.confidence,.odds-cell{display:none!important}.add-btn{width:29px;height:29px}.lower-grid{grid-template-columns:1fr}.dashboard-rail{display:none}.page-head{align-items:flex-start;padding:15px 2px}.page-head h2{font-size:25px}.page-head p{font-size:9px}.page-head>.primary-btn,.page-head>.engine-summary,.risk-note{display:none}.page-panel{border-radius:14px}.filter-row.wide{overflow:auto}.date-btn{min-width:78px;padding:8px}.engine-grid{grid-template-columns:1fr}.engine-card{min-height:165px}.banker-summary,.result-metrics{grid-template-columns:repeat(2,1fr)}.result-head,.result-row{grid-template-columns:1.3fr .8fr .5fr}.result-head span:nth-child(3),.result-row span:nth-child(3){display:none}.content-grid{display:block}.story-list{margin-top:10px}.story-art{height:170px}.profile-layout{grid-template-columns:1fr}.mobile-nav{display:grid;position:fixed;left:0;right:0;bottom:0;height:64px;z-index:70;background:rgba(9,11,14,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom)}.mobile-nav button{border:0;background:none;color:#79818c;font-size:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}.mobile-nav button span{font-size:17px}.mobile-nav button.active{color:var(--orange)}.mobile-slip{display:flex;position:fixed;right:12px;bottom:74px;z-index:69;border:1px solid rgba(255,115,0,.35);background:#161a20;border-radius:999px;padding:9px 12px;align-items:center;gap:7px;box-shadow:var(--shadow);font-size:8px}.mobile-slip b{min-width:19px;height:19px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#170b00}.mobile-slip em{font-style:normal;color:var(--orange);font-weight:900}.drawer-backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:80;opacity:0;pointer-events:none;transition:.2s}.drawer-backdrop.open{opacity:1;pointer-events:auto}.mobile-drawer{display:block;position:fixed;left:0;right:0;bottom:0;z-index:81;background:#101318;border:1px solid var(--line2);border-radius:20px 20px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:.25s;max-height:78vh;overflow:auto}.mobile-drawer.open{transform:none}.drawer-head{display:flex;align-items:center;justify-content:space-between}.drawer-head h3{margin:0;font-size:14px}.drawer-head button{width:32px;height:32px;border:1px solid var(--line);background:#171b21;border-radius:9px}.modal-close{right:10px;top:10px}footer{display:none}}
 @media(max-width:420px){.hero-copy p{max-width:92%}.hero-points span:nth-child(3){display:none}.metric-grid{grid-template-columns:repeat(4,96px)}.engine-card{padding:15px}.feature-story,.story-list{padding:16px}.profile-chip{display:none}}
+
+/* =========================================================
+   BETYNZ v1.1 — READABLE TYPOGRAPHY UPGRADE
+   Larger type across desktop, tablet, mobile and foldables.
+   ========================================================= */
+body{font-size:16px;line-height:1.45}
+.brand span{font-size:20px}.brand em{font-size:13px}
+.nav-item{min-height:49px}.nav-item b{font-size:15px}
+.premium-card strong{font-size:15px}.premium-card small{font-size:12px}.premium-card button{font-size:14px}
+.server-state b{font-size:12px}.server-state small{font-size:11px}
+.search-box input{font-size:14px}.live-pill{font-size:12px}.icon-btn sup{font-size:10px}
+.avatar{font-size:12px}.profile-chip b{font-size:13px}.profile-chip small{font-size:11px}
+.eyebrow{font-size:11px}.hero-copy h1{font-size:clamp(32px,3.6vw,48px)}.hero-copy p{font-size:14px}.hero-points{font-size:11px}
+.metric-card b{font-size:22px}.metric-card small{font-size:11px}.metric-card em{font-size:10px}
+.engine-tab{font-size:11px}.filter-row select,.filter-btn{font-size:11px}
+.league-flag{font-size:12px}.fixture-cell b,.market-cell b{font-size:12px}.fixture-cell small,.market-cell small{font-size:10px}
+.engine-cell{font-size:10px}.engine-glyph{font-size:11px}.confidence{font-size:11px}.confidence-ring{font-size:9px}.odds-cell{font-size:14px}
+.grade{font-size:9px}.view-more{font-size:11px}
+.panel-title h3{font-size:14px}.panel-title button,.panel-title>span{font-size:10px}
+.news-card b{font-size:12px}.news-card p{font-size:10px}.news-card small{font-size:9px}
+.community-post b{font-size:12px}.community-post b em{font-size:9px}.community-post small{font-size:9px}.community-post p{font-size:10px}.community-post>span:last-child{font-size:10px}
+.count-badge{font-size:10px}.slip-empty{font-size:11px}.slip-item b{font-size:11px}.slip-item small{font-size:9px}
+.slip-total,.stake-row{font-size:11px}.slip-total b{font-size:16px}.primary-btn{font-size:12px}.text-btn{font-size:10px}
+.chart b{font-size:13px}.streak-panel small{font-size:10px}.streak-panel b{font-size:26px}.streak-panel b em{font-size:10px}.streak-panel p{font-size:10px}.recent-result{font-size:9px}
+.page-head>div>span{font-size:11px}.page-head h2{font-size:34px}.page-head p{font-size:13px}.engine-summary b{font-size:36px}.engine-summary small,.risk-note{font-size:11px}
+.date-btn b{font-size:11px}.date-btn small{font-size:10px}
+.match-list.expanded .fixture-cell b,.match-list.expanded .market-cell b{font-size:13px}.match-list.expanded .engine-cell{font-size:11px}
+.engine-card{min-height:225px;padding:19px}.engine-status{font-size:9px}.engine-card h3{font-size:20px}.engine-card>small{font-size:10px}.engine-card p{font-size:11px;line-height:1.65}.engine-tags span{font-size:9px}
+.summary-card small{font-size:10px}.summary-card b{font-size:24px}.summary-card em{font-size:10px}.result-head{font-size:10px}.result-row{font-size:11px}
+.feature-story>span{font-size:10px}.feature-story h3{font-size:26px}.feature-story p,.story-list p{font-size:12px}.story-list b{font-size:13px}
+.community-feed b{font-size:13px}.community-feed small{font-size:10px}.community-feed p{font-size:12px}.community-feed article div div{font-size:10px}
+.profile-card p{font-size:12px}.settings-card label{font-size:12px}.settings-card select{font-size:11px}
+footer{font-size:10px}
+.modal-engine-head p{font-size:11px}.engine-modal h4{font-size:13px}.engine-modal ul,.engine-modal .rule-box{font-size:12px}.toast{font-size:12px}
+
+@media(max-width:700px){
+  body{font-size:16px}
+  .hero-copy h1{font-size:32px}.hero-copy p{font-size:12px}.hero-points{font-size:10px}
+  .metric-card b{font-size:18px}.metric-card small{font-size:9px}
+  .engine-tab{font-size:10px}.filter-row select,.filter-btn{font-size:11px}
+  .fixture-cell b,.market-cell b{font-size:12px}.fixture-cell small,.market-cell small{font-size:10px}
+  .page-head h2{font-size:28px}.page-head p{font-size:11px}
+  .engine-card{min-height:195px;padding:18px}.engine-card h3{font-size:20px}.engine-card>small{font-size:10px}.engine-card p{font-size:12px}.engine-tags span{font-size:10px}
+  .mobile-nav button{font-size:9px}.mobile-slip{font-size:10px}.drawer-head h3{font-size:16px}
+}
