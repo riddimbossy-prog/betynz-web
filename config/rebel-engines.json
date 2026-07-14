@@ -1,0 +1,34 @@
+{
+  "version": "1.1",
+  "site": "betynz.com",
+  "engines": {
+    "spartacus": {
+      "minBookmakers": 3,
+      "minAgreement": 0.55,
+      "minMovement": 0.04,
+      "strongMovement": 0.06,
+      "requiredConfirmations": 1,
+      "maxMildContradictions": 1
+    },
+    "leonidas": {
+      "minBookmakers": 5,
+      "minAgreement": 0.70,
+      "minMovement": 0.06,
+      "strongMovement": 0.08,
+      "requiredConfirmations": 2,
+      "maxMildContradictions": 1
+    }
+  },
+  "goalMarkets": {
+    "over15": {"maxOdds": 1.30},
+    "over25": {"minOdds": 1.20, "maxOdds": 1.70, "requiresUnder35Above": 1.60},
+    "under25": {"minOdds": 1.20, "maxOdds": 1.70, "requiresOver15Above": 1.60},
+    "under35": {"maxOdds": 1.40, "fallback": "over15"},
+    "over35": {"minOdds": 1.20, "maxOddsExclusive": 1.90, "requiresUnder35Above": 1.60}
+  },
+  "favoriteRule": {
+    "spartacus": {"favoriteMin": 1.20, "favoriteMax": 1.55, "opponentMin": 5.00, "drawMinExclusive": 3.60, "under35Min": 1.40, "bttsNoMax": 1.70},
+    "leonidas": {"favoriteMin": 1.20, "favoriteMax": 1.50, "opponentMin": 5.50, "drawMinExclusive": 3.60, "under35Min": 1.40, "bttsNoMax": 1.70}
+  },
+  "htftMarkets": ["1/1", "X/1", "2/1", "1/X", "X/X", "2/X", "1/2", "X/2", "2/2"]
+}

@@ -84,6 +84,74 @@ function sameTeam(a,b){
   return false;
 }
 
+function oddPrice(x){
+  if(x==null)return null;
+  if(typeof x==="number"||typeof x==="string"){const v=Number(x);return Number.isFinite(v)?v:null;}
+  const v=Number(x.last_seen??x.closing??x.current??x.price??x.odd??x.odds??x.opening);
+  return Number.isFinite(v)?v:null;
+}
+function oddOpening(x){
+  if(x==null||typeof x!=="object")return null;
+  const v=Number(x.opening??x.open??x.initial);
+  return Number.isFinite(v)?v:null;
+}
+function oddKey(x){return String(x||"").toLowerCase().replace(/[^a-z0-9]+/g,"");}
+function findMarket(markets,aliases){
+  if(!markets||typeof markets!=="object")return null;
+  const entries=Object.entries(markets),targets=aliases.map(oddKey);
+  for(const [key,value] of entries){const k=oddKey(key);if(targets.some(t=>k===t||k.includes(t)||t.includes(k)))return value;}
+  return null;
+}
+function selectionItems(market){
+  if(!market)return[];
+  if(Array.isArray(market))return market;
+  for(const key of ["values","selections","outcomes","options"]){if(Array.isArray(market[key]))return market[key];}
+  return Object.entries(market).map(([key,value])=>({__key:key,__value:value,...(value&&typeof value==="object"?value:{})}));
+}
+function findSelection(market,aliases){
+  if(!market)return null;
+  const targets=aliases.map(oddKey);
+  if(typeof market==="object"&&!Array.isArray(market)){
+    for(const [key,value] of Object.entries(market)){const k=oddKey(key);if(targets.some(t=>k===t||k.includes(t)||t.includes(k)))return value;}
+  }
+  for(const item of selectionItems(market)){
+    const label=item.name??item.label??item.selection??item.outcome??item.value??item.__key;
+    const k=oddKey(label);if(targets.some(t=>k===t||k.includes(t)||t.includes(k)))return item.__value??item;
+  }
+  return null;
+}
+function addOddsPair(open,current,key,selection){
+  const o=oddOpening(selection),c=oddPrice(selection);
+  if(Number.isFinite(o)&&Number.isFinite(c)&&o>1&&c>1){open[key]=o;current[key]=c;return true;}
+  return false;
+}
+function extractBookMarkets(bm){
+  const markets=bm&&bm.markets||{},open={},current={};
+  const match=findMarket(markets,["match_odds","1x2","match_result","full_time_result"]);
+  addOddsPair(open,current,"home",findSelection(match,["home","1"]));
+  addOddsPair(open,current,"draw",findSelection(match,["draw","x"]));
+  addOddsPair(open,current,"away",findSelection(match,["away","2"]));
+  const totals=findMarket(markets,["total_goals","goals_over_under","over_under","match_goals"]);
+  for(const [key,aliases] of Object.entries({over15:["over 1.5","over15","o1.5"],under15:["under 1.5","under15","u1.5"],over25:["over 2.5","over25","o2.5"],under25:["under 2.5","under25","u2.5"],over35:["over 3.5","over35","o3.5"],under35:["under 3.5","under35","u3.5"]}))addOddsPair(open,current,key,findSelection(totals,aliases));
+  const btts=findMarket(markets,["both_teams_to_score","btts"]);
+  addOddsPair(open,current,"bttsYes",findSelection(btts,["yes","btts yes"]));
+  addOddsPair(open,current,"bttsNo",findSelection(btts,["no","btts no"]));
+  const dc=findMarket(markets,["double_chance","doublechance"]);
+  addOddsPair(open,current,"dc1x",findSelection(dc,["1x","home draw","home/draw"]));
+  addOddsPair(open,current,"dc12",findSelection(dc,["12","home away","home/away"]));
+  addOddsPair(open,current,"dcx2",findSelection(dc,["x2","draw away","draw/away"]));
+  const dnb=findMarket(markets,["draw_no_bet","dnb"]);
+  addOddsPair(open,current,"homeDnb",findSelection(dnb,["home","1"]));
+  addOddsPair(open,current,"awayDnb",findSelection(dnb,["away","2"]));
+  const fhTotals=findMarket(markets,["first_half_total_goals","first_half_over_under","1st_half_total_goals"]);
+  addOddsPair(open,current,"fhOver05",findSelection(fhTotals,["over 0.5","over05","o0.5"]));
+  addOddsPair(open,current,"fhOver15",findSelection(fhTotals,["over 1.5","over15","o1.5"]));
+  addOddsPair(open,current,"fhUnder15",findSelection(fhTotals,["under 1.5","under15","u1.5"]));
+  const htft=findMarket(markets,["half_time_full_time","ht_ft","htft"]);
+  for(const [key,aliases] of Object.entries({htft11:["1/1","1-1","home/home"],htftX1:["x/1","x-1","draw/home"],htft21:["2/1","2-1","away/home"],htft1X:["1/x","1-x","home/draw"],htftXX:["x/x","x-x","draw/draw"],htft2X:["2/x","2-x","away/draw"],htft12:["1/2","1-2","home/away"],htftX2:["x/2","x-2","draw/away"],htft22:["2/2","2-2","away/away"]}))addOddsPair(open,current,key,findSelection(htft,aliases));
+  return{open,current,pairCount:Object.keys(open).length};
+}
+
 function loadMatches(){
   const raw = fs.readFileSync(path.join(HERE,"data.js"),"utf8");
   const m = raw.match(/window\.MATCHES\s*=\s*([\s\S]*?);\s*$/m);
@@ -161,45 +229,28 @@ function loadEnrichmentPlan(){
     if(!tsa) continue;
     matchedGames++;
 
-    // line movement from odds (cheap, 1 call) — opening vs last-seen
+    // Multi-book line movement. Capture 1X2 plus totals, BTTS, DNB,
+    // double-chance, first-half and HT/FT markets when the provider returns them.
+    // Leonidas and Spartacus abstain if timestamped opening/current pairs are absent.
     try{
       if(tsa.odds_available){
-        const o = await api(`/football/matches/${tsa.id}/odds`, cfg.STATS_API_KEY); calls++;
+        const o=await api(`/football/matches/${tsa.id}/odds`,cfg.STATS_API_KEY);calls++;
         const books=(o&&o.data&&o.data.bookmakers)||[];
-        const price=x=>{
-          if(x==null)return null;
-          if(typeof x==="number"||typeof x==="string"){const n=Number(x);return Number.isFinite(n)?n:null;}
-          const n=Number(x.last_seen??x.closing??x.current??x.price??x.opening);
-          return Number.isFinite(n)?n:null;
-        };
-        const opening=x=>{const n=Number(x&&x.opening);return Number.isFinite(n)?n:null;};
-        const fetchedAt=new Date().toISOString();
-        const snapshots=[];
+        const fetchedAt=new Date().toISOString(),snapshots=[];
         for(const bm of books){
-          const mo=bm&&bm.markets&&(bm.markets.match_odds||bm.markets["1x2"]||bm.markets.match_result);
-          if(!mo)continue;
-          const open={home:opening(mo.home),draw:opening(mo.draw),away:opening(mo.away)};
-          const current={home:price(mo.home),draw:price(mo.draw),away:price(mo.away)};
-          if(![open.home,open.draw,open.away,current.home,current.draw,current.away].every(Number.isFinite))continue;
+          const extracted=extractBookMarkets(bm);if(!extracted.pairCount)continue;
           const vendorTs=bm.updated_at||bm.last_updated||bm.timestamp||(o.data&&o.data.updated_at)||null;
-          snapshots.push({
-            bookmaker:bm.bookmaker||bm.name||bm.slug||`Book ${snapshots.length+1}`,
-            timestamp:vendorTs||fetchedAt,
-            timestampSource:vendorTs?"vendor":"retrieved",
-            opening:open,
-            current
-          });
+          snapshots.push({bookmaker:bm.bookmaker||bm.name||bm.slug||`Book ${snapshots.length+1}`,timestamp:vendorTs||fetchedAt,timestampSource:vendorTs?"vendor":"retrieved",opening:extracted.open,current:extracted.current,marketPairs:extracted.pairCount});
         }
         if(snapshots.length){
           const pref=["Pinnacle","Betfair Exchange","Bet365","Kambi"];
-          snapshots.sort((a,b)=>{
-            const ai=pref.indexOf(a.bookmaker),bi=pref.indexOf(b.bookmaker);
-            return (ai<0?99:ai)-(bi<0?99:bi);
-          });
-          m.oddsBooks=snapshots;
-          const bm=snapshots[0];
-          m.oddsOpen={...bm.opening};
-          m.oddsLast={...bm.current};
+          snapshots.sort((a,b)=>{const ai=pref.indexOf(a.bookmaker),bi=pref.indexOf(b.bookmaker);return(ai<0?99:ai)-(bi<0?99:bi)});
+          m.oddsBooks=snapshots;m.oddsUpdatedAt=fetchedAt;
+          const primary=snapshots.find(x=>[x.opening.home,x.opening.draw,x.opening.away,x.current.home,x.current.draw,x.current.away].every(Number.isFinite))||snapshots[0];
+          m.oddsOpen={...primary.opening};m.oddsLast={...primary.current};
+          m.odds={...(m.odds||{})};for(const [key,value] of Object.entries(primary.current)){if(!(Number(m.odds[key])>1)&&Number(value)>1)m.odds[key]=value;}
+          const allKeys=new Set(snapshots.flatMap(x=>Object.keys(x.opening||{})));
+          m.rebelOddsCoverage={bookmakers:snapshots.length,markets:[...allKeys].sort(),fullMarketBooks:snapshots.filter(x=>x.marketPairs>=6).length};
           if(snapshots.length>=4)multiBookMatches++;
         }
         await sleep(250);

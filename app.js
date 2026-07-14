@@ -17,10 +17,12 @@
     {id:"atlas",name:"Atlas",fn:"atlasRecommend",glyph:"◉",role:"Heavy Data Strength",summary:"Carries recent-ten, venue and league-normalized strength into one conservative team assessment.",tags:["Recent 10","Venue","Strength"],checks:["Combines venue and overall performance.","Uses recent-ten data when the sample is valid.","Penalizes volatile result patterns."],gate:"A heavy score still needs a supported market."},
     {id:"orion",name:"Orion",fn:"orionRecommend",glyph:"✦",role:"Advanced Edge Tracker",summary:"Tracks uncertainty intervals and only fires when the conservative edge remains positive.",tags:["Intervals","xG/SOT","Apex"],checks:["Builds a conservative range around team strength.","Checks whether the lower edge still supports the market.","Rejects compressed same-tier fixtures."],gate:"The lower bound—not the optimistic estimate—must pass."},
     {id:"nike",name:"Nike",fn:"nikeRecommend",glyph:"✧",role:"Banker Victory Engine",summary:"Targets high-quality result markets using Bayesian strength, form and volatility controls.",tags:["Bankers","Wins","Bayesian"],checks:["Blends venue, overall and recent strength.","Adjusts for opposition and competition volatility.","Downgrades favorites that cannot convert control into goals."],gate:"Victory picks require attacking proof."},
-    {id:"prometheus",name:"Prometheus",fn:"prometheusRecommend",glyph:"♨",role:"Foundation Model",summary:"The original PPG foundation that supplies a clear baseline for every stronger generation.",tags:["Baseline","PPG","Foundation"],checks:["Calculates venue and overall PPG.","Uses recent form as confirmation.","Routes the safest supported result or goal market."],gate:"A baseline signal is evidence, not the final decision."}
+    {id:"prometheus",name:"Prometheus",fn:"prometheusRecommend",glyph:"♨",role:"Foundation Model",summary:"The original PPG foundation that supplies a clear baseline for every stronger generation.",tags:["Baseline","PPG","Foundation"],checks:["Calculates venue and overall PPG.","Uses recent form as confirmation.","Routes the safest supported result or goal market."],gate:"A baseline signal is evidence, not the final decision."},
+    {id:"spartacus",name:"Spartacus",fn:"spartacusRecommend",glyph:"⛓",family:"rebel",role:"Rebel Movement Scanner",summary:"A broader multi-book odds-movement engine that accepts valid market direction and downgrades weak aggressive signals.",tags:["Opening odds","Movement","Downgrades"],checks:["Requires at least three timestamped bookmakers.","Measures bookmaker agreement and related-market confirmation.","Uses strict goal-line and favourite downgrade ladders."],gate:"Spartacus never estimates missing opening prices and cannot publish a Zeus selection by itself."},
+    {id:"leonidas",name:"Leonidas",fn:"leonidasRecommend",glyph:"Λ",family:"rebel",role:"Elite Rebel Confirmation",summary:"The stricter rebel engine, demanding deeper movement, more bookmakers and stronger cross-market confirmation.",tags:["5+ books","70% agreement","Elite movement"],checks:["Requires at least five timestamped bookmakers.","Needs at least two related-market confirmations.","Rejects weak, reversed or contradictory movement."],gate:"Leonidas may confirm or challenge the Olympians, but at least one Olympian must agree before Zeus can publish."}
   ];
   const ENGINE_MAP=Object.fromEntries(ENGINES.map(e=>[e.id,e]));
-  const ENGINE_ART={zeus:"assets/gods/zeus.webp",athena:"assets/gods/athena.webp",apollo:"assets/gods/apollo.webp",ares:"assets/gods/ares.webp",poseidon:"assets/gods/poseidon.webp",hermes:"assets/gods/hermes.webp",hera:"assets/gods/hera.webp",artemis:"assets/gods/artemis.webp",hephaestus:"assets/gods/hephaestus.webp",atlas:"assets/gods/atlas.webp",demeter:"assets/gods/demeter.webp",dionysus:"assets/gods/dionysus.webp",hades:"assets/gods/hades.webp",orion:"assets/gods/orion.webp",nike:"assets/gods/nike.webp",prometheus:"assets/gods/prometheus.webp"};
+  const ENGINE_ART={zeus:"assets/gods/zeus.webp",athena:"assets/gods/athena.webp",apollo:"assets/gods/apollo.webp",ares:"assets/gods/ares.webp",poseidon:"assets/gods/poseidon.webp",hermes:"assets/gods/hermes.webp",hera:"assets/gods/hera.webp",artemis:"assets/gods/artemis.webp",hephaestus:"assets/gods/hephaestus.webp",atlas:"assets/gods/atlas.webp",demeter:"assets/gods/demeter.webp",dionysus:"assets/gods/dionysus.webp",hades:"assets/gods/hades.webp",orion:"assets/gods/orion.webp",nike:"assets/gods/nike.webp",prometheus:"assets/gods/prometheus.webp",spartacus:"assets/gods/spartacus.webp",leonidas:"assets/gods/leonidas.webp"};
   const matches=Array.isArray(window.MATCHES)?window.MATCHES:[];
   const meta=window.BETYNZ_META&&typeof window.BETYNZ_META==="object"?window.BETYNZ_META:{};
   const history=Array.isArray(window.BETYNZ_HISTORY)?window.BETYNZ_HISTORY:[];
@@ -34,6 +36,7 @@
   const LIVE=new Set(["1H","HT","2H","ET","BT","P","LIVE"]);
   const cache=new Map();
   const pickCache=new Map();
+  const enginePickCache=new Map();
   let activeView=(location.hash||"#dashboard").slice(1);
   let activeDate=null;
   let activeDashboardEngine="all";
@@ -101,9 +104,11 @@
     const best=ranked[0],second=ranked[1];
     const hardConflict=ranked.some(g=>g!==best&&g.votes.length>=2&&opposite(best.market,g.market));
     const lead=second?best.votes.length-second.votes.length:best.votes.length;
+    const olympianVotes=best.votes.filter(v=>v.engine.family!=="rebel");
+    if(!olympianVotes.length){pickCache.set(mk,null);return null}
     let grade="WATCH";
-    if(!hardConflict&&best.confidence>=88&&best.votes.length>=2&&(lead>=1||best.votes.some(v=>v.engine.id==="zeus")))grade="A1";
-    else if(!hardConflict&&best.confidence>=82&&best.votes.length>=1)grade="A2";
+    if(!hardConflict&&best.confidence>=88&&best.votes.length>=3&&olympianVotes.length>=2&&(lead>=1||best.votes.some(v=>v.engine.id==="zeus")))grade="A1";
+    else if(!hardConflict&&best.confidence>=82&&best.votes.length>=2&&olympianVotes.length>=1)grade="A2";
     else if(best.confidence<76||hardConflict){pickCache.set(mk,null);return null}
     const topVote=best.votes.sort((a,b)=>b.confidence-a.confidence)[0];
     const pick={m,market:best.market,confidence:best.confidence,grade,engine:topVote.engine,engines:best.votes.map(v=>v.engine),votes:best.votes.length,odds:priceOf(m,best.market),conflict:hardConflict,reasons:topVote.out.reasons||[]};
@@ -111,6 +116,13 @@
   }
 
   function allPicks(){return matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")))}
+  function enginePicks(id){
+    if(id==="zeus")return allPicks();
+    if(enginePickCache.has(id))return enginePickCache.get(id);
+    const engine=ENGINE_MAP[id];if(!engine)return[];
+    const rows=matches.map(m=>{const out=runEngine(m,engine);if(!out)return null;const confidence=Math.round(Number(out.confidence||0));return{m,market:out.primary,confidence,grade:confidence>=88?"A1":confidence>=82?"A2":"WATCH",engine,engines:[engine],votes:1,odds:priceOf(m,out.primary),conflict:false,reasons:out.reasons||[],warnings:out.warnings||[],locked:false,provisional:true,dataQuality:out.dataQuality??null,engineOnly:true,rebel:engine.family==="rebel"}}).filter(Boolean).sort((a,b)=>b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")));
+    enginePickCache.set(id,rows);return rows;
+  }
   function gradeRank(g){return g==="A1"?3:g==="A2"?2:g==="WATCH"?1:0}
   function matchesForDate(date){return matches.filter(m=>dateOf(m)===date)}
   function dates(){return [...new Set(matches.map(dateOf).filter(d=>d&&d!=="Undated"))].sort()}
@@ -143,7 +155,8 @@
   function winningStreak(picks){const by={};picks.forEach(p=>{const r=settlePick(p);if(r!=="Pending")(by[dateOf(p.m)]=by[dateOf(p.m)]||[]).push(r)});let n=0;Object.keys(by).sort().reverse().some(d=>{if(by[d].some(x=>x==="Won")){n++;return false}return true});return n}
 
   function renderEngineTabs(){
-    const tabs=[{id:"all",name:"All Engines",glyph:"◎"},...ENGINES.slice(0,7)];
+    const featured=["zeus","athena","apollo","ares","hermes","spartacus","leonidas"].map(id=>ENGINE_MAP[id]).filter(Boolean);
+    const tabs=[{id:"all",name:"All Engines",glyph:"◎"},...featured];
     $("#engine-tabs").innerHTML=tabs.map(e=>`<button class="engine-tab ${activeDashboardEngine===e.id?"active":""}" data-engine-tab="${e.id}">${e.glyph||""} ${esc(e.name)}</button>`).join("");
     $$("[data-engine-tab]").forEach(b=>b.onclick=()=>{activeDashboardEngine=b.dataset.engineTab;renderDashboardList();renderEngineTabs()});
   }
@@ -160,7 +173,7 @@
   function oddsIn(v,range){if(range==="all")return true;if(!v)return false;const [a,b]=range.split("-").map(Number);return v>=a&&v<=b}
   function renderDashboardList(){const rows=filteredDashboardPicks().slice(0,7);$("#dashboard-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No qualified picks for these filters.")}
   function matchRow(p){
-    const m=p.m,added=slip.some(x=>x.key===slipKey(p));const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");
+    const m=p.m,added=slip.some(x=>x.key===slipKey(p));const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");const gradeLabel=p.engineOnly?"SIGNAL":p.grade;const stateLabel=p.engineOnly?(p.rebel?"REBEL":"ENGINE"):(p.locked?"LOCKED":"PROVISIONAL");
     return `<article class="match-row" data-pick-key="${esc(keyOf(m))}">
       <div class="fixture-cell">
         <span class="league-flag">${leagueBadge(m)}</span>
@@ -170,7 +183,7 @@
           <small>${esc(m.league||"Football")} · ${kickoff(m)}${isLive(m)?" · LIVE":""}</small>
         </div>
       </div>
-      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.grade}">${p.grade}</span> · <span class="lock-state ${p.locked?"locked":"provisional"}">${p.locked?"LOCKED":"PROVISIONAL"}</span></small></div>
+      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.engineOnly?"WATCH":p.grade}">${gradeLabel}</span> · <span class="lock-state ${p.engineOnly?"provisional":p.locked?"locked":"provisional"}">${stateLabel}</span></small></div>
       <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
       <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
       <div class="odds-cell">${p.odds?p.odds.toFixed(2):"—"}</div>
@@ -198,8 +211,8 @@
   function renderPicksView(){
     const ds=dates();
     const engine=ENGINE_MAP[picksFilter.engine]||null;
-    const enginePicks=engine?allPicks().filter(p=>p.engines.some(e=>e.id===engine.id)):[];
-    const engineDates=[...new Set(enginePicks.map(p=>dateOf(p.m)))].sort();
+    const engineRows=engine?enginePicks(engine.id):[];
+    const engineDates=[...new Set(engineRows.map(p=>dateOf(p.m)))].sort();
     if(!activeDate)activeDate=engineDates[0]||ds[0]||todayISO;
     if(engine&&engineDates.length&&!engineDates.includes(activeDate))activeDate=engineDates.find(d=>d>=todayISO)||engineDates[0];
 
@@ -221,8 +234,7 @@
     lSel.value=picksFilter.league||"all";
     const gradeSel=$("#picks-grade");if(gradeSel)gradeSel.value=picksFilter.grade||"all";
 
-    let rows=allPicks().filter(p=>dateOf(p.m)===activeDate);
-    if(picksFilter.engine!=="all")rows=rows.filter(p=>p.engines.some(e=>e.id===picksFilter.engine));
+    let rows=(engine?engineRows:allPicks()).filter(p=>dateOf(p.m)===activeDate);
     if(picksFilter.market!=="all")rows=rows.filter(p=>marketFamily(p.market)===picksFilter.market);
     if(picksFilter.league!=="all")rows=rows.filter(p=>p.m.league===picksFilter.league);
     if(picksFilter.grade!=="all")rows=rows.filter(p=>p.grade===picksFilter.grade);
@@ -236,14 +248,15 @@
       if(subtitle)subtitle.textContent=`Selections supported by ${engine.name} — ${engine.role}.`;
       if(hero){
         hero.hidden=false;
+        hero.dataset.engineFamily=engine.family||"olympian";
         hero.style.setProperty("--engine-art",`url("${ENGINE_ART[engine.id]||ENGINE_ART.zeus}")`);
-        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div class="engine-picks-meta"><b>${enginePicks.length}</b> qualified picks across <b>${engineDates.length}</b> active dates</div><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} deity artwork" loading="eager">`;
+        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div class="engine-picks-meta"><b>${engineRows.length}</b> qualified picks across <b>${engineDates.length}</b> active dates</div><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} engine artwork" loading="eager">`;
       }
     }else{
       if(title)title.textContent="Upcoming Predictions";
       if(eyebrow)eyebrow.textContent="FULL MATCH BOARD";
       if(subtitle)subtitle.textContent="Browse every qualified market across today and the next six days.";
-      if(hero){hero.hidden=true;hero.innerHTML="";hero.style.removeProperty("--engine-art")}
+      if(hero){hero.hidden=true;hero.innerHTML="";hero.style.removeProperty("--engine-art");delete hero.dataset.engineFamily}
     }
 
     $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty(engine?`${engine.name} has no qualified picks for ${friendlyDate(activeDate)}.`:"No engine clears the selected conditions.");
@@ -251,11 +264,11 @@
   }
 
   function renderEngines(){
-    const picks=allPicks();
     $("#engine-grid").innerHTML=ENGINES.map(e=>{
-      const count=picks.filter(p=>p.engines.some(x=>x.id===e.id)).length;
+      const count=enginePicks(e.id).length;
       const art=ENGINE_ART[e.id]||ENGINE_ART.zeus;
-      return `<article class="engine-card deity-card" data-engine-picks="${e.id}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${count} PICKS</span></div><h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">View ${e.name} picks →</div></article>`
+      const rebel=e.family==="rebel";
+      return `<article class="engine-card deity-card ${rebel?"rebel-card":""}" data-engine-picks="${e.id}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${count} PICKS</span></div>${rebel?'<span class="engine-family-badge">REBEL</span>':''}<h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">View ${e.name} picks →</div></article>`
     }).join("");
     $$('[data-engine-picks]').forEach(c=>{
       c.onclick=()=>viewEnginePicks(c.dataset.enginePicks);
@@ -265,14 +278,14 @@
   function viewEnginePicks(id){
     const engine=ENGINE_MAP[id];if(!engine)return;
     picksFilter={engine:id,market:"all",league:"all",grade:"all"};
-    const engineRows=allPicks().filter(p=>p.engines.some(e=>e.id===id));
+    const engineRows=enginePicks(id);
     const availableDates=[...new Set(engineRows.map(p=>dateOf(p.m)))].sort();
     activeDate=availableDates.find(d=>d>=todayISO)||availableDates[0]||activeDate||todayISO;
     showView("picks");
     toast(engineRows.length?`${engine.name} picks loaded.`:`${engine.name} has no qualified picks right now.`);
   }
   function openEngine(id){const e=ENGINE_MAP[id];if(!e)return;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
-  function openPickDetail(matchKey){const p=allPicks().find(x=>keyOf(x.m)===String(matchKey));if(!p)return;const m=p.m;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">⚡</span><div><h2 id="engine-modal-title">${esc(m.home)} vs ${esc(m.away)}</h2><p>${esc(m.league||"Football")} · ${esc(friendlyDate(dateOf(m)))} · ${esc(kickoff(m))}</p></div></div><div class="decision-hero"><span class="grade ${p.grade}">${p.grade}</span><div><small>Zeus decision</small><b>${esc(marketClean(p.market))}</b></div><strong>${p.confidence}%</strong></div><h4>Why it qualified</h4><ul>${(p.reasons||[]).map(x=>`<li>${esc(x)}</li>`).join("")||"<li>No public reason was recorded.</li>"}</ul><h4>Prediction status</h4><div class="rule-box">${p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional. It may change before the 12-hour lock window."}${p.dataQuality!=null?` Data quality: ${esc(p.dataQuality)}/100.`:""}</div>${p.warnings&&p.warnings.length?`<h4>Warnings</h4><ul>${p.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
+  function openPickDetail(matchKey){let p=allPicks().find(x=>keyOf(x.m)===String(matchKey));if(picksFilter.engine!=="all"){const enginePick=enginePicks(picksFilter.engine).find(x=>keyOf(x.m)===String(matchKey));if(enginePick)p=enginePick}if(!p)return;const m=p.m,signal=p.engineOnly,displayGrade=signal?"SIGNAL":p.grade,statusText=signal?`${p.engine.name} specialist signal. Zeus has not necessarily published this market.`:p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional. It may change before the 12-hour lock window.";$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${p.engine.glyph||"⚡"}</span><div><h2 id="engine-modal-title">${esc(m.home)} vs ${esc(m.away)}</h2><p>${esc(m.league||"Football")} · ${esc(friendlyDate(dateOf(m)))} · ${esc(kickoff(m))}</p></div></div><div class="decision-hero"><span class="grade ${signal?"WATCH":p.grade}">${displayGrade}</span><div><small>${signal?esc(p.engine.name)+" engine signal":"Zeus decision"}</small><b>${esc(marketClean(p.market))}</b></div><strong>${p.confidence}%</strong></div><h4>Why it qualified</h4><ul>${(p.reasons||[]).map(x=>`<li>${esc(x)}</li>`).join("")||"<li>No public reason was recorded.</li>"}</ul><h4>Prediction status</h4><div class="rule-box">${statusText}${p.dataQuality!=null?` Data quality: ${esc(p.dataQuality)}/100.`:""}</div>${p.warnings&&p.warnings.length?`<h4>Warnings</h4><ul>${p.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
   function closeEngine(){$("#engine-modal-backdrop").classList.remove("open");$("#engine-modal").classList.remove("open")}
 
   function renderBankers(){
@@ -309,7 +322,7 @@
   }
 
   function slipKey(p){return `${keyOf(p.m)}|${p.market}`}
-  function addPickByKey(k){const p=allPicks().find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip()}
+  function addPickByKey(k){let p=allPicks().find(x=>slipKey(x)===k);if(!p&&picksFilter.engine!=="all")p=enginePicks(picksFilter.engine).find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip()}
   function persistSlip(){if(preferences.rememberSlip!==false)saveJSON("betynz-slip",slip)}
   function removeSlip(k){slip=slip.filter(x=>x.key!==k);persistSlip();renderAllPickLists();renderSlip()}
   function slipOdds(){return slip.reduce((x,l)=>x*(Number(l.odds)||1),1)}
@@ -369,7 +382,7 @@
     $("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};$("#copy-slip").onclick=copySlip;$("#drawer-copy").onclick=copySlip;
     $("#mobile-slip").onclick=()=>{$("#mobile-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open")};const closeDrawer=()=>{$("#mobile-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open")};$("#drawer-close").onclick=closeDrawer;$("#drawer-backdrop").onclick=closeDrawer;
     $("#engine-modal-close").onclick=closeEngine;$("#engine-modal-backdrop").onclick=closeEngine;document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeDrawer();closeSidebar()}});
-    $("#add-visible").onclick=()=>{const dateRows=allPicks().filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
+    $("#add-visible").onclick=()=>{const source=picksFilter.engine!=="all"?enginePicks(picksFilter.engine):allPicks();const dateRows=source.filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
     $("#save-prefs").onclick=savePreferences;
     window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
   }

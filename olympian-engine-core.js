@@ -5,7 +5,8 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="2.0.0";
+  const VERSION="3.9.0";
+  const REBEL_API=(typeof require==="function"?(()=>{try{return require("./rebel-engine-core.js")}catch(_){return {}}})():typeof globalThis!=="undefined"?globalThis:{});
   const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
   const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,Number(v)||0));
   const n=(v,f=null)=>{const x=Number(v);return Number.isFinite(x)?x:f};
@@ -268,13 +269,23 @@
     r.confidence=pct(r.confidence+3);r.reasons.unshift("Nike requires strong evidence plus an attack-to-conversion check.");return r;
   }
 
+  function spartacusRecommend(m){
+    if(typeof REBEL_API.spartacusRecommend!=="function")return no("Spartacus","The rebel movement module is unavailable.",dataQuality(m).score);
+    try{return REBEL_API.spartacusRecommend(m)}catch(_){return no("Spartacus","The rebel movement input could not be evaluated safely.",dataQuality(m).score)}
+  }
+  function leonidasRecommend(m){
+    if(typeof REBEL_API.leonidasRecommend!=="function")return no("Leonidas","The rebel movement module is unavailable.",dataQuality(m).score);
+    try{return REBEL_API.leonidasRecommend(m)}catch(_){return no("Leonidas","The rebel movement input could not be evaluated safely.",dataQuality(m).score)}
+  }
+
   const SPECIALISTS={
     prometheus:prometheusRecommend,athena:athenaRecommend,apollo:apolloRecommend,ares:aresRecommend,
     poseidon:poseidonRecommend,hermes:hermesRecommend,hera:heraRecommend,artemis:artemisRecommend,
     hephaestus:hephaestusRecommend,demeter:demeterRecommend,dionysus:dionysusRecommend,hades:hadesRecommend,
-    atlas:atlasRecommend,orion:orionRecommend,nike:nikeRecommend
+    atlas:atlasRecommend,orion:orionRecommend,nike:nikeRecommend,spartacus:spartacusRecommend,leonidas:leonidasRecommend
   };
-  const AUTH={athena:1.35,apollo:1.15,ares:1.1,poseidon:1.05,hermes:.65,hera:1.25,artemis:1.1,hephaestus:1.2,demeter:.95,dionysus:.9,hades:1.15,atlas:1.25,orion:1.25,nike:1.35,prometheus:.8};
+  const REBEL_IDS=new Set(["spartacus","leonidas"]);
+  const AUTH={athena:1.35,apollo:1.15,ares:1.1,poseidon:1.05,hermes:.65,hera:1.25,artemis:1.1,hephaestus:1.2,demeter:.95,dionysus:.9,hades:1.15,atlas:1.25,orion:1.25,nike:1.35,prometheus:.8,spartacus:.75,leonidas:1.05};
   function opposite(a,b){a=String(a);b=String(b);return (a.includes("Over 2.5")&&b.includes("Under 2.5"))||(a.includes("Under 2.5")&&b.includes("Over 2.5"))||(a==="BTTS Yes"&&b==="BTTS No")||(a==="BTTS No"&&b==="BTTS Yes")||(a==="Home Win"&&/^Away/.test(b))||(a==="Away Win"&&/^Home/.test(b));}
   function zeusRecommend(m){
     const engine="Zeus",q=dataQuality(m);if(q.score<68)return no(engine,`Data quality ${q.score}/100 is below Zeus's release gate.`,q.score,q.missing);
@@ -288,10 +299,13 @@
     const authority=best.items.reduce((s,x)=>s+(AUTH[x.id]||1),0),avgConf=avg(best.items.map(x=>x.confidence))||0;
     const lead=best.support-(second?second.support:0);
     if(best.items.length<2||best.support<1.75||lead<0.35)return no(engine,"Consensus lead is too small to publish a final market.",q.score,[`Best support ${round(best.support,2)}, lead ${round(lead,2)}.`]);
+    const olympianItems=best.items.filter(x=>!REBEL_IDS.has(x.id));
+    const rebelItems=best.items.filter(x=>REBEL_IDS.has(x.id));
+    if(!olympianItems.length)return no(engine,"Rebel movement agrees internally, but no Olympian specialist confirms the market.",q.score,["Leonidas and Spartacus can challenge or confirm the board; they cannot publish alone."]);
     let confidence=clamp(avgConf+best.items.length*1.3+authority*.8,0,93);
     let grade="WATCH";
-    if(confidence>=88&&best.items.length>=3&&lead>=0.75)grade="A1";
-    else if(confidence>=82&&best.items.length>=2&&lead>=0.35)grade="A2";
+    if(confidence>=88&&best.items.length>=3&&olympianItems.length>=2&&lead>=0.75)grade="A1";
+    else if(confidence>=82&&best.items.length>=2&&olympianItems.length>=1&&lead>=0.35)grade="A2";
     else if(confidence<76)return no(engine,"Consensus score is below the public watchlist threshold.",q.score);
 
     // A public banker must be backed by independent deep evidence, not only the
@@ -312,7 +326,7 @@
     if(grade==="A1"&&(evidenceCount<3||!deepTagged)){grade="A2";confidence=Math.min(confidence,87);warnings.push("A1 downgraded because fewer than three independent deep-evidence pillars were available.");}
     if(grade==="A2"&&(evidenceCount<2||!deepTagged)){grade="WATCH";confidence=Math.min(confidence,81);warnings.push("Public release withheld until at least two deep-evidence pillars confirm the market.");}
 
-    const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100; deep evidence: ${evidenceCount}/7.`];
+    const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100; deep evidence: ${evidenceCount}/7.${rebelItems.length?` Rebel confirmation: ${rebelItems.map(x=>x.id==="leonidas"?"Leonidas":"Spartacus").join(" + ")}.`:""}`];
     return mk(engine,best.market,confidence,reasons,warnings,{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs,evidence,evidenceCount});
   }
 
@@ -326,7 +340,7 @@
   return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,zeusRecommend,
     prometheusRecommend,athenaRecommend,apolloRecommend,aresRecommend,poseidonRecommend,hermesRecommend,
     heraRecommend,artemisRecommend,hephaestusRecommend,demeterRecommend,dionysusRecommend,hadesRecommend,
-    atlasRecommend,orionRecommend,nikeRecommend,settleMarket:function(market,h,a){
+    atlasRecommend,orionRecommend,nikeRecommend,spartacusRecommend,leonidasRecommend,settleMarket:function(market,h,a){
       h=n(h,null);a=n(a,null);if(h==null||a==null)return"Pending";const t=h+a,m=String(market||"");
       if(m==="Home Win")return h>a?"Won":"Lost";if(m==="Away Win")return a>h?"Won":"Lost";
       if(m==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(m==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";

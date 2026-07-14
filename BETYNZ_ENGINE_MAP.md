@@ -1,4 +1,4 @@
-# Betynz Olympian Engine Map v2.0
+# Betynz Engine Map v3.9
 
 | Engine | Product responsibility | Main release rule |
 |---|---|---|
@@ -18,3 +18,9 @@
 | Orion | xG edge | Trusted xG data and a conservative lower-bound check are mandatory |
 | Nike | Victory markets | Result picks require attack-to-conversion proof |
 | Prometheus | Foundation model | Establishes the baseline PPG and goal-market direction |
+| Spartacus | Rebel movement scanner | Requires 3+ timestamped bookmakers, 55% agreement and at least one related confirmation |
+| Leonidas | Elite rebel confirmation | Requires 5+ timestamped bookmakers, 70% agreement and at least two related confirmations |
+
+## Rebel governance
+
+Leonidas and Spartacus may confirm or challenge an Olympian market, but they cannot publish a Zeus selection by themselves. A public Zeus decision must retain at least one Olympian confirmation; A1 requires at least two Olympian confirmations.

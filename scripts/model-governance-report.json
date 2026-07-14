@@ -1,9 +1,8 @@
 {
   "version": "v194",
-  "updated": "2026-07-14T23:11:10.791Z",
+  "updated": null,
   "summary": {
     "settled": 0,
-    "winRate": null,
     "engines": 0,
     "approved": 0,
     "shadow": 0,
@@ -19,10 +18,6 @@
   "dataQuality": [],
   "duplicates": [],
   "method": {
-    "split": "Oldest 70% train / newest 30% validation",
-    "minimumApproval": 35,
-    "calibration": "Expected calibration error",
-    "defaultPolicy": "SHADOW",
-    "rollbackSupported": true
+    "defaultPolicy": "SHADOW"
   }
 }

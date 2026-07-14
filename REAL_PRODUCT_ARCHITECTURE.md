@@ -16,7 +16,7 @@ API keys are never available in the browser.
 
 1. API-Football provides fixtures, standings, form, league history, odds and results.
 2. TheStatsAPI optionally enriches xG and bookmaker snapshots.
-3. The Olympian core evaluates fifteen specialist models.
+3. The engine core evaluates fifteen Olympian specialists and two Rebel movement engines.
 4. Zeus rejects weak consensus and opposite markets.
 5. Predictions lock inside 12 hours of kickoff.
 6. Validation blocks malformed or unsafe snapshots.
@@ -40,13 +40,16 @@ API keys are never available in the browser.
 - Nike — high-quality result markets
 - Prometheus — foundation PPG model
 - Zeus — final consensus and rejection core
+- Spartacus — broader multi-book movement scanner
+- Leonidas — strict elite movement confirmation
 
 ## Release gates
 
 - Data quality must reach 68/100 for Zeus.
 - At least two specialists must agree.
+- Rebel-only agreement cannot publish; at least one Olympian must confirm.
 - Weighted support must clear 1.75.
 - Consensus lead must clear 0.35.
 - Qualified opposite markets cause No Bet.
-- A1 requires 88+, at least three specialist confirmations and a stronger lead.
+- A1 requires 88+, at least three specialist confirmations, at least two Olympian confirmations and a stronger lead.
 - A2 requires 82+ and at least two confirmations.

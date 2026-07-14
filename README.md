@@ -1,4 +1,4 @@
-# Betynz.com — Real Product v2.0
+# Betynz.com — Real Product v3.9
 
 **Tagline:** Smart Betting Predictions
 
@@ -10,6 +10,7 @@ This is the deployable Betynz core product for GitHub Pages. It uses GitHub Acti
 - Optional TheStatsAPI xG and multi-book odds enrichment
 - Six-day forward board plus one-day score lookback
 - Fifteen independently implemented Olympian specialist engines
+- Leonidas and Spartacus Rebel odds-movement engines
 - Zeus consensus, contradiction and data-quality gate
 - Pre-kickoff prediction locking for record integrity
 - Public results history based only on locked predictions
@@ -56,7 +57,7 @@ Validates the code, builds a public `dist/` folder, and deploys only safe public
 
 ### Update Betynz Product Data
 
-Runs every six hours. It creates a temporary config from GitHub Secrets, fetches and enriches data, evaluates all Olympian engines, applies Zeus, locks eligible predictions, validates the snapshot and commits generated public data.
+Runs every six hours. It creates a temporary config from GitHub Secrets, fetches and enriches data, evaluates all Olympian and Rebel engines, applies Zeus, locks eligible predictions, validates the snapshot and commits generated public data.
 
 ### Update Betynz Live Scores
 
@@ -84,3 +85,13 @@ Open `http://localhost:8080`.
 The live data workflow now uses a two-pass model. Pass one discovers every competition returned for today. Pass two ranks fixtures and spends deeper API calls only where they can materially improve a Zeus decision. The complete board remains visible, but A1/A2 public selections require independent deep evidence.
 
 Run **Smart Global Coverage and Deep Enrichment** from GitHub Actions after installing the package. The hourly **Refresh Priority Evidence** workflow updates xG, odds movement and near-kickoff lineups for the current shortlist.
+
+## v3.9 Rebel engines
+
+- **Spartacus** scans broader multi-book movement using a minimum of three timestamped bookmakers and 55% directional agreement.
+- **Leonidas** is stricter, requiring at least five timestamped bookmakers, 70% agreement and two related confirmations.
+- Both engines use the uploaded v1.1 goal-market and favourite downgrade rules.
+- Missing opening prices, weak agreement or contradictory movement produces No Bet.
+- Rebel engines can support or challenge Zeus, but cannot create a public decision without Olympian confirmation.
+
+Run `npm run test:rebels` to verify the uploaded v1.1 rule examples.
