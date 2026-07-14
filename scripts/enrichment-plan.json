@@ -1,8 +1,12 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-07-14T18:29:05.332Z",
   "mode": "adaptive-two-pass",
-  "today": null,
-  "limits": {},
+  "today": "2026-07-14",
+  "limits": {
+    "maxLeagues": 12,
+    "maxMatches": 24,
+    "tsaMax": 12
+  },
   "coverage": {
     "fixtures": 0,
     "leagues": 0
