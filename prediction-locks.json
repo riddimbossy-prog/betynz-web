@@ -1,1 +1,126 @@
-{}
+{
+  "1514200": {
+    "fixtureId": "1514200",
+    "home": "Grotta",
+    "away": "Grindavik",
+    "league": "1. Deild",
+    "kickoff": "2026-07-14T18:00:00.000Z",
+    "publishedAt": "2026-07-14T19:03:11.617Z",
+    "engineVersion": "2.0.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "8 specialist engines agree on Home Win.",
+        "Weighted support 12.46 leads the next market by 10.94.",
+        "Data quality: 82/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 82,
+      "odds": 2.1
+    }
+  },
+  "1519404": {
+    "fixtureId": "1519404",
+    "home": "Macara",
+    "away": "Mushuc Runa SC",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-14T21:30:00.000Z",
+    "publishedAt": "2026-07-14T19:03:11.617Z",
+    "engineVersion": "2.0.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "7 specialist engines agree on Home DNB.",
+        "Weighted support 11.41 leads the next market by 9.58.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null
+    }
+  },
+  "1538383": {
+    "fixtureId": "1538383",
+    "home": "Real Oruro",
+    "away": "Always Ready",
+    "league": "Primera División",
+    "kickoff": "2026-07-14T22:00:00.000Z",
+    "publishedAt": "2026-07-14T19:03:11.617Z",
+    "engineVersion": "2.0.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "ares",
+        "hermes",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "7 specialist engines agree on Away Win.",
+        "Weighted support 8.9 leads the next market by 8.4.",
+        "Data quality: 82/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 82,
+      "odds": 1.7
+    }
+  },
+  "1576754": {
+    "fixtureId": "1576754",
+    "home": "Vasco da Gama U20",
+    "away": "Cruzeiro U20",
+    "league": "Brasileiro U20 A",
+    "kickoff": "2026-07-14T18:00:00.000Z",
+    "publishedAt": "2026-07-14T19:03:11.617Z",
+    "engineVersion": "2.0.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "6 specialist engines agree on Home Win.",
+        "Weighted support 9.24 leads the next market by 8.64.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.75
+    }
+  }
+}
