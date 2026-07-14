@@ -1,4 +1,4 @@
-name: Update Betynz Product Data
+name: Update and Deploy Betynz Data
 
 on:
   workflow_dispatch:
@@ -7,26 +7,38 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: betynz-data-refresh
+  group: betynz-full-data
   cancel-in-progress: true
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 55
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Validate API secrets
+
+      - name: Validate API-Football secret
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-        run: test -n "$API_FOOTBALL_KEY"
+        run: |
+          if [ -z "$API_FOOTBALL_KEY" ]; then
+            echo "API_FOOTBALL_KEY is missing."
+            exit 1
+          fi
+
       - name: Create private runtime configuration
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
@@ -50,28 +62,79 @@ jobs:
           STATS=true
           EOF_CONFIG
           cp data.js scripts/data.js
+
       - name: Fetch fixtures and statistics
         working-directory: scripts
         run: node fetch-data.js
+
       - name: Enrich with TheStatsAPI
         working-directory: scripts
         env:
           THESTATSAPI_KEY: ${{ secrets.STATS_API_KEY }}
         run: node enrich-xg.js
         continue-on-error: true
-      - name: Build locked Olympian snapshot
+
+      - name: Build Olympian prediction snapshot
         run: node scripts/build-snapshot.js
+
+      - name: Verify live data replaced demo data
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const vm = require('vm');
+          const context = { window: {} };
+          vm.createContext(context);
+          vm.runInContext(fs.readFileSync('data.js', 'utf8'), context);
+          const matches = context.window.MATCHES;
+          if (context.window.BETYNZ_DEMO === true) {
+            throw new Error('The generated snapshot is still demo data. Open the Fetch fixtures step to see the API error.');
+          }
+          if (!Array.isArray(matches) || matches.length === 0) {
+            throw new Error('The API returned no fixtures, so Betynz cannot publish an empty live board.');
+          }
+          console.log(`Live snapshot verified: ${matches.length} fixtures.`);
+          NODE
+
       - name: Validate generated product
         run: node scripts/validate-product.js
+
       - name: Remove private runtime file
         if: always()
         run: rm -f scripts/config.txt
+
       - name: Commit generated public data
         run: |
           git config user.name "Betynz Data Bot"
           git config user.email "actions@users.noreply.github.com"
           git add data.js api-status.json prediction-locks.json results-history.json scripts/data.js
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Refresh Betynz product data"
-          git pull --rebase
-          git push
+          if git diff --cached --quiet; then
+            echo "No generated data changes to commit."
+          else
+            git commit -m "Refresh Betynz live product data"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Build public website
+        run: node scripts/build-dist.js
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload live website artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    name: Deploy live Betynz website
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

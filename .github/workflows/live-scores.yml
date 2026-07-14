@@ -1,4 +1,4 @@
-name: Update Betynz Live Scores
+name: Update and Deploy Betynz Live Scores
 
 on:
   workflow_dispatch:
@@ -7,50 +7,99 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: betynz-live-scores
   cancel-in-progress: true
 
 jobs:
-  scores:
+  refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Confirm the full live board exists
+        run: |
+          if grep -q "window.BETYNZ_DEMO = true" data.js; then
+            echo "The site is still using demo data. Run 'Update and Deploy Betynz Data' first."
+            exit 1
+          fi
+
       - name: Create private score configuration
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           DAYS_BACK: ${{ secrets.DAYS_BACK }}
         run: |
-          test -n "$API_FOOTBALL_KEY"
+          if [ -z "$API_FOOTBALL_KEY" ]; then
+            echo "API_FOOTBALL_KEY is missing."
+            exit 1
+          fi
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           SEASON=$(date -u +%Y)
           DAYS_BACK=${DAYS_BACK:-1}
           EOF_CONFIG
           cp data.js scripts/data.js
+
       - name: Refresh match scores
         working-directory: scripts
         run: node fetch-scores.js
-      - name: Rebuild record and snapshot
+
+      - name: Rebuild record and prediction snapshot
         run: node scripts/build-snapshot.js
+
       - name: Validate generated product
         run: node scripts/validate-product.js
+
       - name: Remove private runtime file
         if: always()
         run: rm -f scripts/config.txt
+
       - name: Commit score and record changes
         run: |
           git config user.name "Betynz Live Bot"
           git config user.email "actions@users.noreply.github.com"
           git add data.js api-status.json prediction-locks.json results-history.json scripts/data.js
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Update Betynz live scores and record"
-          git pull --rebase
-          git push
+          if git diff --cached --quiet; then
+            echo "No live-score changes to commit."
+          else
+            git commit -m "Update Betynz live scores and record"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Build public website
+        run: node scripts/build-dist.js
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload live-score website artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    name: Deploy refreshed Betynz scores
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

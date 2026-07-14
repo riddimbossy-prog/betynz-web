@@ -1,0 +1,17 @@
+BETYNZ LIVE DATA DEPLOYMENT FIX v2.1
+
+Replace these two repository files:
+
+.github/workflows/update-data.yml
+.github/workflows/live-scores.yml
+
+Then commit to main.
+
+Run:
+Actions > Update and Deploy Betynz Data > Run workflow
+
+The workflow must finish with two green jobs:
+1. refresh
+2. Deploy live Betynz website
+
+This patch fixes the issue where the data workflow committed new data with GITHUB_TOKEN but did not automatically trigger the separate GitHub Pages deployment workflow.
