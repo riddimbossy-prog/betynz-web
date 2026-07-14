@@ -6,19 +6,19 @@ window.BETYNZ_META = {
   "version": "2.5.0",
   "engineVersion": "2.0.0",
   "source": "API-Football + TheStatsAPI",
-  "generatedAt": "2026-07-14T19:43:26.632Z",
+  "generatedAt": "2026-07-14T19:54:36.853Z",
   "dataUpdated": "2026-07-14T19:03:11.141Z",
   "isDemo": false,
   "isReady": true,
   "fixtureCount": 174,
   "qualifiedCount": 5,
   "lockedCount": 4,
-  "historyCount": 0,
+  "historyCount": 1,
   "record": {
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "voids": 0,
-    "hitRate": null
+    "hitRate": 0
   },
   "engineCounts": {
     "prometheus": 31,
@@ -38,7 +38,33 @@ window.BETYNZ_META = {
     "demeter": 7
   }
 };
-window.BETYNZ_HISTORY = [];
+window.BETYNZ_HISTORY = [
+  {
+    "fixtureId": "1514200",
+    "home": "Grotta",
+    "away": "Grindavik",
+    "league": "1. Deild",
+    "kickoff": "2026-07-14T18:00:00.000Z",
+    "market": "Home Win",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": 2.1,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "hera",
+      "hephaestus",
+      "demeter",
+      "hades",
+      "atlas",
+      "nike"
+    ],
+    "publishedAt": "2026-07-14T19:03:11.617Z",
+    "settledAt": "2026-07-14T19:54:36.853Z",
+    "score": "1-2",
+    "result": "Lost"
+  }
+];
 window.MATCHES = [
   {
     "id": 1498633,
@@ -249,7 +275,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -496,7 +522,7 @@ window.MATCHES = [
       "dataQuality": 88,
       "odds": 1.77,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:43:26.632Z"
+      "publishedAt": "2026-07-14T19:54:36.853Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -508,7 +534,11 @@ window.MATCHES = [
         "Public release withheld until at least two deep-evidence pillars confirm the market."
       ],
       "dataQuality": 88
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1544686,
@@ -771,7 +801,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -1044,7 +1074,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584838,
@@ -1181,6 +1215,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -1188,13 +1227,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -1254,7 +1298,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -1544,7 +1588,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547961,
@@ -1681,6 +1729,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -1688,13 +1741,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -1754,7 +1812,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -2044,7 +2102,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554929,
@@ -2181,6 +2243,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -2188,13 +2255,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -2252,7 +2324,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -2288,7 +2360,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -2578,7 +2650,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567618,
@@ -2715,6 +2791,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -2722,13 +2803,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -2788,7 +2874,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -3078,7 +3164,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567619,
@@ -3215,6 +3305,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -3222,13 +3317,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -3288,7 +3388,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -3578,7 +3678,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1583300,
@@ -3715,6 +3819,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -3722,13 +3831,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -3788,7 +3902,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -4078,7 +4192,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560857,
@@ -4361,7 +4479,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -4634,7 +4752,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560866,
@@ -4917,7 +5039,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -5190,7 +5312,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554932,
@@ -5327,6 +5453,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -5334,13 +5465,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -5400,7 +5536,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -5690,7 +5826,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567623,
@@ -5827,6 +5967,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -5834,13 +5979,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -5900,7 +6050,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -6190,7 +6340,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1523197,
@@ -6459,7 +6613,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -6700,7 +6854,7 @@ window.MATCHES = [
       "dataQuality": 88,
       "odds": null,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:43:26.632Z"
+      "publishedAt": "2026-07-14T19:54:36.853Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -6712,7 +6866,11 @@ window.MATCHES = [
         "Public release withheld until at least two deep-evidence pillars confirm the market."
       ],
       "dataQuality": 88
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548837,
@@ -6868,6 +7026,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -6875,13 +7038,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -6939,7 +7107,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": "away",
         "team": "Fleetwood Town",
@@ -6975,7 +7143,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -7248,7 +7416,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548838,
@@ -7385,6 +7557,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -7392,13 +7569,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -7456,7 +7638,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -7492,7 +7674,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -7782,7 +7964,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554931,
@@ -7919,6 +8105,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -7926,13 +8117,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -7992,7 +8188,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -8282,7 +8478,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560604,
@@ -8419,6 +8619,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -8426,13 +8631,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -8490,7 +8700,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -8526,7 +8736,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -8816,7 +9026,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567620,
@@ -8953,6 +9167,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -8960,13 +9179,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -9026,7 +9250,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -9316,7 +9540,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567622,
@@ -9453,6 +9681,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -9460,13 +9693,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -9524,7 +9762,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -9560,7 +9798,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -9850,7 +10088,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567624,
@@ -9987,6 +10229,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -9994,13 +10241,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -10058,7 +10310,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -10094,7 +10346,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -10384,7 +10636,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584840,
@@ -10521,6 +10777,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -10528,13 +10789,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -10592,7 +10858,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -10628,7 +10894,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -10918,7 +11184,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543598,
@@ -11104,7 +11374,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -11338,7 +11608,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 60
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547962,
@@ -11475,6 +11749,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -11482,13 +11761,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -11548,7 +11832,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -11838,7 +12122,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554930,
@@ -11975,6 +12263,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -11982,13 +12275,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -12048,7 +12346,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -12338,7 +12636,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554935,
@@ -12475,6 +12777,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -12482,13 +12789,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -12548,7 +12860,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -12838,7 +13150,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584839,
@@ -12975,6 +13291,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -12982,13 +13303,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -13048,7 +13374,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -13338,7 +13664,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584841,
@@ -13475,6 +13805,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -13482,13 +13817,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -13548,7 +13888,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -13838,7 +14178,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1589255,
@@ -13975,6 +14319,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -13982,13 +14331,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -14048,7 +14402,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -14338,7 +14692,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543947,
@@ -14664,7 +15022,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.119Z",
@@ -14905,7 +15263,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 60
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1527535,
@@ -15091,7 +15453,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -15323,7 +15685,7 @@ window.MATCHES = [
       "dataQuality": 78,
       "odds": null,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:43:26.632Z"
+      "publishedAt": "2026-07-14T19:54:36.853Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -15335,7 +15697,11 @@ window.MATCHES = [
         "Public release withheld until at least two deep-evidence pillars confirm the market."
       ],
       "dataQuality": 78
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547959,
@@ -15491,6 +15857,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -15498,13 +15869,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -15564,7 +15940,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -15837,7 +16213,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560605,
@@ -15974,6 +16354,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -15981,13 +16366,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -16047,7 +16437,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -16337,7 +16727,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560606,
@@ -16474,6 +16868,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -16481,13 +16880,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -16545,7 +16949,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -16581,7 +16985,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -16871,7 +17275,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Cancelled",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554381,
@@ -17112,11 +17520,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -17124,22 +17542,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -17148,14 +17571,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -17163,13 +17586,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -17177,15 +17605,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -17197,11 +17625,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -17214,6 +17647,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -17268,7 +17706,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.120Z",
@@ -17519,7 +17957,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547958,
@@ -17656,6 +18098,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -17663,13 +18110,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -17727,7 +18179,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -17763,7 +18215,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -18053,7 +18505,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Cancelled",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554936,
@@ -18190,6 +18646,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -18197,13 +18658,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -18263,7 +18729,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -18553,7 +19019,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560607,
@@ -18690,6 +19160,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -18697,13 +19172,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -18763,7 +19243,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -19053,7 +19533,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547960,
@@ -19190,6 +19674,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -19197,13 +19686,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -19263,7 +19757,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -19553,7 +20047,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548839,
@@ -19709,6 +20207,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -19716,13 +20219,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -19782,7 +20290,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -20055,7 +20563,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548840,
@@ -20192,6 +20704,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -20199,13 +20716,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -20265,7 +20787,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -20555,7 +21077,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548841,
@@ -20692,6 +21218,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -20699,13 +21230,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -20765,7 +21301,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -21055,7 +21591,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554934,
@@ -21192,6 +21732,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -21199,13 +21744,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -21263,7 +21813,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -21299,7 +21849,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -21589,7 +22139,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Time To Be Defined",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560609,
@@ -21726,6 +22280,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -21733,13 +22292,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -21799,7 +22363,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -22089,7 +22653,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1562916,
@@ -22226,6 +22794,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -22233,13 +22806,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -22297,7 +22875,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -22333,7 +22911,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -22623,7 +23201,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Cancelled",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567625,
@@ -22760,6 +23342,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -22767,13 +23354,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -22833,7 +23425,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -23123,7 +23715,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1583301,
@@ -23140,11 +23736,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/6065.png",
     "country": "World",
     "flag": null,
-    "status": "NS",
+    "status": "FT",
     "kickoff": "2026-07-14T16:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 1,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -23260,6 +23856,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -23267,13 +23868,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -23288,17 +23894,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.3,
-        "n": 4,
-        "src": "season"
+        "v": 1.27,
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.1,
-        "n": 4,
-        "src": "season"
+        "v": 1.09,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -23311,17 +23917,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
         "v": 1,
-        "n": 4,
-        "src": "season"
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.4,
-        "n": 4,
-        "src": "season"
+        "v": 1.36,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -23367,7 +23973,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -23657,7 +24263,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1583302,
@@ -23794,6 +24404,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -23801,13 +24416,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -23867,7 +24487,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -24157,7 +24777,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584842,
@@ -24174,11 +24798,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/9342.png",
     "country": "World",
     "flag": null,
-    "status": "NS",
+    "status": "FT",
     "kickoff": "2026-07-14T16:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 2,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -24294,6 +24918,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -24301,13 +24930,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -24322,17 +24956,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.3,
-        "n": 4,
-        "src": "season"
+        "v": 1.37,
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.1,
-        "n": 4,
-        "src": "season"
+        "v": 1.09,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -24345,17 +24979,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
         "v": 1,
-        "n": 4,
-        "src": "season"
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.4,
-        "n": 4,
-        "src": "season"
+        "v": 1.46,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -24401,7 +25035,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -24691,7 +25325,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554379,
@@ -24932,11 +25570,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -24944,22 +25592,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -24968,14 +25621,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -24983,13 +25636,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -24997,15 +25655,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -25017,11 +25675,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -25034,6 +25697,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -25088,7 +25756,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.120Z",
@@ -25339,7 +26007,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554380,
@@ -25580,11 +26252,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -25592,22 +26274,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -25616,14 +26303,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -25631,13 +26318,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -25645,15 +26337,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -25665,11 +26357,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -25682,6 +26379,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -25736,7 +26438,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.120Z",
@@ -25987,7 +26689,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1541526,
@@ -26217,7 +26923,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -26459,7 +27165,7 @@ window.MATCHES = [
       "dataQuality": 70,
       "odds": 1.53,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:43:26.632Z"
+      "publishedAt": "2026-07-14T19:54:36.853Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -26471,7 +27177,11 @@ window.MATCHES = [
         "Public release withheld until at least two deep-evidence pillars confirm the market."
       ],
       "dataQuality": 70
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1549961,
@@ -26815,7 +27525,60 @@ window.MATCHES = [
       "avg2H": 1,
       "htSamples": 5
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Torneo Promocional Amateur",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Juventud de Bernal",
       "league": "Torneo Promocional Amateur",
@@ -26866,7 +27629,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.120Z",
@@ -27146,7 +27909,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 42
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1576821,
@@ -27398,7 +28165,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -27642,7 +28409,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1576822,
@@ -27875,7 +28646,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -28148,7 +28919,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 42
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1576823,
@@ -28400,7 +29175,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -28644,7 +29419,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1576824,
@@ -28896,7 +29675,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -29140,7 +29919,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1546667,
@@ -29277,6 +30060,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -29284,13 +30072,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -29350,7 +30143,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -29640,7 +30433,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548842,
@@ -29777,6 +30574,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -29784,13 +30586,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -29850,7 +30657,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -30140,7 +30947,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554933,
@@ -30277,6 +31088,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -30284,13 +31100,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -30350,7 +31171,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -30640,7 +31461,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554937,
@@ -30777,6 +31602,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -30784,13 +31614,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -30850,7 +31685,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -31140,7 +31975,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554938,
@@ -31277,6 +32116,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -31284,13 +32128,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -31350,7 +32199,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -31640,7 +32489,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554946,
@@ -31777,6 +32630,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -31784,13 +32642,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -31850,7 +32713,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -32140,7 +33003,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567626,
@@ -32277,6 +33144,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -32284,13 +33156,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -32350,7 +33227,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -32640,7 +33517,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1589256,
@@ -32777,6 +33658,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -32784,13 +33670,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -32850,7 +33741,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -33140,7 +34031,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1589257,
@@ -33157,11 +34052,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1323.png",
     "country": "World",
     "flag": null,
-    "status": "NS",
+    "status": "FT",
     "kickoff": "2026-07-14T16:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 0,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -33277,6 +34172,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -33284,13 +34184,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -33305,17 +34210,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.3,
-        "n": 4,
-        "src": "season"
+        "v": 1.17,
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.1,
-        "n": 4,
-        "src": "season"
+        "v": 1.09,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -33328,17 +34233,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
         "v": 1,
-        "n": 4,
-        "src": "season"
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.4,
-        "n": 4,
-        "src": "season"
+        "v": 1.26,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -33384,7 +34289,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -33674,7 +34579,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560608,
@@ -33811,6 +34720,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -33818,13 +34732,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -33884,7 +34803,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -34174,7 +35093,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1562917,
@@ -34311,6 +35234,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -34318,13 +35246,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -34382,7 +35315,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -34418,7 +35351,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -34708,7 +35641,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1567627,
@@ -34845,6 +35782,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -34852,13 +35794,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -34916,7 +35863,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -34952,7 +35899,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -35242,7 +36189,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Cancelled",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584843,
@@ -35379,6 +36330,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -35386,13 +36342,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -35450,7 +36411,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -35486,7 +36447,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -35776,7 +36737,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584844,
@@ -35913,6 +36878,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -35920,13 +36890,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -35986,7 +36961,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -36276,7 +37251,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554378,
@@ -36293,7 +37272,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/278.png",
     "country": "World",
     "flag": null,
-    "status": "2H",
+    "status": "FT",
     "kickoff": "2026-07-14T17:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 2,
@@ -36705,11 +37684,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -36717,22 +37706,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -36741,14 +37735,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -36756,13 +37750,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -36770,15 +37769,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -36790,11 +37789,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -36807,6 +37811,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -36861,7 +37870,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.121Z",
@@ -37096,7 +38105,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554384,
@@ -37337,11 +38350,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -37349,22 +38372,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -37373,14 +38401,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -37388,13 +38416,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -37402,15 +38435,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -37422,11 +38455,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -37439,6 +38477,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -37493,7 +38536,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.121Z",
@@ -37744,7 +38787,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 52
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1549974,
@@ -37755,17 +38802,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 27786,
     "awayTeamId": 23102,
-    "htHome": null,
-    "htAway": null,
+    "htHome": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/27786.png",
     "awayLogo": "https://media.api-sports.io/football/teams/23102.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "NS",
+    "status": "FT",
     "kickoff": "2026-07-14T17:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 1,
+    "awayGoals": 2,
     "homePos": 2,
     "awayPos": 8,
     "tableSize": 17,
@@ -38267,23 +39314,76 @@ window.MATCHES = [
       "ng": 1.57
     },
     "h2h": null,
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Torneo Promocional Amateur",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Buenos Aires City",
       "league": "Torneo Promocional Amateur",
       "leagueId": 1067,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 1,
       "goalsFor": {
-        "v": 2,
-        "n": 1,
-        "src": "season"
+        "v": 1.9,
+        "n": 2,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 0,
-        "n": 1,
-        "src": "season"
+        "v": 0.2,
+        "n": 2,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -38296,17 +39396,17 @@ window.MATCHES = [
       "league": "Torneo Promocional Amateur",
       "leagueId": 1067,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 1,
       "goalsFor": {
-        "v": 0,
-        "n": 1,
-        "src": "season"
+        "v": 0.2,
+        "n": 2,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 0,
-        "n": 1,
-        "src": "season"
+        "v": 0.1,
+        "n": 2,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -38352,7 +39452,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.122Z",
@@ -38594,7 +39694,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1514244,
@@ -39014,25 +40118,30 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
-          }
-        },
-        "Away Win": {
-          "2.50+": {
+          },
+          "2.00-2.49": {
             "n": 1,
             "hits": 0,
             "hit": 0
           }
         },
+        "Away Win": {
+          "2.50+": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          }
+        },
         "Over 2.5 Goals": {
           "1.20-1.44": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.50+": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
@@ -39042,18 +40151,23 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "BTTS Yes": {
-          "1.20-1.44": {
+          },
+          "1.70-1.99": {
             "n": 1,
             "hits": 1,
             "hit": 1
           }
         },
+        "BTTS Yes": {
+          "1.20-1.44": {
+            "n": 2,
+            "hits": 2,
+            "hit": 1
+          }
+        },
         "BTTS No": {
           "2.50+": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
@@ -39110,7 +40224,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.123Z",
@@ -39364,9 +40478,13 @@ window.MATCHES = [
       "odds": 1.6,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T19:43:26.632Z"
+      "publishedAt": "2026-07-14T19:54:36.853Z"
     },
-    "predictionLocked": false
+    "predictionLocked": false,
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554939,
@@ -39383,7 +40501,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/611.png",
     "country": "World",
     "flag": null,
-    "status": "2H",
+    "status": "FT",
     "kickoff": "2026-07-14T17:30:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
@@ -39503,6 +40621,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -39510,13 +40633,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -39576,7 +40704,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -39866,7 +40994,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1589258,
@@ -39883,11 +41015,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/12880.png",
     "country": "World",
     "flag": null,
-    "status": "NS",
+    "status": "FT",
     "kickoff": "2026-07-14T17:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 1,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -40003,6 +41135,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -40010,13 +41147,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -40031,17 +41173,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.3,
-        "n": 4,
-        "src": "season"
+        "v": 1.27,
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.1,
-        "n": 4,
-        "src": "season"
+        "v": 1.09,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -40054,17 +41196,17 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
         "v": 1,
-        "n": 4,
-        "src": "season"
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.4,
-        "n": 4,
-        "src": "season"
+        "v": 1.36,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -40110,7 +41252,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -40400,7 +41542,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554383,
@@ -40417,10 +41563,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/3364.png",
     "country": "World",
     "flag": null,
-    "status": "2H",
+    "status": "FT",
     "kickoff": "2026-07-14T17:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 3,
+    "homeGoals": 4,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -40823,11 +41969,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -40835,22 +41991,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -40859,14 +42020,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -40874,13 +42035,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -40888,15 +42054,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -40908,11 +42074,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -40925,6 +42096,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -40934,16 +42110,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.47,
-        "n": 5,
+        "v": 1.74,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -40957,16 +42133,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.56,
-        "n": 5,
+        "v": 1.82,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -40979,7 +42155,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.123Z",
@@ -41214,7 +42390,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554387,
@@ -41231,10 +42411,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/13976.png",
     "country": "World",
     "flag": null,
-    "status": "2H",
+    "status": "FT",
     "kickoff": "2026-07-14T17:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
@@ -41635,11 +42815,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -41647,22 +42837,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -41671,14 +42866,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -41686,13 +42881,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -41700,15 +42900,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -41720,11 +42920,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -41737,6 +42942,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -41746,16 +42956,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.19,
-        "n": 5,
+        "v": 1.28,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -41769,16 +42979,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.1,
-        "n": 5,
+        "v": 1.2,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -41791,7 +43001,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.123Z",
@@ -42026,7 +43236,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1546668,
@@ -42163,6 +43377,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -42170,13 +43389,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -42234,7 +43458,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -42270,7 +43494,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -42560,7 +43784,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Cancelled",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547963,
@@ -42577,11 +43805,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1839.png",
     "country": "World",
     "flag": null,
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 2,
+    "homeGoals": 1,
+    "awayGoals": 3,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -42716,6 +43944,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -42723,13 +43956,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -42744,16 +43982,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.19,
-        "n": 5,
+        "v": 1.38,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -42767,16 +44005,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.1,
-        "n": 5,
+        "v": 1.3,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -42789,7 +44027,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -43062,7 +44300,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548843,
@@ -43079,11 +44321,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/8146.png",
     "country": "World",
     "flag": null,
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
-    "awayGoals": 0,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -43199,6 +44441,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -43206,13 +44453,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -43227,16 +44479,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -43250,16 +44502,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -43272,7 +44524,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -43562,7 +44814,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548844,
@@ -43579,10 +44835,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/7695.png",
     "country": "World",
     "flag": null,
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 1,
+    "homeGoals": 4,
     "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
@@ -43699,6 +44955,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -43706,13 +44967,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -43727,16 +44993,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.54,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -43750,16 +45016,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 1,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.62,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -43772,7 +45038,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -44062,7 +45328,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1550566,
@@ -44199,6 +45469,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -44206,13 +45481,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -44270,7 +45550,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -44306,7 +45586,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -44596,7 +45876,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554940,
@@ -44733,6 +46017,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -44740,13 +46029,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -44804,7 +46098,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -44840,7 +46134,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -45130,7 +46424,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554941,
@@ -45147,11 +46445,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1355.png",
     "country": "World",
     "flag": null,
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
-    "awayGoals": 1,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -45267,6 +46565,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -45274,13 +46577,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -45295,16 +46603,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 1.18,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -45318,16 +46626,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1,
-        "n": 5,
+        "v": 1.1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -45340,7 +46648,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -45630,7 +46938,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1562915,
@@ -45767,6 +47079,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -45774,13 +47091,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -45838,7 +47160,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -45874,7 +47196,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -46164,7 +47486,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1583303,
@@ -46301,6 +47627,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -46308,13 +47639,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -46372,7 +47708,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -46408,7 +47744,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -46698,7 +48034,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543941,
@@ -47216,7 +48556,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -47252,7 +48592,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.123Z",
@@ -47518,7 +48858,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543942,
@@ -48060,7 +49404,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -48096,7 +49440,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.124Z",
@@ -48363,7 +49707,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543943,
@@ -48889,7 +50237,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -48925,7 +50273,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.124Z",
@@ -49191,7 +50539,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543944,
@@ -49715,7 +51067,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -49751,7 +51103,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.124Z",
@@ -50017,7 +51369,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543945,
@@ -50537,7 +51893,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -50573,7 +51929,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.124Z",
@@ -50840,7 +52196,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543946,
@@ -51370,7 +52730,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -51406,7 +52766,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.125Z",
@@ -51672,7 +53032,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543948,
@@ -52206,7 +53570,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -52242,7 +53606,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.125Z",
@@ -52508,7 +53872,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1543950,
@@ -53012,7 +54380,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -53048,7 +54416,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.125Z",
@@ -53314,7 +54682,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554376,
@@ -53331,11 +54703,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/3872.png",
     "country": "World",
     "flag": null,
-    "status": "HT",
+    "status": "2H",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 1,
-    "awayGoals": 1,
+    "homeGoals": 2,
+    "awayGoals": 3,
     "homePos": null,
     "awayPos": null,
     "tableSize": 36,
@@ -53737,11 +55109,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -53749,22 +55131,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -53773,14 +55160,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -53788,13 +55175,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -53802,15 +55194,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -53822,11 +55214,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -53839,6 +55236,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -53848,16 +55250,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.34,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 1.28,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -53871,16 +55273,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1,
-        "n": 5,
+        "v": 1.2,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.42,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -53893,7 +55295,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.125Z",
@@ -54128,7 +55530,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 90,
+    "elapsedExtra": 5,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1514200,
@@ -54145,11 +55551,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/277.png",
     "country": "Iceland",
     "flag": "https://media.api-sports.io/flags/is.svg",
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
-    "awayGoals": 1,
+    "awayGoals": 2,
     "homePos": 8,
     "awayPos": 10,
     "tableSize": 12,
@@ -54827,25 +56233,30 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
-          }
-        },
-        "Away Win": {
-          "2.50+": {
+          },
+          "2.00-2.49": {
             "n": 1,
             "hits": 0,
             "hit": 0
           }
         },
+        "Away Win": {
+          "2.50+": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          }
+        },
         "Over 2.5 Goals": {
           "1.20-1.44": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.50+": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
@@ -54855,18 +56266,23 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "BTTS Yes": {
-          "1.20-1.44": {
+          },
+          "1.70-1.99": {
             "n": 1,
             "hits": 1,
             "hit": 1
           }
         },
+        "BTTS Yes": {
+          "1.20-1.44": {
+            "n": 2,
+            "hits": 2,
+            "hit": 1
+          }
+        },
         "BTTS No": {
           "2.50+": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
@@ -54878,16 +56294,16 @@ window.MATCHES = [
       "league": "1. Deild",
       "leagueId": 165,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 5,
       "goalsFor": {
-        "v": 2.08,
-        "n": 6,
+        "v": 1.96,
+        "n": 7,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 2.62,
-        "n": 6,
+        "v": 2.54,
+        "n": 7,
         "src": "blend"
       },
       "xgFor": null,
@@ -54901,16 +56317,16 @@ window.MATCHES = [
       "league": "1. Deild",
       "leagueId": 165,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 6,
       "goalsFor": {
-        "v": 1.45,
-        "n": 7,
+        "v": 1.5,
+        "n": 8,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.9,
-        "n": 7,
+        "v": 1.8,
+        "n": 8,
         "src": "blend"
       },
       "xgFor": null,
@@ -54923,7 +56339,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.126Z",
@@ -55181,7 +56597,11 @@ window.MATCHES = [
       "locked": true,
       "publishedAt": "2026-07-14T19:03:11.617Z"
     },
-    "predictionLocked": true
+    "predictionLocked": true,
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1499518,
@@ -55198,7 +56618,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/459.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "HT",
+    "status": "2H",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
@@ -55798,7 +57218,67 @@ window.MATCHES = [
       "avg2H": 0,
       "htSamples": 1
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Argentino Quilmes",
       "league": "Primera B Metropolitana",
@@ -55849,7 +57329,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.126Z",
@@ -56092,7 +57572,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 90,
+    "elapsedExtra": 4,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1499521,
@@ -56109,11 +57593,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/8385.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 2,
     "homePos": 18,
     "awayPos": 13,
     "tableSize": 44,
@@ -56739,22 +58223,82 @@ window.MATCHES = [
       "avg2H": 0,
       "htSamples": 1
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Defensores Unidos",
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
-        "v": 0.9,
-        "n": 2,
+        "v": 0.8,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.9,
-        "n": 2,
+        "v": 1,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -56768,16 +58312,16 @@ window.MATCHES = [
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
-        "v": 0.9,
-        "n": 2,
+        "v": 1,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 2.7,
-        "n": 2,
+        "v": 2.4,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -56790,7 +58334,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.126Z",
@@ -57034,7 +58578,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1499524,
@@ -57051,10 +58599,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/8395.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "HT",
+    "status": "2H",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": 4,
     "awayPos": 16,
@@ -57651,22 +59199,82 @@ window.MATCHES = [
       "avg2H": 1,
       "htSamples": 1
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Deportivo Camioneros",
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
-        "v": 3.6,
-        "n": 2,
+        "v": 3.3,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
         "v": 0,
-        "n": 2,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -57680,16 +59288,16 @@ window.MATCHES = [
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
-        "v": 0.9,
-        "n": 2,
+        "v": 0.8,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
         "v": 0.9,
-        "n": 2,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -57702,7 +59310,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.126Z",
@@ -57950,7 +59558,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 90,
+    "elapsedExtra": 1,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1499525,
@@ -57967,7 +59579,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1956.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "HT",
+    "status": "2H",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -58599,7 +60211,67 @@ window.MATCHES = [
       "avg2H": 0.4,
       "htSamples": 5
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Dock Sud",
       "league": "Primera B Metropolitana",
@@ -58650,7 +60322,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.127Z",
@@ -58892,7 +60564,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 90,
+    "elapsedExtra": 6,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1499526,
@@ -58909,10 +60585,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/2430.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "HT",
+    "status": "2H",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": 19,
     "awayPos": 1,
@@ -59541,22 +61217,82 @@ window.MATCHES = [
       "avg2H": 1.2,
       "htSamples": 5
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Flandria",
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
         "v": 0.9,
-        "n": 2,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.8,
-        "n": 2,
+        "v": 1.6,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -59570,16 +61306,16 @@ window.MATCHES = [
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
-        "v": 0.9,
-        "n": 2,
+        "v": 0.8,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
         "v": 0.9,
-        "n": 2,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -59592,7 +61328,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.127Z",
@@ -59839,7 +61575,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 90,
+    "elapsedExtra": 3,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1499528,
@@ -59856,10 +61596,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/8380.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "HT",
+    "status": "FT",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": 11,
     "awayPos": 6,
@@ -60465,22 +62205,82 @@ window.MATCHES = [
       "avg2H": 2.2,
       "htSamples": 5
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Sportivo Italiano",
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
         "v": 0.9,
-        "n": 2,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.9,
-        "n": 2,
+        "v": 0.8,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -60494,16 +62294,16 @@ window.MATCHES = [
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 2,
       "goalsFor": {
-        "v": 1.8,
-        "n": 3,
+        "v": 1.6,
+        "n": 4,
         "src": "blend"
       },
       "goalsAg": {
         "v": 0.9,
-        "n": 3,
+        "n": 4,
         "src": "blend"
       },
       "xgFor": null,
@@ -60516,7 +62316,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.127Z",
@@ -60782,7 +62582,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Match Finished",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1576754,
@@ -60799,10 +62603,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/13000.png",
     "country": "Brazil",
     "flag": "https://media.api-sports.io/flags/br.svg",
-    "status": "HT",
+    "status": "2H",
     "kickoff": "2026-07-14T18:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 1,
+    "homeGoals": 2,
     "awayGoals": 0,
     "homePos": 2,
     "awayPos": 7,
@@ -61493,16 +63297,16 @@ window.MATCHES = [
       "league": "Brasileiro U20 A",
       "leagueId": 740,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 10,
       "goalsFor": {
-        "v": 2.26,
-        "n": 11,
+        "v": 2.22,
+        "n": 12,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.81,
-        "n": 11,
+        "v": 0.72,
+        "n": 12,
         "src": "blend"
       },
       "xgFor": null,
@@ -61516,16 +63320,16 @@ window.MATCHES = [
       "league": "Brasileiro U20 A",
       "leagueId": 740,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 9,
       "goalsFor": {
-        "v": 1.08,
-        "n": 10,
+        "v": 0.96,
+        "n": 11,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.72,
-        "n": 10,
+        "v": 1.74,
+        "n": 11,
         "src": "blend"
       },
       "xgFor": null,
@@ -61538,7 +63342,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.127Z",
@@ -61785,7 +63589,11 @@ window.MATCHES = [
       "locked": true,
       "publishedAt": "2026-07-14T19:03:11.617Z"
     },
-    "predictionLocked": true
+    "predictionLocked": true,
+    "statusLong": "Second Half",
+    "elapsed": 88,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1583308,
@@ -61802,7 +63610,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1352.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:15:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -61922,6 +63730,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -61929,13 +63742,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -61995,7 +63813,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -62285,7 +64103,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 82,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1546669,
@@ -62296,16 +64118,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 7732,
     "awayTeamId": 1377,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/7732.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1377.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 2,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -62441,6 +64263,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -62448,13 +64275,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -62469,16 +64301,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -62492,16 +64324,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -62514,7 +64346,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -62787,7 +64619,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 64,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1546670,
@@ -62924,6 +64760,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -62931,13 +64772,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -62995,7 +64841,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -63031,7 +64877,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -63321,7 +65167,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Match Cancelled",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1547964,
@@ -63333,16 +65183,16 @@ window.MATCHES = [
     "homeTeamId": 1829,
     "awayTeamId": 1347,
     "htHome": 0,
-    "htAway": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/1829.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1347.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -63458,6 +65308,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -63465,13 +65320,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -63486,16 +65346,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -63509,16 +65369,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -63531,7 +65391,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -63821,7 +65681,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 66,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1547965,
@@ -63832,17 +65696,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 1353,
     "awayTeamId": 8147,
-    "htHome": 0,
-    "htAway": 1,
+    "htHome": 1,
+    "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/1353.png",
     "awayLogo": "https://media.api-sports.io/football/teams/8147.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 1,
+    "homeGoals": 1,
+    "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -63981,6 +65845,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -63988,13 +65857,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -64009,16 +65883,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -64032,16 +65906,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1,
-        "n": 5,
+        "v": 0.9,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -64054,7 +65928,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -64327,7 +66201,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 68,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1547966,
@@ -64338,17 +66216,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 8663,
     "awayTeamId": 20085,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/8663.png",
     "awayLogo": "https://media.api-sports.io/football/teams/20085.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 1,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -64464,6 +66342,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -64471,13 +66354,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -64492,16 +66380,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -64515,16 +66403,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -64537,7 +66425,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -64827,7 +66715,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 66,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548845,
@@ -64844,10 +66736,1038 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1823.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
+    "awayGoals": 3,
+    "homePos": null,
+    "awayPos": null,
+    "tableSize": 20,
+    "homePlayed": null,
+    "awayPlayed": null,
+    "homePts": 0,
+    "awayPts": 0,
+    "homePPG": null,
+    "awayPPG": null,
+    "homeVenuePPG": null,
+    "awayVenuePPG": null,
+    "homeGD": 0,
+    "awayGD": 0,
+    "homeForm": "—",
+    "awayForm": "—",
+    "homeScoredAtHome": 1.3,
+    "homeConcededAtHome": 1.1,
+    "awayScoredAway": 1,
+    "awayConcededAway": 1.4,
+    "homeVenueRank": null,
+    "awayVenueRank": null,
+    "homeVenuePts": null,
+    "awayVenuePts": null,
+    "homeVenueGames": null,
+    "awayVenueGames": null,
+    "venueTableSize": 20,
+    "leagueAvg": null,
+    "leagueTrends": null,
+    "homeWinRate": null,
+    "awayWinRate": null,
+    "homeUnbeatenRate": null,
+    "awayUnbeatenRate": null,
+    "homeCleanSheetRate": null,
+    "awayCleanSheetRate": null,
+    "homeFailedToScoreRate": null,
+    "awayFailedToScoreRate": null,
+    "home1HFor": null,
+    "home2HFor": null,
+    "home1HAgainst": null,
+    "home2HAgainst": null,
+    "away1HFor": null,
+    "away2HFor": null,
+    "away1HAgainst": null,
+    "away2HAgainst": null,
+    "homeOver25Rate": null,
+    "awayOver25Rate": null,
+    "homeOver15Rate": null,
+    "awayOver15Rate": null,
+    "homeOver35Rate": null,
+    "awayOver35Rate": null,
+    "statsReal": false,
+    "homeStreaks": null,
+    "awayStreaks": null,
+    "homeRecent10PPG": null,
+    "awayRecent10PPG": null,
+    "homeRecent10Form": null,
+    "awayRecent10Form": null,
+    "homeOpponentAvgPPG": null,
+    "awayOpponentAvgPPG": null,
+    "homeScheduleStrengthPPG": null,
+    "awayScheduleStrengthPPG": null,
+    "homeSimilarOpponentPPG": null,
+    "awaySimilarOpponentPPG": null,
+    "homeRestDays": null,
+    "awayRestDays": null,
+    "homeSplitBlockDifference": null,
+    "awaySplitBlockDifference": null,
+    "recent10": {
+      "home": null,
+      "away": null
+    },
+    "opponentStrength": {
+      "home": null,
+      "away": null
+    },
+    "similarOpponents": {
+      "home": null,
+      "away": null
+    },
+    "rest": {
+      "home": null,
+      "away": null
+    },
+    "fixtureDensity": {
+      "home": null,
+      "away": null
+    },
+    "splitStability": {
+      "home": null,
+      "away": null
+    },
+    "momentum": {
+      "home": null,
+      "away": null
+    },
+    "seasonPhase": null,
+    "advancedDataMeta": {
+      "source": "API-Football chronological league fixtures + current table strength",
+      "home": null,
+      "away": null
+    },
+    "sameGroup": false,
+    "isKnockout": false,
+    "isTournament": false,
+    "round": "Club Friendlies",
+    "odds": null,
+    "h2h": null,
+    "oddsCalib": {
+      "name": "Friendlies Clubs",
+      "markets": {
+        "Home Win": {
+          "1.20-1.44": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "2.50+": {
+            "n": 2,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        }
+      }
+    },
+    "homeProfile": {
+      "name": "Hebburn Town",
+      "league": "Friendlies Clubs",
+      "leagueId": 667,
+      "usedSplit": "all(fallback)",
+      "games": 2,
+      "seedGames": 4,
+      "goalsFor": {
+        "v": 1.14,
+        "n": 6,
+        "src": "blend"
+      },
+      "goalsAg": {
+        "v": 1.28,
+        "n": 6,
+        "src": "blend"
+      },
+      "xgFor": null,
+      "xgAg": null,
+      "conversion": null,
+      "sotFor": null,
+      "sotAg": null
+    },
+    "awayProfile": {
+      "name": "Gateshead",
+      "league": "Friendlies Clubs",
+      "leagueId": 667,
+      "usedSplit": "all(fallback)",
+      "games": 2,
+      "seedGames": 4,
+      "goalsFor": {
+        "v": 1.2,
+        "n": 6,
+        "src": "blend"
+      },
+      "goalsAg": {
+        "v": 1.22,
+        "n": 6,
+        "src": "blend"
+      },
+      "xgFor": null,
+      "xgAg": null,
+      "conversion": null,
+      "sotFor": null,
+      "sotAg": null
+    },
+    "governanceContext": {
+      "version": "v194",
+      "defaultPolicy": "SHADOW",
+      "enginePolicies": {},
+      "generatedAt": "2026-07-14T19:54:36.617Z"
+    },
+    "enrichmentTier": "coverage",
+    "olympianPredictions": [
+      {
+        "engine": "prometheus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 48-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "athena",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 66-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "apollo",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 58-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "ares",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 62-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "poseidon",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 55-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hermes",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 52-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hera",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 68-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "artemis",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 50-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hephaestus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 63-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "demeter",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 57-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "dionysus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 50-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hades",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 65-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "atlas",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 64-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "orion",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 55-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "nike",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 72-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "zeus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below Zeus's release gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      }
+    ],
+    "zeusWatchlist": null,
+    "zeusDecision": null,
+    "zeusRejection": {
+      "reasons": [
+        "Data quality 30/100 is below Zeus's release gate."
+      ],
+      "warnings": [
+        "8+ overall matches per team",
+        "6+ venue matches per team",
+        "league sample",
+        "market odds"
+      ],
+      "dataQuality": 30
+    },
+    "statusLong": "Second Half",
+    "elapsed": 66,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
+  },
+  {
+    "id": 1548846,
+    "home": "Marine",
+    "away": "Colwyn Bay",
+    "league": "Friendlies Clubs",
+    "leagueId": 667,
+    "season": "2026",
+    "homeTeamId": 7656,
+    "awayTeamId": 5611,
+    "htHome": 2,
+    "htAway": 0,
+    "homeLogo": "https://media.api-sports.io/football/teams/7656.png",
+    "awayLogo": "https://media.api-sports.io/football/teams/5611.png",
+    "country": "World",
+    "flag": null,
+    "status": "2H",
+    "kickoff": "2026-07-14T18:30:00+00:00",
+    "matchDate": "2026-07-14",
+    "homeGoals": 2,
+    "awayGoals": 0,
+    "homePos": null,
+    "awayPos": null,
+    "tableSize": 20,
+    "homePlayed": null,
+    "awayPlayed": null,
+    "homePts": 0,
+    "awayPts": 0,
+    "homePPG": null,
+    "awayPPG": null,
+    "homeVenuePPG": null,
+    "awayVenuePPG": null,
+    "homeGD": 0,
+    "awayGD": 0,
+    "homeForm": "—",
+    "awayForm": "—",
+    "homeScoredAtHome": 1.3,
+    "homeConcededAtHome": 1.1,
+    "awayScoredAway": 1,
+    "awayConcededAway": 1.4,
+    "homeVenueRank": null,
+    "awayVenueRank": null,
+    "homeVenuePts": null,
+    "awayVenuePts": null,
+    "homeVenueGames": null,
+    "awayVenueGames": null,
+    "venueTableSize": 20,
+    "leagueAvg": null,
+    "leagueTrends": null,
+    "homeWinRate": null,
+    "awayWinRate": null,
+    "homeUnbeatenRate": null,
+    "awayUnbeatenRate": null,
+    "homeCleanSheetRate": null,
+    "awayCleanSheetRate": null,
+    "homeFailedToScoreRate": null,
+    "awayFailedToScoreRate": null,
+    "home1HFor": null,
+    "home2HFor": null,
+    "home1HAgainst": null,
+    "home2HAgainst": null,
+    "away1HFor": null,
+    "away2HFor": null,
+    "away1HAgainst": null,
+    "away2HAgainst": null,
+    "homeOver25Rate": null,
+    "awayOver25Rate": null,
+    "homeOver15Rate": null,
+    "awayOver15Rate": null,
+    "homeOver35Rate": null,
+    "awayOver35Rate": null,
+    "statsReal": false,
+    "homeStreaks": null,
+    "awayStreaks": null,
+    "homeRecent10PPG": null,
+    "awayRecent10PPG": null,
+    "homeRecent10Form": null,
+    "awayRecent10Form": null,
+    "homeOpponentAvgPPG": null,
+    "awayOpponentAvgPPG": null,
+    "homeScheduleStrengthPPG": null,
+    "awayScheduleStrengthPPG": null,
+    "homeSimilarOpponentPPG": null,
+    "awaySimilarOpponentPPG": null,
+    "homeRestDays": null,
+    "awayRestDays": null,
+    "homeSplitBlockDifference": null,
+    "awaySplitBlockDifference": null,
+    "recent10": {
+      "home": null,
+      "away": null
+    },
+    "opponentStrength": {
+      "home": null,
+      "away": null
+    },
+    "similarOpponents": {
+      "home": null,
+      "away": null
+    },
+    "rest": {
+      "home": null,
+      "away": null
+    },
+    "fixtureDensity": {
+      "home": null,
+      "away": null
+    },
+    "splitStability": {
+      "home": null,
+      "away": null
+    },
+    "momentum": {
+      "home": null,
+      "away": null
+    },
+    "seasonPhase": null,
+    "advancedDataMeta": {
+      "source": "API-Football chronological league fixtures + current table strength",
+      "home": null,
+      "away": null
+    },
+    "sameGroup": false,
+    "isKnockout": false,
+    "isTournament": false,
+    "round": "Club Friendlies",
+    "odds": null,
+    "h2h": null,
+    "oddsCalib": {
+      "name": "Friendlies Clubs",
+      "markets": {
+        "Home Win": {
+          "1.20-1.44": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "2.50+": {
+            "n": 2,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        }
+      }
+    },
+    "homeProfile": {
+      "name": "Marine",
+      "league": "Friendlies Clubs",
+      "leagueId": 667,
+      "usedSplit": "all(fallback)",
+      "games": 2,
+      "seedGames": 4,
+      "goalsFor": {
+        "v": 1.24,
+        "n": 6,
+        "src": "blend"
+      },
+      "goalsAg": {
+        "v": 0.88,
+        "n": 6,
+        "src": "blend"
+      },
+      "xgFor": null,
+      "xgAg": null,
+      "conversion": null,
+      "sotFor": null,
+      "sotAg": null
+    },
+    "awayProfile": {
+      "name": "Colwyn Bay",
+      "league": "Friendlies Clubs",
+      "leagueId": 667,
+      "usedSplit": "all(fallback)",
+      "games": 2,
+      "seedGames": 4,
+      "goalsFor": {
+        "v": 0.8,
+        "n": 6,
+        "src": "blend"
+      },
+      "goalsAg": {
+        "v": 1.32,
+        "n": 6,
+        "src": "blend"
+      },
+      "xgFor": null,
+      "xgAg": null,
+      "conversion": null,
+      "sotFor": null,
+      "sotAg": null
+    },
+    "governanceContext": {
+      "version": "v194",
+      "defaultPolicy": "SHADOW",
+      "enginePolicies": {},
+      "generatedAt": "2026-07-14T19:54:36.617Z"
+    },
+    "enrichmentTier": "coverage",
+    "olympianPredictions": [
+      {
+        "engine": "prometheus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 48-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "athena",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 66-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "apollo",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 58-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "ares",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 62-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "poseidon",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 55-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hermes",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 52-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hera",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 68-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "artemis",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 50-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hephaestus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 63-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "demeter",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 57-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "dionysus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 50-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hades",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 65-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "atlas",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 64-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "orion",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 55-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "nike",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 72-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "zeus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below Zeus's release gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      }
+    ],
+    "zeusWatchlist": null,
+    "zeusDecision": null,
+    "zeusRejection": {
+      "reasons": [
+        "Data quality 30/100 is below Zeus's release gate."
+      ],
+      "warnings": [
+        "8+ overall matches per team",
+        "6+ venue matches per team",
+        "league sample",
+        "market odds"
+      ],
+      "dataQuality": 30
+    },
+    "statusLong": "Second Half",
+    "elapsed": 66,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
+  },
+  {
+    "id": 1548847,
+    "home": "Nairn County",
+    "away": "Ross County",
+    "league": "Friendlies Clubs",
+    "leagueId": 667,
+    "season": "2026",
+    "homeTeamId": 7448,
+    "awayTeamId": 902,
+    "htHome": 1,
+    "htAway": 0,
+    "homeLogo": "https://media.api-sports.io/football/teams/7448.png",
+    "awayLogo": "https://media.api-sports.io/football/teams/902.png",
+    "country": "World",
+    "flag": null,
+    "status": "2H",
+    "kickoff": "2026-07-14T18:30:00+00:00",
+    "matchDate": "2026-07-14",
+    "homeGoals": 1,
     "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
@@ -64964,6 +67884,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -64971,1013 +67896,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
-          },
-          "1.70-1.99": {
-            "n": 1,
-            "hits": 0,
-            "hit": 0
           }
-        }
-      }
-    },
-    "homeProfile": {
-      "name": "Hebburn Town",
-      "league": "Friendlies Clubs",
-      "leagueId": 667,
-      "usedSplit": "all(fallback)",
-      "games": 1,
-      "seedGames": 4,
-      "goalsFor": {
-        "v": 1.17,
-        "n": 5,
-        "src": "blend"
-      },
-      "goalsAg": {
-        "v": 1.09,
-        "n": 5,
-        "src": "blend"
-      },
-      "xgFor": null,
-      "xgAg": null,
-      "conversion": null,
-      "sotFor": null,
-      "sotAg": null
-    },
-    "awayProfile": {
-      "name": "Gateshead",
-      "league": "Friendlies Clubs",
-      "leagueId": 667,
-      "usedSplit": "all(fallback)",
-      "games": 1,
-      "seedGames": 4,
-      "goalsFor": {
-        "v": 1,
-        "n": 5,
-        "src": "blend"
-      },
-      "goalsAg": {
-        "v": 1.26,
-        "n": 5,
-        "src": "blend"
-      },
-      "xgFor": null,
-      "xgAg": null,
-      "conversion": null,
-      "sotFor": null,
-      "sotAg": null
-    },
-    "governanceContext": {
-      "version": "v194",
-      "defaultPolicy": "SHADOW",
-      "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
-    },
-    "enrichmentTier": "coverage",
-    "olympianPredictions": [
-      {
-        "engine": "prometheus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 48-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "athena",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 66-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "apollo",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 58-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "ares",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 62-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "poseidon",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 55-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hermes",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 52-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hera",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 68-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "artemis",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 50-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hephaestus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 63-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "demeter",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 57-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "dionysus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 50-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hades",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 65-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "atlas",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 64-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "orion",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 55-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "nike",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 72-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "zeus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below Zeus's release gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      }
-    ],
-    "zeusWatchlist": null,
-    "zeusDecision": null,
-    "zeusRejection": {
-      "reasons": [
-        "Data quality 30/100 is below Zeus's release gate."
-      ],
-      "warnings": [
-        "8+ overall matches per team",
-        "6+ venue matches per team",
-        "league sample",
-        "market odds"
-      ],
-      "dataQuality": 30
-    }
-  },
-  {
-    "id": 1548846,
-    "home": "Marine",
-    "away": "Colwyn Bay",
-    "league": "Friendlies Clubs",
-    "leagueId": 667,
-    "season": "2026",
-    "homeTeamId": 7656,
-    "awayTeamId": 5611,
-    "htHome": 0,
-    "htAway": 0,
-    "homeLogo": "https://media.api-sports.io/football/teams/7656.png",
-    "awayLogo": "https://media.api-sports.io/football/teams/5611.png",
-    "country": "World",
-    "flag": null,
-    "status": "1H",
-    "kickoff": "2026-07-14T18:30:00+00:00",
-    "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
-    "homePos": null,
-    "awayPos": null,
-    "tableSize": 20,
-    "homePlayed": null,
-    "awayPlayed": null,
-    "homePts": 0,
-    "awayPts": 0,
-    "homePPG": null,
-    "awayPPG": null,
-    "homeVenuePPG": null,
-    "awayVenuePPG": null,
-    "homeGD": 0,
-    "awayGD": 0,
-    "homeForm": "—",
-    "awayForm": "—",
-    "homeScoredAtHome": 1.3,
-    "homeConcededAtHome": 1.1,
-    "awayScoredAway": 1,
-    "awayConcededAway": 1.4,
-    "homeVenueRank": null,
-    "awayVenueRank": null,
-    "homeVenuePts": null,
-    "awayVenuePts": null,
-    "homeVenueGames": null,
-    "awayVenueGames": null,
-    "venueTableSize": 20,
-    "leagueAvg": null,
-    "leagueTrends": null,
-    "homeWinRate": null,
-    "awayWinRate": null,
-    "homeUnbeatenRate": null,
-    "awayUnbeatenRate": null,
-    "homeCleanSheetRate": null,
-    "awayCleanSheetRate": null,
-    "homeFailedToScoreRate": null,
-    "awayFailedToScoreRate": null,
-    "home1HFor": null,
-    "home2HFor": null,
-    "home1HAgainst": null,
-    "home2HAgainst": null,
-    "away1HFor": null,
-    "away2HFor": null,
-    "away1HAgainst": null,
-    "away2HAgainst": null,
-    "homeOver25Rate": null,
-    "awayOver25Rate": null,
-    "homeOver15Rate": null,
-    "awayOver15Rate": null,
-    "homeOver35Rate": null,
-    "awayOver35Rate": null,
-    "statsReal": false,
-    "homeStreaks": null,
-    "awayStreaks": null,
-    "homeRecent10PPG": null,
-    "awayRecent10PPG": null,
-    "homeRecent10Form": null,
-    "awayRecent10Form": null,
-    "homeOpponentAvgPPG": null,
-    "awayOpponentAvgPPG": null,
-    "homeScheduleStrengthPPG": null,
-    "awayScheduleStrengthPPG": null,
-    "homeSimilarOpponentPPG": null,
-    "awaySimilarOpponentPPG": null,
-    "homeRestDays": null,
-    "awayRestDays": null,
-    "homeSplitBlockDifference": null,
-    "awaySplitBlockDifference": null,
-    "recent10": {
-      "home": null,
-      "away": null
-    },
-    "opponentStrength": {
-      "home": null,
-      "away": null
-    },
-    "similarOpponents": {
-      "home": null,
-      "away": null
-    },
-    "rest": {
-      "home": null,
-      "away": null
-    },
-    "fixtureDensity": {
-      "home": null,
-      "away": null
-    },
-    "splitStability": {
-      "home": null,
-      "away": null
-    },
-    "momentum": {
-      "home": null,
-      "away": null
-    },
-    "seasonPhase": null,
-    "advancedDataMeta": {
-      "source": "API-Football chronological league fixtures + current table strength",
-      "home": null,
-      "away": null
-    },
-    "sameGroup": false,
-    "isKnockout": false,
-    "isTournament": false,
-    "round": "Club Friendlies",
-    "odds": null,
-    "h2h": null,
-    "oddsCalib": {
-      "name": "Friendlies Clubs",
-      "markets": {
-        "Home Win": {
-          "1.20-1.44": {
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
             "n": 2,
             "hits": 1,
             "hit": 0.5
-          }
-        },
-        "Away Win": {
-          "2.50+": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
-          "1.45-1.69": {
-            "n": 1,
-            "hits": 1,
-            "hit": 1
-          },
-          "1.70-1.99": {
-            "n": 1,
-            "hits": 0,
-            "hit": 0
-          }
-        }
-      }
-    },
-    "homeProfile": {
-      "name": "Marine",
-      "league": "Friendlies Clubs",
-      "leagueId": 667,
-      "usedSplit": "all(fallback)",
-      "games": 1,
-      "seedGames": 4,
-      "goalsFor": {
-        "v": 1.17,
-        "n": 5,
-        "src": "blend"
-      },
-      "goalsAg": {
-        "v": 0.99,
-        "n": 5,
-        "src": "blend"
-      },
-      "xgFor": null,
-      "xgAg": null,
-      "conversion": null,
-      "sotFor": null,
-      "sotAg": null
-    },
-    "awayProfile": {
-      "name": "Colwyn Bay",
-      "league": "Friendlies Clubs",
-      "leagueId": 667,
-      "usedSplit": "all(fallback)",
-      "games": 1,
-      "seedGames": 4,
-      "goalsFor": {
-        "v": 0.9,
-        "n": 5,
-        "src": "blend"
-      },
-      "goalsAg": {
-        "v": 1.26,
-        "n": 5,
-        "src": "blend"
-      },
-      "xgFor": null,
-      "xgAg": null,
-      "conversion": null,
-      "sotFor": null,
-      "sotAg": null
-    },
-    "governanceContext": {
-      "version": "v194",
-      "defaultPolicy": "SHADOW",
-      "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
-    },
-    "enrichmentTier": "coverage",
-    "olympianPredictions": [
-      {
-        "engine": "prometheus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 48-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "athena",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 66-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "apollo",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 58-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "ares",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 62-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "poseidon",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 55-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hermes",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 52-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hera",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 68-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "artemis",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 50-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hephaestus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 63-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "demeter",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 57-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "dionysus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 50-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hades",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 65-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "atlas",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 64-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "orion",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 55-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "nike",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 72-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "zeus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below Zeus's release gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      }
-    ],
-    "zeusWatchlist": null,
-    "zeusDecision": null,
-    "zeusRejection": {
-      "reasons": [
-        "Data quality 30/100 is below Zeus's release gate."
-      ],
-      "warnings": [
-        "8+ overall matches per team",
-        "6+ venue matches per team",
-        "league sample",
-        "market odds"
-      ],
-      "dataQuality": 30
-    }
-  },
-  {
-    "id": 1548847,
-    "home": "Nairn County",
-    "away": "Ross County",
-    "league": "Friendlies Clubs",
-    "leagueId": 667,
-    "season": "2026",
-    "homeTeamId": 7448,
-    "awayTeamId": 902,
-    "htHome": 1,
-    "htAway": 0,
-    "homeLogo": "https://media.api-sports.io/football/teams/7448.png",
-    "awayLogo": "https://media.api-sports.io/football/teams/902.png",
-    "country": "World",
-    "flag": null,
-    "status": "1H",
-    "kickoff": "2026-07-14T18:30:00+00:00",
-    "matchDate": "2026-07-14",
-    "homeGoals": 1,
-    "awayGoals": 0,
-    "homePos": null,
-    "awayPos": null,
-    "tableSize": 20,
-    "homePlayed": null,
-    "awayPlayed": null,
-    "homePts": 0,
-    "awayPts": 0,
-    "homePPG": null,
-    "awayPPG": null,
-    "homeVenuePPG": null,
-    "awayVenuePPG": null,
-    "homeGD": 0,
-    "awayGD": 0,
-    "homeForm": "—",
-    "awayForm": "—",
-    "homeScoredAtHome": 1.3,
-    "homeConcededAtHome": 1.1,
-    "awayScoredAway": 1,
-    "awayConcededAway": 1.4,
-    "homeVenueRank": null,
-    "awayVenueRank": null,
-    "homeVenuePts": null,
-    "awayVenuePts": null,
-    "homeVenueGames": null,
-    "awayVenueGames": null,
-    "venueTableSize": 20,
-    "leagueAvg": null,
-    "leagueTrends": null,
-    "homeWinRate": null,
-    "awayWinRate": null,
-    "homeUnbeatenRate": null,
-    "awayUnbeatenRate": null,
-    "homeCleanSheetRate": null,
-    "awayCleanSheetRate": null,
-    "homeFailedToScoreRate": null,
-    "awayFailedToScoreRate": null,
-    "home1HFor": null,
-    "home2HFor": null,
-    "home1HAgainst": null,
-    "home2HAgainst": null,
-    "away1HFor": null,
-    "away2HFor": null,
-    "away1HAgainst": null,
-    "away2HAgainst": null,
-    "homeOver25Rate": null,
-    "awayOver25Rate": null,
-    "homeOver15Rate": null,
-    "awayOver15Rate": null,
-    "homeOver35Rate": null,
-    "awayOver35Rate": null,
-    "statsReal": false,
-    "homeStreaks": null,
-    "awayStreaks": null,
-    "homeRecent10PPG": null,
-    "awayRecent10PPG": null,
-    "homeRecent10Form": null,
-    "awayRecent10Form": null,
-    "homeOpponentAvgPPG": null,
-    "awayOpponentAvgPPG": null,
-    "homeScheduleStrengthPPG": null,
-    "awayScheduleStrengthPPG": null,
-    "homeSimilarOpponentPPG": null,
-    "awaySimilarOpponentPPG": null,
-    "homeRestDays": null,
-    "awayRestDays": null,
-    "homeSplitBlockDifference": null,
-    "awaySplitBlockDifference": null,
-    "recent10": {
-      "home": null,
-      "away": null
-    },
-    "opponentStrength": {
-      "home": null,
-      "away": null
-    },
-    "similarOpponents": {
-      "home": null,
-      "away": null
-    },
-    "rest": {
-      "home": null,
-      "away": null
-    },
-    "fixtureDensity": {
-      "home": null,
-      "away": null
-    },
-    "splitStability": {
-      "home": null,
-      "away": null
-    },
-    "momentum": {
-      "home": null,
-      "away": null
-    },
-    "seasonPhase": null,
-    "advancedDataMeta": {
-      "source": "API-Football chronological league fixtures + current table strength",
-      "home": null,
-      "away": null
-    },
-    "sameGroup": false,
-    "isKnockout": false,
-    "isTournament": false,
-    "round": "Club Friendlies",
-    "odds": null,
-    "h2h": null,
-    "oddsCalib": {
-      "name": "Friendlies Clubs",
-      "markets": {
-        "Home Win": {
-          "1.20-1.44": {
-            "n": 2,
-            "hits": 1,
-            "hit": 0.5
-          }
-        },
-        "Away Win": {
-          "2.50+": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
-          "1.45-1.69": {
-            "n": 1,
-            "hits": 1,
-            "hit": 1
           },
           "1.70-1.99": {
             "n": 1,
@@ -65992,16 +67922,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -66015,16 +67945,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -66037,7 +67967,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -66327,7 +68257,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 69,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1550565,
@@ -66339,16 +68273,16 @@ window.MATCHES = [
     "homeTeamId": 16994,
     "awayTeamId": 1366,
     "htHome": 1,
-    "htAway": 0,
+    "htAway": 2,
     "homeLogo": "https://media.api-sports.io/football/teams/16994.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1366.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 1,
-    "awayGoals": 0,
+    "homeGoals": 2,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -66464,6 +68398,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -66471,13 +68410,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -66492,16 +68436,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.34,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -66515,16 +68459,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.42,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -66537,7 +68481,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -66827,7 +68771,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 70,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554942,
@@ -66964,6 +68912,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -66971,13 +68924,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -67035,7 +68993,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -67071,7 +69029,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -67361,7 +69319,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554943,
@@ -67498,6 +69460,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -67505,13 +69472,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -67569,7 +69541,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -67605,7 +69577,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -67895,7 +69867,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554944,
@@ -67906,17 +69882,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 7246,
     "awayTeamId": 1828,
-    "htHome": 0,
-    "htAway": 0,
+    "htHome": 2,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/7246.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1828.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 2,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -68032,6 +70008,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -68039,13 +70020,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -68060,16 +70046,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -68083,16 +70069,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -68105,7 +70091,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -68395,7 +70381,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 66,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554945,
@@ -68412,7 +70402,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/669.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
@@ -68532,6 +70522,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -68539,13 +70534,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -68605,7 +70605,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -68895,7 +70895,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 71,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554947,
@@ -68906,17 +70910,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 1354,
     "awayTeamId": 3843,
-    "htHome": 2,
+    "htHome": 0,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/1354.png",
     "awayLogo": "https://media.api-sports.io/football/teams/3843.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 2,
-    "awayGoals": 0,
+    "homeGoals": 0,
+    "awayGoals": 3,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -69032,6 +71036,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -69039,13 +71048,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -69060,16 +71074,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.37,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.18,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -69083,16 +71097,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1.1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.46,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -69105,7 +71119,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -69395,7 +71409,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 69,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1560610,
@@ -69412,7 +71430,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/7618.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "TBD",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -69532,6 +71550,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -69539,13 +71562,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -69605,7 +71633,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -69895,7 +71923,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Time To Be Defined",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1562919,
@@ -69912,7 +71944,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/74.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -70032,6 +72064,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -70039,13 +72076,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -70105,7 +72147,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -70395,7 +72437,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 65,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1583304,
@@ -70406,17 +72452,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 21712,
     "awayTeamId": 1830,
-    "htHome": 0,
-    "htAway": 0,
+    "htHome": 1,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/21712.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1830.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 1,
+    "awayGoals": 4,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -70532,6 +72578,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -70539,13 +72590,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -70560,16 +72616,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.28,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -70583,16 +72639,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1.2,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -70605,7 +72661,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -70895,7 +72951,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 66,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1499523,
@@ -70912,10 +72972,10 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1927.png",
     "country": "Argentina",
     "flag": "https://media.api-sports.io/flags/ar.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:30:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": 9,
     "awayPos": 2,
@@ -71542,22 +73602,82 @@ window.MATCHES = [
       "avg2H": 0.2,
       "htSamples": 5
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Deportivo Armenio",
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 2,
       "goalsFor": {
         "v": 0.9,
-        "n": 3,
+        "n": 4,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.45,
-        "n": 3,
+        "v": 0.4,
+        "n": 4,
         "src": "blend"
       },
       "xgFor": null,
@@ -71571,16 +73691,16 @@ window.MATCHES = [
       "league": "Primera B Metropolitana",
       "leagueId": 131,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 1,
       "goalsFor": {
-        "v": 2.7,
-        "n": 2,
+        "v": 2.4,
+        "n": 3,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0,
-        "n": 2,
+        "v": 0.1,
+        "n": 3,
         "src": "blend"
       },
       "xgFor": null,
@@ -71593,7 +73713,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.127Z",
@@ -71835,7 +73955,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 62,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1546671,
@@ -71972,6 +74096,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -71979,13 +74108,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -72043,7 +74177,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -72079,7 +74213,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -72369,7 +74503,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1546672,
@@ -72380,16 +74518,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 1841,
     "awayTeamId": 1345,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/1841.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1345.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 2,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -72525,6 +74663,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -72532,13 +74675,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -72553,16 +74701,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -72576,16 +74724,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -72598,7 +74746,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -72871,7 +75019,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 52,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1546673,
@@ -73008,6 +75160,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -73015,13 +75172,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -73079,7 +75241,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -73115,7 +75277,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -73405,7 +75567,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1546674,
@@ -73542,6 +75708,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -73549,13 +75720,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -73613,7 +75789,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -73649,7 +75825,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -73939,7 +76115,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1546675,
@@ -73956,11 +76136,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1835.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 1,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -74095,6 +76275,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -74102,13 +76287,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -74123,16 +76313,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 1.18,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -74146,16 +76336,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1,
-        "n": 5,
+        "v": 1.1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -74168,7 +76358,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -74441,7 +76631,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1546678,
@@ -74452,17 +76646,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 1369,
     "awayTeamId": 38,
-    "htHome": 0,
-    "htAway": 0,
+    "htHome": 1,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/1369.png",
     "awayLogo": "https://media.api-sports.io/football/teams/38.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 1,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -74597,6 +76791,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -74604,13 +76803,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -74625,16 +76829,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -74648,16 +76852,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -74670,7 +76874,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -74943,7 +77147,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 52,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1547967,
@@ -74954,16 +77162,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 7640,
     "awayTeamId": 9010,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/7640.png",
     "awayLogo": "https://media.api-sports.io/football/teams/9010.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "HT",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -75099,6 +77307,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -75106,13 +77319,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -75127,16 +77345,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -75150,16 +77368,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -75172,7 +77390,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -75445,7 +77663,11 @@ window.MATCHES = [
         "league sample"
       ],
       "dataQuality": 40
-    }
+    },
+    "statusLong": "Halftime",
+    "elapsed": 45,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1547968,
@@ -75582,6 +77804,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -75589,13 +77816,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -75653,7 +77885,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -75689,7 +77921,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -75979,7 +78211,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548848,
@@ -76116,6 +78352,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -76123,13 +78364,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -76187,7 +78433,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -76223,7 +78469,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -76513,7 +78759,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1548849,
@@ -76524,16 +78774,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 2266,
     "awayTeamId": 11117,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/2266.png",
     "awayLogo": "https://media.api-sports.io/football/teams/11117.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -76650,6 +78900,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -76657,13 +78912,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -76678,16 +78938,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -76701,16 +78961,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -76723,7 +78983,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -77013,7 +79273,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 54,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548850,
@@ -77024,17 +79288,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 7239,
     "awayTeamId": 1380,
-    "htHome": 0,
-    "htAway": 0,
+    "htHome": 1,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/7239.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1380.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 1,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -77150,6 +79414,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -77157,13 +79426,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -77178,16 +79452,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -77201,16 +79475,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -77223,7 +79497,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -77513,7 +79787,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 52,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554948,
@@ -77524,16 +79802,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 361,
     "awayTeamId": 11310,
-    "htHome": 0,
+    "htHome": 2,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/361.png",
     "awayLogo": "https://media.api-sports.io/football/teams/11310.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 4,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -77650,6 +79928,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -77657,13 +79940,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -77678,16 +79966,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.44,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -77701,16 +79989,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.52,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -77723,7 +80011,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -78013,7 +80301,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 54,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554949,
@@ -78025,16 +80317,16 @@ window.MATCHES = [
     "homeTeamId": 653,
     "awayTeamId": 43,
     "htHome": 0,
-    "htAway": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/653.png",
     "awayLogo": "https://media.api-sports.io/football/teams/43.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -78150,6 +80442,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -78157,13 +80454,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -78178,16 +80480,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -78201,16 +80503,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -78223,7 +80525,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -78513,7 +80815,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 47,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554950,
@@ -78524,16 +80830,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 7754,
     "awayTeamId": 1339,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/7754.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1339.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -78650,6 +80956,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -78657,13 +80968,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -78678,16 +80994,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -78701,16 +81017,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -78723,7 +81039,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -79013,7 +81329,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 49,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554951,
@@ -79150,6 +81470,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -79157,13 +81482,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -79221,7 +81551,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -79257,7 +81587,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -79547,7 +81877,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554952,
@@ -79684,6 +82018,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -79691,13 +82030,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -79755,7 +82099,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -79791,7 +82135,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -80081,7 +82425,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1560611,
@@ -80092,16 +82440,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 362,
     "awayTeamId": 5623,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/362.png",
     "awayLogo": "https://media.api-sports.io/football/teams/5623.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -80218,6 +82566,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -80225,13 +82578,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -80246,16 +82604,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -80269,16 +82627,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -80291,7 +82649,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -80581,7 +82939,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 51,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1583305,
@@ -80718,6 +83080,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -80725,13 +83092,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -80789,7 +83161,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -80825,7 +83197,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -81115,7 +83487,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1583307,
@@ -81252,6 +83628,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -81259,13 +83640,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -81323,7 +83709,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -81359,7 +83745,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -81649,7 +84035,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584845,
@@ -81786,6 +84176,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -81793,13 +84188,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -81857,7 +84257,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -81893,7 +84293,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -82183,7 +84583,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1584846,
@@ -82195,12 +84599,526 @@ window.MATCHES = [
     "homeTeamId": 7212,
     "awayTeamId": 4708,
     "htHome": 0,
-    "htAway": 1,
+    "htAway": 2,
     "homeLogo": "https://media.api-sports.io/football/teams/7212.png",
     "awayLogo": "https://media.api-sports.io/football/teams/4708.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "2H",
+    "kickoff": "2026-07-14T18:45:00+00:00",
+    "matchDate": "2026-07-14",
+    "homeGoals": 0,
+    "awayGoals": 2,
+    "homePos": null,
+    "awayPos": null,
+    "tableSize": 20,
+    "homePlayed": null,
+    "awayPlayed": null,
+    "homePts": 0,
+    "awayPts": 0,
+    "homePPG": null,
+    "awayPPG": null,
+    "homeVenuePPG": null,
+    "awayVenuePPG": null,
+    "homeGD": 0,
+    "awayGD": 0,
+    "homeForm": "—",
+    "awayForm": "—",
+    "homeScoredAtHome": 1.3,
+    "homeConcededAtHome": 1.1,
+    "awayScoredAway": 1,
+    "awayConcededAway": 1.4,
+    "homeVenueRank": null,
+    "awayVenueRank": null,
+    "homeVenuePts": null,
+    "awayVenuePts": null,
+    "homeVenueGames": null,
+    "awayVenueGames": null,
+    "venueTableSize": 20,
+    "leagueAvg": null,
+    "leagueTrends": null,
+    "homeWinRate": null,
+    "awayWinRate": null,
+    "homeUnbeatenRate": null,
+    "awayUnbeatenRate": null,
+    "homeCleanSheetRate": null,
+    "awayCleanSheetRate": null,
+    "homeFailedToScoreRate": null,
+    "awayFailedToScoreRate": null,
+    "home1HFor": null,
+    "home2HFor": null,
+    "home1HAgainst": null,
+    "home2HAgainst": null,
+    "away1HFor": null,
+    "away2HFor": null,
+    "away1HAgainst": null,
+    "away2HAgainst": null,
+    "homeOver25Rate": null,
+    "awayOver25Rate": null,
+    "homeOver15Rate": null,
+    "awayOver15Rate": null,
+    "homeOver35Rate": null,
+    "awayOver35Rate": null,
+    "statsReal": false,
+    "homeStreaks": null,
+    "awayStreaks": null,
+    "homeRecent10PPG": null,
+    "awayRecent10PPG": null,
+    "homeRecent10Form": null,
+    "awayRecent10Form": null,
+    "homeOpponentAvgPPG": null,
+    "awayOpponentAvgPPG": null,
+    "homeScheduleStrengthPPG": null,
+    "awayScheduleStrengthPPG": null,
+    "homeSimilarOpponentPPG": null,
+    "awaySimilarOpponentPPG": null,
+    "homeRestDays": null,
+    "awayRestDays": null,
+    "homeSplitBlockDifference": null,
+    "awaySplitBlockDifference": null,
+    "recent10": {
+      "home": null,
+      "away": null
+    },
+    "opponentStrength": {
+      "home": null,
+      "away": null
+    },
+    "similarOpponents": {
+      "home": null,
+      "away": null
+    },
+    "rest": {
+      "home": null,
+      "away": null
+    },
+    "fixtureDensity": {
+      "home": null,
+      "away": null
+    },
+    "splitStability": {
+      "home": null,
+      "away": null
+    },
+    "momentum": {
+      "home": null,
+      "away": null
+    },
+    "seasonPhase": null,
+    "advancedDataMeta": {
+      "source": "API-Football chronological league fixtures + current table strength",
+      "home": null,
+      "away": null
+    },
+    "sameGroup": false,
+    "isKnockout": false,
+    "isTournament": false,
+    "round": "Club Friendlies",
+    "odds": null,
+    "h2h": null,
+    "oddsCalib": {
+      "name": "Friendlies Clubs",
+      "markets": {
+        "Home Win": {
+          "1.20-1.44": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "2.50+": {
+            "n": 2,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        }
+      }
+    },
+    "homeProfile": {
+      "name": "Bedfont Sports",
+      "league": "Friendlies Clubs",
+      "leagueId": 667,
+      "usedSplit": "all(fallback)",
+      "games": 2,
+      "seedGames": 4,
+      "goalsFor": {
+        "v": 1.04,
+        "n": 6,
+        "src": "blend"
+      },
+      "goalsAg": {
+        "v": 1.18,
+        "n": 6,
+        "src": "blend"
+      },
+      "xgFor": null,
+      "xgAg": null,
+      "conversion": null,
+      "sotFor": null,
+      "sotAg": null
+    },
+    "awayProfile": {
+      "name": "St Albans City",
+      "league": "Friendlies Clubs",
+      "leagueId": 667,
+      "usedSplit": "all(fallback)",
+      "games": 2,
+      "seedGames": 4,
+      "goalsFor": {
+        "v": 1.1,
+        "n": 6,
+        "src": "blend"
+      },
+      "goalsAg": {
+        "v": 1.12,
+        "n": 6,
+        "src": "blend"
+      },
+      "xgFor": null,
+      "xgAg": null,
+      "conversion": null,
+      "sotFor": null,
+      "sotAg": null
+    },
+    "governanceContext": {
+      "version": "v194",
+      "defaultPolicy": "SHADOW",
+      "enginePolicies": {},
+      "generatedAt": "2026-07-14T19:54:36.617Z"
+    },
+    "enrichmentTier": "coverage",
+    "olympianPredictions": [
+      {
+        "engine": "prometheus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 48-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "athena",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 66-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "apollo",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 58-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "ares",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 62-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "poseidon",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 55-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hermes",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 52-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hera",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 68-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "artemis",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 50-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hephaestus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 63-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "demeter",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 57-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "dionysus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 50-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "hades",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 65-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "atlas",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 64-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "orion",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 55-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "nike",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below this engine's 72-point gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      },
+      {
+        "engine": "zeus",
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
+        "reasons": [
+          "Data quality 30/100 is below Zeus's release gate."
+        ],
+        "warnings": [
+          "8+ overall matches per team",
+          "6+ venue matches per team",
+          "league sample",
+          "market odds"
+        ],
+        "dataQuality": 30,
+        "supportOnly": false
+      }
+    ],
+    "zeusWatchlist": null,
+    "zeusDecision": null,
+    "zeusRejection": {
+      "reasons": [
+        "Data quality 30/100 is below Zeus's release gate."
+      ],
+      "warnings": [
+        "8+ overall matches per team",
+        "6+ venue matches per team",
+        "league sample",
+        "market odds"
+      ],
+      "dataQuality": 30
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
+  },
+  {
+    "id": 1589259,
+    "home": "Slough Town",
+    "away": "Basingstoke Town",
+    "league": "Friendlies Clubs",
+    "leagueId": 667,
+    "season": "2026",
+    "homeTeamId": 4685,
+    "awayTeamId": 7615,
+    "htHome": 0,
+    "htAway": 1,
+    "homeLogo": "https://media.api-sports.io/football/teams/4685.png",
+    "awayLogo": "https://media.api-sports.io/football/teams/7615.png",
+    "country": "World",
+    "flag": null,
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -82320,6 +85238,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -82327,513 +85250,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
-          },
-          "1.70-1.99": {
-            "n": 1,
-            "hits": 0,
-            "hit": 0
           }
-        }
-      }
-    },
-    "homeProfile": {
-      "name": "Bedfont Sports",
-      "league": "Friendlies Clubs",
-      "leagueId": 667,
-      "usedSplit": "all(fallback)",
-      "games": 1,
-      "seedGames": 4,
-      "goalsFor": {
-        "v": 1.17,
-        "n": 5,
-        "src": "blend"
-      },
-      "goalsAg": {
-        "v": 1.09,
-        "n": 5,
-        "src": "blend"
-      },
-      "xgFor": null,
-      "xgAg": null,
-      "conversion": null,
-      "sotFor": null,
-      "sotAg": null
-    },
-    "awayProfile": {
-      "name": "St Albans City",
-      "league": "Friendlies Clubs",
-      "leagueId": 667,
-      "usedSplit": "all(fallback)",
-      "games": 1,
-      "seedGames": 4,
-      "goalsFor": {
-        "v": 1,
-        "n": 5,
-        "src": "blend"
-      },
-      "goalsAg": {
-        "v": 1.26,
-        "n": 5,
-        "src": "blend"
-      },
-      "xgFor": null,
-      "xgAg": null,
-      "conversion": null,
-      "sotFor": null,
-      "sotAg": null
-    },
-    "governanceContext": {
-      "version": "v194",
-      "defaultPolicy": "SHADOW",
-      "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
-    },
-    "enrichmentTier": "coverage",
-    "olympianPredictions": [
-      {
-        "engine": "prometheus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 48-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "athena",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 66-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "apollo",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 58-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "ares",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 62-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "poseidon",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 55-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hermes",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 52-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hera",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 68-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "artemis",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 50-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hephaestus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 63-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "demeter",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 57-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "dionysus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 50-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "hades",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 65-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "atlas",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 64-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "orion",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 55-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "nike",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below this engine's 72-point gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      },
-      {
-        "engine": "zeus",
-        "bet": false,
-        "market": "No Bet",
-        "confidence": 0,
-        "reasons": [
-          "Data quality 30/100 is below Zeus's release gate."
-        ],
-        "warnings": [
-          "8+ overall matches per team",
-          "6+ venue matches per team",
-          "league sample",
-          "market odds"
-        ],
-        "dataQuality": 30,
-        "supportOnly": false
-      }
-    ],
-    "zeusWatchlist": null,
-    "zeusDecision": null,
-    "zeusRejection": {
-      "reasons": [
-        "Data quality 30/100 is below Zeus's release gate."
-      ],
-      "warnings": [
-        "8+ overall matches per team",
-        "6+ venue matches per team",
-        "league sample",
-        "market odds"
-      ],
-      "dataQuality": 30
-    }
-  },
-  {
-    "id": 1589259,
-    "home": "Slough Town",
-    "away": "Basingstoke Town",
-    "league": "Friendlies Clubs",
-    "leagueId": 667,
-    "season": "2026",
-    "homeTeamId": 4685,
-    "awayTeamId": 7615,
-    "htHome": 0,
-    "htAway": 0,
-    "homeLogo": "https://media.api-sports.io/football/teams/4685.png",
-    "awayLogo": "https://media.api-sports.io/football/teams/7615.png",
-    "country": "World",
-    "flag": null,
-    "status": "1H",
-    "kickoff": "2026-07-14T18:45:00+00:00",
-    "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
-    "homePos": null,
-    "awayPos": null,
-    "tableSize": 20,
-    "homePlayed": null,
-    "awayPlayed": null,
-    "homePts": 0,
-    "awayPts": 0,
-    "homePPG": null,
-    "awayPPG": null,
-    "homeVenuePPG": null,
-    "awayVenuePPG": null,
-    "homeGD": 0,
-    "awayGD": 0,
-    "homeForm": "—",
-    "awayForm": "—",
-    "homeScoredAtHome": 1.3,
-    "homeConcededAtHome": 1.1,
-    "awayScoredAway": 1,
-    "awayConcededAway": 1.4,
-    "homeVenueRank": null,
-    "awayVenueRank": null,
-    "homeVenuePts": null,
-    "awayVenuePts": null,
-    "homeVenueGames": null,
-    "awayVenueGames": null,
-    "venueTableSize": 20,
-    "leagueAvg": null,
-    "leagueTrends": null,
-    "homeWinRate": null,
-    "awayWinRate": null,
-    "homeUnbeatenRate": null,
-    "awayUnbeatenRate": null,
-    "homeCleanSheetRate": null,
-    "awayCleanSheetRate": null,
-    "homeFailedToScoreRate": null,
-    "awayFailedToScoreRate": null,
-    "home1HFor": null,
-    "home2HFor": null,
-    "home1HAgainst": null,
-    "home2HAgainst": null,
-    "away1HFor": null,
-    "away2HFor": null,
-    "away1HAgainst": null,
-    "away2HAgainst": null,
-    "homeOver25Rate": null,
-    "awayOver25Rate": null,
-    "homeOver15Rate": null,
-    "awayOver15Rate": null,
-    "homeOver35Rate": null,
-    "awayOver35Rate": null,
-    "statsReal": false,
-    "homeStreaks": null,
-    "awayStreaks": null,
-    "homeRecent10PPG": null,
-    "awayRecent10PPG": null,
-    "homeRecent10Form": null,
-    "awayRecent10Form": null,
-    "homeOpponentAvgPPG": null,
-    "awayOpponentAvgPPG": null,
-    "homeScheduleStrengthPPG": null,
-    "awayScheduleStrengthPPG": null,
-    "homeSimilarOpponentPPG": null,
-    "awaySimilarOpponentPPG": null,
-    "homeRestDays": null,
-    "awayRestDays": null,
-    "homeSplitBlockDifference": null,
-    "awaySplitBlockDifference": null,
-    "recent10": {
-      "home": null,
-      "away": null
-    },
-    "opponentStrength": {
-      "home": null,
-      "away": null
-    },
-    "similarOpponents": {
-      "home": null,
-      "away": null
-    },
-    "rest": {
-      "home": null,
-      "away": null
-    },
-    "fixtureDensity": {
-      "home": null,
-      "away": null
-    },
-    "splitStability": {
-      "home": null,
-      "away": null
-    },
-    "momentum": {
-      "home": null,
-      "away": null
-    },
-    "seasonPhase": null,
-    "advancedDataMeta": {
-      "source": "API-Football chronological league fixtures + current table strength",
-      "home": null,
-      "away": null
-    },
-    "sameGroup": false,
-    "isKnockout": false,
-    "isTournament": false,
-    "round": "Club Friendlies",
-    "odds": null,
-    "h2h": null,
-    "oddsCalib": {
-      "name": "Friendlies Clubs",
-      "markets": {
-        "Home Win": {
-          "1.20-1.44": {
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
             "n": 2,
             "hits": 1,
             "hit": 0.5
-          }
-        },
-        "Away Win": {
-          "2.50+": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
-          "1.45-1.69": {
-            "n": 1,
-            "hits": 1,
-            "hit": 1
           },
           "1.70-1.99": {
             "n": 1,
@@ -82848,16 +85276,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -82871,16 +85299,16 @@ window.MATCHES = [
       "league": "Friendlies Clubs",
       "leagueId": 667,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -82893,7 +85321,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -83183,7 +85611,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 47,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548120,
@@ -83200,7 +85632,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/253.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -83648,7 +86080,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.128Z",
@@ -83880,7 +86312,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 54,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548121,
@@ -83892,16 +86328,16 @@ window.MATCHES = [
     "homeTeamId": 1390,
     "awayTeamId": 255,
     "htHome": 0,
-    "htAway": 1,
+    "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/1390.png",
     "awayLogo": "https://media.api-sports.io/football/teams/255.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 1,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -84233,16 +86669,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 1.18,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -84256,16 +86692,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1,
-        "n": 5,
+        "v": 1.1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -84278,7 +86714,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.128Z",
@@ -84510,7 +86946,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 52,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548122,
@@ -84521,17 +86961,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 6760,
     "awayTeamId": 252,
-    "htHome": null,
-    "htAway": null,
+    "htHome": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/6760.png",
     "awayLogo": "https://media.api-sports.io/football/teams/252.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "NS",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 0,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -84809,17 +87249,17 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.3,
-        "n": 4,
-        "src": "season"
+        "v": 1.17,
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.1,
-        "n": 4,
-        "src": "season"
+        "v": 1.09,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -84832,17 +87272,17 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 0,
+      "games": 1,
       "seedGames": 4,
       "goalsFor": {
         "v": 1,
-        "n": 4,
-        "src": "season"
+        "n": 5,
+        "src": "blend"
       },
       "goalsAg": {
-        "v": 1.4,
-        "n": 4,
-        "src": "season"
+        "v": 1.26,
+        "n": 5,
+        "src": "blend"
       },
       "xgFor": null,
       "xgAg": null,
@@ -84888,7 +87328,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.128Z",
@@ -85119,7 +87559,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 52,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548123,
@@ -85136,7 +87580,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/4668.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -85518,7 +87962,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.129Z",
@@ -85750,7 +88194,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 50,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548124,
@@ -85767,11 +88215,11 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/6765.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -86072,16 +88520,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -86095,16 +88543,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -86117,7 +88565,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.129Z",
@@ -86348,7 +88796,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548125,
@@ -86359,16 +88811,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 1388,
     "awayTeamId": 1382,
-    "htHome": 0,
+    "htHome": 2,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/1388.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1382.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 2,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -86800,16 +89252,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -86823,16 +89275,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -86845,7 +89297,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.129Z",
@@ -87077,7 +89529,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548126,
@@ -87088,16 +89544,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 6764,
     "awayTeamId": 1383,
-    "htHome": 0,
+    "htHome": 2,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/6764.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1383.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 2,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -87501,16 +89957,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -87524,16 +89980,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -87546,7 +90002,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.129Z",
@@ -87777,7 +90233,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548127,
@@ -87788,16 +90248,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 6766,
     "awayTeamId": 1391,
-    "htHome": 1,
+    "htHome": 2,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/6766.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1391.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 1,
+    "homeGoals": 2,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -88133,16 +90593,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.34,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -88156,16 +90616,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.42,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -88178,7 +90638,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.129Z",
@@ -88410,7 +90870,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548128,
@@ -88421,16 +90885,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 6767,
     "awayTeamId": 6777,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/6767.png",
     "awayLogo": "https://media.api-sports.io/football/teams/6777.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -88862,16 +91326,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -88885,16 +91349,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -88907,7 +91371,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.130Z",
@@ -89139,7 +91603,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 51,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548129,
@@ -89151,16 +91619,16 @@ window.MATCHES = [
     "homeTeamId": 1389,
     "awayTeamId": 1387,
     "htHome": 0,
-    "htAway": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/1389.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1387.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -89589,16 +92057,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -89612,16 +92080,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -89634,7 +92102,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.130Z",
@@ -89866,7 +92334,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 49,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548130,
@@ -89878,16 +92350,16 @@ window.MATCHES = [
     "homeTeamId": 4250,
     "awayTeamId": 901,
     "htHome": 0,
-    "htAway": 2,
+    "htAway": 3,
     "homeLogo": "https://media.api-sports.io/football/teams/4250.png",
     "awayLogo": "https://media.api-sports.io/football/teams/901.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 2,
+    "awayGoals": 3,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -90275,16 +92747,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.19,
-        "n": 5,
+        "v": 1.38,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -90298,16 +92770,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.1,
-        "n": 5,
+        "v": 1.3,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -90320,7 +92792,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.130Z",
@@ -90585,7 +93057,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 52,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548131,
@@ -90602,7 +93078,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/6778.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -91023,7 +93499,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.130Z",
@@ -91288,7 +93764,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 51,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548132,
@@ -91305,7 +93785,7 @@ window.MATCHES = [
     "awayLogo": "https://media.api-sports.io/football/teams/1385.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
@@ -91664,7 +94144,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.130Z",
@@ -91928,7 +94408,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 54,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548133,
@@ -91940,16 +94424,16 @@ window.MATCHES = [
     "homeTeamId": 6744,
     "awayTeamId": 258,
     "htHome": 0,
-    "htAway": 1,
+    "htAway": 2,
     "homeLogo": "https://media.api-sports.io/football/teams/6744.png",
     "awayLogo": "https://media.api-sports.io/football/teams/258.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 1,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -92207,16 +94691,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.09,
-        "n": 5,
+        "v": 1.18,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -92230,16 +94714,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1,
-        "n": 5,
+        "v": 1.1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -92252,7 +94736,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.131Z",
@@ -92516,7 +95000,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548134,
@@ -92527,16 +95015,16 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 4251,
     "awayTeamId": 1386,
-    "htHome": 0,
+    "htHome": 1,
     "htAway": 0,
     "homeLogo": "https://media.api-sports.io/football/teams/4251.png",
     "awayLogo": "https://media.api-sports.io/football/teams/1386.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
+    "homeGoals": 1,
     "awayGoals": 0,
     "homePos": null,
     "awayPos": null,
@@ -92795,16 +95283,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.88,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -92818,16 +95306,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 0.8,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -92840,7 +95328,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.131Z",
@@ -93104,7 +95592,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 53,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1548135,
@@ -93116,16 +95608,16 @@ window.MATCHES = [
     "homeTeamId": 6781,
     "awayTeamId": 4669,
     "htHome": 1,
-    "htAway": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/6781.png",
     "awayLogo": "https://media.api-sports.io/football/teams/4669.png",
     "country": "Scotland",
     "flag": "https://media.api-sports.io/flags/gb-sct.svg",
-    "status": "1H",
+    "status": "2H",
     "kickoff": "2026-07-14T18:45:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 1,
-    "awayGoals": 0,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 20,
@@ -93531,16 +96023,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.27,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -93554,16 +96046,16 @@ window.MATCHES = [
       "league": "League Cup",
       "leagueId": 185,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.36,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -93576,7 +96068,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.131Z",
@@ -93840,7 +96332,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 54
-    }
+    },
+    "statusLong": "Second Half",
+    "elapsed": 50,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1583306,
@@ -93977,6 +96473,11 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Away Win": {
@@ -93984,13 +96485,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 0,
             "hit": 0
-          }
-        },
-        "Under 3.5 Goals": {
+          },
           "1.45-1.69": {
             "n": 1,
             "hits": 1,
             "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.45-1.69": {
+            "n": 2,
+            "hits": 1,
+            "hit": 0.5
           },
           "1.70-1.99": {
             "n": 1,
@@ -94048,7 +96554,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -94084,7 +96590,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -94374,7 +96880,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1554382,
@@ -94385,17 +96895,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 5354,
     "awayTeamId": 2260,
-    "htHome": 0,
-    "htAway": 0,
+    "htHome": 1,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/5354.png",
     "awayLogo": "https://media.api-sports.io/football/teams/2260.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "HT",
     "kickoff": "2026-07-14T19:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 1,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 36,
@@ -94794,11 +97304,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -94806,22 +97326,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -94830,14 +97355,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -94845,13 +97370,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -94859,15 +97389,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -94879,11 +97409,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -94896,6 +97431,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -94905,16 +97445,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.14,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -94928,16 +97468,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.22,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -94984,7 +97524,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.131Z",
@@ -95219,7 +97759,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Halftime",
+    "elapsed": 45,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554385,
@@ -95230,17 +97774,17 @@ window.MATCHES = [
     "season": "2026",
     "homeTeamId": 652,
     "awayTeamId": 4625,
-    "htHome": 0,
-    "htAway": 0,
+    "htHome": 2,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/652.png",
     "awayLogo": "https://media.api-sports.io/football/teams/4625.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "HT",
     "kickoff": "2026-07-14T19:00:00+00:00",
     "matchDate": "2026-07-14",
-    "homeGoals": 0,
-    "awayGoals": 0,
+    "homeGoals": 2,
+    "awayGoals": 1,
     "homePos": null,
     "awayPos": null,
     "tableSize": 36,
@@ -95642,11 +98186,21 @@ window.MATCHES = [
       "markets": {
         "Home Win": {
           "1.45-1.69": {
-            "n": 3,
+            "n": 4,
             "hits": 1,
-            "hit": 0.33
+            "hit": 0.25
           },
           "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          },
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          },
+          "2.50+": {
             "n": 1,
             "hits": 0,
             "hit": 0
@@ -95654,22 +98208,27 @@ window.MATCHES = [
         },
         "Away Win": {
           "2.50+": {
-            "n": 4,
+            "n": 6,
             "hits": 1,
-            "hit": 0.25
+            "hit": 0.17
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         },
         "Over 1.5 Goals": {
           "1.20-1.44": {
-            "n": 4,
-            "hits": 4,
+            "n": 7,
+            "hits": 7,
             "hit": 1
           }
         },
         "Over 2.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -95678,14 +98237,14 @@ window.MATCHES = [
             "hit": 0
           },
           "1.70-1.99": {
-            "n": 1,
-            "hits": 1,
+            "n": 2,
+            "hits": 2,
             "hit": 1
           }
         },
         "Under 2.5 Goals": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -95693,13 +98252,18 @@ window.MATCHES = [
             "n": 2,
             "hits": 1,
             "hit": 0.5
+          },
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "Under 3.5 Goals": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 0,
-            "hit": 0
+            "n": 4,
+            "hits": 1,
+            "hit": 0.25
           },
           "1.70-1.99": {
             "n": 1,
@@ -95707,15 +98271,15 @@ window.MATCHES = [
             "hit": 1
           },
           "1.20-1.44": {
-            "n": 1,
+            "n": 2,
             "hits": 0,
             "hit": 0
           }
         },
         "BTTS Yes": {
           "1.45-1.69": {
-            "n": 2,
-            "hits": 2,
+            "n": 4,
+            "hits": 4,
             "hit": 1
           },
           "1.20-1.44": {
@@ -95727,11 +98291,16 @@ window.MATCHES = [
             "n": 1,
             "hits": 1,
             "hit": 1
+          },
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
           }
         },
         "BTTS No": {
           "2.00-2.49": {
-            "n": 2,
+            "n": 4,
             "hits": 0,
             "hit": 0
           },
@@ -95744,6 +98313,11 @@ window.MATCHES = [
             "n": 1,
             "hits": 0,
             "hit": 0
+          },
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
           }
         }
       }
@@ -95753,16 +98327,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.24,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 0.98,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -95776,16 +98350,16 @@ window.MATCHES = [
       "league": "UEFA Champions League",
       "leagueId": 2,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
         "v": 0.9,
-        "n": 5,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.32,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -95832,7 +98406,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.132Z",
@@ -96067,7 +98641,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Halftime",
+    "elapsed": 45,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1554425,
@@ -96079,16 +98657,16 @@ window.MATCHES = [
     "homeTeamId": 2249,
     "awayTeamId": 2036,
     "htHome": 0,
-    "htAway": 0,
+    "htAway": 2,
     "homeLogo": "https://media.api-sports.io/football/teams/2249.png",
     "awayLogo": "https://media.api-sports.io/football/teams/2036.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "HT",
     "kickoff": "2026-07-14T19:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 2,
     "homePos": null,
     "awayPos": null,
     "tableSize": 36,
@@ -96489,16 +99067,16 @@ window.MATCHES = [
       "league": "UEFA Europa Conference League",
       "leagueId": 848,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 1.17,
-        "n": 5,
+        "v": 1.04,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 5,
+        "v": 1.08,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -96512,16 +99090,16 @@ window.MATCHES = [
       "league": "UEFA Europa Conference League",
       "leagueId": 848,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 4,
       "goalsFor": {
-        "v": 0.9,
-        "n": 5,
+        "v": 1,
+        "n": 6,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 5,
+        "v": 1.12,
+        "n": 6,
         "src": "blend"
       },
       "xgFor": null,
@@ -96568,7 +99146,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.132Z",
@@ -96800,7 +99378,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Halftime",
+    "elapsed": 45,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1585131,
@@ -96812,16 +99394,16 @@ window.MATCHES = [
     "homeTeamId": 2,
     "awayTeamId": 9,
     "htHome": 0,
-    "htAway": 0,
+    "htAway": 1,
     "homeLogo": "https://media.api-sports.io/football/teams/2.png",
     "awayLogo": "https://media.api-sports.io/football/teams/9.png",
     "country": "World",
     "flag": null,
-    "status": "1H",
+    "status": "HT",
     "kickoff": "2026-07-14T19:00:00+00:00",
     "matchDate": "2026-07-14",
     "homeGoals": 0,
-    "awayGoals": 0,
+    "awayGoals": 1,
     "homePos": 1,
     "awayPos": 1,
     "tableSize": 60,
@@ -97401,16 +99983,16 @@ window.MATCHES = [
       "league": "World Cup",
       "leagueId": 1,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 0,
       "goalsFor": {
-        "v": 1.17,
-        "n": 1,
+        "v": 1.04,
+        "n": 2,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 0.99,
-        "n": 1,
+        "v": 0.98,
+        "n": 2,
         "src": "blend"
       },
       "xgFor": null,
@@ -97424,16 +100006,16 @@ window.MATCHES = [
       "league": "World Cup",
       "leagueId": 1,
       "usedSplit": "all(fallback)",
-      "games": 1,
+      "games": 2,
       "seedGames": 0,
       "goalsFor": {
         "v": 0.9,
-        "n": 1,
+        "n": 2,
         "src": "blend"
       },
       "goalsAg": {
-        "v": 1.26,
-        "n": 1,
+        "v": 1.12,
+        "n": 2,
         "src": "blend"
       },
       "xgFor": null,
@@ -97480,7 +100062,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.132Z",
@@ -97714,7 +100296,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Halftime",
+    "elapsed": 45,
+    "elapsedExtra": null,
+    "liveUpdatedAt": "2026-07-14T19:54:34.749Z"
   },
   {
     "id": 1519404,
@@ -98472,7 +101058,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": "home",
         "team": "Macara",
@@ -98508,7 +101094,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.132Z",
@@ -98762,7 +101348,11 @@ window.MATCHES = [
       "locked": true,
       "publishedAt": "2026-07-14T19:03:11.617Z"
     },
-    "predictionLocked": true
+    "predictionLocked": true,
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1499519,
@@ -99395,7 +101985,67 @@ window.MATCHES = [
       "avg2H": 0.33,
       "htSamples": 3
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Brown DE Adrogue",
       "league": "Primera B Metropolitana",
@@ -99444,7 +102094,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -99480,7 +102130,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.132Z",
@@ -99714,7 +102364,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1499520,
@@ -100363,7 +103017,67 @@ window.MATCHES = [
       "avg2H": 1.17,
       "htSamples": 6
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Comunicaciones",
       "league": "Primera B Metropolitana",
@@ -100412,7 +103126,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -100448,7 +103162,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.133Z",
@@ -100690,7 +103404,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1499522,
@@ -101339,7 +104057,67 @@ window.MATCHES = [
       "avg2H": 1,
       "htSamples": 3
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Deportivo Merlo",
       "league": "Primera B Metropolitana",
@@ -101388,7 +104166,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -101424,7 +104202,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.133Z",
@@ -101666,7 +104444,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1499527,
@@ -102315,7 +105097,67 @@ window.MATCHES = [
       "avg2H": 1,
       "htSamples": 1
     },
-    "oddsCalib": null,
+    "oddsCalib": {
+      "name": "Primera B Metropolitana",
+      "markets": {
+        "Home Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Away Win": {
+          "1.70-1.99": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 1.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Over 2.5 Goals": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 2.5 Goals": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Under 3.5 Goals": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "BTTS Yes": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "BTTS No": {
+          "1.45-1.69": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        }
+      }
+    },
     "homeProfile": {
       "name": "Ituzaingó",
       "league": "Primera B Metropolitana",
@@ -102364,7 +105206,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": "away",
         "team": "San Martín Burzaco",
@@ -102400,7 +105242,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.133Z",
@@ -102644,7 +105486,11 @@ window.MATCHES = [
         "6+ venue matches per team"
       ],
       "dataQuality": 64
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1538383,
@@ -103306,7 +106152,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:03:10.965Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": "away",
         "team": "Always Ready",
@@ -103342,7 +106188,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:03:10.973Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "deep",
     "deepEnrichedAt": "2026-07-14T19:03:11.133Z",
@@ -103590,7 +106436,11 @@ window.MATCHES = [
       "locked": true,
       "publishedAt": "2026-07-14T19:03:11.617Z"
     },
-    "predictionLocked": true
+    "predictionLocked": true,
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1586078,
@@ -103768,7 +106618,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -103804,7 +106654,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -104094,7 +106944,11 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   },
   {
     "id": 1589337,
@@ -104272,7 +107126,7 @@ window.MATCHES = [
     },
     "learningContext": {
       "version": "v193",
-      "generatedAt": "2026-07-14T19:01:00.007Z",
+      "generatedAt": "2026-07-14T19:54:36.477Z",
       "favorite": {
         "side": null,
         "team": null,
@@ -104308,7 +107162,7 @@ window.MATCHES = [
       "version": "v194",
       "defaultPolicy": "SHADOW",
       "enginePolicies": {},
-      "generatedAt": "2026-07-14T19:01:00.016Z"
+      "generatedAt": "2026-07-14T19:54:36.617Z"
     },
     "enrichmentTier": "coverage",
     "olympianPredictions": [
@@ -104598,6 +107452,10 @@ window.MATCHES = [
         "market odds"
       ],
       "dataQuality": 30
-    }
+    },
+    "statusLong": "Not Started",
+    "elapsed": null,
+    "elapsedExtra": null,
+    "liveUpdatedAt": null
   }
 ];
