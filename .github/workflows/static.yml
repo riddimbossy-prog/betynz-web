@@ -12,15 +12,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
+  build:
+    name: Prepare Betynz Website
     runs-on: ubuntu-latest
 
     steps:
@@ -30,11 +27,21 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Betynz website
+      - name: Upload website files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site
+          path: .
 
+  deploy:
+    name: Publish Betynz Website
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
