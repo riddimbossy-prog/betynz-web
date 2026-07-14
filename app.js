@@ -191,20 +191,80 @@
   }
 
   function renderPicksView(){
-    const ds=dates();if(!activeDate)activeDate=ds[0]||todayISO;
+    const ds=dates();
+    const engine=ENGINE_MAP[picksFilter.engine]||null;
+    const enginePicks=engine?allPicks().filter(p=>p.engines.some(e=>e.id===engine.id)):[];
+    const engineDates=[...new Set(enginePicks.map(p=>dateOf(p.m)))].sort();
+    if(!activeDate)activeDate=engineDates[0]||ds[0]||todayISO;
+    if(engine&&engineDates.length&&!engineDates.includes(activeDate))activeDate=engineDates.find(d=>d>=todayISO)||engineDates[0];
+
     $("#date-strip").innerHTML=ds.map(d=>`<button class="date-btn ${d===activeDate?"active":""}" data-date="${d}"><b>${friendlyDate(d).split(" · ")[0]}</b><small>${friendlyDate(d).split(" · ")[1]||d}</small></button>`).join("");
-    $$("[data-date]").forEach(b=>b.onclick=()=>{activeDate=b.dataset.date;renderPicksView();renderDashboardSelectors();renderDashboardList()});
-    const engSel=$("#picks-engine"),current=engSel.value||"all";engSel.innerHTML=`<option value="all">All Engines</option>${ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("")}`;engSel.value=current;
-    const markets=[...new Set(allPicks().map(p=>marketFamily(p.market)))].sort(),mSel=$("#picks-market"),mCur=mSel.value||"all";mSel.innerHTML=`<option value="all">All Markets</option>${markets.map(x=>`<option>${esc(x)}</option>`).join("")}`;mSel.value=mCur;
-    const leagues=[...new Set(matches.map(m=>m.league).filter(Boolean))].sort(),lSel=$("#picks-league"),lCur=lSel.value||"all";lSel.innerHTML=`<option value="all">All Leagues</option>${leagues.map(x=>`<option>${esc(x)}</option>`).join("")}`;lSel.value=lCur;
+    $$('[data-date]').forEach(b=>b.onclick=()=>{activeDate=b.dataset.date;renderPicksView();renderDashboardSelectors();renderDashboardList()});
+
+    const engSel=$("#picks-engine");
+    engSel.innerHTML=`<option value="all">All Engines</option>${ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("")}`;
+    engSel.value=picksFilter.engine||"all";
+
+    const markets=[...new Set(allPicks().map(p=>marketFamily(p.market)))].sort();
+    const mSel=$("#picks-market");
+    mSel.innerHTML=`<option value="all">All Markets</option>${markets.map(x=>`<option>${esc(x)}</option>`).join("")}`;
+    mSel.value=picksFilter.market||"all";
+
+    const leagues=[...new Set(matches.map(m=>m.league).filter(Boolean))].sort();
+    const lSel=$("#picks-league");
+    lSel.innerHTML=`<option value="all">All Leagues</option>${leagues.map(x=>`<option>${esc(x)}</option>`).join("")}`;
+    lSel.value=picksFilter.league||"all";
+    const gradeSel=$("#picks-grade");if(gradeSel)gradeSel.value=picksFilter.grade||"all";
+
     let rows=allPicks().filter(p=>dateOf(p.m)===activeDate);
-    if(engSel.value!=="all")rows=rows.filter(p=>p.engines.some(e=>e.id===engSel.value));if(mSel.value!=="all")rows=rows.filter(p=>marketFamily(p.market)===mSel.value);if(lSel.value!=="all")rows=rows.filter(p=>p.m.league===lSel.value);const grade=$("#picks-grade").value;if(grade!=="all")rows=rows.filter(p=>p.grade===grade);if(searchTerm)rows=rows.filter(p=>`${p.m.home} ${p.m.away} ${p.m.league}`.toLowerCase().includes(searchTerm));
-    $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No engine clears the selected conditions.");
+    if(picksFilter.engine!=="all")rows=rows.filter(p=>p.engines.some(e=>e.id===picksFilter.engine));
+    if(picksFilter.market!=="all")rows=rows.filter(p=>marketFamily(p.market)===picksFilter.market);
+    if(picksFilter.league!=="all")rows=rows.filter(p=>p.m.league===picksFilter.league);
+    if(picksFilter.grade!=="all")rows=rows.filter(p=>p.grade===picksFilter.grade);
+    if(searchTerm)rows=rows.filter(p=>`${p.m.home} ${p.m.away} ${p.m.league}`.toLowerCase().includes(searchTerm));
+
+    const hero=$("#engine-picks-hero");
+    const title=$("#picks-title"),eyebrow=$("#picks-eyebrow"),subtitle=$("#picks-subtitle");
+    if(engine){
+      if(title)title.textContent=`${engine.name} Picks`;
+      if(eyebrow)eyebrow.textContent=`${engine.name.toUpperCase()} ENGINE`;
+      if(subtitle)subtitle.textContent=`Selections supported by ${engine.name} — ${engine.role}.`;
+      if(hero){
+        hero.hidden=false;
+        hero.style.setProperty("--engine-art",`url("${ENGINE_ART[engine.id]||ENGINE_ART.zeus}")`);
+        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div><b>${enginePicks.length}</b> qualified picks across <b>${engineDates.length}</b> active dates</div></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} deity artwork" loading="eager"><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button>`;
+      }
+    }else{
+      if(title)title.textContent="Upcoming Predictions";
+      if(eyebrow)eyebrow.textContent="FULL MATCH BOARD";
+      if(subtitle)subtitle.textContent="Browse every qualified market across today and the next six days.";
+      if(hero){hero.hidden=true;hero.innerHTML="";hero.style.removeProperty("--engine-art")}
+    }
+
+    $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty(engine?`${engine.name} has no qualified picks for ${friendlyDate(activeDate)}.`:"No engine clears the selected conditions.");
+    updatePageArt();
   }
 
   function renderEngines(){
-    $("#engine-grid").innerHTML=ENGINES.map(e=>{const count=matches.reduce((n,m)=>n+(runEngine(m,e)?1:0),0);return `<article class="engine-card" data-engine-modal="${e.id}"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${count?`${count} PICKS`:"ONLINE"}</span></div><h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div></article>`}).join("");
-    $$("[data-engine-modal]").forEach(c=>c.onclick=()=>openEngine(c.dataset.engineModal));
+    const picks=allPicks();
+    $("#engine-grid").innerHTML=ENGINES.map(e=>{
+      const count=picks.filter(p=>p.engines.some(x=>x.id===e.id)).length;
+      const art=ENGINE_ART[e.id]||ENGINE_ART.zeus;
+      return `<article class="engine-card deity-card" data-engine-picks="${e.id}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${count} PICKS</span></div><h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">View ${e.name} picks →</div></article>`
+    }).join("");
+    $$('[data-engine-picks]').forEach(c=>{
+      c.onclick=()=>viewEnginePicks(c.dataset.enginePicks);
+      c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();viewEnginePicks(c.dataset.enginePicks)}};
+    });
+  }
+  function viewEnginePicks(id){
+    const engine=ENGINE_MAP[id];if(!engine)return;
+    picksFilter={engine:id,market:"all",league:"all",grade:"all"};
+    const engineRows=allPicks().filter(p=>p.engines.some(e=>e.id===id));
+    const availableDates=[...new Set(engineRows.map(p=>dateOf(p.m)))].sort();
+    activeDate=availableDates.find(d=>d>=todayISO)||availableDates[0]||activeDate||todayISO;
+    showView("picks");
+    toast(engineRows.length?`${engine.name} picks loaded.`:`${engine.name} has no qualified picks right now.`);
   }
   function openEngine(id){const e=ENGINE_MAP[id];if(!e)return;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
   function openPickDetail(matchKey){const p=allPicks().find(x=>keyOf(x.m)===String(matchKey));if(!p)return;const m=p.m;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">⚡</span><div><h2 id="engine-modal-title">${esc(m.home)} vs ${esc(m.away)}</h2><p>${esc(m.league||"Football")} · ${esc(friendlyDate(dateOf(m)))} · ${esc(kickoff(m))}</p></div></div><div class="decision-hero"><span class="grade ${p.grade}">${p.grade}</span><div><small>Zeus decision</small><b>${esc(marketClean(p.market))}</b></div><strong>${p.confidence}%</strong></div><h4>Why it qualified</h4><ul>${(p.reasons||[]).map(x=>`<li>${esc(x)}</li>`).join("")||"<li>No public reason was recorded.</li>"}</ul><h4>Prediction status</h4><div class="rule-box">${p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional. It may change before the 12-hour lock window."}${p.dataQuality!=null?` Data quality: ${esc(p.dataQuality)}/100.`:""}</div>${p.warnings&&p.warnings.length?`<h4>Warnings</h4><ul>${p.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
@@ -286,7 +346,7 @@
   function wire(){
     $$('[data-view]').forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
     $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
-    document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b){addPickByKey(b.dataset.addPick);return}const d=e.target.closest("[data-pick-detail]");if(d)openPickDetail(d.dataset.pickDetail)});
+    document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b){addPickByKey(b.dataset.addPick);return}const d=e.target.closest("[data-pick-detail]");if(d){openPickDetail(d.dataset.pickDetail);return}const about=e.target.closest("[data-engine-about]");if(about){openEngine(about.dataset.engineAbout)}});
     $("#menu-btn").onclick=()=>setSidebar(!$("#sidebar").classList.contains("open"));
     const sidebarBackdrop=$("#sidebar-backdrop");if(sidebarBackdrop)sidebarBackdrop.onclick=closeSidebar;
     $("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};$("#dashboard-market").onchange=renderDashboardList;$("#dashboard-odds").onchange=renderDashboardList;

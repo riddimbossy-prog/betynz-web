@@ -1,5 +1,5 @@
-const CACHE='betynz-v3.3-six-day-board';
-const CORE=['/','/index.html','/styles.css?v=3.3','/app.js?v=3.3','/olympian-engine-core.js?v=3.3','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
+const CACHE='betynz-v3.5-engine-pages-modern-rows';
+const CORE=['/','/index.html','/styles.css?v=3.5','/app.js?v=3.5','/olympian-engine-core.js?v=3.5','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(

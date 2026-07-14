@@ -1,8 +1,8 @@
 {
   "name": "betynz-web",
-  "version": "3.2.0",
+  "version": "3.5.0",
   "private": true,
-  "description": "Betynz responsive live football product optimized for desktop, tablets, mobile and Galaxy Z Fold devices",
+  "description": "Betynz live football product with deity-backed engine pick pages, modern typography, six-day coverage and responsive desktop/mobile match rows",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",

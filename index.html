@@ -11,7 +11,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3.5">
 </head>
 <body>
   <div class="app-shell">
@@ -108,7 +111,8 @@
         </section>
 
         <section class="view" data-view-panel="picks">
-          <div class="page-head"><div><span>TODAY + NEXT 6 DAYS</span><h2>Upcoming Predictions</h2><p>Browse qualified markets across today and the next six days by date, league and engine.</p></div><button class="primary-btn compact" id="add-visible">Add Visible Picks</button></div>
+          <div class="page-head"><div><span id="picks-eyebrow">FULL MATCH BOARD</span><h2 id="picks-title">Upcoming Predictions</h2><p id="picks-subtitle">Browse every qualified market across today and the next six days.</p></div><button class="primary-btn compact" id="add-visible">Add Visible Picks</button></div>
+          <section class="engine-picks-hero" id="engine-picks-hero" hidden></section>
           <div class="date-strip" id="date-strip"></div>
           <section class="page-panel">
             <div class="filter-row wide"><select id="picks-engine"></select><select id="picks-market"><option value="all">All Markets</option></select><select id="picks-league"><option value="all">All Leagues</option></select><select id="picks-grade"><option value="all">All Grades</option><option value="A1">A1 Banker</option><option value="A2">A2 Strong</option><option value="WATCH">Watchlist</option></select></div>
@@ -190,8 +194,8 @@
   <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="olympian-engine-core.js?v=3.3"></script>
+  <script src="olympian-engine-core.js?v=3.5"></script>
   <script src="data.js?v=2.6"></script>
-  <script src="app.js?v=3.3"></script>
+  <script src="app.js?v=3.5"></script>
 </body>
 </html>

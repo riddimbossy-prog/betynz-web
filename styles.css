@@ -457,3 +457,111 @@ body.sidebar-open{overflow:hidden}
   .nav-item,.filter-row select,.filter-btn,.date-btn,.engine-tab,.icon-btn,.primary-btn,.text-btn{min-height:44px}
   .add-btn{min-width:40px;min-height:40px}
 }
+
+/* =========================================================
+   BETYNZ v3.5 — ENGINE PICK PAGES, MODERN TYPE & GAME ROWS
+   ========================================================= */
+:root{
+  --font-body:"Manrope","Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
+  --font-display:"Sora","Manrope","Segoe UI Variable","Segoe UI",sans-serif;
+}
+body,button,input,select,textarea{font-family:var(--font-body);font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility}
+h1,h2,h3,.brand,.page-head h2,.hero-copy h1,.engine-card h3,.summary-card b,.metric-card b,.fixture-cell b,.pick-detail-link,.odds-cell{font-family:var(--font-display)}
+body{letter-spacing:-.006em}
+button,select,input{letter-spacing:0}
+
+/* Engine cards now open the engine's picks and carry the deity artwork. */
+.engine-card.deity-card{isolation:isolate}
+.engine-card.deity-card::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(90deg,rgba(12,15,19,.98) 0%,rgba(12,15,19,.9) 52%,rgba(12,15,19,.28) 100%),var(--card-art);
+  background-repeat:no-repeat;background-position:center,right center;background-size:cover,auto 112%;
+  opacity:.55;filter:saturate(.78) brightness(.72);transition:opacity .2s ease,transform .2s ease
+}
+.engine-card.deity-card:hover::after{opacity:.72;transform:scale(1.015)}
+.engine-card-cta{display:flex;align-items:center;gap:7px;margin-top:16px;color:var(--orange2);font-size:12px;font-weight:800}
+
+/* Dedicated engine picks hero. */
+.engine-picks-hero[hidden]{display:none!important}
+.engine-picks-hero{
+  position:relative;isolation:isolate;min-height:225px;margin:0 0 14px;overflow:hidden;
+  border:1px solid var(--line2);border-radius:20px;background:#0d1014;box-shadow:var(--shadow)
+}
+.engine-picks-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;background-image:var(--engine-art);
+  background-size:cover;background-position:center 28%;filter:saturate(.76) brightness(.5);opacity:.28
+}
+.engine-picks-hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,#0d1014 0%,rgba(13,16,20,.95) 38%,rgba(13,16,20,.55) 68%,rgba(13,16,20,.2) 100%)
+}
+.engine-picks-hero>img{position:absolute;right:0;top:0;width:48%;height:100%;object-fit:cover;object-position:center 20%;opacity:.58;filter:saturate(.78) contrast(1.04);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 100%)}
+.engine-picks-copy{position:relative;z-index:2;width:min(650px,62%);padding:30px 32px}
+.engine-picks-copy>span{display:block;color:var(--orange2);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.engine-picks-copy h3{margin:8px 0 9px;font:800 clamp(27px,3vw,42px)/1.05 var(--font-display);letter-spacing:-.045em}
+.engine-picks-copy p{max-width:590px;margin:0;color:#c0c7d0;font-size:14px;line-height:1.65}
+.engine-picks-copy div{margin-top:18px;color:#9fa8b4;font-size:12px}
+.engine-picks-copy div b{color:#f2f4f7;font-size:15px}
+.engine-about-btn{position:absolute;left:32px;bottom:22px;z-index:3;min-height:42px;padding:0 15px;border:1px solid rgba(200,119,44,.28);border-radius:10px;background:rgba(14,17,22,.8);color:var(--orange2);font-weight:800;cursor:pointer;backdrop-filter:blur(10px)}
+
+/* Keep the selected deity visible as a very faint page watermark, including mobile. */
+.main-shell[data-art-view="picks"]::before{display:block!important;opacity:.065;background-position:right -80px top 96px;background-size:min(820px,62vw) auto}
+.main-shell[data-art-view="picks"][data-art-engine="all"]::before{opacity:0}
+
+/* Stable desktop game-row geometry. */
+.match-row,.match-list.expanded .match-row{
+  display:grid;grid-template-columns:minmax(310px,1.55fr) minmax(190px,.92fr) minmax(125px,.68fr) 68px 66px 44px;
+  grid-template-areas:"fixture market engine confidence odds add";align-items:center;gap:14px;padding:13px 15px
+}
+.fixture-cell{grid-area:fixture;min-width:0;align-items:start}
+.market-cell{grid-area:market;min-width:0}
+.engine-cell{grid-area:engine;min-width:0;display:flex!important;overflow:hidden}
+.confidence{grid-area:confidence;display:flex!important;justify-content:center}
+.odds-cell{grid-area:odds;display:block!important;text-align:center;font-size:16px}
+.add-btn{grid-area:add;justify-self:end;width:40px;height:40px;border-radius:11px}
+.fixture-teams,.market-cell{min-width:0}
+.team-line b,.pick-detail-link{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick-detail-link{display:block;width:100%;padding:0;border:0;background:none;color:#f5f6f8;text-align:left;font-size:14px;font-weight:800;cursor:pointer}
+.fixture-cell b{font-size:14px;font-weight:750}
+.fixture-cell small,.market-cell small{font-size:11px;line-height:1.45}
+.engine-cell{font-size:11px;line-height:1.35;white-space:nowrap;text-overflow:ellipsis}
+.team-crest{width:22px;height:22px}.league-flag{width:28px;height:28px}.fixture-cell{grid-template-columns:30px 1fr}
+
+/* Desktop and compact laptop two-line rows. */
+@media (min-width:701px) and (max-width:1180px){
+  .match-row,.match-list.expanded .match-row{
+    grid-template-columns:minmax(270px,1.45fr) minmax(170px,.9fr) 64px 44px;
+    grid-template-areas:"fixture market confidence add" "fixture engine odds add";row-gap:7px;column-gap:12px
+  }
+  .engine-cell{align-self:start}.odds-cell{text-align:left;font-size:14px}.add-btn{align-self:center}
+}
+
+/* Mobile rows are compact cards with all key information visible. */
+@media (max-width:700px){
+  body{font-size:15px}
+  .engine-picks-hero{min-height:205px;border-radius:16px;margin-bottom:11px}
+  .engine-picks-hero>img{width:57%;opacity:.48;object-position:center top}
+  .engine-picks-copy{width:75%;padding:21px 18px 62px}
+  .engine-picks-copy>span{font-size:10px}.engine-picks-copy h3{font-size:26px}.engine-picks-copy p{font-size:12px;line-height:1.55}.engine-picks-copy div{font-size:10px;margin-top:12px}
+  .engine-about-btn{left:18px;bottom:15px;min-height:39px;font-size:11px}
+  .main-shell[data-art-view="picks"]::before{display:block!important;opacity:.045;background-size:105vw auto;background-position:right -160px top 72px}
+  .match-row,.match-list.expanded .match-row{
+    position:relative;grid-template-columns:minmax(0,1fr) 48px 42px;
+    grid-template-areas:"fixture fixture add" "market market add" "engine confidence odds";
+    row-gap:9px;column-gap:9px;padding:13px 11px;align-items:center;background:linear-gradient(145deg,rgba(17,20,25,.98),rgba(11,13,17,.98))
+  }
+  .fixture-cell{grid-template-columns:26px 1fr;column-gap:8px}.league-flag{width:24px;height:24px}.team-crest{width:19px;height:19px}
+  .fixture-cell b{font-size:13px}.fixture-cell small,.market-cell small{font-size:10px}
+  .market-cell{padding-left:34px}.pick-detail-link{font-size:13px}
+  .engine-cell{display:flex!important;padding-left:34px;font-size:10px;color:#aeb6c1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .confidence{display:flex!important;justify-content:center}.confidence-ring{width:34px;height:34px;font-size:9px}
+  .odds-cell{display:block!important;text-align:right;font-size:13px}
+  .add-btn{width:40px;height:40px;align-self:center}
+}
+
+@media (max-width:430px){
+  .engine-picks-hero>img{width:64%;opacity:.42}.engine-picks-copy{width:82%;padding-right:10px}.engine-picks-copy p{max-width:78%}
+  .match-row,.match-list.expanded .match-row{grid-template-columns:minmax(0,1fr) 44px 40px;grid-template-areas:"fixture fixture add" "market market add" "engine confidence odds";padding:12px 9px}
+  .market-cell,.engine-cell{padding-left:32px}.fixture-cell b{font-size:12.5px}.pick-detail-link{font-size:12.5px}
+  .engine-cell{font-size:9.5px}.odds-cell{font-size:12px}.confidence-ring{width:32px;height:32px}
+}
