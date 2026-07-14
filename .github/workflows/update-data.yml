@@ -131,9 +131,25 @@ jobs:
         if: steps.deep_config.outputs.enabled != 'true'
         run: cp data.js scripts/data.js
 
-      - name: Add priority xG, market movement and near-kickoff lineups
-        if: ${{ secrets.STATS_API_KEY != '' }}
+      - name: Check optional TheStatsAPI secret
+        id: stats_api
         env:
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+        shell: bash
+        run: |
+          if [ -n "$STATS_API_KEY" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "TheStatsAPI enrichment is enabled."
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "STATS_API_KEY is not set; continuing without optional enrichment."
+          fi
+
+      - name: Add priority xG, market movement and near-kickoff lineups
+        if: steps.stats_api.outputs.available == 'true'
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
           TSA_MAX_MATCHES: ${{ env.TSA_MAX_MATCHES }}
         working-directory: scripts
         run: node enrich-xg.js
