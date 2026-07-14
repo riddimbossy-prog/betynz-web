@@ -24,6 +24,10 @@ jobs:
     name: Cover every league, then deepen the best candidates
     runs-on: ubuntu-latest
     timeout-minutes: 55
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+      CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
 
     steps:
       - name: Checkout repository
@@ -37,19 +41,27 @@ jobs:
           node-version: "20"
 
       - name: Validate API secrets
-        env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
         run: |
           if [ -z "$API_FOOTBALL_KEY" ]; then
             echo "API_FOOTBALL_KEY is missing."
             exit 1
           fi
 
+      - name: Normalize API credentials
+        shell: bash
+        run: |
+          CLEAN_API_FOOTBALL_KEY="$(printf '%s' "$API_FOOTBALL_KEY" | tr -d '\r\n')"
+          CLEAN_STATS_API_KEY="$(printf '%s' "$STATS_API_KEY" | tr -d '\r\n')"
+          if [ -z "$CLEAN_API_FOOTBALL_KEY" ]; then
+            echo "API_FOOTBALL_KEY is empty after normalization."
+            exit 1
+          fi
+          echo "::add-mask::$CLEAN_API_FOOTBALL_KEY"
+          if [ -n "$CLEAN_STATS_API_KEY" ]; then echo "::add-mask::$CLEAN_STATS_API_KEY"; fi
+          printf 'API_FOOTBALL_KEY=%s\n' "$CLEAN_API_FOOTBALL_KEY" >> "$GITHUB_ENV"
+          printf 'STATS_API_KEY=%s\n' "$CLEAN_STATS_API_KEY" >> "$GITHUB_ENV"
+
       - name: Create six-day global coverage configuration
-        env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
-          CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
         run: |
           DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
           if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
@@ -83,10 +95,6 @@ jobs:
 
       - name: Create six-day deep-pass configuration
         id: deep_config
-        env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
-          CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
         run: |
           DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
           if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
@@ -132,9 +140,7 @@ jobs:
         run: cp data.js scripts/data.js
 
       - name: Add priority xG, market movement and near-kickoff lineups
-        if: ${{ secrets.STATS_API_KEY != '' }}
-        env:
-          TSA_MAX_MATCHES: ${{ env.TSA_MAX_MATCHES }}
+        if: env.STATS_API_KEY != ''
         working-directory: scripts
         run: node enrich-xg.js
 
@@ -145,8 +151,6 @@ jobs:
         run: node scripts/build-snapshot.js
 
       - name: Verify six-day coverage and deep evidence
-        env:
-          CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
         run: |
           node <<'NODE'
           const fs = require('fs');

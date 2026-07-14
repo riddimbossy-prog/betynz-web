@@ -658,3 +658,44 @@ button,select,input{letter-spacing:0}
   .mobile-match-footer{grid-template-columns:minmax(0,1fr) auto}
   .mobile-nav button{font-size:8.5px}.mobile-nav button span{font-size:23px;width:31px;height:31px}
 }
+
+/* =========================================================
+   BETYNZ v3.7 — ENGINE INFO BUTTON FLOW FIX
+   Keeps the explanation button below the metadata instead of
+   floating over the qualified-picks text.
+   ========================================================= */
+.engine-picks-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  box-sizing:border-box;
+}
+.engine-picks-copy .engine-picks-meta{
+  margin-top:18px;
+  color:#9fa8b4;
+  font-size:12px;
+}
+.engine-picks-copy .engine-picks-meta b{
+  color:#f2f4f7;
+  font-size:15px;
+}
+.engine-about-btn{
+  position:static;
+  left:auto;
+  bottom:auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:16px;
+  min-height:42px;
+  flex:0 0 auto;
+}
+@media(max-width:700px){
+  .engine-picks-copy{padding:21px 18px 21px}
+  .engine-picks-copy .engine-picks-meta{margin-top:12px;font-size:10px}
+  .engine-about-btn{margin-top:13px;min-height:39px;font-size:11px}
+}
+@media(max-width:430px){
+  .engine-picks-copy{padding:19px 14px}
+  .engine-about-btn{width:100%;max-width:240px}
+}

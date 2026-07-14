@@ -237,7 +237,7 @@
       if(hero){
         hero.hidden=false;
         hero.style.setProperty("--engine-art",`url("${ENGINE_ART[engine.id]||ENGINE_ART.zeus}")`);
-        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div><b>${enginePicks.length}</b> qualified picks across <b>${engineDates.length}</b> active dates</div></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} deity artwork" loading="eager"><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button>`;
+        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div class="engine-picks-meta"><b>${enginePicks.length}</b> qualified picks across <b>${engineDates.length}</b> active dates</div><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} deity artwork" loading="eager">`;
       }
     }else{
       if(title)title.textContent="Upcoming Predictions";
