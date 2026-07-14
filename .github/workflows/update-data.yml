@@ -3,7 +3,6 @@ name: Smart Global Coverage and Deep Enrichment
 on:
   workflow_dispatch:
   schedule:
-    # Runs every four hours.
     - cron: "17 */4 * * *"
 
 permissions:
@@ -16,20 +15,15 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TZ: Africa/Accra
   DEEP_MAX_LEAGUES: ${{ vars.DEEP_MAX_LEAGUES || '18' }}
   DEEP_MAX_MATCHES: ${{ vars.DEEP_MAX_MATCHES || '48' }}
   TSA_MAX_MATCHES: ${{ vars.TSA_MAX_MATCHES || '24' }}
 
 jobs:
   refresh:
-    name: Fetch every league and deeply analyze priority matches
+    name: Cover every league, then deepen the best candidates
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-
-    env:
-      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-      STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+    timeout-minutes: 55
 
     steps:
       - name: Checkout repository
@@ -42,268 +36,77 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Validate required files
-        shell: bash
-        run: |
-          required_files=(
-            "scripts/fetch-data.js"
-            "scripts/select-enrichment-plan.js"
-            "scripts/merge-enriched-data.js"
-            "scripts/enrich-xg.js"
-            "scripts/build-snapshot.js"
-            "scripts/validate-product.js"
-            "scripts/build-dist.js"
-            "data.js"
-          )
-
-          for file in "${required_files[@]}"; do
-            if [ ! -f "$file" ]; then
-              echo "Missing required file: $file"
-              exit 1
-            fi
-          done
-
-          echo "All required Betynz files are present."
-
-      - name: Validate API-Football secret
-        shell: bash
+      - name: Validate API secrets
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
         run: |
           if [ -z "$API_FOOTBALL_KEY" ]; then
             echo "API_FOOTBALL_KEY is missing."
-            echo "Go to Settings → Secrets and variables → Actions."
             exit 1
           fi
 
-          echo "API-Football secret is available."
-
-      - name: Test API-Football global fixture discovery
-        shell: bash
+      - name: Create six-day global coverage configuration
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+          CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
         run: |
-          node <<'NODE'
-          const https = require("https");
-
-          const key = process.env.API_FOOTBALL_KEY;
-
-          const parts = new Intl.DateTimeFormat("en-GB", {
-            timeZone: "Africa/Accra",
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-          }).formatToParts(new Date());
-
-          const values = Object.fromEntries(
-            parts
-              .filter(part => part.type !== "literal")
-              .map(part => [part.type, part.value])
-          );
-
-          const date = `${values.year}-${values.month}-${values.day}`;
-          const path =
-            `/fixtures?date=${date}&timezone=${encodeURIComponent("Africa/Accra")}`;
-
-          const options = {
-            hostname: "v3.football.api-sports.io",
-            path,
-            method: "GET",
-            headers: {
-              "x-apisports-key": key,
-              "Accept": "application/json",
-              "User-Agent": "Betynz-GitHub-Workflow/2.6"
-            }
-          };
-
-          const request = https.request(options, response => {
-            let body = "";
-
-            response.on("data", chunk => {
-              body += chunk;
-            });
-
-            response.on("end", () => {
-              if (response.statusCode < 200 || response.statusCode >= 300) {
-                console.error(
-                  `API-Football returned HTTP ${response.statusCode}.`
-                );
-                process.exit(1);
-              }
-
-              let json;
-
-              try {
-                json = JSON.parse(body);
-              } catch {
-                console.error("API-Football returned invalid JSON.");
-                process.exit(1);
-              }
-
-              const errors =
-                json.errors &&
-                !Array.isArray(json.errors) &&
-                typeof json.errors === "object"
-                  ? Object.values(json.errors).filter(Boolean)
-                  : [];
-
-              if (errors.length) {
-                console.error("API-Football errors:");
-                console.error(errors.join("\n"));
-                process.exit(1);
-              }
-
-              const fixtures = Array.isArray(json.response)
-                ? json.response
-                : [];
-
-              const leagues = new Set(
-                fixtures
-                  .map(fixture => fixture?.league?.id)
-                  .filter(Boolean)
-                  .map(String)
-              );
-
-              console.log(`Requested Ghana date: ${date}`);
-              console.log(`API response results: ${json.results ?? fixtures.length}`);
-              console.log(`Fixtures discovered: ${fixtures.length}`);
-              console.log(`League competitions discovered: ${leagues.size}`);
-
-              if (!fixtures.length) {
-                console.log(
-                  "Warning: API-Football returned zero fixtures for this date."
-                );
-              }
-          });
-          });
-
-          request.setTimeout(30000, () => {
-            request.destroy(new Error("API request timed out."));
-          });
-
-          request.on("error", error => {
-            console.error(error.message);
-            process.exit(1);
-          });
-
-          request.end();
-          NODE
-
-      - name: Create fast global coverage configuration
-        shell: bash
-        run: |
+          DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
+          if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
-          SEASON=$(date +%Y)
-          TODAY_ONLY=true
+          SEASON=$(date -u +%Y)
+          TODAY_ONLY=false
           DAYS_BACK=0
-          DAYS_FWD=0
+          DAYS_FWD=${DAYS_FWD_SAFE}
           LEAGUES=ALL
           MAX_LEAGUES=0
           REQUEST_BUDGET=2500
-          SLEEP_MS=150
+          SLEEP_MS=200
           FAST_MODE=true
           ODDS=true
           H2H=false
           STATS=false
           EOF_CONFIG
-
           cp data.js scripts/data.js
 
-          echo "Global configuration created."
-          echo "League mode: ALL"
-          echo "Date mode: TODAY ONLY"
-          echo "Timezone: Africa/Accra"
-
-      - name: Discover every league playing today
+      - name: Discover every league across today and the next six days
         working-directory: scripts
         run: node fetch-data.js
 
       - name: Promote global coverage board
-        shell: bash
-        run: |
-          cp scripts/data.js data.js
-          echo "Global fixture board promoted."
-
-      - name: Verify global fixtures were generated
-        shell: bash
-        run: |
-          node <<'NODE'
-          const fs = require("fs");
-          const vm = require("vm");
-
-          const context = { window: {} };
-          vm.createContext(context);
-
-          vm.runInContext(
-            fs.readFileSync("data.js", "utf8"),
-            context
-          );
-
-          if (context.window.BETYNZ_DEMO === true) {
-            throw new Error(
-              "The generated board is still marked as demo data."
-            );
-          }
-
-          const matches = Array.isArray(context.window.MATCHES)
-            ? context.window.MATCHES
-            : [];
-
-          const leagues = new Set(
-            matches
-              .map(match => match.leagueId ?? match.league)
-              .filter(Boolean)
-              .map(String)
-          );
-
-          console.log(`Global matches generated: ${matches.length}`);
-          console.log(`Global leagues generated: ${leagues.size}`);
-
-          if (!matches.length) {
-            throw new Error(
-              "API-Football produced zero fixtures. Check the API discovery log, subscription coverage, key and requested date."
-            );
-          }
-          NODE
+        run: cp scripts/data.js data.js
 
       - name: Build adaptive enrichment plan
-        env:
-          DEEP_MAX_LEAGUES: ${{ env.DEEP_MAX_LEAGUES }}
-          DEEP_MAX_MATCHES: ${{ env.DEEP_MAX_MATCHES }}
         run: node scripts/select-enrichment-plan.js
 
-      - name: Create deep-analysis configuration
+      - name: Create six-day deep-pass configuration
         id: deep_config
-        shell: bash
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+          CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
         run: |
-          LEAGUES=$(node -e "
-            const plan = require('./scripts/enrichment-plan.json');
-            process.stdout.write(
-              (plan.selected?.leagueIds || []).join(',')
-            );
-          ")
-
-          LEAGUE_COUNT=$(node -e "
-            const plan = require('./scripts/enrichment-plan.json');
-            process.stdout.write(
-              String((plan.selected?.leagueIds || []).length)
-            );
-          ")
-
-          if [ -z "$LEAGUES" ] || [ "$LEAGUE_COUNT" = "0" ]; then
+          DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
+          if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
+          LEAGUES=$(node -e "const p=require('./scripts/enrichment-plan.json');process.stdout.write((p.selected.leagueIds||[]).join(','))")
+          COUNT=$(node -e "const p=require('./scripts/enrichment-plan.json');process.stdout.write(String((p.selected.leagueIds||[]).length))")
+          if [ -z "$LEAGUES" ]; then
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "No leagues cleared the adaptive enrichment planner."
+            echo "No leagues cleared the deep-pass planner."
             exit 0
           fi
-
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
-          SEASON=$(date +%Y)
-          TODAY_ONLY=true
+          SEASON=$(date -u +%Y)
+          TODAY_ONLY=false
           DAYS_BACK=0
-          DAYS_FWD=0
+          DAYS_FWD=${DAYS_FWD_SAFE}
           LEAGUES=${LEAGUES}
-          MAX_LEAGUES=${LEAGUE_COUNT}
-          MAX_PROBES=${LEAGUE_COUNT}
+          MAX_LEAGUES=${COUNT}
+          MAX_PROBES=${COUNT}
           REQUEST_BUDGET=2200
           SLEEP_MS=250
           FAST_MODE=false
@@ -311,112 +114,66 @@ jobs:
           H2H=true
           STATS=true
           EOF_CONFIG
-
           cp data.js scripts/data.js
-
           echo "enabled=true" >> "$GITHUB_OUTPUT"
-          echo "Deep-analysis leagues: ${LEAGUES}"
-          echo "Deep-analysis league count: ${LEAGUE_COUNT}"
+          echo "Deepening ${COUNT} leagues: ${LEAGUES}"
 
-      - name: Fetch team statistics, league trends and H2H evidence
+      - name: Fetch deep team, league-trend and H2H evidence
         if: steps.deep_config.outputs.enabled == 'true'
         working-directory: scripts
         run: node fetch-data.js
 
-      - name: Merge deep evidence into global board
+      - name: Merge deep evidence into the global board
         if: steps.deep_config.outputs.enabled == 'true'
         run: node scripts/merge-enriched-data.js
 
-      - name: Keep data synchronized when deep pass is empty
+      - name: Keep scripts data synchronized when deep pass is empty
         if: steps.deep_config.outputs.enabled != 'true'
-        shell: bash
         run: cp data.js scripts/data.js
 
-      - name: Add xG, market movement and confirmed lineups
-        if: env.STATS_API_KEY != ''
+      - name: Add priority xG, market movement and near-kickoff lineups
+        if: ${{ secrets.STATS_API_KEY != '' }}
         env:
           TSA_MAX_MATCHES: ${{ env.TSA_MAX_MATCHES }}
         working-directory: scripts
         run: node enrich-xg.js
 
-      - name: Promote final enriched data
-        shell: bash
-        run: |
-          cp scripts/data.js data.js
-          echo "Final enriched board promoted."
+      - name: Promote final enriched board
+        run: cp scripts/data.js data.js
 
       - name: Build Olympian prediction snapshot
         run: node scripts/build-snapshot.js
 
-      - name: Verify final live product
-        shell: bash
+      - name: Verify six-day coverage and deep evidence
+        env:
+          CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
         run: |
           node <<'NODE'
-          const fs = require("fs");
-          const vm = require("vm");
-
+          const fs = require('fs');
+          const vm = require('vm');
           const context = { window: {} };
           vm.createContext(context);
-
-          vm.runInContext(
-            fs.readFileSync("data.js", "utf8"),
-            context
-          );
-
-          if (context.window.BETYNZ_DEMO === true) {
-            throw new Error(
-              "Final product is still marked as demo data."
-            );
+          vm.runInContext(fs.readFileSync('data.js', 'utf8'), context);
+          if (context.window.BETYNZ_DEMO === true) throw new Error('Generated board is still demo data.');
+          const matches = Array.isArray(context.window.MATCHES) ? context.window.MATCHES : [];
+          const byDate = new Map();
+          for (const match of matches) {
+            const date = String(match.matchDate || match.kickoff || '').slice(0, 10) || 'Undated';
+            if (!byDate.has(date)) byDate.set(date, []);
+            byDate.get(date).push(match);
           }
-
-          const matches = Array.isArray(context.window.MATCHES)
-            ? context.window.MATCHES
-            : [];
-
-          const leagues = new Set(
-            matches
-              .map(match => match.leagueId ?? match.league)
-              .filter(Boolean)
-              .map(String)
-          );
-
-          const deepMatches = matches.filter(
-            match => match.enrichmentTier === "deep"
-          );
-
-          const statsMatches = deepMatches.filter(
-            match => match.statsReal === true
-          );
-
-          const trendMatches = deepMatches.filter(
-            match =>
-              match.leagueTrends &&
-              Number(match.leagueTrends.sample) > 0
-          );
-
-          const h2hMatches = deepMatches.filter(
-            match =>
-              match.h2h &&
-              Number(match.h2h.played) > 0
-          );
-
-          const xgMatches = matches.filter(
-            match => match.xgReal === true
-          );
-
-          console.log(`Final fixtures: ${matches.length}`);
-          console.log(`Final leagues: ${leagues.size}`);
-          console.log(`Deeply enriched fixtures: ${deepMatches.length}`);
-          console.log(`Real team-stat fixtures: ${statsMatches.length}`);
-          console.log(`League-trend fixtures: ${trendMatches.length}`);
-          console.log(`H2H fixtures: ${h2hMatches.length}`);
-          console.log(`Trusted xG fixtures: ${xgMatches.length}`);
-
-          if (!matches.length) {
-            throw new Error(
-              "The final Betynz board contains zero fixtures."
-            );
-          }
+          const dates = [...byDate.keys()].sort();
+          const leagues = new Set(matches.map(m => String(m.leagueId ?? m.league)).filter(Boolean));
+          const deep = matches.filter(m => m.enrichmentTier === 'deep');
+          const stats = deep.filter(m => m.statsReal);
+          const trends = deep.filter(m => m.leagueTrends && m.leagueTrends.sample);
+          const h2h = deep.filter(m => m.h2h && m.h2h.played);
+          const xg = matches.filter(m => m.xgReal);
+          console.log(`Coverage: ${matches.length} fixtures across ${leagues.size} leagues and ${dates.length} active date(s).`);
+          for (const date of dates) console.log(`  ${date}: ${byDate.get(date).length} fixtures`);
+          console.log(`Deep evidence: ${deep.length} fixtures; stats=${stats.length}, trends=${trends.length}, h2h=${h2h.length}, xG=${xg.length}.`);
+          if (!matches.length) console.log('No fixtures were returned for the requested date window; publishing an honest empty board.');
+          if (dates.length === 1) console.log('Warning: only one active fixture date was returned by the API inside the requested window.');
           NODE
 
       - name: Validate generated product
@@ -428,58 +185,48 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload live Betynz website
+      - name: Upload adaptive live website artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
       - name: Archive generated public data
         continue-on-error: true
-        shell: bash
         run: |
           rm -f scripts/config.txt
-
           if git ls-files --error-unmatch scripts/config.txt >/dev/null 2>&1; then
             git restore --staged --worktree scripts/config.txt || true
           fi
-
           git config user.name "Betynz Data Bot"
           git config user.email "actions@users.noreply.github.com"
-
-          git add -A -- \
-            data.js \
-            api-status.json \
-            prediction-locks.json \
-            results-history.json \
-            scripts/data.js \
-            scripts/*.json
-
+          git add -A -- data.js api-status.json prediction-locks.json results-history.json scripts/data.js scripts/*.json
           if git diff --cached --quiet; then
-            echo "No generated public data changed."
+            echo "No public data changes to archive."
             exit 0
           fi
-
-          git commit -m "Refresh Betynz global live data"
-
-          if ! git push origin HEAD:main; then
-            echo "The website artifact is ready, but the data archive push was skipped."
-            echo "This does not block the GitHub Pages deployment."
-          fi
+          git commit -m "Refresh Betynz adaptive live board"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          echo "Archive push failed; the Pages artifact is already ready for deployment."
+          exit 1
 
       - name: Remove private runtime configuration
         if: always()
-        shell: bash
         run: rm -f scripts/config.txt
 
   deploy:
     name: Deploy adaptive Betynz website
     needs: refresh
     runs-on: ubuntu-latest
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

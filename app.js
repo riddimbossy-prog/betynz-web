@@ -20,6 +20,7 @@
     {id:"prometheus",name:"Prometheus",fn:"prometheusRecommend",glyph:"♨",role:"Foundation Model",summary:"The original PPG foundation that supplies a clear baseline for every stronger generation.",tags:["Baseline","PPG","Foundation"],checks:["Calculates venue and overall PPG.","Uses recent form as confirmation.","Routes the safest supported result or goal market."],gate:"A baseline signal is evidence, not the final decision."}
   ];
   const ENGINE_MAP=Object.fromEntries(ENGINES.map(e=>[e.id,e]));
+  const ENGINE_ART={zeus:"assets/gods/zeus.webp",athena:"assets/gods/athena.webp",apollo:"assets/gods/apollo.webp",ares:"assets/gods/ares.webp",poseidon:"assets/gods/poseidon.webp",hermes:"assets/gods/hermes.webp",hera:"assets/gods/hera.webp",artemis:"assets/gods/artemis.webp",hephaestus:"assets/gods/hephaestus.webp",atlas:"assets/gods/atlas.webp",demeter:"assets/gods/demeter.webp",dionysus:"assets/gods/dionysus.webp",hades:"assets/gods/hades.webp",orion:"assets/gods/orion.webp",nike:"assets/gods/nike.webp",prometheus:"assets/gods/prometheus.webp"};
   const matches=Array.isArray(window.MATCHES)?window.MATCHES:[];
   const meta=window.BETYNZ_META&&typeof window.BETYNZ_META==="object"?window.BETYNZ_META:{};
   const history=Array.isArray(window.BETYNZ_HISTORY)?window.BETYNZ_HISTORY:[];
@@ -37,6 +38,7 @@
   let activeDate=null;
   let activeDashboardEngine="all";
   let picksFilter={engine:"all",market:"all",league:"all",grade:"all"};
+  let bankerFilter={status:"all",grade:"all",league:"all",odds:"all"};
   let searchTerm="";
   let toastTimer=null;
   let slip=loadJSON("betynz-slip",[]);
@@ -209,8 +211,31 @@
   function closeEngine(){$("#engine-modal-backdrop").classList.remove("open");$("#engine-modal").classList.remove("open")}
 
   function renderBankers(){
-    const rows=allPicks().filter(p=>isUpcoming(p.m)&&["A1","A2"].includes(p.grade));const a1=rows.filter(p=>p.grade==="A1").length,a2=rows.length-a1,priced=rows.filter(p=>p.odds),avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
-    $("#banker-summary").innerHTML=[[a1,"A1 Bankers","Strictest grade"],[a2,"A2 Strong Picks","Qualified support"],[rows.length,"Total Selections","Across active dates"],[avg,"Average Odds","Priced markets"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b><em>${x[2]}</em></article>`).join("");$("#banker-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No banker has cleared every safety gate yet.")
+    const allRows=allPicks().filter(p=>isUpcoming(p.m)&&["A1","A2"].includes(p.grade));
+    const leagueSel=$("#banker-league");
+    if(leagueSel){
+      const leagues=[...new Set(allRows.map(p=>p.m.league).filter(Boolean))].sort();
+      leagueSel.innerHTML=`<option value="all">All Leagues</option>${leagues.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
+      if(!leagues.includes(bankerFilter.league))bankerFilter.league="all";
+      leagueSel.value=bankerFilter.league;
+    }
+    const statusSel=$("#banker-status"),gradeSel=$("#banker-grade"),oddsSel=$("#banker-odds");
+    if(statusSel)statusSel.value=bankerFilter.status;
+    if(gradeSel)gradeSel.value=bankerFilter.grade;
+    if(oddsSel)oddsSel.value=bankerFilter.odds;
+    let rows=allRows.slice();
+    if(bankerFilter.status==="locked")rows=rows.filter(p=>p.locked);
+    if(bankerFilter.status==="provisional")rows=rows.filter(p=>!p.locked&&!isLive(p.m));
+    if(bankerFilter.status==="live")rows=rows.filter(p=>isLive(p.m));
+    if(bankerFilter.status==="prematch")rows=rows.filter(p=>!isLive(p.m));
+    if(bankerFilter.grade!=="all")rows=rows.filter(p=>p.grade===bankerFilter.grade);
+    if(bankerFilter.league!=="all")rows=rows.filter(p=>p.m.league===bankerFilter.league);
+    if(bankerFilter.odds==="priced")rows=rows.filter(p=>Number.isFinite(Number(p.odds))&&Number(p.odds)>1);
+    if(bankerFilter.odds==="missing")rows=rows.filter(p=>!Number.isFinite(Number(p.odds))||Number(p.odds)<=1);
+    const a1=rows.filter(p=>p.grade==="A1").length,a2=rows.filter(p=>p.grade==="A2").length,priced=rows.filter(p=>Number.isFinite(Number(p.odds))&&Number(p.odds)>1),avg=priced.length?(priced.reduce((s,p)=>s+Number(p.odds),0)/priced.length).toFixed(2):"—";
+    $("#banker-summary").innerHTML=[[a1,"A1 Bankers","Strictest grade"],[a2,"A2 Strong Picks","Qualified support"],[rows.length,"Shown Selections",`${allRows.length} total active`],[avg,"Average Odds","Filtered priced picks"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b><em>${x[2]}</em></article>`).join("");
+    const count=$("#banker-filter-count");if(count)count.textContent=`${rows.length} of ${allRows.length} shown`;
+    $("#banker-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No bankers match the selected filters.");
   }
   function renderResults(){
     const rows=history.filter(x=>["Won","Lost","Void"].includes(x.result)),wins=rows.filter(x=>x.result==="Won").length,losses=rows.filter(x=>x.result==="Lost").length,voids=rows.filter(x=>x.result==="Void").length,rate=wins+losses?Math.round(wins/(wins+losses)*100):0;
@@ -230,25 +255,55 @@
   function renderPreferences(){const sel=$("#favorite-engine");sel.innerHTML=ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("");sel.value=preferences.favoriteEngine||"zeus";$("#confidence-pref").value=String(preferences.confidence||76);$("#remember-slip").checked=preferences.rememberSlip!==false}
   function savePreferences(){preferences={favoriteEngine:$("#favorite-engine").value,confidence:Number($("#confidence-pref").value),rememberSlip:$("#remember-slip").checked};saveJSON("betynz-preferences",preferences);if(!preferences.rememberSlip)localStorage.removeItem("betynz-slip");toast("Preferences saved.")}
 
-  function showView(name){if(!$( `[data-view-panel="${name}"]`))name="dashboard";activeView=name;location.hash=name;$$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));$$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));$("#sidebar").classList.remove("open");if(name==="picks")renderPicksView();if(name==="engines")renderEngines();if(name==="bankers")renderBankers();if(name==="results")renderResults();window.scrollTo({top:0,behavior:"smooth"})}
+  function updatePageArt(){
+    const shell=$(".main-shell");
+    const hero=$(".hero-panel");
+    if(!shell)return;
+    let art="";
+    if(activeView==="dashboard") art=ENGINE_ART.zeus||"";
+    else if(activeView==="picks" && picksFilter.engine!=="all") art=ENGINE_ART[picksFilter.engine]||"";
+    shell.style.setProperty("--page-art", art?`url("${art}")`:"none");
+    shell.style.setProperty("--hero-art", activeView==="dashboard" && ENGINE_ART.zeus?`url("${ENGINE_ART.zeus}")`:"none");
+    shell.dataset.artView=activeView||"dashboard";
+    shell.dataset.artEngine=activeView==="picks"?String(picksFilter.engine||"all"):"none";
+    if(hero) hero.dataset.heroArt=activeView==="dashboard"?"zeus":"none";
+  }
+
+  function showView(name){if(!$( `[data-view-panel="${name}"]`))name="dashboard";activeView=name;location.hash=name;$$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));$$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));closeSidebar();if(name==="picks")renderPicksView();if(name==="engines")renderEngines();if(name==="bankers")renderBankers();if(name==="results")renderResults();updatePageArt();window.scrollTo({top:0,behavior:"smooth"})}
   function renderAllPickLists(){renderDashboardList();if(activeView==="picks")renderPicksView();if(activeView==="bankers")renderBankers()}
   function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
+
+  function setSidebar(open){
+    const sidebar=$("#sidebar"),backdrop=$("#sidebar-backdrop"),menu=$("#menu-btn");
+    if(!sidebar)return;
+    sidebar.classList.toggle("open",!!open);
+    if(backdrop)backdrop.classList.toggle("open",!!open);
+    document.body.classList.toggle("sidebar-open",!!open);
+    if(menu)menu.setAttribute("aria-expanded",open?"true":"false");
+  }
+  function closeSidebar(){setSidebar(false)}
 
   function wire(){
     $$('[data-view]').forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
     $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
     document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b){addPickByKey(b.dataset.addPick);return}const d=e.target.closest("[data-pick-detail]");if(d)openPickDetail(d.dataset.pickDetail)});
-    $("#menu-btn").onclick=()=>$("#sidebar").classList.toggle("open");
+    $("#menu-btn").onclick=()=>setSidebar(!$("#sidebar").classList.contains("open"));
+    const sidebarBackdrop=$("#sidebar-backdrop");if(sidebarBackdrop)sidebarBackdrop.onclick=closeSidebar;
     $("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};$("#dashboard-market").onchange=renderDashboardList;$("#dashboard-odds").onchange=renderDashboardList;
     $("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
     $("#picks-engine").onchange=e=>{picksFilter.engine=e.target.value;renderPicksView()};
     $("#picks-market").onchange=e=>{picksFilter.market=e.target.value;renderPicksView()};
     $("#picks-league").onchange=e=>{picksFilter.league=e.target.value;renderPicksView()};
     $("#picks-grade").onchange=e=>{picksFilter.grade=e.target.value;renderPicksView()};
+    $("#banker-status").onchange=e=>{bankerFilter.status=e.target.value;renderBankers()};
+    $("#banker-grade").onchange=e=>{bankerFilter.grade=e.target.value;renderBankers()};
+    $("#banker-league").onchange=e=>{bankerFilter.league=e.target.value;renderBankers()};
+    $("#banker-odds").onchange=e=>{bankerFilter.odds=e.target.value;renderBankers()};
+    $("#banker-reset").onclick=()=>{bankerFilter={status:"all",grade:"all",league:"all",odds:"all"};renderBankers();toast("Banker filters reset.")};
     $("#global-search").oninput=e=>{searchTerm=e.target.value.trim().toLowerCase();renderDashboardList();if(activeView==="picks")renderPicksView()};
     $("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};$("#copy-slip").onclick=copySlip;$("#drawer-copy").onclick=copySlip;
     $("#mobile-slip").onclick=()=>{$("#mobile-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open")};const closeDrawer=()=>{$("#mobile-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open")};$("#drawer-close").onclick=closeDrawer;$("#drawer-backdrop").onclick=closeDrawer;
-    $("#engine-modal-close").onclick=closeEngine;$("#engine-modal-backdrop").onclick=closeEngine;document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeDrawer()}});
+    $("#engine-modal-close").onclick=closeEngine;$("#engine-modal-backdrop").onclick=closeEngine;document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeDrawer();closeSidebar()}});
     $("#add-visible").onclick=()=>{const dateRows=allPicks().filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
     $("#save-prefs").onclick=savePreferences;
     window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
@@ -263,7 +318,7 @@
     const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
     $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";$("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();showView(activeView);
+    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();updatePageArt();showView(activeView);
     if("serviceWorker" in navigator){
       let refreshing=false;
       navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){refreshing=true;location.reload()}});

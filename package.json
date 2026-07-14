@@ -1,8 +1,8 @@
 {
   "name": "betynz-web",
-  "version": "2.5.0",
+  "version": "3.2.0",
   "private": true,
-  "description": "Betynz live football product with seed-data purge, adaptive enrichment and verified public-data gates",
+  "description": "Betynz responsive live football product optimized for desktop, tablets, mobile and Galaxy Z Fold devices",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",

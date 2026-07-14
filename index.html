@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=2.8">
+  <link rel="stylesheet" href="styles.css?v=3.3">
 </head>
 <body>
   <div class="app-shell">
@@ -23,7 +23,7 @@
 
       <nav class="side-nav">
         <button class="nav-item active" data-view="dashboard"><span>⌂</span><b>Dashboard</b></button>
-        <button class="nav-item" data-view="picks"><span>▦</span><b>Today's Picks</b></button>
+        <button class="nav-item" data-view="picks"><span>▦</span><b>Match Board</b></button>
         <button class="nav-item" data-view="engines"><span>♜</span><b>Olympian Engines</b></button>
         <button class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
         <button class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
@@ -42,7 +42,7 @@
 
     <div class="main-shell">
       <header class="topbar">
-        <button class="menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
+        <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">☰</button>
         <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Search matches, teams or leagues…" autocomplete="off"></label>
         <div class="top-actions">
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
@@ -108,7 +108,7 @@
         </section>
 
         <section class="view" data-view-panel="picks">
-          <div class="page-head"><div><span>FULL MATCH BOARD</span><h2>Today's Predictions</h2><p>Browse every qualified market by date, league and engine.</p></div><button class="primary-btn compact" id="add-visible">Add Visible Picks</button></div>
+          <div class="page-head"><div><span>TODAY + NEXT 6 DAYS</span><h2>Upcoming Predictions</h2><p>Browse qualified markets across today and the next six days by date, league and engine.</p></div><button class="primary-btn compact" id="add-visible">Add Visible Picks</button></div>
           <div class="date-strip" id="date-strip"></div>
           <section class="page-panel">
             <div class="filter-row wide"><select id="picks-engine"></select><select id="picks-market"><option value="all">All Markets</option></select><select id="picks-league"><option value="all">All Leagues</option></select><select id="picks-grade"><option value="all">All Grades</option><option value="A1">A1 Banker</option><option value="A2">A2 Strong</option><option value="WATCH">Watchlist</option></select></div>
@@ -124,7 +124,31 @@
         <section class="view" data-view-panel="bankers">
           <div class="page-head"><div><span>HIGHEST CONVICTION</span><h2>Banker Board</h2><p>Only A1 and A2 selections with no hard engine contradiction appear here.</p></div><span class="risk-note">18+ · Informational analysis only</span></div>
           <div class="banker-summary" id="banker-summary"></div>
-          <section class="page-panel"><div class="match-list expanded" id="banker-list"></div></section>
+          <section class="page-panel">
+            <div class="filter-row wide banker-filter-row">
+              <select id="banker-status" aria-label="Filter bankers by status">
+                <option value="all">All Statuses</option>
+                <option value="locked">Locked</option>
+                <option value="provisional">Provisional</option>
+                <option value="live">Live</option>
+                <option value="prematch">Pre-match</option>
+              </select>
+              <select id="banker-grade" aria-label="Filter bankers by grade">
+                <option value="all">All Grades</option>
+                <option value="A1">A1 Bankers</option>
+                <option value="A2">A2 Strong Picks</option>
+              </select>
+              <select id="banker-league" aria-label="Filter bankers by league"><option value="all">All Leagues</option></select>
+              <select id="banker-odds" aria-label="Filter bankers by odds availability">
+                <option value="all">All Odds</option>
+                <option value="priced">Priced Picks</option>
+                <option value="missing">Missing Odds</option>
+              </select>
+              <span class="filter-count" id="banker-filter-count">0 shown</span>
+              <button class="filter-btn" id="banker-reset" type="button">☷ Reset</button>
+            </div>
+            <div class="match-list expanded" id="banker-list"></div>
+          </section>
         </section>
 
         <section class="view" data-view-panel="results">
@@ -154,6 +178,8 @@
     </div>
   </div>
 
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
   <nav class="mobile-nav" aria-label="Mobile navigation"><button class="active" data-view="dashboard"><span>⌂</span>Home</button><button data-view="picks"><span>▦</span>Picks</button><button data-view="engines"><span>♜</span>Engines</button><button data-view="results"><span>↗</span>Results</button><button data-view="profile"><span>○</span>Settings</button></nav>
   <button class="mobile-slip" id="mobile-slip"><span>Slip</span><b id="mobile-slip-count">0</b><em id="mobile-slip-odds">1.00</em></button>
 
@@ -164,8 +190,8 @@
   <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="olympian-engine-core.js?v=2.8"></script>
+  <script src="olympian-engine-core.js?v=3.3"></script>
   <script src="data.js?v=2.6"></script>
-  <script src="app.js?v=2.8"></script>
+  <script src="app.js?v=3.3"></script>
 </body>
 </html>

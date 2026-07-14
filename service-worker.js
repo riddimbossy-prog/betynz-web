@@ -1,5 +1,5 @@
-const CACHE='betynz-v2.8-crests-flags-ui';
-const CORE=['/','/index.html','/styles.css?v=2.8','/app.js?v=2.8','/olympian-engine-core.js?v=2.8','/manifest.webmanifest','/assets/betynz-mark.svg'];
+const CACHE='betynz-v3.3-six-day-board';
+const CORE=['/','/index.html','/styles.css?v=3.3','/app.js?v=3.3','/olympian-engine-core.js?v=3.3','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
