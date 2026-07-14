@@ -6,7 +6,7 @@ window.BETYNZ_META = {
   "version": "2.5.0",
   "engineVersion": "2.0.0",
   "source": "API-Football + TheStatsAPI",
-  "generatedAt": "2026-07-14T19:03:11.617Z",
+  "generatedAt": "2026-07-14T19:43:26.632Z",
   "dataUpdated": "2026-07-14T19:03:11.141Z",
   "isDemo": false,
   "isReady": true,
@@ -496,7 +496,7 @@ window.MATCHES = [
       "dataQuality": 88,
       "odds": 1.77,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:03:11.617Z"
+      "publishedAt": "2026-07-14T19:43:26.632Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -6700,7 +6700,7 @@ window.MATCHES = [
       "dataQuality": 88,
       "odds": null,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:03:11.617Z"
+      "publishedAt": "2026-07-14T19:43:26.632Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -15323,7 +15323,7 @@ window.MATCHES = [
       "dataQuality": 78,
       "odds": null,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:03:11.617Z"
+      "publishedAt": "2026-07-14T19:43:26.632Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -26459,7 +26459,7 @@ window.MATCHES = [
       "dataQuality": 70,
       "odds": 1.53,
       "watchlist": true,
-      "publishedAt": "2026-07-14T19:03:11.617Z"
+      "publishedAt": "2026-07-14T19:43:26.632Z"
     },
     "zeusDecision": null,
     "zeusRejection": {
@@ -39364,7 +39364,7 @@ window.MATCHES = [
       "odds": 1.6,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T19:03:11.617Z"
+      "publishedAt": "2026-07-14T19:43:26.632Z"
     },
     "predictionLocked": false
   },
