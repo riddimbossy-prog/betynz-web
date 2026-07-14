@@ -36,6 +36,7 @@
   let activeView=(location.hash||"#dashboard").slice(1);
   let activeDate=null;
   let activeDashboardEngine="all";
+  let picksFilter={engine:"all",market:"all",league:"all",grade:"all"};
   let searchTerm="";
   let toastTimer=null;
   let slip=loadJSON("betynz-slip",[]);
@@ -47,6 +48,9 @@
   function dateOf(m){return m.matchDate||(m.kickoff?String(m.kickoff).slice(0,10):"Undated")}
   function kickoff(m){try{return new Date(m.kickoff).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}catch(_){return "—"}}
   function countryFlag(m){const c=String(m.country||m.league||"").toLowerCase();if(c.includes("england"))return"🏴";if(c.includes("spain"))return"🇪🇸";if(c.includes("germany"))return"🇩🇪";if(c.includes("italy"))return"🇮🇹";if(c.includes("france"))return"🇫🇷";if(c.includes("portugal"))return"🇵🇹";if(c.includes("usa")||c.includes("mls"))return"🇺🇸";if(c.includes("brazil"))return"🇧🇷";if(c.includes("argentina"))return"🇦🇷";return"⚽"}
+  function initials(name){return String(name||"?").split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()||"?"}
+  function leagueBadge(m){const fallback=countryFlag(m);if(m&&m.flag){return `<span class="league-badge"><img src="${esc(m.flag)}" alt="${esc(m.country||m.league||'League')} flag" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"/><span class="league-fallback" style="display:none">${fallback}</span></span>`}return `<span class="league-badge no-image"><span class="league-fallback">${fallback}</span></span>`}
+  function teamCrest(url,name){const fallback=initials(name);if(url){return `<span class="team-crest"><img src="${esc(url)}" alt="${esc(name)} crest" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"/><span class="crest-fallback" style="display:none">${fallback}</span></span>`}return `<span class="team-crest no-image"><span class="crest-fallback">${fallback}</span></span>`}
   function marketClean(s){return String(s||"No Bet").replace(/^Over ([0-9.]+) Goals$/,"Over $1").replace(/^Under ([0-9.]+) Goals$/,"Under $1")}
   function normalizeMarket(s){const x=String(s||"").trim();if(/^Over \d/.test(x)&&!/Goals/.test(x))return `${x} Goals`;if(/^Under \d/.test(x)&&!/Goals/.test(x))return `${x} Goals`;return x}
   function marketFamily(s){s=String(s||"").toLowerCase();if(s.includes("btts"))return"BTTS";if(s.includes("over")||s.includes("under"))return s.includes("team")?"Team Goals":"Totals";if(s.includes("dnb")||s.includes("double chance")||s.includes("win"))return"Result";if(s.includes("half"))return"Halves";return"Other"}
@@ -156,7 +160,14 @@
   function matchRow(p){
     const m=p.m,added=slip.some(x=>x.key===slipKey(p));const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");
     return `<article class="match-row" data-pick-key="${esc(keyOf(m))}">
-      <div class="fixture-cell"><span class="league-flag">${countryFlag(m)}</span><b>${esc(m.home)}<br>${esc(m.away)}</b><small>${esc(m.league||"Football")} · ${kickoff(m)}${isLive(m)?" · LIVE":""}</small></div>
+      <div class="fixture-cell">
+        <span class="league-flag">${leagueBadge(m)}</span>
+        <div class="fixture-teams">
+          <div class="team-line"><span class="team-logo-wrap">${teamCrest(m.homeLogo,m.home)}</span><b>${esc(m.home)}</b></div>
+          <div class="team-line"><span class="team-logo-wrap">${teamCrest(m.awayLogo,m.away)}</span><b>${esc(m.away)}</b></div>
+          <small>${esc(m.league||"Football")} · ${kickoff(m)}${isLive(m)?" · LIVE":""}</small>
+        </div>
+      </div>
       <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.grade}">${p.grade}</span> · <span class="lock-state ${p.locked?"locked":"provisional"}">${p.locked?"LOCKED":"PROVISIONAL"}</span></small></div>
       <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
       <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
@@ -230,7 +241,10 @@
     $("#menu-btn").onclick=()=>$("#sidebar").classList.toggle("open");
     $("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};$("#dashboard-market").onchange=renderDashboardList;$("#dashboard-odds").onchange=renderDashboardList;
     $("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
-    ["#picks-engine","#picks-market","#picks-league","#picks-grade"].forEach(s=>$(s).onchange=renderPicksView);
+    $("#picks-engine").onchange=e=>{picksFilter.engine=e.target.value;renderPicksView()};
+    $("#picks-market").onchange=e=>{picksFilter.market=e.target.value;renderPicksView()};
+    $("#picks-league").onchange=e=>{picksFilter.league=e.target.value;renderPicksView()};
+    $("#picks-grade").onchange=e=>{picksFilter.grade=e.target.value;renderPicksView()};
     $("#global-search").oninput=e=>{searchTerm=e.target.value.trim().toLowerCase();renderDashboardList();if(activeView==="picks")renderPicksView()};
     $("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};$("#copy-slip").onclick=copySlip;$("#drawer-copy").onclick=copySlip;
     $("#mobile-slip").onclick=()=>{$("#mobile-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open")};const closeDrawer=()=>{$("#mobile-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open")};$("#drawer-close").onclick=closeDrawer;$("#drawer-backdrop").onclick=closeDrawer;

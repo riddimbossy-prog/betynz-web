@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=2.5">
+  <link rel="stylesheet" href="styles.css?v=2.8">
 </head>
 <body>
   <div class="app-shell">
@@ -28,7 +28,6 @@
         <button class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
         <button class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
         <button class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
-        <button class="nav-item" data-view="status"><span>◎</span><b>Data Status</b></button>
         <button class="nav-item" data-view="profile"><span>○</span><b>Settings</b></button>
       </nav>
 
@@ -47,7 +46,6 @@
         <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Search matches, teams or leagues…" autocomplete="off"></label>
         <div class="top-actions">
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
-          <button class="icon-btn" data-view="status" aria-label="Open data status">◎</button>
           <button class="profile-chip" data-view="profile"><span class="avatar">BZ</span><span><b>Guest Settings</b><small>Local preferences</small></span><em>⌄</em></button>
         </div>
       </header>
@@ -84,7 +82,7 @@
 
               <section class="lower-grid">
                 <article class="mini-panel"><div class="panel-title"><h3>How Betynz Decides</h3><button data-view="methodology">View method</button></div><div class="news-card"><div class="news-image">⚡</div><div><b>Specialists first. Zeus last.</b><p>Fifteen specialist engines analyze the match before Zeus applies conflict, quality and consensus gates.</p><small>Transparent methodology</small></div></div></article>
-                <article class="mini-panel"><div class="panel-title"><h3>Record Integrity</h3><button data-view="status">View status</button></div><div class="community-post"><span class="avatar">✓</span><div><b>Predictions lock before kickoff</b><small>Public record rule</small><p>Only locked predictions are included in the verified results record.</p></div><span>18+</span></div></article>
+                <article class="mini-panel"><div class="panel-title"><h3>Record Integrity</h3></div><div class="community-post"><span class="avatar">✓</span><div><b>Predictions lock before kickoff</b><small>Public record rule</small><p>Only locked predictions are included in the verified results record.</p></div><span>18+</span></div></article>
               </section>
             </div>
 
@@ -146,12 +144,6 @@
           <section class="page-panel prose-panel"><h3>Public grading</h3><p><b>A1</b> requires at least three specialist confirmations, a strong consensus lead and an 88+ model score. <b>A2</b> requires at least two confirmations and an 82+ score. Lower-quality or contradictory matches are not published.</p><p>Model scores are not guarantees or real-world probabilities. Football outcomes remain uncertain.</p></section>
         </section>
 
-        <section class="view" data-view-panel="status">
-          <div class="page-head"><div><span>PIPELINE HEALTH</span><h2>Data Status</h2><p>Live source, generation time and current board coverage.</p></div></div>
-          <div class="status-grid" id="data-status-content"></div>
-          <section class="page-panel prose-panel"><h3>Freshness policy</h3><p>The full football snapshot refreshes every six hours. Live scores refresh every 15 minutes while matches are active. A snapshot older than 12 hours is clearly marked as stale.</p><h3>Source protection</h3><p>API keys stay inside GitHub Actions secrets. Only generated public match data is deployed to GitHub Pages.</p></section>
-        </section>
-
         <section class="view" data-view-panel="profile">
           <div class="page-head"><div><span>YOUR BETYNZ</span><h2>Board Settings</h2><p>Preferences are stored only in this browser.</p></div></div>
           <div class="profile-layout"><section class="profile-card"><div class="large-avatar">BZ</div><h3>Guest Mode</h3><p>No account or personal data required</p><button class="primary-btn" data-view="methodology">Read Methodology</button></section><section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my slip</span><input type="checkbox" id="remember-slip" checked></label><button class="primary-btn compact" id="save-prefs">Save Preferences</button></section></div>
@@ -172,8 +164,8 @@
   <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="olympian-engine-core.js?v=2.5"></script>
-  <script src="data.js?v=2.5"></script>
-  <script src="app.js?v=2.5"></script>
+  <script src="olympian-engine-core.js?v=2.8"></script>
+  <script src="data.js?v=2.6"></script>
+  <script src="app.js?v=2.8"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-const CACHE='betynz-v2.5-seed-purge';
-const CORE=['/','/index.html','/styles.css?v=2.5','/app.js?v=2.5','/olympian-engine-core.js?v=2.5','/manifest.webmanifest','/assets/betynz-mark.svg'];
+const CACHE='betynz-v2.8-crests-flags-ui';
+const CORE=['/','/index.html','/styles.css?v=2.8','/app.js?v=2.8','/olympian-engine-core.js?v=2.8','/manifest.webmanifest','/assets/betynz-mark.svg'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
