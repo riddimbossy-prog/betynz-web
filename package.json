@@ -1,14 +1,14 @@
 {
   "name": "betynz-web",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "private": true,
-  "description": "Betynz adaptive global-coverage and deep-enrichment football prediction product",
+  "description": "Betynz live football product with seed-data purge, adaptive enrichment and verified public-data gates",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",
     "validate": "node scripts/validate-product.js",
     "build": "node scripts/build-dist.js",
-    "check": "node --check app.js && node --check olympian-engine-core.js && node --check scripts/fetch-data.js && node --check scripts/select-enrichment-plan.js && node --check scripts/merge-enriched-data.js && node --check scripts/enrich-xg.js && node --check scripts/build-snapshot.js && npm run validate"
+    "check": "node --check app.js && node --check olympian-engine-core.js && node --check scripts/seed-guard.js && node --check scripts/fetch-data.js && node --check scripts/select-enrichment-plan.js && node --check scripts/merge-enriched-data.js && node --check scripts/enrich-xg.js && node --check scripts/build-snapshot.js && npm run validate"
   },
   "engines": {
     "node": ">=20"

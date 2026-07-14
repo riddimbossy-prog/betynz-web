@@ -24,6 +24,7 @@
   const meta=window.BETYNZ_META&&typeof window.BETYNZ_META==="object"?window.BETYNZ_META:{};
   const history=Array.isArray(window.BETYNZ_HISTORY)?window.BETYNZ_HISTORY:[];
   const isDemo=!!window.BETYNZ_DEMO||!!meta.isDemo;
+  const isPending=window.BETYNZ_READY===false||String(meta.source||"").toLowerCase()==="waiting-for-live-sync";
   const $=(s,root=document)=>root.querySelector(s);
   const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
   const esc=v=>String(v==null?"":v).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
@@ -125,7 +126,7 @@
     const hit=wins+losses?Math.round(wins/(wins+losses)*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
     const active=ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
     $("#metric-grid").innerHTML=[
-      ["♜",active,"Active Engines",isDemo?"Demo snapshot":"Qualified systems"],
+      ["♜",active,"Active Engines",isDemo?"Demo snapshot":isPending?"Waiting for verified data":"Qualified systems"],
       ["▦",matches.filter(isUpcoming).length,"Upcoming Matches",`${dates().length} board days`],
       ["◎",settled.length?`${hit}%`:"—","Verified Record",settled.length?`${settled.length} locked results`:"Waiting for locked results"],
       ["◆",avg,"Average Pick Odds",priced.length?"Current qualified prices":"Odds pending"]
@@ -240,12 +241,20 @@
   }
 
   function init(){
+    const validMatchKeys=new Set(matches.map(keyOf));
+    const originalSlipSize=slip.length;
+    slip=slip.filter(item=>validMatchKeys.has(String(item.matchKey)));
+    if(slip.length!==originalSlipSize)persistSlip();
     const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
     const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
-    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":stale?"Data snapshot is stale":"Data pipeline healthy";$("#data-state").textContent=isDemo?"Demo Data":stale?"Stale Data":"Live Data";
+    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";$("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
     renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();showView(activeView);
-    if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js").catch(()=>{});
+    if("serviceWorker" in navigator){
+      let refreshing=false;
+      navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){refreshing=true;location.reload()}});
+      navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).then(reg=>reg.update()).catch(()=>{});
+    }
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

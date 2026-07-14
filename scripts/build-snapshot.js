@@ -3,6 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm");
 const HERE=__dirname,ROOT=path.resolve(HERE,"..");
 const core=require(path.join(ROOT,"olympian-engine-core.js"));
+const {removePackagedDemoFixtures,assertNoPackagedDemoFixtures,isPackagedDemoRecord}=require("./seed-guard");
 const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
 function readJSON(file,fallback){try{return JSON.parse(fs.readFileSync(file,"utf8"))}catch(_){return fallback}}
 function writeJSON(file,value){fs.writeFileSync(file,JSON.stringify(value,null,2)+"\n")}
@@ -11,10 +12,18 @@ function iso(v){try{return new Date(v).toISOString()}catch(_){return null}}
 function key(m){return String(m.id!=null?m.id:`${m.home}|${m.away}|${m.matchDate}`)}
 function publicPrediction(id,o){return {engine:id,bet:!!o.bet,market:o.bet?o.primary:"No Bet",confidence:Number(o.confidence||0),reasons:o.reasons||[],warnings:o.warnings||[],dataQuality:o.dataQuality??null,supportOnly:!!o.supportOnly}}
 const source=fs.existsSync(path.join(HERE,"data.js"))?path.join(HERE,"data.js"):path.join(ROOT,"data.js");
-const loaded=loadData(source),matches=Array.isArray(loaded.MATCHES)?loaded.MATCHES:[];
-const isDemo=!!loaded.BETYNZ_DEMO,now=new Date(),nowISO=now.toISOString();
+const loaded=loadData(source);
+const cleaned=removePackagedDemoFixtures(Array.isArray(loaded.MATCHES)?loaded.MATCHES:[]);
+const matches=cleaned.matches;
+if(cleaned.removed)console.log(`Purged ${cleaned.removed} packaged demo fixture(s) before the Olympian snapshot.`);
+const isDemo=!!loaded.BETYNZ_DEMO&&matches.length>0;
+const isReady=loaded.BETYNZ_READY!==false&&String((loaded.BETYNZ_META&&loaded.BETYNZ_META.source)||"").toLowerCase()!=="waiting-for-live-sync";
+const now=new Date(),nowISO=now.toISOString();
 const lockFile=path.join(ROOT,"prediction-locks.json"),historyFile=path.join(ROOT,"results-history.json");
-const locks=readJSON(lockFile,{}),history=readJSON(historyFile,[]),historyKeys=new Set(history.map(x=>`${x.fixtureId}|${x.market}`));
+const rawLocks=readJSON(lockFile,{});
+const locks=Object.fromEntries(Object.entries(rawLocks).filter(([,value])=>!isPackagedDemoRecord(value)));
+const history=readJSON(historyFile,[]).filter(row=>!isPackagedDemoRecord(row));
+const historyKeys=new Set(history.map(x=>`${x.fixtureId}|${x.market}`));
 let createdLocks=0,settledAdded=0,qualified=0;
 const engineCounts={};
 for(const m of matches){
@@ -58,8 +67,10 @@ for(const m of matches){
 history.sort((a,b)=>String(b.kickoff||"").localeCompare(String(a.kickoff||"")));
 const trimmed=history.slice(0,500);
 const settled=trimmed.filter(x=>["Won","Lost","Void"].includes(x.result)),wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
-const meta={product:"Betynz",version:"2.0.0",engineVersion:core.VERSION,source:isDemo?"demo":"API-Football + TheStatsAPI",generatedAt:nowISO,dataUpdated:loaded.DATA_UPDATED||nowISO,isDemo,fixtureCount:matches.length,qualifiedCount:qualified,lockedCount:Object.keys(locks).length,historyCount:trimmed.length,record:{wins,losses,voids:settled.filter(x=>x.result==="Void").length,hitRate:wins+losses?Math.round(wins/(wins+losses)*100):null},engineCounts};
-const js=[isDemo?"window.BETYNZ_DEMO = true;":"window.BETYNZ_DEMO = false;",`window.DATA_UPDATED = ${JSON.stringify(meta.dataUpdated)};`,`window.BETYNZ_META = ${JSON.stringify(meta,null,2)};`,`window.BETYNZ_HISTORY = ${JSON.stringify(trimmed,null,2)};`,`window.MATCHES = ${JSON.stringify(matches,null,2)};`,""].join("\n");
+assertNoPackagedDemoFixtures(matches,"Olympian snapshot");
+const sourceName=isDemo?"demo":!isReady?"waiting-for-live-sync":matches.length?"API-Football + TheStatsAPI":"API-Football (no fixtures returned)";
+const meta={product:"Betynz",version:"2.5.0",engineVersion:core.VERSION,source:sourceName,generatedAt:nowISO,dataUpdated:loaded.DATA_UPDATED||null,isDemo,isReady,fixtureCount:matches.length,qualifiedCount:qualified,lockedCount:Object.keys(locks).length,historyCount:trimmed.length,record:{wins,losses,voids:settled.filter(x=>x.result==="Void").length,hitRate:wins+losses?Math.round(wins/(wins+losses)*100):null},engineCounts};
+const js=[isDemo?"window.BETYNZ_DEMO = true;":"window.BETYNZ_DEMO = false;",`window.BETYNZ_READY = ${JSON.stringify(isReady)};`,`window.DATA_UPDATED = ${JSON.stringify(meta.dataUpdated)};`,`window.BETYNZ_META = ${JSON.stringify(meta,null,2)};`,`window.BETYNZ_HISTORY = ${JSON.stringify(trimmed,null,2)};`,`window.MATCHES = ${JSON.stringify(matches,null,2)};`,""].join("\n");
 fs.writeFileSync(path.join(ROOT,"data.js"),js);fs.writeFileSync(path.join(HERE,"data.js"),js);
 writeJSON(lockFile,locks);writeJSON(historyFile,trimmed);writeJSON(path.join(ROOT,"api-status.json"),meta);
 console.log(`Snapshot built: ${matches.length} fixtures, ${qualified} public decisions, ${createdLocks} new locks, ${settledAdded} settled results.`);

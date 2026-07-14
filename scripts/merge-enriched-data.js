@@ -8,13 +8,16 @@ const ROOT = path.resolve(__dirname, "..");
 const COVERAGE_FILE = path.join(ROOT, "data.js");
 const DEEP_FILE = path.join(__dirname, "data.js");
 const PLAN_FILE = path.join(__dirname, "enrichment-plan.json");
+const { removePackagedDemoFixtures } = require("./seed-guard");
 
 function load(file) {
   const context = { window: {} };
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(file, "utf8"), context, { filename: file });
+  const cleaned = removePackagedDemoFixtures(Array.isArray(context.window.MATCHES) ? context.window.MATCHES : []);
+  if (cleaned.removed) console.log(`Purged ${cleaned.removed} packaged demo fixture(s) while loading ${path.basename(file)}.`);
   return {
-    matches: Array.isArray(context.window.MATCHES) ? context.window.MATCHES : [],
+    matches: cleaned.matches,
     updated: context.window.DATA_UPDATED || null
   };
 }
@@ -67,8 +70,13 @@ function main() {
   merged.sort((a, b) => String(a.kickoff || "").localeCompare(String(b.kickoff || "")));
 
   const updated = new Date().toISOString();
+  const finalClean = removePackagedDemoFixtures(merged);
+  if (finalClean.removed) console.log(`Blocked ${finalClean.removed} packaged demo fixture(s) before publishing adaptive data.`);
+  const publicMatches = finalClean.matches;
   const header =
     `/* AUTO-GENERATED adaptive Betynz board. */\n\n` +
+    `window.BETYNZ_DEMO = false;\n` +
+    `window.BETYNZ_READY = true;\n` +
     `window.DATA_UPDATED = ${JSON.stringify(updated)};\n` +
     `window.ENRICHMENT_META = ${JSON.stringify({
       mode: "adaptive-two-pass",
@@ -77,11 +85,11 @@ function main() {
       selectedLeagues: plan && plan.selected ? plan.selected.leagues : null,
       generatedAt: updated
     }, null, 2)};\n` +
-    `window.MATCHES = ${JSON.stringify(merged, null, 2)};\n`;
+    `window.MATCHES = ${JSON.stringify(publicMatches, null, 2)};\n`;
 
   fs.writeFileSync(COVERAGE_FILE, header, "utf8");
   fs.writeFileSync(DEEP_FILE, header, "utf8");
-  console.log(`Merged ${enriched} deeply enriched fixtures into ${coverage.matches.length} globally covered fixtures.`);
+  console.log(`Merged ${enriched} deeply enriched fixtures into ${coverage.matches.length} globally covered fixtures; ${publicMatches.length} verified fixtures published.`);
 }
 
 main();

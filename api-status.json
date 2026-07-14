@@ -1,12 +1,13 @@
 {
   "product": "Betynz",
-  "version": "2.0.0",
-  "engineVersion": "2.0.0",
-  "source": "API-Football + TheStatsAPI",
-  "generatedAt": "2026-07-14T17:04:41.985Z",
-  "dataUpdated": "2026-07-14T01:49:15.652563+00:00",
+  "version": "2.5.0",
+  "engineVersion": "2.5.0",
+  "source": "waiting-for-live-sync",
+  "generatedAt": null,
+  "dataUpdated": null,
   "isDemo": false,
-  "fixtureCount": 20,
+  "isReady": false,
+  "fixtureCount": 0,
   "qualifiedCount": 0,
   "lockedCount": 0,
   "historyCount": 0,
@@ -16,10 +17,5 @@
     "voids": 0,
     "hitRate": null
   },
-  "engineCounts": {
-    "prometheus": 20,
-    "hermes": 16,
-    "hades": 20,
-    "atlas": 20
-  }
+  "engineCounts": {}
 }
