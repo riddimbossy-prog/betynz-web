@@ -1,15 +1,15 @@
-window.BETYNZ_DEMO = true;
+window.BETYNZ_DEMO = false;
 window.DATA_UPDATED = "2026-07-14T01:49:15.652563+00:00";
 window.BETYNZ_META = {
   "product": "Betynz",
   "version": "2.0.0",
   "engineVersion": "2.0.0",
-  "source": "demo",
-  "generatedAt": "2026-07-14T02:38:18.312Z",
+  "source": "API-Football + TheStatsAPI",
+  "generatedAt": "2026-07-14T17:04:41.985Z",
   "dataUpdated": "2026-07-14T01:49:15.652563+00:00",
-  "isDemo": true,
+  "isDemo": false,
   "fixtureCount": 20,
-  "qualifiedCount": 20,
+  "qualifiedCount": 0,
   "lockedCount": 0,
   "historyCount": 0,
   "record": {
@@ -20,18 +20,9 @@ window.BETYNZ_META = {
   },
   "engineCounts": {
     "prometheus": 20,
-    "athena": 7,
-    "ares": 3,
     "hermes": 16,
     "hades": 20,
-    "atlas": 20,
-    "nike": 7,
-    "zeus": 7,
-    "hera": 5,
-    "apollo": 13,
-    "poseidon": 8,
-    "orion": 4,
-    "dionysus": 8
+    "atlas": 20
   }
 };
 window.BETYNZ_HISTORY = [];
@@ -136,14 +127,16 @@ window.MATCHES = [
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 88,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -160,14 +153,14 @@ window.MATCHES = [
       },
       {
         "engine": "ares",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 87,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "The mismatch is not confirmed by strength, table position and goal difference together."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -274,12 +267,15 @@ window.MATCHES = [
         "engine": "atlas",
         "bet": true,
         "market": "Home Win",
-        "confidence": 84,
+        "confidence": 100,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Heavy strength edge is 1.22.",
+          "Home strength edge is 2.99 points.",
+          "Attack and opponent defence support converting control into a win.",
+          "Venue and overall evidence are blended at a 65/100 data-quality level."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -296,50 +292,45 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 89,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 90,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Home Win",
-      "confidence": 90,
-      "grade": "A1",
-      "engineIds": [
-        "athena",
-        "ares",
-        "nike",
-        "atlas"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900002,
@@ -432,14 +423,16 @@ window.MATCHES = [
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 87,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -493,14 +486,16 @@ window.MATCHES = [
       },
       {
         "engine": "hera",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 68-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -593,49 +588,45 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 88,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 89,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Home Win",
-      "confidence": 89,
-      "grade": "A1",
-      "engineIds": [
-        "athena",
-        "hera",
-        "nike"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900003,
@@ -733,14 +724,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Under 3.5 Goals",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -757,14 +748,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "Under 3.5 Goals",
-        "confidence": 82,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -871,14 +862,14 @@ window.MATCHES = [
       },
       {
         "engine": "orion",
-        "bet": true,
-        "market": "Under 3.5 Goals",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Trusted xG data is unavailable."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -910,26 +901,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Under 3.5 Goals",
-      "confidence": 84,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "poseidon",
-        "orion"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900004,
@@ -1036,14 +1019,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1135,14 +1118,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1175,14 +1158,14 @@ window.MATCHES = [
       },
       {
         "engine": "orion",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Trusted xG data is unavailable."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1201,37 +1184,31 @@ window.MATCHES = [
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 88,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Over 2.5 Goals",
-      "confidence": 88,
-      "grade": "A1",
-      "engineIds": [
-        "apollo",
-        "dionysus",
-        "orion"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900005,
@@ -1303,25 +1280,29 @@ window.MATCHES = [
       {
         "engine": "prometheus",
         "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 81,
+        "market": "Home Win",
+        "confidence": 100,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Home strength edge is 3.2 points.",
+          "Attack and opponent defence support converting control into a win.",
+          "Venue and overall evidence are blended at a 65/100 data-quality level."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1375,14 +1356,16 @@ window.MATCHES = [
       },
       {
         "engine": "hera",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 68-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1502,26 +1485,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Double Chance 1X",
-      "confidence": 86,
-      "grade": "A2",
-      "engineIds": [
-        "athena",
-        "hera",
-        "prometheus"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900006,
@@ -1639,14 +1614,14 @@ window.MATCHES = [
       },
       {
         "engine": "ares",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "The mismatch is not confirmed by strength, table position and goal difference together."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1752,12 +1727,15 @@ window.MATCHES = [
         "engine": "atlas",
         "bet": true,
         "market": "Home Win",
-        "confidence": 83,
+        "confidence": 100,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Heavy strength edge is 1.18.",
+          "Home strength edge is 3.2 points.",
+          "Attack and opponent defence support converting control into a win.",
+          "Venue and overall evidence are blended at a 65/100 data-quality level."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1774,49 +1752,45 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 88,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Home Win",
-      "confidence": 88,
-      "grade": "A1",
-      "engineIds": [
-        "nike",
-        "ares",
-        "atlas"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900007,
@@ -1914,14 +1888,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -1938,14 +1912,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 82,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2012,14 +1986,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2091,26 +2065,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "BTTS Yes",
-      "confidence": 84,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "dionysus",
-        "poseidon"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900008,
@@ -2194,26 +2160,28 @@ window.MATCHES = [
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Home Team Over 1.5 Goals",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Home Team Over 1.5 Goals",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2357,14 +2325,16 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Home Team Over 1.5 Goals",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2382,26 +2352,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Home Team Over 1.5 Goals",
-      "confidence": 86,
-      "grade": "A2",
-      "engineIds": [
-        "athena",
-        "apollo",
-        "nike"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900009,
@@ -2499,14 +2461,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Under 3.5 Goals",
-        "confidence": 82,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2547,14 +2509,16 @@ window.MATCHES = [
       },
       {
         "engine": "hera",
-        "bet": true,
-        "market": "Under 3.5 Goals",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 68-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2635,14 +2599,14 @@ window.MATCHES = [
       },
       {
         "engine": "orion",
-        "bet": true,
-        "market": "Under 3.5 Goals",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Trusted xG data is unavailable."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2674,26 +2638,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Under 3.5 Goals",
-      "confidence": 84,
-      "grade": "A2",
-      "engineIds": [
-        "hera",
-        "orion",
-        "apollo"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900010,
@@ -2791,14 +2747,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2815,14 +2771,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 81,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2889,14 +2845,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -2968,26 +2924,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "BTTS Yes",
-      "confidence": 85,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "dionysus",
-        "poseidon"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900011,
@@ -3093,14 +3041,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3218,13 +3166,16 @@ window.MATCHES = [
       {
         "engine": "atlas",
         "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 85,
+        "market": "Home Win",
+        "confidence": 100,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Heavy strength edge is 1.41.",
+          "Home strength edge is 3.2 points.",
+          "Attack and opponent defence support converting control into a win.",
+          "Venue and overall evidence are blended at a 65/100 data-quality level."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3241,49 +3192,45 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 89,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Over 2.5 Goals",
-      "confidence": 89,
-      "grade": "A1",
-      "engineIds": [
-        "apollo",
-        "atlas",
-        "nike"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900012,
@@ -3381,14 +3328,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3405,14 +3352,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3479,14 +3426,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3558,26 +3505,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "BTTS Yes",
-      "confidence": 86,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "dionysus",
-        "poseidon"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900013,
@@ -3661,14 +3600,16 @@ window.MATCHES = [
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3721,14 +3662,16 @@ window.MATCHES = [
       },
       {
         "engine": "hera",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 68-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3809,14 +3752,14 @@ window.MATCHES = [
       },
       {
         "engine": "orion",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 82,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Trusted xG data is unavailable."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3848,26 +3791,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Double Chance 1X",
-      "confidence": 84,
-      "grade": "A2",
-      "engineIds": [
-        "athena",
-        "hera",
-        "orion"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900014,
@@ -3965,14 +3900,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -3989,14 +3924,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 82,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4063,14 +3998,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4142,26 +4077,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "BTTS Yes",
-      "confidence": 85,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "dionysus",
-        "poseidon"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900015,
@@ -4253,14 +4180,16 @@ window.MATCHES = [
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4277,14 +4206,14 @@ window.MATCHES = [
       },
       {
         "engine": "ares",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "The mismatch is not confirmed by strength, table position and goal difference together."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4416,49 +4345,45 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 87,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Home Win",
-        "confidence": 88,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Home Win",
-      "confidence": 88,
-      "grade": "A1",
-      "engineIds": [
-        "athena",
-        "nike",
-        "ares"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900016,
@@ -4556,14 +4481,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4580,14 +4505,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4654,14 +4579,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "Over 2.5 Goals",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4733,26 +4658,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Over 2.5 Goals",
-      "confidence": 86,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "poseidon",
-        "dionysus"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900017,
@@ -4850,14 +4767,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4874,14 +4791,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -4948,14 +4865,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 82,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5027,26 +4944,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "BTTS Yes",
-      "confidence": 84,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "poseidon",
-        "dionysus"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900018,
@@ -5130,14 +5039,16 @@ window.MATCHES = [
       },
       {
         "engine": "athena",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 86,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 66-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5190,14 +5101,16 @@ window.MATCHES = [
       },
       {
         "engine": "hera",
-        "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 68-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5264,13 +5177,16 @@ window.MATCHES = [
       {
         "engine": "atlas",
         "bet": true,
-        "market": "Double Chance 1X",
-        "confidence": 82,
+        "market": "Home Win",
+        "confidence": 100,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Heavy strength edge is 1.09.",
+          "Home strength edge is 2.6 points.",
+          "Attack and opponent defence support converting control into a win.",
+          "Venue and overall evidence are blended at a 65/100 data-quality level."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5314,26 +5230,18 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Double Chance 1X",
-      "confidence": 86,
-      "grade": "A2",
-      "engineIds": [
-        "athena",
-        "hera",
-        "atlas"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900019,
@@ -5431,14 +5339,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "Home Team Over 1.5 Goals",
-        "confidence": 85,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5582,48 +5490,45 @@ window.MATCHES = [
       },
       {
         "engine": "nike",
-        "bet": true,
-        "market": "Home Team Over 1.5 Goals",
-        "confidence": 87,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below this engine's 72-point gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
         "engine": "zeus",
-        "bet": true,
-        "market": "Home Team Over 1.5 Goals",
-        "confidence": 89,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "Data quality 65/100 is below Zeus's release gate."
         ],
-        "warnings": [],
-        "dataQuality": 80,
+        "warnings": [
+          "8+ overall matches per team"
+        ],
+        "dataQuality": 65,
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "Home Team Over 1.5 Goals",
-      "confidence": 89,
-      "grade": "A1",
-      "engineIds": [
-        "nike",
-        "apollo"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   },
   {
     "id": 900020,
@@ -5721,14 +5626,14 @@ window.MATCHES = [
       },
       {
         "engine": "apollo",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 84,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No approved league trend sample is available."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5745,14 +5650,14 @@ window.MATCHES = [
       },
       {
         "engine": "poseidon",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 81,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "League environment and team profile do not point to the same goal market."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5819,14 +5724,14 @@ window.MATCHES = [
       },
       {
         "engine": "dionysus",
-        "bet": true,
-        "market": "BTTS Yes",
-        "confidence": 83,
+        "bet": false,
+        "market": "No Bet",
+        "confidence": 0,
         "reasons": [
-          "The demonstration dataset supports this market."
+          "No streak has enough length plus independent statistical confirmation."
         ],
         "warnings": [],
-        "dataQuality": 80,
+        "dataQuality": 65,
         "supportOnly": false
       },
       {
@@ -5898,25 +5803,17 @@ window.MATCHES = [
         "supportOnly": false
       }
     ],
-    "zeusDecision": {
-      "market": "BTTS Yes",
-      "confidence": 84,
-      "grade": "A2",
-      "engineIds": [
-        "apollo",
-        "dionysus",
-        "poseidon"
-      ],
+    "zeusDecision": null,
+    "predictionLocked": false,
+    "zeusWatchlist": null,
+    "zeusRejection": {
       "reasons": [
-        "The demonstration dataset supports this market."
+        "Data quality 65/100 is below Zeus's release gate."
       ],
-      "warnings": [],
-      "dataQuality": 80,
-      "odds": null,
-      "locked": false,
-      "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
-    },
-    "predictionLocked": false
+      "warnings": [
+        "8+ overall matches per team"
+      ],
+      "dataQuality": 65
+    }
   }
 ];

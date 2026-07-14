@@ -1,8 +1,14 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-07-14T17:04:40.832Z",
   "mode": "adaptive-two-pass",
+  "today": "2026-07-14",
+  "limits": {
+    "maxLeagues": 12,
+    "maxMatches": 24,
+    "tsaMax": 12
+  },
   "coverage": {
-    "fixtures": 0,
+    "fixtures": 17,
     "leagues": 0
   },
   "selected": {
@@ -13,5 +19,159 @@
     "fixtureIds": [],
     "tsaFixtureIds": []
   },
-  "topCandidates": []
+  "topCandidates": [
+    {
+      "id": 900005,
+      "home": "Real Madrid",
+      "away": "Real Sociedad",
+      "league": "Spain La Liga",
+      "kickoff": "2026-07-14T19:00:00Z",
+      "priority": 98.88,
+      "dataQuality": 65
+    },
+    {
+      "id": 900004,
+      "home": "Arsenal",
+      "away": "Aston Villa",
+      "league": "England Premier League",
+      "kickoff": "2026-07-14T18:00:00Z",
+      "priority": 96.18,
+      "dataQuality": 65
+    },
+    {
+      "id": 900006,
+      "home": "Bayern Munich",
+      "away": "Bayer Leverkusen",
+      "league": "Germany Bundesliga",
+      "kickoff": "2026-07-14T20:00:00Z",
+      "priority": 93.45,
+      "dataQuality": 65
+    },
+    {
+      "id": 900010,
+      "home": "Chelsea",
+      "away": "Newcastle",
+      "league": "England Premier League",
+      "kickoff": "2026-07-15T17:00:00Z",
+      "priority": 92.46,
+      "dataQuality": 65
+    },
+    {
+      "id": 900011,
+      "home": "Barcelona",
+      "away": "Villarreal",
+      "league": "Spain La Liga",
+      "kickoff": "2026-07-15T18:00:00Z",
+      "priority": 85.82,
+      "dataQuality": 65
+    },
+    {
+      "id": 900012,
+      "home": "Dortmund",
+      "away": "RB Leipzig",
+      "league": "Germany Bundesliga",
+      "kickoff": "2026-07-15T19:00:00Z",
+      "priority": 83.42,
+      "dataQuality": 65
+    },
+    {
+      "id": 900014,
+      "home": "Monaco",
+      "away": "Marseille",
+      "league": "France Ligue 1",
+      "kickoff": "2026-07-16T14:00:00Z",
+      "priority": 82.14,
+      "dataQuality": 65
+    },
+    {
+      "id": 900016,
+      "home": "Ajax",
+      "away": "PSV",
+      "league": "Netherlands Eredivisie",
+      "kickoff": "2026-07-17T16:00:00Z",
+      "priority": 80.43,
+      "dataQuality": 65
+    },
+    {
+      "id": 900015,
+      "home": "Sporting CP",
+      "away": "Braga",
+      "league": "Portugal Primeira Liga",
+      "kickoff": "2026-07-17T15:00:00Z",
+      "priority": 79.79,
+      "dataQuality": 65
+    },
+    {
+      "id": 900017,
+      "home": "LA Galaxy",
+      "away": "Seattle Sounders",
+      "league": "USA MLS",
+      "kickoff": "2026-07-18T17:00:00Z",
+      "priority": 79.79,
+      "dataQuality": 65
+    },
+    {
+      "id": 900020,
+      "home": "Club Brugge",
+      "away": "Genk",
+      "league": "Belgium Pro League",
+      "kickoff": "2026-07-20T20:00:00Z",
+      "priority": 79.45,
+      "dataQuality": 65
+    },
+    {
+      "id": 900009,
+      "home": "Benfica",
+      "away": "FC Porto",
+      "league": "Portugal Primeira Liga",
+      "kickoff": "2026-07-14T16:00:00Z",
+      "priority": 77.77,
+      "dataQuality": 65
+    },
+    {
+      "id": 900008,
+      "home": "PSG",
+      "away": "Lille",
+      "league": "France Ligue 1",
+      "kickoff": "2026-07-14T15:00:00Z",
+      "priority": 77.45,
+      "dataQuality": 65
+    },
+    {
+      "id": 900007,
+      "home": "AC Milan",
+      "away": "Atalanta",
+      "league": "Italy Serie A",
+      "kickoff": "2026-07-14T14:00:00Z",
+      "priority": 76.81,
+      "dataQuality": 65
+    },
+    {
+      "id": 900013,
+      "home": "Napoli",
+      "away": "Roma",
+      "league": "Italy Serie A",
+      "kickoff": "2026-07-16T20:00:00Z",
+      "priority": 76.78,
+      "dataQuality": 65
+    },
+    {
+      "id": 900018,
+      "home": "River Plate",
+      "away": "Racing Club",
+      "league": "Argentina Liga Profesional",
+      "kickoff": "2026-07-18T18:00:00Z",
+      "priority": 76.11,
+      "dataQuality": 65
+    },
+    {
+      "id": 900019,
+      "home": "Celtic",
+      "away": "Aberdeen",
+      "league": "Scotland Premiership",
+      "kickoff": "2026-07-19T19:00:00Z",
+      "priority": 75.47,
+      "dataQuality": 65
+    }
+  ]
 }
