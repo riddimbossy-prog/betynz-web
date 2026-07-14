@@ -1,4 +1,4 @@
-name: Deploy Betynz to GitHub Pages
+name: Deploy Betynz Product
 
 on:
   push:
@@ -16,27 +16,22 @@ concurrency:
 
 jobs:
   build:
-    name: Prepare Betynz Website
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Validate required files
-        run: |
-          test -f index.html
-          test -f styles.css
-          test -f app.js
-          test -f data.js
-          test -f CNAME
-      - name: Upload website files
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          path: .
+          node-version: "20"
+      - name: Validate product
+        run: node scripts/validate-product.js
+      - name: Build public release
+        run: node scripts/build-dist.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
-    name: Publish Betynz Website
     needs: build
     runs-on: ubuntu-latest
     environment:

@@ -159,3 +159,24 @@ b,strong,h1,h2,h3,h4{font-weight:800}
   body{font-size:16px}.hero-copy h1{font-size:32px}.hero-copy p{font-size:13px}
   .engine-card{padding:19px}.engine-card p{font-size:14px}.engine-tags span{font-size:11px}
 }
+
+/* =========================================================
+   BETYNZ v2.0 — REAL PRODUCT COMPONENTS
+   ========================================================= */
+.product-card{background:linear-gradient(145deg,rgba(255,115,0,.12),#11151a)}
+.product-card button{background:#ff7a00;color:#08090c}
+.pick-detail-link{appearance:none;border:0;background:transparent;color:var(--text);font:inherit;font-size:15px;font-weight:800;padding:0;cursor:pointer;text-align:left}
+.pick-detail-link:hover{color:var(--orange)}
+.lock-state{display:inline-flex;align-items:center;border-radius:999px;padding:2px 6px;font-size:9px;font-weight:900;letter-spacing:.04em}
+.lock-state.locked{background:rgba(56,210,126,.12);color:#78e9a9;border:1px solid rgba(56,210,126,.25)}
+.lock-state.provisional{background:rgba(245,189,55,.11);color:#ffd36d;border:1px solid rgba(245,189,55,.23)}
+.decision-hero{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;border:1px solid rgba(255,115,0,.25);background:linear-gradient(135deg,rgba(255,115,0,.12),rgba(255,115,0,.03));border-radius:14px;padding:16px;margin:18px 0}
+.decision-hero>div{display:flex;flex-direction:column}.decision-hero small{font-size:12px;color:var(--muted)}.decision-hero b{font-size:20px;margin-top:3px}.decision-hero strong{font-size:24px;color:var(--orange2)}
+.method-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:18px}
+.method-card{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#13171d,#0d1014);padding:24px;min-height:220px}.method-card>span{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--orange-soft);color:var(--orange);font-size:14px;font-weight:900}.method-card h3{font-size:21px;margin:18px 0 10px}.method-card p{font-size:15px;line-height:1.7;color:#c0c8d3;margin:0}
+.prose-panel{padding:24px}.prose-panel h3{font-size:20px;margin:0 0 10px}.prose-panel h3:not(:first-child){margin-top:24px}.prose-panel p{font-size:15px;line-height:1.75;color:#c2cad4;max-width:1000px}
+.status-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.status-grid article{border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#14181e,#0e1115);padding:20px;display:flex;flex-direction:column;gap:8px;min-height:110px}.status-grid small{font-size:13px;color:var(--muted)}.status-grid b{font-size:18px;overflow-wrap:anywhere}
+.risk-note{border:1px solid rgba(245,189,55,.25);background:rgba(245,189,55,.08);padding:8px 12px;border-radius:999px;color:#ffd36d}
+.mobile-slip>span{font-weight:800}
+@media(max-width:1100px){.method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.method-grid,.status-grid{grid-template-columns:1fr}.method-card{min-height:0}.decision-hero{grid-template-columns:auto 1fr}.decision-hero strong{grid-column:2}.lock-state{font-size:8px}.pick-detail-link{font-size:14px}}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Betynz</title>
+  <defs>
+    <linearGradient id="o" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9d22"/><stop offset="1" stop-color="#ff6500"/></linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#090b0f"/>
+  <path d="M30 20h54c20 0 31 9 31 24 0 10-5 18-16 22 12 3 18 11 18 23 0 18-13 29-36 29H20l18-26h42c9 0 14-4 14-10 0-6-5-9-14-9H52l14-22h20c8 0 12-3 12-8 0-5-4-8-12-8H42z" fill="#f7f8fa"/>
+  <path d="M59 10 28 58h26L36 96l58-58H68L83 10z" fill="url(#o)"/>
+  <circle cx="87" cy="88" r="22" fill="#f7f8fa" stroke="#090b0f" stroke-width="4"/>
+  <path d="m87 73 9 7-3 11H81l-3-11zM69 82l9-2 3 11-7 7M96 80l9 3-1 11-11-3M74 98l7-7 12 0 7 8-8 7H80z" fill="#090b0f"/>
+</svg>

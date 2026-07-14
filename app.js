@@ -2,26 +2,28 @@
   "use strict";
 
   const ENGINES=[
-    {id:"zeus",name:"Zeus",fn:"proRecommend",glyph:"⚡",role:"Supreme Decision Engine",summary:"Runs the strictest multi-generation consensus and rejects uncertainty before allowing a final market.",tags:["Consensus","Bankers","All markets"],checks:["Compares seven generations of the PPG model.","Requires independent agreement and a safe common market.","Downgrades or rejects selections when the engines split."],gate:"Highest authority. A match can still finish as No Bet."},
-    {id:"athena",name:"Athena",fn:"strictRecommend",glyph:"♙",role:"Control & Discipline",summary:"Measures team superiority with tighter samples, venue form and draw-risk controls.",tags:["PPG","Control","Low risk"],checks:["Compares overall and venue PPG.","Checks sample size and recent-form agreement.","Routes uncertain favorites toward DNB or double chance."],gate:"Prefers safety over volume."},
-    {id:"apollo",name:"Apollo",fn:"trendRecommend",glyph:"☀",role:"League Signal Matrix",summary:"Reads league-wide market tendencies and confirms them against the two teams in the fixture.",tags:["League DNA","Trends","Goals"],checks:["Finds the strongest recurring league markets.","Requires a meaningful historical sample.","Rejects a league tendency when current team data disagrees."],gate:"A league trend proposes; team data must confirm."},
-    {id:"ares",name:"Ares",fn:"mismatchRecommend",glyph:"⚔",role:"Mismatch Hunter",summary:"Looks for clear strength gaps across PPG, goal difference, xG, shots and recent form.",tags:["Favorites","Win/DNB","Strength gap"],checks:["Scores multiple independent mismatch dimensions.","Requires the direction to agree across the strongest signals.","Blocks aggressive wins when defensive or draw risk is high."],gate:"Aggressive only when the mismatch is real."},
-    {id:"poseidon",name:"Poseidon",fn:"leagueBiasRecommend",glyph:"♆",role:"League Environment",summary:"Specializes in competitions with strong scoring, home-bias or defensive identities.",tags:["League bias","Volatility","Goals"],checks:["Classifies the exact competition.","Finds markets that repeatedly clear the league threshold.","Checks whether both teams fit the league identity."],gate:"Never applies one league’s behavior to another."},
-    {id:"hermes",name:"Hermes",fn:"oddsIntelligenceRecommend",glyph:"☿",role:"Market Movement",summary:"Reads bookmaker movement, dispersion and cross-market agreement as supporting evidence.",tags:["Odds","Movement","Fast signal"],checks:["De-vigs opening and current 1X2 prices.","Measures how many independent books move together.","Vetoes statistical picks when the market sharply contradicts them."],gate:"Market data supports a pick; it never creates one alone."},
-    {id:"hera",name:"Hera",fn:"primeRecommend",glyph:"♕",role:"Consistency Guardian",summary:"Uses calibrated probability, league reliability and stable venue strength to find resilient selections.",tags:["Calibration","Stability","Risk control"],checks:["Normalizes team strength to league conditions.","Penalizes unreliable competition samples.","Keeps only selections with a strong conservative edge."],gate:"Stable evidence must survive every context check."},
-    {id:"artemis",name:"Artemis",fn:"halvesRecommend",glyph:"☾",role:"Half-Market Precision",summary:"Analyzes first-half and second-half scoring patterns using direct split data.",tags:["1st half","2nd half","Precision"],checks:["Requires real half-specific samples.","Compares scoring and conceding by half.","Publishes only when both teams support the same half market."],gate:"No estimated half data is treated as confirmed."},
-    {id:"hephaestus",name:"Hephaestus",fn:"expertRecommend",glyph:"⚒",role:"Deep Statistical Forge",summary:"Builds selections from opponent strength, rest, schedule density, similar opponents and split stability.",tags:["Deep data","Context","Expert"],checks:["Adjusts recent form for opponent difficulty.","Checks rest and fixture congestion.","Tests whether performance is stable across match blocks."],gate:"Missing advanced context produces abstention, not invention."},
-    {id:"demeter",name:"Demeter",fn:"momentumRecommend",glyph:"❦",role:"Form Cycle Engine",summary:"Detects improvement, decline, acceleration and reversals across recent match blocks.",tags:["Momentum","Form","Reversal"],checks:["Compares recent performance with the season baseline.","Measures how many momentum components agree.","Rejects short-term hot streaks without base strength."],gate:"Momentum must be supported by the underlying team level."},
-    {id:"dionysus",name:"Dionysus",fn:"streakRecommend",glyph:"♢",role:"Streak & Recurrence",summary:"Finds active scoring, unbeaten and market streaks while protecting against overdue reversals.",tags:["Streaks","BTTS","Goal runs"],checks:["Measures the current sequence length.","Checks recurrence across the season.","Looks for opponent counter-streaks and reversal pressure."],gate:"A streak alone is never enough."},
-    {id:"hades",name:"Hades",fn:"valueRecommend",glyph:"♜",role:"Hidden Value & Traps",summary:"Looks beneath the quoted price for calibrated value while exposing favorite traps and inflated odds.",tags:["Value","Traps","Calibration"],checks:["Requires a large calibrated sample.","Uses the conservative probability bound, not the headline score.","Rejects wide uncertainty intervals and negative expected value."],gate:"No calibration means No Bet."},
-    {id:"atlas",name:"Atlas",fn:"ultraRecommend",glyph:"◉",role:"Heavy Data Strength",summary:"Carries recent-ten, venue and league-normalized strength into one conservative team assessment.",tags:["Recent 10","Venue","Strength"],checks:["Combines venue and overall performance.","Uses recent-ten data when the sample is valid.","Penalizes volatile result patterns."],gate:"A heavy score still needs a supported market."},
-    {id:"orion",name:"Orion",fn:"apexRecommend",glyph:"✦",role:"Advanced Edge Tracker",summary:"Tracks uncertainty intervals and only fires when the conservative edge remains positive.",tags:["Intervals","xG/SOT","Apex"],checks:["Builds a conservative range around team strength.","Checks whether the lower edge still supports the market.","Rejects compressed same-tier fixtures."],gate:"The lower bound—not the optimistic estimate—must pass."},
-    {id:"nike",name:"Nike",fn:"eliteRecommend",glyph:"✧",role:"Banker Victory Engine",summary:"Targets high-quality result markets using Bayesian strength, form and volatility controls.",tags:["Bankers","Wins","Bayesian"],checks:["Blends venue, overall and recent strength.","Adjusts for opposition and competition volatility.","Downgrades favorites that cannot convert control into goals."],gate:"Victory picks require attacking proof."},
-    {id:"prometheus",name:"Prometheus",fn:"recommend",glyph:"♨",role:"Foundation Model",summary:"The original PPG foundation that supplies a clear baseline for every stronger generation.",tags:["Baseline","PPG","Foundation"],checks:["Calculates venue and overall PPG.","Uses recent form as confirmation.","Routes the safest supported result or goal market."],gate:"A baseline signal is evidence, not the final decision."}
+    {id:"zeus",name:"Zeus",fn:"zeusRecommend",glyph:"⚡",role:"Supreme Decision Engine",summary:"Runs the strictest multi-generation consensus and rejects uncertainty before allowing a final market.",tags:["Consensus","Bankers","All markets"],checks:["Compares seven generations of the PPG model.","Requires independent agreement and a safe common market.","Downgrades or rejects selections when the engines split."],gate:"Highest authority. A match can still finish as No Bet."},
+    {id:"athena",name:"Athena",fn:"athenaRecommend",glyph:"♙",role:"Control & Discipline",summary:"Measures team superiority with tighter samples, venue form and draw-risk controls.",tags:["PPG","Control","Low risk"],checks:["Compares overall and venue PPG.","Checks sample size and recent-form agreement.","Routes uncertain favorites toward DNB or double chance."],gate:"Prefers safety over volume."},
+    {id:"apollo",name:"Apollo",fn:"apolloRecommend",glyph:"☀",role:"League Signal Matrix",summary:"Reads league-wide market tendencies and confirms them against the two teams in the fixture.",tags:["League DNA","Trends","Goals"],checks:["Finds the strongest recurring league markets.","Requires a meaningful historical sample.","Rejects a league tendency when current team data disagrees."],gate:"A league trend proposes; team data must confirm."},
+    {id:"ares",name:"Ares",fn:"aresRecommend",glyph:"⚔",role:"Mismatch Hunter",summary:"Looks for clear strength gaps across PPG, goal difference, xG, shots and recent form.",tags:["Favorites","Win/DNB","Strength gap"],checks:["Scores multiple independent mismatch dimensions.","Requires the direction to agree across the strongest signals.","Blocks aggressive wins when defensive or draw risk is high."],gate:"Aggressive only when the mismatch is real."},
+    {id:"poseidon",name:"Poseidon",fn:"poseidonRecommend",glyph:"♆",role:"League Environment",summary:"Specializes in competitions with strong scoring, home-bias or defensive identities.",tags:["League bias","Volatility","Goals"],checks:["Classifies the exact competition.","Finds markets that repeatedly clear the league threshold.","Checks whether both teams fit the league identity."],gate:"Never applies one league’s behavior to another."},
+    {id:"hermes",name:"Hermes",fn:"hermesRecommend",glyph:"☿",role:"Market Movement",summary:"Reads bookmaker movement, dispersion and cross-market agreement as supporting evidence.",tags:["Odds","Movement","Fast signal"],checks:["De-vigs opening and current 1X2 prices.","Measures how many independent books move together.","Vetoes statistical picks when the market sharply contradicts them."],gate:"Market data supports a pick; it never creates one alone."},
+    {id:"hera",name:"Hera",fn:"heraRecommend",glyph:"♕",role:"Consistency Guardian",summary:"Uses calibrated probability, league reliability and stable venue strength to find resilient selections.",tags:["Calibration","Stability","Risk control"],checks:["Normalizes team strength to league conditions.","Penalizes unreliable competition samples.","Keeps only selections with a strong conservative edge."],gate:"Stable evidence must survive every context check."},
+    {id:"artemis",name:"Artemis",fn:"artemisRecommend",glyph:"☾",role:"Half-Market Precision",summary:"Analyzes first-half and second-half scoring patterns using direct split data.",tags:["1st half","2nd half","Precision"],checks:["Requires real half-specific samples.","Compares scoring and conceding by half.","Publishes only when both teams support the same half market."],gate:"No estimated half data is treated as confirmed."},
+    {id:"hephaestus",name:"Hephaestus",fn:"hephaestusRecommend",glyph:"⚒",role:"Deep Statistical Forge",summary:"Builds selections from opponent strength, rest, schedule density, similar opponents and split stability.",tags:["Deep data","Context","Expert"],checks:["Adjusts recent form for opponent difficulty.","Checks rest and fixture congestion.","Tests whether performance is stable across match blocks."],gate:"Missing advanced context produces abstention, not invention."},
+    {id:"demeter",name:"Demeter",fn:"demeterRecommend",glyph:"❦",role:"Form Cycle Engine",summary:"Detects improvement, decline, acceleration and reversals across recent match blocks.",tags:["Momentum","Form","Reversal"],checks:["Compares recent performance with the season baseline.","Measures how many momentum components agree.","Rejects short-term hot streaks without base strength."],gate:"Momentum must be supported by the underlying team level."},
+    {id:"dionysus",name:"Dionysus",fn:"dionysusRecommend",glyph:"♢",role:"Streak & Recurrence",summary:"Finds active scoring, unbeaten and market streaks while protecting against overdue reversals.",tags:["Streaks","BTTS","Goal runs"],checks:["Measures the current sequence length.","Checks recurrence across the season.","Looks for opponent counter-streaks and reversal pressure."],gate:"A streak alone is never enough."},
+    {id:"hades",name:"Hades",fn:"hadesRecommend",glyph:"♜",role:"Hidden Value & Traps",summary:"Looks beneath the quoted price for calibrated value while exposing favorite traps and inflated odds.",tags:["Value","Traps","Calibration"],checks:["Requires a large calibrated sample.","Uses the conservative probability bound, not the headline score.","Rejects wide uncertainty intervals and negative expected value."],gate:"No calibration means No Bet."},
+    {id:"atlas",name:"Atlas",fn:"atlasRecommend",glyph:"◉",role:"Heavy Data Strength",summary:"Carries recent-ten, venue and league-normalized strength into one conservative team assessment.",tags:["Recent 10","Venue","Strength"],checks:["Combines venue and overall performance.","Uses recent-ten data when the sample is valid.","Penalizes volatile result patterns."],gate:"A heavy score still needs a supported market."},
+    {id:"orion",name:"Orion",fn:"orionRecommend",glyph:"✦",role:"Advanced Edge Tracker",summary:"Tracks uncertainty intervals and only fires when the conservative edge remains positive.",tags:["Intervals","xG/SOT","Apex"],checks:["Builds a conservative range around team strength.","Checks whether the lower edge still supports the market.","Rejects compressed same-tier fixtures."],gate:"The lower bound—not the optimistic estimate—must pass."},
+    {id:"nike",name:"Nike",fn:"nikeRecommend",glyph:"✧",role:"Banker Victory Engine",summary:"Targets high-quality result markets using Bayesian strength, form and volatility controls.",tags:["Bankers","Wins","Bayesian"],checks:["Blends venue, overall and recent strength.","Adjusts for opposition and competition volatility.","Downgrades favorites that cannot convert control into goals."],gate:"Victory picks require attacking proof."},
+    {id:"prometheus",name:"Prometheus",fn:"prometheusRecommend",glyph:"♨",role:"Foundation Model",summary:"The original PPG foundation that supplies a clear baseline for every stronger generation.",tags:["Baseline","PPG","Foundation"],checks:["Calculates venue and overall PPG.","Uses recent form as confirmation.","Routes the safest supported result or goal market."],gate:"A baseline signal is evidence, not the final decision."}
   ];
   const ENGINE_MAP=Object.fromEntries(ENGINES.map(e=>[e.id,e]));
   const matches=Array.isArray(window.MATCHES)?window.MATCHES:[];
-  const isDemo=!!window.BETYNZ_DEMO;
+  const meta=window.BETYNZ_META&&typeof window.BETYNZ_META==="object"?window.BETYNZ_META:{};
+  const history=Array.isArray(window.BETYNZ_HISTORY)?window.BETYNZ_HISTORY:[];
+  const isDemo=!!window.BETYNZ_DEMO||!!meta.isDemo;
   const $=(s,root=document)=>root.querySelector(s);
   const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
   const esc=v=>String(v==null?"":v).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
@@ -54,9 +56,12 @@
   function runEngine(m,engine){
     const ck=`${keyOf(m)}|${engine.id}`;if(cache.has(ck))return cache.get(ck);
     let out=null;
-    if(isDemo&&Array.isArray(m.demoPredictions)){
+    if(Array.isArray(m.olympianPredictions)){
+      const d=m.olympianPredictions.find(x=>x.engine===engine.id);
+      out=d&&d.bet?{bet:true,primary:normalizeMarket(d.market),confidence:Number(d.confidence),reasons:d.reasons||[],warnings:d.warnings||[],dataQuality:d.dataQuality,supportOnly:!!d.supportOnly}:null;
+    }else if(isDemo&&Array.isArray(m.demoPredictions)){
       const d=m.demoPredictions.find(x=>x.engine===engine.id);
-      out=d?{bet:true,banker:Number(d.confidence)>=88,primary:normalizeMarket(d.market),confidence:Number(d.confidence),reasons:d.reasons||["Demonstration engine agreement."],warnings:d.warnings||[]}:null;
+      out=d?{bet:true,primary:normalizeMarket(d.market),confidence:Number(d.confidence),reasons:d.reasons||["Demonstration engine agreement."],warnings:d.warnings||[]}:null;
     }else{
       const fn=window[engine.fn];
       if(typeof fn==="function"){try{out=fn(m)}catch(err){out=null}}
@@ -68,6 +73,12 @@
 
   function finalPick(m){
     const mk=keyOf(m);if(pickCache.has(mk))return pickCache.get(mk);
+    if(m.zeusDecision&&m.zeusDecision.market){
+      const z=ENGINE_MAP.zeus,ids=Array.isArray(m.zeusDecision.engineIds)?m.zeusDecision.engineIds:[];
+      const engs=[z,...ids.map(id=>ENGINE_MAP[id]).filter(Boolean)];
+      const p={m,market:normalizeMarket(m.zeusDecision.market),confidence:Math.round(Number(m.zeusDecision.confidence||0)),grade:m.zeusDecision.grade||"WATCH",engine:z,engines:engs,votes:ids.length,odds:Number(m.zeusDecision.odds)||priceOf(m,m.zeusDecision.market),conflict:false,reasons:m.zeusDecision.reasons||[],warnings:m.zeusDecision.warnings||[],locked:!!m.zeusDecision.locked,provisional:!!m.zeusDecision.provisional,dataQuality:m.zeusDecision.dataQuality??null};
+      pickCache.set(mk,p);return p;
+    }
     const votes=[];
     ENGINES.forEach(e=>{const o=runEngine(m,e);if(o)votes.push({engine:e,out:o,market:o.primary,confidence:o.confidence||0})});
     if(!votes.length){pickCache.set(mk,null);return null}
@@ -108,16 +119,20 @@
   }
 
   function renderMetrics(){
-    const picks=allPicks(),up=picks.filter(p=>isUpcoming(p.m)),settled=picks.map(p=>settlePick(p)).filter(x=>x!=="Pending"),wins=settled.filter(x=>x==="Won").length;
-    const hit=settled.length?Math.round(wins/settled.length*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
+    const picks=allPicks(),up=picks.filter(p=>isUpcoming(p.m));
+    const settled=history.filter(x=>x&&["Won","Lost","Void"].includes(x.result));
+    const wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
+    const hit=wins+losses?Math.round(wins/(wins+losses)*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
+    const active=ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
     $("#metric-grid").innerHTML=[
-      ["♜",ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length||16,"Active Engines",isDemo?"Demo data loaded":"Systems online"],
+      ["♜",active,"Active Engines",isDemo?"Demo snapshot":"Qualified systems"],
       ["▦",matches.filter(isUpcoming).length,"Upcoming Matches",`${dates().length} board days`],
-      ["◎",`${hit}%`,"Settled Hit Rate",settled.length?`${settled.length} graded picks`:"Waiting for results"],
-      ["◆",avg,"Average Pick Odds",priced.length?"Qualified prices":"Odds pending"]
+      ["◎",settled.length?`${hit}%`:"—","Verified Record",settled.length?`${settled.length} locked results`:"Waiting for locked results"],
+      ["◆",avg,"Average Pick Odds",priced.length?"Current qualified prices":"Odds pending"]
     ].map(x=>`<article class="metric-card"><span class="metric-icon">${x[0]}</span><div><b>${esc(x[1])}</b><small>${esc(x[2])}</small><em>${esc(x[3])}</em></div></article>`).join("");
-    $("#trend-rate").textContent=settled.length?`${hit}%`:"—";$("#streak-value").innerHTML=`${winningStreak(picks)} <em>Days</em>`;
+    $("#trend-rate").textContent=settled.length?`${hit}%`:"—";$("#streak-value").innerHTML=`${winningStreakHistory()} <em>Days</em>`;
   }
+  function winningStreakHistory(){const by={};history.forEach(x=>{const d=String(x.kickoff||"").slice(0,10);if(d)(by[d]=by[d]||[]).push(x.result)});let n=0;for(const d of Object.keys(by).sort().reverse()){if(by[d].some(x=>x==="Won"))n++;else break}return n}
   function winningStreak(picks){const by={};picks.forEach(p=>{const r=settlePick(p);if(r!=="Pending")(by[dateOf(p.m)]=by[dateOf(p.m)]||[]).push(r)});let n=0;Object.keys(by).sort().reverse().some(d=>{if(by[d].some(x=>x==="Won")){n++;return false}return true});return n}
 
   function renderEngineTabs(){
@@ -141,7 +156,7 @@
     const m=p.m,added=slip.some(x=>x.key===slipKey(p));const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");
     return `<article class="match-row" data-pick-key="${esc(keyOf(m))}">
       <div class="fixture-cell"><span class="league-flag">${countryFlag(m)}</span><b>${esc(m.home)}<br>${esc(m.away)}</b><small>${esc(m.league||"Football")} · ${kickoff(m)}${isLive(m)?" · LIVE":""}</small></div>
-      <div class="market-cell"><b>${esc(marketClean(p.market))}</b><small>${esc(marketFamily(p.market))} · <span class="grade ${p.grade}">${p.grade}</span></small></div>
+      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.grade}">${p.grade}</span> · <span class="lock-state ${p.locked?"locked":"provisional"}">${p.locked?"LOCKED":"PROVISIONAL"}</span></small></div>
       <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
       <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
       <div class="odds-cell">${p.odds?p.odds.toFixed(2):"—"}</div>
@@ -157,8 +172,8 @@
   }
 
   function renderRecentResults(){
-    const rows=allPicks().filter(p=>settlePick(p)!=="Pending").slice(0,5);
-    $("#recent-results").innerHTML=rows.length?rows.map(p=>{const r=settlePick(p);return `<div class="recent-result"><span>${esc(p.m.home)} vs ${esc(p.m.away)}</span><b class="${r.toLowerCase()}">${r}${p.odds?` · ${p.odds.toFixed(2)}`:""}</b></div>`}).join(""):`<div class="slip-empty">No settled results yet.</div>`;
+    const rows=history.slice(0,5);
+    $("#recent-results").innerHTML=rows.length?rows.map(x=>`<div class="recent-result"><span>${esc(x.home)} vs ${esc(x.away)}</span><b class="${String(x.result).toLowerCase()}">${esc(x.result)}${x.odds?` · ${Number(x.odds).toFixed(2)}`:""}</b></div>`).join(""):`<div class="slip-empty">No locked results yet.</div>`;
   }
 
   function renderPicksView(){
@@ -178,6 +193,7 @@
     $$("[data-engine-modal]").forEach(c=>c.onclick=()=>openEngine(c.dataset.engineModal));
   }
   function openEngine(id){const e=ENGINE_MAP[id];if(!e)return;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
+  function openPickDetail(matchKey){const p=allPicks().find(x=>keyOf(x.m)===String(matchKey));if(!p)return;const m=p.m;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">⚡</span><div><h2 id="engine-modal-title">${esc(m.home)} vs ${esc(m.away)}</h2><p>${esc(m.league||"Football")} · ${esc(friendlyDate(dateOf(m)))} · ${esc(kickoff(m))}</p></div></div><div class="decision-hero"><span class="grade ${p.grade}">${p.grade}</span><div><small>Zeus decision</small><b>${esc(marketClean(p.market))}</b></div><strong>${p.confidence}%</strong></div><h4>Why it qualified</h4><ul>${(p.reasons||[]).map(x=>`<li>${esc(x)}</li>`).join("")||"<li>No public reason was recorded.</li>"}</ul><h4>Prediction status</h4><div class="rule-box">${p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional. It may change before the 12-hour lock window."}${p.dataQuality!=null?` Data quality: ${esc(p.dataQuality)}/100.`:""}</div>${p.warnings&&p.warnings.length?`<h4>Warnings</h4><ul>${p.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
   function closeEngine(){$("#engine-modal-backdrop").classList.remove("open");$("#engine-modal").classList.remove("open")}
 
   function renderBankers(){
@@ -185,8 +201,9 @@
     $("#banker-summary").innerHTML=[[a1,"A1 Bankers","Strictest grade"],[a2,"A2 Strong Picks","Qualified support"],[rows.length,"Total Selections","Across active dates"],[avg,"Average Odds","Priced markets"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b><em>${x[2]}</em></article>`).join("");$("#banker-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No banker has cleared every safety gate yet.")
   }
   function renderResults(){
-    const rows=allPicks().map(p=>({...p,result:settlePick(p)})).filter(p=>p.result!=="Pending"),wins=rows.filter(p=>p.result==="Won").length,losses=rows.filter(p=>p.result==="Lost").length,voids=rows.filter(p=>p.result==="Void").length,rate=rows.length?Math.round(wins/(wins+losses||1)*100):0;
-    $("#result-metrics").innerHTML=[[rows.length,"Settled"],[wins,"Won"],[losses,"Lost"],[`${rate}%`,"Hit rate"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b></article>`).join("");$("#results-list").innerHTML=rows.length?`<div class="result-head"><span>Match</span><span>Selection</span><span>Score</span><span>Result</span></div>${rows.map(p=>`<div class="result-row"><span><b>${esc(p.m.home)} vs ${esc(p.m.away)}</b><br><small>${esc(dateOf(p.m))}</small></span><span>${esc(marketClean(p.market))}</span><span>${p.m.homeGoals}–${p.m.awayGoals}</span><span class="result-status ${p.result.toLowerCase()}">${p.result}</span></div>`).join("")}`:empty("Finished matches will appear after the score workflow runs.")
+    const rows=history.filter(x=>["Won","Lost","Void"].includes(x.result)),wins=rows.filter(x=>x.result==="Won").length,losses=rows.filter(x=>x.result==="Lost").length,voids=rows.filter(x=>x.result==="Void").length,rate=wins+losses?Math.round(wins/(wins+losses)*100):0;
+    $("#result-metrics").innerHTML=[[rows.length,"Settled"],[wins,"Won"],[losses,"Lost"],[rows.length?`${rate}%`:"—","Hit rate"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b></article>`).join("");
+    $("#results-list").innerHTML=rows.length?`<div class="result-head"><span>Match</span><span>Selection</span><span>Score</span><span>Result</span></div>${rows.map(x=>`<div class="result-row"><span><b>${esc(x.home)} vs ${esc(x.away)}</b><br><small>${esc(String(x.kickoff||"").slice(0,10))}</small></span><span>${esc(marketClean(x.market))}</span><span>${esc(x.score||"—")}</span><span class="result-status ${String(x.result).toLowerCase()}">${esc(x.result)}</span></div>`).join("")}`:empty("Only predictions locked before kickoff are counted in the public record.");
   }
 
   function slipKey(p){return `${keyOf(p.m)}|${p.market}`}
@@ -208,7 +225,7 @@
   function wire(){
     $$('[data-view]').forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
     $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
-    document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b)addPickByKey(b.dataset.addPick)});
+    document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b){addPickByKey(b.dataset.addPick);return}const d=e.target.closest("[data-pick-detail]");if(d)openPickDetail(d.dataset.pickDetail)});
     $("#menu-btn").onclick=()=>$("#sidebar").classList.toggle("open");
     $("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};$("#dashboard-market").onchange=renderDashboardList;$("#dashboard-odds").onchange=renderDashboardList;
     $("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
@@ -224,7 +241,9 @@
 
   function init(){
     const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
-    $("#system-status").textContent=isDemo?"Demo board · run Update Betynz Data":"API snapshot available";$("#data-state").textContent=isDemo?"Demo Data":"Live Data";
+    const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
+    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":stale?"Data snapshot is stale":"Data pipeline healthy";$("#data-state").textContent=isDemo?"Demo Data":stale?"Stale Data":"Live Data";
+    const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
     renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();showView(activeView);
     if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js").catch(()=>{});
   }

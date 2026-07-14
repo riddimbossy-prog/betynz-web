@@ -1,76 +1,80 @@
-# Betynz.com Production Build v1
+# Betynz.com — Real Product v2.0
 
 **Tagline:** Smart Betting Predictions
 
-This repository is ready for GitHub Pages and the custom domain `betynz.com`.
+This is the deployable Betynz core product for GitHub Pages. It uses GitHub Actions as the private data-processing layer and publishes only generated public football data.
 
-## What is included
+## What is real in v2.0
 
-- New black-and-orange Betynz dashboard for desktop, tablets, phones and foldables
-- 16 Olympian prediction identities
-- Responsive full match board, banker board, results page and engine directory
-- Local slip builder with combined odds and copy support
-- PWA manifest, install icons, service worker, `CNAME` and GitHub Pages deployment
-- API-Football fixture, standings, form, odds and live-score jobs
-- TheStatsAPI enrichment pass using the existing `STATS_API_KEY` secret
-- Demo data so the interface is populated before the first successful API run
+- API-Football fixture, standings, team statistics, odds and score pipeline
+- Optional TheStatsAPI xG and multi-book odds enrichment
+- Six-day forward board plus one-day score lookback
+- Fifteen independently implemented Olympian specialist engines
+- Zeus consensus, contradiction and data-quality gate
+- Pre-kickoff prediction locking for record integrity
+- Public results history based only on locked predictions
+- A1, A2, Watchlist and No Bet outcomes
+- Responsive black/orange dashboard, engine directory, banker board, results, methodology and data-status views
+- Local selection list and preferences
+- PWA support
+- GitHub Pages release built from a safe `dist/` folder
 
-## Install in the existing `betynz-web` repository
+## What is intentionally not faked
 
-1. Download and extract the ZIP.
-2. Open the extracted `Betynz_Production_v1` folder.
-3. Upload **all files and folders inside it** to the root of the GitHub repository.
-4. When GitHub asks about conflicts, replace the old starter files.
-5. Commit directly to `main` with the message:
+There is no real user authentication, payment, premium subscription, community posting or bookmaker integration in this build. Those features require a private backend and should not be simulated in production.
 
-   `Install Betynz production build v1`
-
-6. Open **Actions** and wait for **Deploy Betynz to GitHub Pages** to turn green.
-7. Run **Update Betynz Data** manually once.
-
-## Required repository secrets
-
-These names match the current setup:
+## Required GitHub repository secrets
 
 - `API_FOOTBALL_KEY`
 - `STATS_API_KEY`
-- `DAYS_BACK` — value only, recommended `1`
-- `DAYS_FWD` — value only, recommended `6`
+- `DAYS_BACK` — recommended value `1`
+- `DAYS_FWD` — recommended value `6`
 
-Do not put API keys in `data.js`, `app.js`, `config.txt`, screenshots or commits.
+Never commit API keys to this repository.
 
-## Required GitHub permission
+## GitHub permission
 
-Go to:
+Open:
 
 `Settings → Actions → General → Workflow permissions`
 
-Choose **Read and write permissions** and save. The data jobs need permission to commit generated `data.js` updates.
+Select **Read and write permissions**.
 
-## Workflows
+## First live run
 
-### Deploy Betynz to GitHub Pages
+1. Upload all files in this folder to the root of `betynz-web`.
+2. Commit to `main`.
+3. Wait for **Deploy Betynz Product** to succeed.
+4. Open **Actions → Update Betynz Product Data → Run workflow**.
+5. When that workflow succeeds, it replaces the demo snapshot with real API data.
 
-Runs after every push to `main`. It publishes the repository to GitHub Pages.
+## Product workflows
 
-### Update Betynz Data
+### Deploy Betynz Product
 
-Runs every six hours and can also be started manually. It:
+Validates the code, builds a public `dist/` folder, and deploys only safe public assets to GitHub Pages. Source scripts, private runtime files and internal model ledgers are not published.
 
-1. Creates a temporary private config from GitHub Secrets
-2. Pulls fixtures and football statistics from API-Football
-3. Optionally enriches matching fixtures through TheStatsAPI
-4. Replaces the demo `data.js` with the live snapshot
-5. Commits the generated data back to the repository
+### Update Betynz Product Data
+
+Runs every six hours. It creates a temporary config from GitHub Secrets, fetches and enriches data, evaluates all Olympian engines, applies Zeus, locks eligible predictions, validates the snapshot and commits generated public data.
 
 ### Update Betynz Live Scores
 
-Runs every 15 minutes to refresh scores and match status. Increase the interval if the API plan has a small daily request allowance.
+Runs every 15 minutes. It refreshes match status and scores, settles locked predictions, updates the verified record and republishes the data snapshot.
 
-## Important engine note
+## Prediction integrity
 
-The website uses the mature 16-engine suite from the uploaded Betynz package and presents the systems under Betynz Olympian identities. The uploaded four-engine specification is also kept in `docs/` as an architecture reference. The live selection list is conservative: engines may return **No Bet**, and no match is forced onto the board.
+Predictions more than 12 hours from kickoff are provisional. Inside the 12-hour window, an eligible Zeus decision is locked. Only a decision that was locked before kickoff can enter `results-history.json`.
 
-## First launch behavior
+Model scores are internal evidence scores, not guarantees or certified probabilities.
 
-Before the first successful data workflow, the site shows demonstration fixtures and clearly labels the source as **Demo Data**. After `Update Betynz Data` completes, the workflow removes the demo marker and the header changes to **Live Data**.
+## Local checks
+
+```bash
+npm run snapshot
+npm run check
+npm run build
+npm run serve
+```
+
+Open `http://localhost:8080`.

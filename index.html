@@ -11,13 +11,13 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=1.2">
+  <link rel="stylesheet" href="styles.css?v=2.0">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
       <a class="brand" href="#dashboard" aria-label="Betynz home">
-        <img src="assets/betynz-logo.png" alt="">
+        <img src="assets/betynz-mark.svg" alt="">
         <span>BETYNZ<em>.com</em></span>
       </a>
 
@@ -27,15 +27,15 @@
         <button class="nav-item" data-view="engines"><span>♜</span><b>Olympian Engines</b></button>
         <button class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
         <button class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
-        <button class="nav-item" data-view="news"><span>▤</span><b>News</b></button>
-        <button class="nav-item" data-view="community"><span>◎</span><b>Community</b></button>
-        <button class="nav-item" data-view="profile"><span>○</span><b>Profile</b></button>
+        <button class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
+        <button class="nav-item" data-view="status"><span>◎</span><b>Data Status</b></button>
+        <button class="nav-item" data-view="profile"><span>○</span><b>Settings</b></button>
       </nav>
 
-      <section class="premium-card">
-        <span class="crown">♛</span>
-        <div><strong>Go Premium</strong><small>Unlock every engine, banker and advanced insight.</small></div>
-        <button type="button" data-toast="Premium plans will be connected in the membership phase.">Upgrade Now</button>
+      <section class="premium-card product-card">
+        <span class="crown">⚡</span>
+        <div><strong>16 Engines Active</strong><small>Every public selection must pass the Zeus consensus gate.</small></div>
+        <button type="button" data-view="methodology">View Method</button>
       </section>
 
       <div class="server-state"><i></i><span><b>System Status</b><small id="system-status">Checking data…</small></span></div>
@@ -47,8 +47,8 @@
         <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Search matches, teams or leagues…" autocomplete="off"></label>
         <div class="top-actions">
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
-          <button class="icon-btn" data-toast="No new alerts">♧<sup>3</sup></button>
-          <button class="profile-chip" data-view="profile"><span class="avatar">BZ</span><span><b>Betynz Member</b><small>Free account</small></span><em>⌄</em></button>
+          <button class="icon-btn" data-view="status" aria-label="Open data status">◎</button>
+          <button class="profile-chip" data-view="profile"><span class="avatar">BZ</span><span><b>Guest Settings</b><small>Local preferences</small></span><em>⌄</em></button>
         </div>
       </header>
 
@@ -59,8 +59,8 @@
               <section class="hero-panel">
                 <div class="hero-copy">
                   <span class="eyebrow">SMART BETTING PREDICTIONS</span>
-                  <h1>Predict Smarter.<br><mark>Build Better Slips.</mark></h1>
-                  <p>Football selections shaped by statistics, league context and disciplined risk control—not guesswork.</p>
+                  <h1>Predict Smarter.<br><mark>Read Matches Better.</mark></h1>
+                  <p>Football analysis shaped by statistics, league context and disciplined risk control—not guesswork.</p>
                   <div class="hero-points"><span>◉ 16 Olympian Engines</span><span>◇ Verified Odds</span><span>▣ Smart Risk Control</span></div>
                 </div>
                 <div class="hero-visual" aria-hidden="true">
@@ -83,23 +83,22 @@
               </section>
 
               <section class="lower-grid">
-                <article class="mini-panel"><div class="panel-title"><h3>Latest News</h3><button data-view="news">View all</button></div><div class="news-card"><div class="news-image">⚽</div><div><b>Betynz engine board is now connected</b><p>Live fixtures will refresh automatically through GitHub Actions.</p><small>Platform update</small></div></div></article>
-                <article class="mini-panel"><div class="panel-title"><h3>Community Talk</h3><button data-view="community">View all</button></div><div class="community-post"><span class="avatar">SM</span><div><b>StatMaster <em>Pro</em></b><small>3h ago</small><p>The safest board is the one that knows when to say No Bet.</p></div><span>♡ 24</span></div></article>
+                <article class="mini-panel"><div class="panel-title"><h3>How Betynz Decides</h3><button data-view="methodology">View method</button></div><div class="news-card"><div class="news-image">⚡</div><div><b>Specialists first. Zeus last.</b><p>Fifteen specialist engines analyze the match before Zeus applies conflict, quality and consensus gates.</p><small>Transparent methodology</small></div></div></article>
+                <article class="mini-panel"><div class="panel-title"><h3>Record Integrity</h3><button data-view="status">View status</button></div><div class="community-post"><span class="avatar">✓</span><div><b>Predictions lock before kickoff</b><small>Public record rule</small><p>Only locked predictions are included in the verified results record.</p></div><span>18+</span></div></article>
               </section>
             </div>
 
             <aside class="dashboard-rail">
               <section class="rail-panel slip-panel">
-                <div class="panel-title"><h3>Slip Builder</h3><span class="count-badge" id="slip-count">0</span></div>
+                <div class="panel-title"><h3>Selection List</h3><span class="count-badge" id="slip-count">0</span></div>
                 <div id="slip-items" class="slip-items"></div>
                 <div class="slip-total"><span>Total Odds</span><b id="slip-odds">1.00</b></div>
-                <label class="stake-row"><span>Suggested Stake</span><input id="stake-input" type="number" min="0" step="1" value="10"></label>
-                <button class="primary-btn" id="copy-slip">Copy Slip</button>
+                <button class="primary-btn" id="copy-slip">Copy Analysis List</button>
                 <button class="text-btn" id="clear-slip">Clear Slip</button>
               </section>
 
               <section class="rail-panel trend-panel">
-                <div class="panel-title"><h3>Performance Trend</h3><span>30 Days</span></div>
+                <div class="panel-title"><h3>Verified Record</h3><span>Locked picks</span></div>
                 <div class="chart" id="trend-chart"><svg viewBox="0 0 320 120" preserveAspectRatio="none"><polyline points="0,82 35,72 67,88 101,52 138,73 175,45 212,69 246,55 282,61 320,34"></polyline><circle cx="320" cy="34" r="5"></circle></svg><b id="trend-rate">—</b></div>
               </section>
 
@@ -125,7 +124,7 @@
         </section>
 
         <section class="view" data-view-panel="bankers">
-          <div class="page-head"><div><span>HIGHEST CONVICTION</span><h2>Banker Board</h2><p>Only A1 and A2 selections with no hard engine contradiction appear here.</p></div><span class="risk-note">18+ · Bet responsibly</span></div>
+          <div class="page-head"><div><span>HIGHEST CONVICTION</span><h2>Banker Board</h2><p>Only A1 and A2 selections with no hard engine contradiction appear here.</p></div><span class="risk-note">18+ · Informational analysis only</span></div>
           <div class="banker-summary" id="banker-summary"></div>
           <section class="page-panel"><div class="match-list expanded" id="banker-list"></div></section>
         </section>
@@ -136,38 +135,45 @@
           <section class="page-panel"><div class="result-table" id="results-list"></div></section>
         </section>
 
-        <section class="view" data-view-panel="news">
-          <div class="page-head"><div><span>FOOTBALL INTELLIGENCE</span><h2>Betynz Newsroom</h2><p>Platform updates, match context and data-driven football stories.</p></div></div>
-          <div class="content-grid"><article class="feature-story"><div class="story-art">BZ</div><span>Platform</span><h3>Why Betynz uses multiple engines instead of one prediction model</h3><p>Independent perspectives reduce the risk of a single statistical blind spot deciding the final market.</p></article><div class="story-list"><article><b>Fixture data refresh guide</b><p>Your API-Football workflow updates the match board automatically.</p></article><article><b>What A1 and A2 really mean</b><p>Grades describe evidence quality—not guaranteed outcomes.</p></article><article><b>The discipline of No Bet</b><p>Rejecting weak fixtures is a feature, not a failure.</p></article></div></div>
+        <section class="view" data-view-panel="methodology">
+          <div class="page-head"><div><span>TRANSPARENT MODEL</span><h2>How Betynz Works</h2><p>Every selection must pass data-quality, specialist and Zeus consensus controls.</p></div></div>
+          <div class="method-grid">
+            <article class="method-card"><span>01</span><h3>Data Quality Gate</h3><p>Fixture identity, team samples, venue samples, league history and current odds are checked before any engine can publish.</p></article>
+            <article class="method-card"><span>02</span><h3>15 Specialist Engines</h3><p>Control, trends, mismatch, goals, odds, halves, xG, form, streaks and value are assessed independently.</p></article>
+            <article class="method-card"><span>03</span><h3>Zeus Consensus</h3><p>Opposite markets, weak leads and low-confidence agreement are rejected. No match is forced onto the board.</p></article>
+            <article class="method-card"><span>04</span><h3>Pre-Kickoff Lock</h3><p>Qualified selections lock inside the 12-hour window. Only those locked records count toward public performance.</p></article>
+          </div>
+          <section class="page-panel prose-panel"><h3>Public grading</h3><p><b>A1</b> requires at least three specialist confirmations, a strong consensus lead and an 88+ model score. <b>A2</b> requires at least two confirmations and an 82+ score. Lower-quality or contradictory matches are not published.</p><p>Model scores are not guarantees or real-world probabilities. Football outcomes remain uncertain.</p></section>
         </section>
 
-        <section class="view" data-view-panel="community">
-          <div class="page-head"><div><span>BETYNZ COMMUNITY</span><h2>Prediction Talk</h2><p>A lightweight community preview ready for account and Supabase integration.</p></div></div>
-          <section class="page-panel community-feed"><article><span class="avatar">DA</span><div><b>DataAce</b><small>Today</small><p>Athena and Atlas agreeing on the same market is my favorite signal.</p><div>♡ 18 · Reply</div></div></article><article><span class="avatar">GO</span><div><b>GoalOracle</b><small>Today</small><p>The No Bet filter saved me from forcing a late fixture.</p><div>♡ 31 · Reply</div></div></article></section>
+        <section class="view" data-view-panel="status">
+          <div class="page-head"><div><span>PIPELINE HEALTH</span><h2>Data Status</h2><p>Live source, generation time and current board coverage.</p></div></div>
+          <div class="status-grid" id="data-status-content"></div>
+          <section class="page-panel prose-panel"><h3>Freshness policy</h3><p>The full football snapshot refreshes every six hours. Live scores refresh every 15 minutes while matches are active. A snapshot older than 12 hours is clearly marked as stale.</p><h3>Source protection</h3><p>API keys stay inside GitHub Actions secrets. Only generated public match data is deployed to GitHub Pages.</p></section>
         </section>
 
         <section class="view" data-view-panel="profile">
-          <div class="page-head"><div><span>YOUR BETYNZ</span><h2>Member Profile</h2><p>Personalization settings are stored locally in this first build.</p></div></div>
-          <div class="profile-layout"><section class="profile-card"><div class="large-avatar">BZ</div><h3>Betynz Member</h3><p>Free account</p><button class="primary-btn" data-toast="Authentication will be connected in the account phase.">Connect Account</button></section><section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my slip</span><input type="checkbox" id="remember-slip" checked></label><button class="primary-btn compact" id="save-prefs">Save Preferences</button></section></div>
+          <div class="page-head"><div><span>YOUR BETYNZ</span><h2>Board Settings</h2><p>Preferences are stored only in this browser.</p></div></div>
+          <div class="profile-layout"><section class="profile-card"><div class="large-avatar">BZ</div><h3>Guest Mode</h3><p>No account or personal data required</p><button class="primary-btn" data-view="methodology">Read Methodology</button></section><section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my slip</span><input type="checkbox" id="remember-slip" checked></label><button class="primary-btn compact" id="save-prefs">Save Preferences</button></section></div>
         </section>
       </main>
 
-      <footer><span>© 2026 Betynz.com · Smart Betting Predictions</span><span>Predictions are informational. No outcome is guaranteed. 18+</span></footer>
+      <footer><span>© 2026 Betynz.com · Smart Betting Predictions</span><span>Informational analysis only. No outcome is guaranteed. 18+</span></footer>
     </div>
   </div>
 
-  <nav class="mobile-nav" aria-label="Mobile navigation"><button class="active" data-view="dashboard"><span>⌂</span>Home</button><button data-view="picks"><span>▦</span>Picks</button><button data-view="engines"><span>♜</span>Engines</button><button data-view="results"><span>↗</span>Results</button><button data-view="profile"><span>○</span>Profile</button></nav>
+  <nav class="mobile-nav" aria-label="Mobile navigation"><button class="active" data-view="dashboard"><span>⌂</span>Home</button><button data-view="picks"><span>▦</span>Picks</button><button data-view="engines"><span>♜</span>Engines</button><button data-view="results"><span>↗</span>Results</button><button data-view="profile"><span>○</span>Settings</button></nav>
   <button class="mobile-slip" id="mobile-slip"><span>Slip</span><b id="mobile-slip-count">0</b><em id="mobile-slip-odds">1.00</em></button>
 
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
-  <aside class="mobile-drawer" id="mobile-drawer"><div class="drawer-head"><h3>Slip Builder</h3><button id="drawer-close">×</button></div><div id="drawer-items" class="slip-items"></div><div class="slip-total"><span>Total Odds</span><b id="drawer-odds">1.00</b></div><button class="primary-btn" id="drawer-copy">Copy Slip</button></aside>
+  <aside class="mobile-drawer" id="mobile-drawer"><div class="drawer-head"><h3>Selection List</h3><button id="drawer-close">×</button></div><div id="drawer-items" class="slip-items"></div><div class="slip-total"><span>Total Odds</span><b id="drawer-odds">1.00</b></div><button class="primary-btn" id="drawer-copy">Copy Analysis List</button></aside>
 
   <div class="modal-backdrop" id="engine-modal-backdrop"></div>
   <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="banker-engine.js"></script>
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="olympian-engine-core.js?v=2.0"></script>
+  <script src="data.js?v=2.0"></script>
+  <script src="app.js?v=2.0"></script>
 </body>
 </html>

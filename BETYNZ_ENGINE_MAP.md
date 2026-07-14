@@ -1,22 +1,20 @@
-# Betynz Olympian Engine Map
+# Betynz Olympian Engine Map v2.0
 
-| Betynz identity | Underlying production function | Main specialty |
+| Engine | Product responsibility | Main release rule |
 |---|---|---|
-| Zeus | `proRecommend` | Supreme multi-generation consensus |
-| Athena | `strictRecommend` | Discipline, control and safer result routing |
-| Apollo | `trendRecommend` | League trends and market profiles |
-| Ares | `mismatchRecommend` | Multi-dimensional strength gaps |
-| Poseidon | `leagueBiasRecommend` | Competition scoring and volatility identity |
-| Hermes | `oddsIntelligenceRecommend` | Price movement and bookmaker agreement |
-| Hera | `primeRecommend` | Calibration and stable team strength |
-| Artemis | `halvesRecommend` | First-half and second-half markets |
-| Hephaestus | `expertRecommend` | Advanced context and schedule factors |
-| Demeter | `momentumRecommend` | Improvement, decline and reversals |
-| Dionysus | `streakRecommend` | Streaks, recurrence and counter-streaks |
-| Hades | `valueRecommend` | Calibrated value and trap rejection |
-| Atlas | `ultraRecommend` | Recent-ten and league-normalized strength |
-| Orion | `apexRecommend` | Conservative uncertainty edge |
-| Nike | `eliteRecommend` | Bayesian banker and result markets |
-| Prometheus | `recommend` | Foundational PPG model |
-
-The names change the Betynz identity and interface. They do not weaken or duplicate the underlying engine rules.
+| Zeus | Final decision core | Requires weighted consensus, a clear lead and no hard conflict |
+| Athena | Team control | Overall and venue strength must agree; draw risk controls the market |
+| Apollo | League signal matrix | Exact-league history must be confirmed by both teams |
+| Ares | Mismatch detection | Strength, table position and goal difference must all confirm |
+| Poseidon | Goal environment | League scoring level and venue rates must align |
+| Hermes | Odds confirmation | Prices can confirm a statistical candidate but cannot create one alone |
+| Hera | Consistency | Overall, venue and recent form must point in the same direction |
+| Artemis | Half markets | Uses direct first-half and second-half samples only |
+| Hephaestus | Deep context | Opponent strength, rest and recent-ten performance are adjusted together |
+| Demeter | Form cycle | Momentum must reinforce the underlying season strength |
+| Dionysus | Streaks | Active sequences need independent team-stat confirmation |
+| Hades | Value and traps | Model edge must exceed the implied-price threshold |
+| Atlas | Heavy strength | Venue and recent-ten strength must confirm overall direction |
+| Orion | xG edge | Trusted xG data and a conservative lower-bound check are mandatory |
+| Nike | Victory markets | Result picks require attack-to-conversion proof |
+| Prometheus | Foundation model | Establishes the baseline PPG and goal-market direction |

@@ -1,0 +1,34 @@
+{
+  "product": "Betynz",
+  "version": "2.0.0",
+  "engineVersion": "2.0.0",
+  "source": "demo",
+  "generatedAt": "2026-07-14T02:38:18.312Z",
+  "dataUpdated": "2026-07-14T01:49:15.652563+00:00",
+  "isDemo": true,
+  "fixtureCount": 20,
+  "qualifiedCount": 20,
+  "lockedCount": 0,
+  "historyCount": 0,
+  "record": {
+    "wins": 0,
+    "losses": 0,
+    "voids": 0,
+    "hitRate": null
+  },
+  "engineCounts": {
+    "prometheus": 20,
+    "athena": 7,
+    "ares": 3,
+    "hermes": 16,
+    "hades": 20,
+    "atlas": 20,
+    "nike": 7,
+    "zeus": 7,
+    "hera": 5,
+    "apollo": 13,
+    "poseidon": 8,
+    "orion": 4,
+    "dionysus": 8
+  }
+}
