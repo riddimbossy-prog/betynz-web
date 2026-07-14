@@ -5,7 +5,7 @@ window.BETYNZ_META = {
   "version": "2.0.0",
   "engineVersion": "2.0.0",
   "source": "demo",
-  "generatedAt": "2026-07-14T02:38:18.312Z",
+  "generatedAt": "2026-07-14T07:19:02.125Z",
   "dataUpdated": "2026-07-14T01:49:15.652563+00:00",
   "isDemo": true,
   "fixtureCount": 20,
@@ -337,7 +337,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -633,7 +633,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -927,7 +927,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -1229,7 +1229,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -1519,7 +1519,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -1814,7 +1814,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -2108,7 +2108,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -2399,7 +2399,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -2691,7 +2691,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -2985,7 +2985,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -3281,7 +3281,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -3575,7 +3575,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -3865,7 +3865,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -4159,7 +4159,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -4456,7 +4456,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -4750,7 +4750,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -5044,7 +5044,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -5331,7 +5331,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -5621,7 +5621,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   },
@@ -5915,7 +5915,7 @@ window.MATCHES = [
       "odds": null,
       "locked": false,
       "provisional": true,
-      "publishedAt": "2026-07-14T02:38:18.312Z"
+      "publishedAt": "2026-07-14T07:19:02.125Z"
     },
     "predictionLocked": false
   }
