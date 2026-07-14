@@ -1,0 +1,51 @@
+name: Update Betynz Live Scores
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: betynz-live-scores
+  cancel-in-progress: true
+
+jobs:
+  scores:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Prepare score updater
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          DAYS_BACK: ${{ secrets.DAYS_BACK }}
+        run: |
+          if [ -z "$API_FOOTBALL_KEY" ]; then exit 1; fi
+          cat > scripts/config.txt <<EOF_CONFIG
+          API_KEY=${API_FOOTBALL_KEY}
+          SEASON=2026
+          DAYS_BACK=${DAYS_BACK:-1}
+          EOF_CONFIG
+          cp data.js scripts/data.js
+      - name: Fetch score snapshots
+        working-directory: scripts
+        run: node fetch-scores.js
+      - name: Publish score snapshot
+        run: cp scripts/data.js data.js
+      - name: Commit score changes
+        run: |
+          git config user.name "Betynz Live Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.js scripts/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update Betynz live scores"
+          git pull --rebase
+          git push

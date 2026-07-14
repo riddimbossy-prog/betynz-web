@@ -1,0 +1,96 @@
+name: Update Betynz Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: betynz-data-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate API secrets
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          if [ -z "$API_FOOTBALL_KEY" ]; then
+            echo "Missing API_FOOTBALL_KEY repository secret."
+            exit 1
+          fi
+
+      - name: Create private runtime configuration
+        shell: bash
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+          DAYS_BACK: ${{ secrets.DAYS_BACK }}
+          DAYS_FWD: ${{ secrets.DAYS_FWD }}
+        run: |
+          BACK="${DAYS_BACK:-1}"
+          FWD="${DAYS_FWD:-6}"
+          cat > scripts/config.txt <<EOF_CONFIG
+          API_KEY=${API_FOOTBALL_KEY}
+          STATS_API_KEY=${STATS_API_KEY}
+          SEASON=2026
+          DAYS_BACK=${BACK}
+          DAYS_FWD=${FWD}
+          LEAGUES=ALL
+          MAX_LEAGUES=45
+          REQUEST_BUDGET=900
+          MAX_PROBES=12
+          SLEEP_MS=150
+          ODDS=true
+          H2H=false
+          STATS=true
+          EOF_CONFIG
+          if [ -f data.js ]; then cp data.js scripts/data.js; fi
+
+      - name: Fetch fixtures, tables, form and odds
+        working-directory: scripts
+        run: node fetch-data.js
+
+      - name: Enrich with TheStatsAPI
+        working-directory: scripts
+        env:
+          THESTATSAPI_KEY: ${{ secrets.STATS_API_KEY }}
+        run: node enrich-xg.js
+        continue-on-error: true
+
+      - name: Publish generated snapshot
+        run: |
+          test -f scripts/data.js
+          cp scripts/data.js data.js
+          # A live API snapshot must never keep the demo marker.
+          sed -i '/window.BETYNZ_DEMO/d' data.js
+
+      - name: Commit refreshed board
+        shell: bash
+        run: |
+          git config user.name "Betynz Data Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.js scripts/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No data changes."
+            exit 0
+          fi
+          git commit -m "Refresh Betynz football data"
+          git pull --rebase
+          git push

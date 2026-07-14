@@ -1,0 +1,10 @@
+{
+  "name":"betynz-web",
+  "version":"1.0.0",
+  "private":true,
+  "scripts":{
+    "serve":"npx http-server . -p 8080 -c-1",
+    "check":"node --check app.js && node --check banker-engine.js && node --check scripts/fetch-data.js"
+  },
+  "engines":{"node":">=20"}
+}

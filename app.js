@@ -1,0 +1,232 @@
+(function(){
+  "use strict";
+
+  const ENGINES=[
+    {id:"zeus",name:"Zeus",fn:"proRecommend",glyph:"⚡",role:"Supreme Decision Engine",summary:"Runs the strictest multi-generation consensus and rejects uncertainty before allowing a final market.",tags:["Consensus","Bankers","All markets"],checks:["Compares seven generations of the PPG model.","Requires independent agreement and a safe common market.","Downgrades or rejects selections when the engines split."],gate:"Highest authority. A match can still finish as No Bet."},
+    {id:"athena",name:"Athena",fn:"strictRecommend",glyph:"♙",role:"Control & Discipline",summary:"Measures team superiority with tighter samples, venue form and draw-risk controls.",tags:["PPG","Control","Low risk"],checks:["Compares overall and venue PPG.","Checks sample size and recent-form agreement.","Routes uncertain favorites toward DNB or double chance."],gate:"Prefers safety over volume."},
+    {id:"apollo",name:"Apollo",fn:"trendRecommend",glyph:"☀",role:"League Signal Matrix",summary:"Reads league-wide market tendencies and confirms them against the two teams in the fixture.",tags:["League DNA","Trends","Goals"],checks:["Finds the strongest recurring league markets.","Requires a meaningful historical sample.","Rejects a league tendency when current team data disagrees."],gate:"A league trend proposes; team data must confirm."},
+    {id:"ares",name:"Ares",fn:"mismatchRecommend",glyph:"⚔",role:"Mismatch Hunter",summary:"Looks for clear strength gaps across PPG, goal difference, xG, shots and recent form.",tags:["Favorites","Win/DNB","Strength gap"],checks:["Scores multiple independent mismatch dimensions.","Requires the direction to agree across the strongest signals.","Blocks aggressive wins when defensive or draw risk is high."],gate:"Aggressive only when the mismatch is real."},
+    {id:"poseidon",name:"Poseidon",fn:"leagueBiasRecommend",glyph:"♆",role:"League Environment",summary:"Specializes in competitions with strong scoring, home-bias or defensive identities.",tags:["League bias","Volatility","Goals"],checks:["Classifies the exact competition.","Finds markets that repeatedly clear the league threshold.","Checks whether both teams fit the league identity."],gate:"Never applies one league’s behavior to another."},
+    {id:"hermes",name:"Hermes",fn:"oddsIntelligenceRecommend",glyph:"☿",role:"Market Movement",summary:"Reads bookmaker movement, dispersion and cross-market agreement as supporting evidence.",tags:["Odds","Movement","Fast signal"],checks:["De-vigs opening and current 1X2 prices.","Measures how many independent books move together.","Vetoes statistical picks when the market sharply contradicts them."],gate:"Market data supports a pick; it never creates one alone."},
+    {id:"hera",name:"Hera",fn:"primeRecommend",glyph:"♕",role:"Consistency Guardian",summary:"Uses calibrated probability, league reliability and stable venue strength to find resilient selections.",tags:["Calibration","Stability","Risk control"],checks:["Normalizes team strength to league conditions.","Penalizes unreliable competition samples.","Keeps only selections with a strong conservative edge."],gate:"Stable evidence must survive every context check."},
+    {id:"artemis",name:"Artemis",fn:"halvesRecommend",glyph:"☾",role:"Half-Market Precision",summary:"Analyzes first-half and second-half scoring patterns using direct split data.",tags:["1st half","2nd half","Precision"],checks:["Requires real half-specific samples.","Compares scoring and conceding by half.","Publishes only when both teams support the same half market."],gate:"No estimated half data is treated as confirmed."},
+    {id:"hephaestus",name:"Hephaestus",fn:"expertRecommend",glyph:"⚒",role:"Deep Statistical Forge",summary:"Builds selections from opponent strength, rest, schedule density, similar opponents and split stability.",tags:["Deep data","Context","Expert"],checks:["Adjusts recent form for opponent difficulty.","Checks rest and fixture congestion.","Tests whether performance is stable across match blocks."],gate:"Missing advanced context produces abstention, not invention."},
+    {id:"demeter",name:"Demeter",fn:"momentumRecommend",glyph:"❦",role:"Form Cycle Engine",summary:"Detects improvement, decline, acceleration and reversals across recent match blocks.",tags:["Momentum","Form","Reversal"],checks:["Compares recent performance with the season baseline.","Measures how many momentum components agree.","Rejects short-term hot streaks without base strength."],gate:"Momentum must be supported by the underlying team level."},
+    {id:"dionysus",name:"Dionysus",fn:"streakRecommend",glyph:"♢",role:"Streak & Recurrence",summary:"Finds active scoring, unbeaten and market streaks while protecting against overdue reversals.",tags:["Streaks","BTTS","Goal runs"],checks:["Measures the current sequence length.","Checks recurrence across the season.","Looks for opponent counter-streaks and reversal pressure."],gate:"A streak alone is never enough."},
+    {id:"hades",name:"Hades",fn:"valueRecommend",glyph:"♜",role:"Hidden Value & Traps",summary:"Looks beneath the quoted price for calibrated value while exposing favorite traps and inflated odds.",tags:["Value","Traps","Calibration"],checks:["Requires a large calibrated sample.","Uses the conservative probability bound, not the headline score.","Rejects wide uncertainty intervals and negative expected value."],gate:"No calibration means No Bet."},
+    {id:"atlas",name:"Atlas",fn:"ultraRecommend",glyph:"◉",role:"Heavy Data Strength",summary:"Carries recent-ten, venue and league-normalized strength into one conservative team assessment.",tags:["Recent 10","Venue","Strength"],checks:["Combines venue and overall performance.","Uses recent-ten data when the sample is valid.","Penalizes volatile result patterns."],gate:"A heavy score still needs a supported market."},
+    {id:"orion",name:"Orion",fn:"apexRecommend",glyph:"✦",role:"Advanced Edge Tracker",summary:"Tracks uncertainty intervals and only fires when the conservative edge remains positive.",tags:["Intervals","xG/SOT","Apex"],checks:["Builds a conservative range around team strength.","Checks whether the lower edge still supports the market.","Rejects compressed same-tier fixtures."],gate:"The lower bound—not the optimistic estimate—must pass."},
+    {id:"nike",name:"Nike",fn:"eliteRecommend",glyph:"✧",role:"Banker Victory Engine",summary:"Targets high-quality result markets using Bayesian strength, form and volatility controls.",tags:["Bankers","Wins","Bayesian"],checks:["Blends venue, overall and recent strength.","Adjusts for opposition and competition volatility.","Downgrades favorites that cannot convert control into goals."],gate:"Victory picks require attacking proof."},
+    {id:"prometheus",name:"Prometheus",fn:"recommend",glyph:"♨",role:"Foundation Model",summary:"The original PPG foundation that supplies a clear baseline for every stronger generation.",tags:["Baseline","PPG","Foundation"],checks:["Calculates venue and overall PPG.","Uses recent form as confirmation.","Routes the safest supported result or goal market."],gate:"A baseline signal is evidence, not the final decision."}
+  ];
+  const ENGINE_MAP=Object.fromEntries(ENGINES.map(e=>[e.id,e]));
+  const matches=Array.isArray(window.MATCHES)?window.MATCHES:[];
+  const isDemo=!!window.BETYNZ_DEMO;
+  const $=(s,root=document)=>root.querySelector(s);
+  const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+  const esc=v=>String(v==null?"":v).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+  const todayISO=new Date().toISOString().slice(0,10);
+  const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
+  const LIVE=new Set(["1H","HT","2H","ET","BT","P","LIVE"]);
+  const cache=new Map();
+  const pickCache=new Map();
+  let activeView=(location.hash||"#dashboard").slice(1);
+  let activeDate=null;
+  let activeDashboardEngine="all";
+  let searchTerm="";
+  let toastTimer=null;
+  let slip=loadJSON("betynz-slip",[]);
+  let preferences=loadJSON("betynz-preferences",{favoriteEngine:"zeus",confidence:76,rememberSlip:true});
+
+  function loadJSON(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v==null?fallback:v}catch(_){return fallback}}
+  function saveJSON(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(_){}}
+  function keyOf(m){return String(m.id!=null?m.id:`${m.home}|${m.away}|${m.matchDate}`)}
+  function dateOf(m){return m.matchDate||(m.kickoff?String(m.kickoff).slice(0,10):"Undated")}
+  function kickoff(m){try{return new Date(m.kickoff).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}catch(_){return "—"}}
+  function countryFlag(m){const c=String(m.country||m.league||"").toLowerCase();if(c.includes("england"))return"🏴";if(c.includes("spain"))return"🇪🇸";if(c.includes("germany"))return"🇩🇪";if(c.includes("italy"))return"🇮🇹";if(c.includes("france"))return"🇫🇷";if(c.includes("portugal"))return"🇵🇹";if(c.includes("usa")||c.includes("mls"))return"🇺🇸";if(c.includes("brazil"))return"🇧🇷";if(c.includes("argentina"))return"🇦🇷";return"⚽"}
+  function marketClean(s){return String(s||"No Bet").replace(/^Over ([0-9.]+) Goals$/,"Over $1").replace(/^Under ([0-9.]+) Goals$/,"Under $1")}
+  function normalizeMarket(s){const x=String(s||"").trim();if(/^Over \d/.test(x)&&!/Goals/.test(x))return `${x} Goals`;if(/^Under \d/.test(x)&&!/Goals/.test(x))return `${x} Goals`;return x}
+  function marketFamily(s){s=String(s||"").toLowerCase();if(s.includes("btts"))return"BTTS";if(s.includes("over")||s.includes("under"))return s.includes("team")?"Team Goals":"Totals";if(s.includes("dnb")||s.includes("double chance")||s.includes("win"))return"Result";if(s.includes("half"))return"Halves";return"Other"}
+  function opposite(a,b){a=String(a);b=String(b);return (a.includes("Over 2.5")&&b.includes("Under 2.5"))||(a.includes("Under 2.5")&&b.includes("Over 2.5"))||(a==="BTTS Yes"&&b==="BTTS No")||(a==="BTTS No"&&b==="BTTS Yes")||(a.includes("Home Win")&&b.includes("Away"))||(a.includes("Away Win")&&b.includes("Home"))}
+  const ODDS_KEYS={"Home Win":"home","Draw":"draw","Away Win":"away","Home DNB":"homeDnb","Away DNB":"awayDnb","Double Chance 1X":"dc1x","Double Chance X2":"dcx2","Double Chance 12":"dc12","Over 1.5 Goals":"over15","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35","Under 1.5 Goals":"under15","Under 2.5 Goals":"under25","Under 3.5 Goals":"under35","BTTS Yes":"bttsYes","BTTS No":"bttsNo","Home Team Over 0.5 Goals":"homeOver05","Away Team Over 0.5 Goals":"awayOver05","Home Team Over 1.5 Goals":"homeOver15","Away Team Over 1.5 Goals":"awayOver15","First Half Over 0.5":"fhOver05","First Half Under 1.5":"fhUnder15"};
+  function priceOf(m,market){const key=ODDS_KEYS[normalizeMarket(market)];const v=key&&m.odds?Number(m.odds[key]):NaN;return Number.isFinite(v)&&v>1?v:null}
+
+  function runEngine(m,engine){
+    const ck=`${keyOf(m)}|${engine.id}`;if(cache.has(ck))return cache.get(ck);
+    let out=null;
+    if(isDemo&&Array.isArray(m.demoPredictions)){
+      const d=m.demoPredictions.find(x=>x.engine===engine.id);
+      out=d?{bet:true,banker:Number(d.confidence)>=88,primary:normalizeMarket(d.market),confidence:Number(d.confidence),reasons:d.reasons||["Demonstration engine agreement."],warnings:d.warnings||[]}:null;
+    }else{
+      const fn=window[engine.fn];
+      if(typeof fn==="function"){try{out=fn(m)}catch(err){out=null}}
+    }
+    if(!out||!out.bet||!out.primary||/no bet/i.test(out.primary))out=null;
+    else out={...out,primary:normalizeMarket(out.primary),confidence:Math.round(Number(out.confidence||out.score||0)),engineId:engine.id,engineName:engine.name};
+    cache.set(ck,out);return out;
+  }
+
+  function finalPick(m){
+    const mk=keyOf(m);if(pickCache.has(mk))return pickCache.get(mk);
+    const votes=[];
+    ENGINES.forEach(e=>{const o=runEngine(m,e);if(o)votes.push({engine:e,out:o,market:o.primary,confidence:o.confidence||0})});
+    if(!votes.length){pickCache.set(mk,null);return null}
+    const groups={};
+    votes.forEach(v=>{const k=v.market;const g=groups[k]||(groups[k]={market:k,votes:[],confidence:0});g.votes.push(v)});
+    Object.values(groups).forEach(g=>{
+      const avg=g.votes.reduce((s,v)=>s+v.confidence,0)/g.votes.length;
+      const authority=g.votes.reduce((s,v)=>s+(v.engine.id==="zeus"?4:v.engine.id==="athena"||v.engine.id==="atlas"?2:1),0);
+      g.confidence=Math.min(96,Math.round(avg+Math.min(8,g.votes.length*1.4)+Math.min(4,authority*.3)));
+      g.authority=authority;
+    });
+    const ranked=Object.values(groups).sort((a,b)=>b.votes.length-a.votes.length||b.authority-a.authority||b.confidence-a.confidence);
+    const best=ranked[0],second=ranked[1];
+    const hardConflict=ranked.some(g=>g!==best&&g.votes.length>=2&&opposite(best.market,g.market));
+    const lead=second?best.votes.length-second.votes.length:best.votes.length;
+    let grade="WATCH";
+    if(!hardConflict&&best.confidence>=88&&best.votes.length>=2&&(lead>=1||best.votes.some(v=>v.engine.id==="zeus")))grade="A1";
+    else if(!hardConflict&&best.confidence>=82&&best.votes.length>=1)grade="A2";
+    else if(best.confidence<76||hardConflict){pickCache.set(mk,null);return null}
+    const topVote=best.votes.sort((a,b)=>b.confidence-a.confidence)[0];
+    const pick={m,market:best.market,confidence:best.confidence,grade,engine:topVote.engine,engines:best.votes.map(v=>v.engine),votes:best.votes.length,odds:priceOf(m,best.market),conflict:hardConflict,reasons:topVote.out.reasons||[]};
+    pickCache.set(mk,pick);return pick;
+  }
+
+  function allPicks(){return matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")))}
+  function gradeRank(g){return g==="A1"?3:g==="A2"?2:g==="WATCH"?1:0}
+  function matchesForDate(date){return matches.filter(m=>dateOf(m)===date)}
+  function dates(){return [...new Set(matches.map(dateOf).filter(d=>d&&d!=="Undated"))].sort()}
+  function friendlyDate(d){if(!d)return"All dates";const x=new Date(`${d}T12:00:00`);const delta=Math.round((x-new Date(`${todayISO}T12:00:00`))/86400000);const prefix=delta===0?"Today":delta===1?"Tomorrow":delta===-1?"Yesterday":x.toLocaleDateString([],{weekday:"short"});return `${prefix} · ${x.toLocaleDateString([],{month:"short",day:"numeric"})}`}
+  function isUpcoming(m){return !FINISHED.has(String(m.status||"").toUpperCase())}
+  function isLive(m){return LIVE.has(String(m.status||"").toUpperCase())}
+
+  function settlePick(p){
+    const m=p.m;if(m.homeGoals==null||m.awayGoals==null||!FINISHED.has(String(m.status||"").toUpperCase()))return"Pending";
+    if(typeof window.settle==="function"){try{return window.settle(p.market,m.homeGoals,m.awayGoals,m.status,m)||"Pending"}catch(_){}}
+    const h=Number(m.homeGoals),a=Number(m.awayGoals),t=h+a,mk=normalizeMarket(p.market);
+    if(mk==="Home Win")return h>a?"Won":"Lost";if(mk==="Away Win")return a>h?"Won":"Lost";if(mk==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(mk==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";if(mk==="Double Chance 1X")return h>=a?"Won":"Lost";if(mk==="Double Chance X2")return a>=h?"Won":"Lost";if(mk==="Double Chance 12")return h!==a?"Won":"Lost";if(mk.includes("Over 1.5")&&!mk.includes("Team"))return t>=2?"Won":"Lost";if(mk.includes("Over 2.5"))return t>=3?"Won":"Lost";if(mk.includes("Over 3.5"))return t>=4?"Won":"Lost";if(mk.includes("Under 2.5"))return t<=2?"Won":"Lost";if(mk.includes("Under 3.5"))return t<=3?"Won":"Lost";if(mk==="BTTS Yes")return h>0&&a>0?"Won":"Lost";if(mk==="BTTS No")return !(h>0&&a>0)?"Won":"Lost";if(mk.includes("Home Team Over 0.5"))return h>=1?"Won":"Lost";if(mk.includes("Away Team Over 0.5"))return a>=1?"Won":"Lost";if(mk.includes("Home Team Over 1.5"))return h>=2?"Won":"Lost";if(mk.includes("Away Team Over 1.5"))return a>=2?"Won":"Lost";return"Pending";
+  }
+
+  function renderMetrics(){
+    const picks=allPicks(),up=picks.filter(p=>isUpcoming(p.m)),settled=picks.map(p=>settlePick(p)).filter(x=>x!=="Pending"),wins=settled.filter(x=>x==="Won").length;
+    const hit=settled.length?Math.round(wins/settled.length*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
+    $("#metric-grid").innerHTML=[
+      ["♜",ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length||16,"Active Engines",isDemo?"Demo data loaded":"Systems online"],
+      ["▦",matches.filter(isUpcoming).length,"Upcoming Matches",`${dates().length} board days`],
+      ["◎",`${hit}%`,"Settled Hit Rate",settled.length?`${settled.length} graded picks`:"Waiting for results"],
+      ["◆",avg,"Average Pick Odds",priced.length?"Qualified prices":"Odds pending"]
+    ].map(x=>`<article class="metric-card"><span class="metric-icon">${x[0]}</span><div><b>${esc(x[1])}</b><small>${esc(x[2])}</small><em>${esc(x[3])}</em></div></article>`).join("");
+    $("#trend-rate").textContent=settled.length?`${hit}%`:"—";$("#streak-value").innerHTML=`${winningStreak(picks)} <em>Days</em>`;
+  }
+  function winningStreak(picks){const by={};picks.forEach(p=>{const r=settlePick(p);if(r!=="Pending")(by[dateOf(p.m)]=by[dateOf(p.m)]||[]).push(r)});let n=0;Object.keys(by).sort().reverse().some(d=>{if(by[d].some(x=>x==="Won")){n++;return false}return true});return n}
+
+  function renderEngineTabs(){
+    const tabs=[{id:"all",name:"All Engines",glyph:"◎"},...ENGINES.slice(0,7)];
+    $("#engine-tabs").innerHTML=tabs.map(e=>`<button class="engine-tab ${activeDashboardEngine===e.id?"active":""}" data-engine-tab="${e.id}">${e.glyph||""} ${esc(e.name)}</button>`).join("");
+    $$("[data-engine-tab]").forEach(b=>b.onclick=()=>{activeDashboardEngine=b.dataset.engineTab;renderDashboardList();renderEngineTabs()});
+  }
+
+  function filteredDashboardPicks(){
+    let rows=allPicks().filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));
+    const mf=$("#dashboard-market")?.value||"all",of=$("#dashboard-odds")?.value||"all";
+    if(activeDashboardEngine!=="all")rows=rows.filter(p=>p.engines.some(e=>e.id===activeDashboardEngine));
+    if(mf!=="all")rows=rows.filter(p=>marketFamily(p.market)===mf);
+    if(of!=="all")rows=rows.filter(p=>oddsIn(p.odds,of));
+    if(searchTerm)rows=rows.filter(p=>`${p.m.home} ${p.m.away} ${p.m.league}`.toLowerCase().includes(searchTerm));
+    return rows;
+  }
+  function oddsIn(v,range){if(range==="all")return true;if(!v)return false;const [a,b]=range.split("-").map(Number);return v>=a&&v<=b}
+  function renderDashboardList(){const rows=filteredDashboardPicks().slice(0,7);$("#dashboard-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No qualified picks for these filters.")}
+  function matchRow(p){
+    const m=p.m,added=slip.some(x=>x.key===slipKey(p));const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");
+    return `<article class="match-row" data-pick-key="${esc(keyOf(m))}">
+      <div class="fixture-cell"><span class="league-flag">${countryFlag(m)}</span><b>${esc(m.home)}<br>${esc(m.away)}</b><small>${esc(m.league||"Football")} · ${kickoff(m)}${isLive(m)?" · LIVE":""}</small></div>
+      <div class="market-cell"><b>${esc(marketClean(p.market))}</b><small>${esc(marketFamily(p.market))} · <span class="grade ${p.grade}">${p.grade}</span></small></div>
+      <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
+      <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
+      <div class="odds-cell">${p.odds?p.odds.toFixed(2):"—"}</div>
+      <button class="add-btn ${added?"added":""}" data-add-pick="${esc(slipKey(p))}" aria-label="${added?"Remove from":"Add to"} slip">${added?"✓":"+"}</button>
+    </article>`;
+  }
+  function empty(text){return `<div class="empty-state"><b>Nothing forced</b>${esc(text)}</div>`}
+
+  function renderDashboardSelectors(){
+    const ds=dates();if(!activeDate)activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
+    $("#dashboard-date").innerHTML=ds.map(d=>`<option value="${d}" ${d===activeDate?"selected":""}>${friendlyDate(d)}</option>`).join("");
+    const families=[...new Set(allPicks().map(p=>marketFamily(p.market)))].sort();$("#dashboard-market").innerHTML=`<option value="all">All Markets</option>${families.map(x=>`<option>${esc(x)}</option>`).join("")}`;
+  }
+
+  function renderRecentResults(){
+    const rows=allPicks().filter(p=>settlePick(p)!=="Pending").slice(0,5);
+    $("#recent-results").innerHTML=rows.length?rows.map(p=>{const r=settlePick(p);return `<div class="recent-result"><span>${esc(p.m.home)} vs ${esc(p.m.away)}</span><b class="${r.toLowerCase()}">${r}${p.odds?` · ${p.odds.toFixed(2)}`:""}</b></div>`}).join(""):`<div class="slip-empty">No settled results yet.</div>`;
+  }
+
+  function renderPicksView(){
+    const ds=dates();if(!activeDate)activeDate=ds[0]||todayISO;
+    $("#date-strip").innerHTML=ds.map(d=>`<button class="date-btn ${d===activeDate?"active":""}" data-date="${d}"><b>${friendlyDate(d).split(" · ")[0]}</b><small>${friendlyDate(d).split(" · ")[1]||d}</small></button>`).join("");
+    $$("[data-date]").forEach(b=>b.onclick=()=>{activeDate=b.dataset.date;renderPicksView();renderDashboardSelectors();renderDashboardList()});
+    const engSel=$("#picks-engine"),current=engSel.value||"all";engSel.innerHTML=`<option value="all">All Engines</option>${ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("")}`;engSel.value=current;
+    const markets=[...new Set(allPicks().map(p=>marketFamily(p.market)))].sort(),mSel=$("#picks-market"),mCur=mSel.value||"all";mSel.innerHTML=`<option value="all">All Markets</option>${markets.map(x=>`<option>${esc(x)}</option>`).join("")}`;mSel.value=mCur;
+    const leagues=[...new Set(matches.map(m=>m.league).filter(Boolean))].sort(),lSel=$("#picks-league"),lCur=lSel.value||"all";lSel.innerHTML=`<option value="all">All Leagues</option>${leagues.map(x=>`<option>${esc(x)}</option>`).join("")}`;lSel.value=lCur;
+    let rows=allPicks().filter(p=>dateOf(p.m)===activeDate);
+    if(engSel.value!=="all")rows=rows.filter(p=>p.engines.some(e=>e.id===engSel.value));if(mSel.value!=="all")rows=rows.filter(p=>marketFamily(p.market)===mSel.value);if(lSel.value!=="all")rows=rows.filter(p=>p.m.league===lSel.value);const grade=$("#picks-grade").value;if(grade!=="all")rows=rows.filter(p=>p.grade===grade);if(searchTerm)rows=rows.filter(p=>`${p.m.home} ${p.m.away} ${p.m.league}`.toLowerCase().includes(searchTerm));
+    $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No engine clears the selected conditions.");
+  }
+
+  function renderEngines(){
+    $("#engine-grid").innerHTML=ENGINES.map(e=>{const count=matches.reduce((n,m)=>n+(runEngine(m,e)?1:0),0);return `<article class="engine-card" data-engine-modal="${e.id}"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${count?`${count} PICKS`:"ONLINE"}</span></div><h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div></article>`}).join("");
+    $$("[data-engine-modal]").forEach(c=>c.onclick=()=>openEngine(c.dataset.engineModal));
+  }
+  function openEngine(id){const e=ENGINE_MAP[id];if(!e)return;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
+  function closeEngine(){$("#engine-modal-backdrop").classList.remove("open");$("#engine-modal").classList.remove("open")}
+
+  function renderBankers(){
+    const rows=allPicks().filter(p=>isUpcoming(p.m)&&["A1","A2"].includes(p.grade));const a1=rows.filter(p=>p.grade==="A1").length,a2=rows.length-a1,priced=rows.filter(p=>p.odds),avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
+    $("#banker-summary").innerHTML=[[a1,"A1 Bankers","Strictest grade"],[a2,"A2 Strong Picks","Qualified support"],[rows.length,"Total Selections","Across active dates"],[avg,"Average Odds","Priced markets"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b><em>${x[2]}</em></article>`).join("");$("#banker-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No banker has cleared every safety gate yet.")
+  }
+  function renderResults(){
+    const rows=allPicks().map(p=>({...p,result:settlePick(p)})).filter(p=>p.result!=="Pending"),wins=rows.filter(p=>p.result==="Won").length,losses=rows.filter(p=>p.result==="Lost").length,voids=rows.filter(p=>p.result==="Void").length,rate=rows.length?Math.round(wins/(wins+losses||1)*100):0;
+    $("#result-metrics").innerHTML=[[rows.length,"Settled"],[wins,"Won"],[losses,"Lost"],[`${rate}%`,"Hit rate"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b></article>`).join("");$("#results-list").innerHTML=rows.length?`<div class="result-head"><span>Match</span><span>Selection</span><span>Score</span><span>Result</span></div>${rows.map(p=>`<div class="result-row"><span><b>${esc(p.m.home)} vs ${esc(p.m.away)}</b><br><small>${esc(dateOf(p.m))}</small></span><span>${esc(marketClean(p.market))}</span><span>${p.m.homeGoals}–${p.m.awayGoals}</span><span class="result-status ${p.result.toLowerCase()}">${p.result}</span></div>`).join("")}`:empty("Finished matches will appear after the score workflow runs.")
+  }
+
+  function slipKey(p){return `${keyOf(p.m)}|${p.market}`}
+  function addPickByKey(k){const p=allPicks().find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip()}
+  function persistSlip(){if(preferences.rememberSlip!==false)saveJSON("betynz-slip",slip)}
+  function removeSlip(k){slip=slip.filter(x=>x.key!==k);persistSlip();renderAllPickLists();renderSlip()}
+  function slipOdds(){return slip.reduce((x,l)=>x*(Number(l.odds)||1),1)}
+  function slipHtml(){return slip.length?slip.map(l=>`<div class="slip-item"><div><b>${esc(l.home)} vs ${esc(l.away)}</b><small>${esc(marketClean(l.market))}${l.odds?` · ${Number(l.odds).toFixed(2)}`:""} · ${esc(l.engine)}</small></div><button data-remove-slip="${esc(l.key)}">×</button></div>`).join(""):`<div class="slip-empty">Tap + beside a qualified pick.</div>`}
+  function renderSlip(){const html=slipHtml(),odds=slipOdds().toFixed(2);$("#slip-items").innerHTML=html;$("#drawer-items").innerHTML=html;$("#slip-count").textContent=slip.length;$("#mobile-slip-count").textContent=slip.length;$("#slip-odds").textContent=odds;$("#drawer-odds").textContent=odds;$("#mobile-slip-odds").textContent=odds;$$('[data-remove-slip]').forEach(b=>b.onclick=()=>removeSlip(b.dataset.removeSlip))}
+  function copySlip(){if(!slip.length){toast("Your slip is empty.");return}const text=["BETYNZ — SMART BETTING PREDICTIONS",...slip.map((l,i)=>`${i+1}. ${l.home} vs ${l.away} — ${marketClean(l.market)}${l.odds?` @ ${Number(l.odds).toFixed(2)}`:""}`),`Total odds: ${slipOdds().toFixed(2)}`,"Predictions are informational. 18+"].join("\n");navigator.clipboard?.writeText(text).then(()=>toast("Slip copied.")).catch(()=>toast("Copy is unavailable in this browser."))}
+
+  function renderPreferences(){const sel=$("#favorite-engine");sel.innerHTML=ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("");sel.value=preferences.favoriteEngine||"zeus";$("#confidence-pref").value=String(preferences.confidence||76);$("#remember-slip").checked=preferences.rememberSlip!==false}
+  function savePreferences(){preferences={favoriteEngine:$("#favorite-engine").value,confidence:Number($("#confidence-pref").value),rememberSlip:$("#remember-slip").checked};saveJSON("betynz-preferences",preferences);if(!preferences.rememberSlip)localStorage.removeItem("betynz-slip");toast("Preferences saved.")}
+
+  function showView(name){if(!$( `[data-view-panel="${name}"]`))name="dashboard";activeView=name;location.hash=name;$$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));$$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));$("#sidebar").classList.remove("open");if(name==="picks")renderPicksView();if(name==="engines")renderEngines();if(name==="bankers")renderBankers();if(name==="results")renderResults();window.scrollTo({top:0,behavior:"smooth"})}
+  function renderAllPickLists(){renderDashboardList();if(activeView==="picks")renderPicksView();if(activeView==="bankers")renderBankers()}
+  function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
+
+  function wire(){
+    $$('[data-view]').forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+    $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
+    document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b)addPickByKey(b.dataset.addPick)});
+    $("#menu-btn").onclick=()=>$("#sidebar").classList.toggle("open");
+    $("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};$("#dashboard-market").onchange=renderDashboardList;$("#dashboard-odds").onchange=renderDashboardList;
+    $("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
+    ["#picks-engine","#picks-market","#picks-league","#picks-grade"].forEach(s=>$(s).onchange=renderPicksView);
+    $("#global-search").oninput=e=>{searchTerm=e.target.value.trim().toLowerCase();renderDashboardList();if(activeView==="picks")renderPicksView()};
+    $("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};$("#copy-slip").onclick=copySlip;$("#drawer-copy").onclick=copySlip;
+    $("#mobile-slip").onclick=()=>{$("#mobile-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open")};const closeDrawer=()=>{$("#mobile-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open")};$("#drawer-close").onclick=closeDrawer;$("#drawer-backdrop").onclick=closeDrawer;
+    $("#engine-modal-close").onclick=closeEngine;$("#engine-modal-backdrop").onclick=closeEngine;document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeDrawer()}});
+    $("#add-visible").onclick=()=>{const dateRows=allPicks().filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
+    $("#save-prefs").onclick=savePreferences;
+    window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
+  }
+
+  function init(){
+    const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
+    $("#system-status").textContent=isDemo?"Demo board · run Update Betynz Data":"API snapshot available";$("#data-state").textContent=isDemo?"Demo Data":"Live Data";
+    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();showView(activeView);
+    if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js").catch(()=>{});
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
