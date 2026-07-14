@@ -1,11 +1,1220 @@
 {
   "version": "v195",
-  "updated": null,
+  "updated": "2026-07-14T23:56:58.210Z",
   "summary": {
-    "fixtures": 0,
-    "qualified": 0,
-    "rejected": 0,
+    "fixtures": 47,
+    "qualified": 1,
+    "rejected": 46,
     "highConflict": 0
   },
-  "fixtures": []
+  "fixtures": [
+    {
+      "id": 1549411,
+      "date": "2026-07-20",
+      "home": "Alianza Lima",
+      "away": "Sport Huancayo",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": true,
+      "market": "Home Team Over 0.5 Goals",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 84,
+      "support": 1.81,
+      "supporters": [
+        "Trend",
+        "Streaks",
+        "League Bias"
+      ],
+      "independence": 3,
+      "exactSupport": 3,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Win",
+          "support": 0.85,
+          "engines": [
+            "PurePPG Normal"
+          ]
+        },
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.72,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "3 engines across 3 independent evidence groups support the exact market."
+    },
+    {
+      "id": 1538393,
+      "date": "2026-07-20",
+      "home": "Blooming",
+      "away": "Real Tomayapo",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.79,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538389,
+      "date": "2026-07-20",
+      "home": "San Antonio Bulo Bulo",
+      "away": "ABB",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.79,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Away Team Over 0.5 Goals",
+          "support": 0.54,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538394,
+      "date": "2026-07-20",
+      "home": "Nacional Potosí",
+      "away": "Real Oruro",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 83.1,
+      "support": 1.56,
+      "supporters": [
+        "Trend",
+        "Streaks",
+        "League Bias"
+      ],
+      "independence": 3,
+      "exactSupport": 3,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.79,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493578,
+      "date": "2026-07-19",
+      "home": "FC Tulsa",
+      "away": "El Paso Locomotive",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 75.9,
+      "support": 0.59,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538396,
+      "date": "2026-07-19",
+      "home": "Aurora",
+      "away": "Oriente Petrolero",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "Trend"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.4,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493583,
+      "date": "2026-07-19",
+      "home": "San Antonio",
+      "away": "Las Vegas Lights",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 79.8,
+      "support": 1.16,
+      "supporters": [
+        "Trend",
+        "League Bias"
+      ],
+      "independence": 2,
+      "exactSupport": 2,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493580,
+      "date": "2026-07-19",
+      "home": "Phoenix Rising",
+      "away": "Monterey Bay",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.5,
+      "support": 0.71,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.4,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549416,
+      "date": "2026-07-19",
+      "home": "Club Deportivo Los Chankas",
+      "away": "Sport Boys",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Win",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "PurePPG Normal"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.46,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538395,
+      "date": "2026-07-18",
+      "home": "Bolívar",
+      "away": "Guabirá",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.79,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.4,
+          "engines": [
+            "League Bias"
+          ]
+        },
+        {
+          "market": "Double Chance 1X",
+          "support": 0.39,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549412,
+      "date": "2026-07-18",
+      "home": "Cienciano",
+      "away": "FBC Melgar",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76,
+      "support": 0.6,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.59,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1520546,
+      "date": "2026-07-18",
+      "home": "Dangjin Citizen",
+      "away": "Jeonbuk Motors II",
+      "league": "K3 League",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.2,
+      "support": 0.64,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.56,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1504264,
+      "date": "2026-07-18",
+      "home": "EIF",
+      "away": "JäPS",
+      "league": "Ykkösliiga",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.5,
+      "support": 0.73,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Under 3.5 Goals",
+          "support": 0.39,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1504265,
+      "date": "2026-07-18",
+      "home": "Kooteepee",
+      "away": "PK-35",
+      "league": "Ykkösliiga",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.5,
+      "support": 0.73,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493581,
+      "date": "2026-07-18",
+      "home": "Pittsburgh Riverhounds",
+      "away": "Louisville City",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 75.8,
+      "support": 0.56,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549417,
+      "date": "2026-07-18",
+      "home": "UCV Moquegua",
+      "away": "Comerciantes Unidos",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 75.9,
+      "support": 0.58,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549410,
+      "date": "2026-07-18",
+      "home": "ADT",
+      "away": "Universitario",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "score": 0,
+      "reason": "No engine produced a qualified candidate.",
+      "supporters": [],
+      "conflictIndex": 0,
+      "independence": 0
+    },
+    {
+      "id": 1538391,
+      "date": "2026-07-18",
+      "home": "Always Ready",
+      "away": "Universitario de Vinto",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.79,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance 1X",
+          "support": 0.32,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549415,
+      "date": "2026-07-18",
+      "home": "Atletico Grau",
+      "away": "UTC Cajamarca",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "score": 0,
+      "reason": "No engine produced a qualified candidate.",
+      "supporters": [],
+      "conflictIndex": 0,
+      "independence": 0
+    },
+    {
+      "id": 1526573,
+      "date": "2026-07-18",
+      "home": "Gualaceo SC",
+      "away": "22 de Julio",
+      "league": "Liga Pro Serie B",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance 1X",
+          "support": 0.84,
+          "engines": [
+            "Trend"
+          ]
+        },
+        {
+          "market": "First Half Under 1.5",
+          "support": 0.42,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538390,
+      "date": "2026-07-18",
+      "home": "Gualberto Villarroel SJ",
+      "away": "The Strongest",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.3,
+      "support": 0.68,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance X2",
+          "support": 0.48,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493579,
+      "date": "2026-07-18",
+      "home": "Loudoun United",
+      "away": "Tampa Bay Rowdies",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Away Win",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "PurePPG Normal"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.59,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493577,
+      "date": "2026-07-18",
+      "home": "Detroit City",
+      "away": "Indy Eleven",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "Trend"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.71,
+          "engines": [
+            "Halves"
+          ]
+        },
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.54,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493584,
+      "date": "2026-07-18",
+      "home": "Sporting JAX",
+      "away": "Brooklyn",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.5,
+      "support": 0.71,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493576,
+      "date": "2026-07-18",
+      "home": "Charleston Battery",
+      "away": "Sacramento Republic",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 79.6,
+      "support": 1.1,
+      "supporters": [
+        "Trend",
+        "League Bias"
+      ],
+      "independence": 2,
+      "exactSupport": 2,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Win",
+          "support": 0.62,
+          "engines": [
+            "PurePPG Normal"
+          ]
+        },
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.56,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493582,
+      "date": "2026-07-18",
+      "home": "Rhode Island",
+      "away": "Hartford Athletic",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "score": 0,
+      "reason": "No engine produced a qualified candidate.",
+      "supporters": [],
+      "conflictIndex": 0,
+      "independence": 0
+    },
+    {
+      "id": 1549413,
+      "date": "2026-07-18",
+      "home": "Cusco",
+      "away": "Alianza Atletico",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 76,
+      "support": 0.59,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1526575,
+      "date": "2026-07-17",
+      "home": "Santo Domingo",
+      "away": "Deportivo Cuenca Juniors",
+      "league": "Liga Pro Serie B",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.9,
+      "support": 0.82,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance 1X",
+          "support": 0.63,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1504263,
+      "date": "2026-07-17",
+      "home": "Klubi-04",
+      "away": "Haka",
+      "league": "Ykkösliiga",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "First Half Under 1.5",
+      "score": 75.7,
+      "support": 0.52,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Under 3.5 Goals",
+          "support": 0.34,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1504262,
+      "date": "2026-07-17",
+      "home": "KäPa",
+      "away": "SJK Akatemia",
+      "league": "Ykkösliiga",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 75.3,
+      "support": 0.42,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549414,
+      "date": "2026-07-17",
+      "home": "FC Cajamarca",
+      "away": "Juan Pablo II College",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 80.9,
+      "support": 1.42,
+      "supporters": [
+        "Trend",
+        "League Bias"
+      ],
+      "independence": 2,
+      "exactSupport": 2,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.77,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1549418,
+      "date": "2026-07-17",
+      "home": "Sporting Cristal",
+      "away": "Deportivo Garcilaso",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.3,
+      "support": 0.66,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1526574,
+      "date": "2026-07-17",
+      "home": "LDU Portoviejo",
+      "away": "Ind. Juniors",
+      "league": "Liga Pro Serie B",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.9,
+      "support": 0.82,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538386,
+      "date": "2026-07-16",
+      "home": "The Strongest",
+      "away": "Oriente Petrolero",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "Trend"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1576753,
+      "date": "2026-07-16",
+      "home": "RB Bragantino U20",
+      "away": "Athletico PR U20",
+      "league": "Brasileiro U20 A",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 78.5,
+      "support": 0.83,
+      "supporters": [
+        "Trend",
+        "League Bias"
+      ],
+      "independence": 2,
+      "exactSupport": 2,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.66,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1576751,
+      "date": "2026-07-16",
+      "home": "Botafogo U20",
+      "away": "Santos U20",
+      "league": "Brasileiro U20 A",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.3,
+      "support": 0.66,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538385,
+      "date": "2026-07-16",
+      "home": "ABB",
+      "away": "Independiente Petrolero",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.79,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1526571,
+      "date": "2026-07-16",
+      "home": "Atletico FC",
+      "away": "San Antonio",
+      "league": "Liga Pro Serie B",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 76.9,
+      "support": 0.83,
+      "supporters": [
+        "Trend"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Under 3.5 Goals",
+          "support": 0.78,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1576752,
+      "date": "2026-07-16",
+      "home": "Palmeiras U20",
+      "away": "Corinthians U20",
+      "league": "Brasileiro U20 A",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Home Team Over 0.5 Goals",
+      "score": 78.5,
+      "support": 0.83,
+      "supporters": [
+        "Trend",
+        "League Bias"
+      ],
+      "independence": 2,
+      "exactSupport": 2,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.53,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1526572,
+      "date": "2026-07-16",
+      "home": "Cumbayá",
+      "away": "9 de Octubre",
+      "league": "Liga Pro Serie B",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.9,
+      "support": 0.82,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance 1X",
+          "support": 0.44,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538384,
+      "date": "2026-07-15",
+      "home": "Blooming",
+      "away": "Gualberto Villarroel SJ",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.79,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1504261,
+      "date": "2026-07-15",
+      "home": "JIPPO",
+      "away": "MP",
+      "league": "Ykkösliiga",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 75.4,
+      "support": 0.44,
+      "supporters": [
+        "Trend"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Under 3.5 Goals",
+          "support": 0.42,
+          "engines": [
+            "League Bias"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1526576,
+      "date": "2026-07-15",
+      "home": "Cuniburo",
+      "away": "El Nacional",
+      "league": "Liga Pro Serie B",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 77,
+      "support": 0.85,
+      "supporters": [
+        "PurePPG Ultra"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Under 3.5 Goals",
+          "support": 0.85,
+          "engines": [
+            "League Bias"
+          ]
+        },
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.7,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1538388,
+      "date": "2026-07-15",
+      "home": "Real Potosí",
+      "away": "San Antonio Bulo Bulo",
+      "league": "Primera División",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "score": 0,
+      "reason": "No engine produced a qualified candidate.",
+      "supporters": [],
+      "conflictIndex": 0,
+      "independence": 0
+    },
+    {
+      "id": 1493573,
+      "date": "2026-07-15",
+      "home": "Lexington",
+      "away": "New Mexico United",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "score": 0,
+      "reason": "No engine produced a qualified candidate.",
+      "supporters": [],
+      "conflictIndex": 0,
+      "independence": 0
+    },
+    {
+      "id": 1493574,
+      "date": "2026-07-15",
+      "home": "Miami FC",
+      "away": "Indy Eleven",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.7,
+      "support": 0.78,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1493575,
+      "date": "2026-07-15",
+      "home": "Sporting JAX",
+      "away": "Pittsburgh Riverhounds",
+      "league": "USL Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 75.8,
+      "support": 0.56,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    }
+  ]
 }
