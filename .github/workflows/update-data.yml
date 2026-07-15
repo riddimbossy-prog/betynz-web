@@ -18,6 +18,7 @@ env:
   DEEP_MAX_LEAGUES: ${{ vars.DEEP_MAX_LEAGUES || '18' }}
   DEEP_MAX_MATCHES: ${{ vars.DEEP_MAX_MATCHES || '48' }}
   TSA_MAX_MATCHES: ${{ vars.TSA_MAX_MATCHES || '24' }}
+  REBEL_ODDS_MAX_MATCHES: ${{ vars.REBEL_ODDS_MAX_MATCHES || '48' }}
 
 jobs:
   refresh:
@@ -27,6 +28,7 @@ jobs:
     env:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
       STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+      ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
 
     steps:
@@ -52,14 +54,17 @@ jobs:
         run: |
           CLEAN_API_FOOTBALL_KEY="$(printf '%s' "$API_FOOTBALL_KEY" | tr -d '\r\n')"
           CLEAN_STATS_API_KEY="$(printf '%s' "$STATS_API_KEY" | tr -d '\r\n')"
+          CLEAN_ODDS_API_KEY="$(printf '%s' "$ODDS_API_KEY" | tr -d '\r\n')"
           if [ -z "$CLEAN_API_FOOTBALL_KEY" ]; then
             echo "API_FOOTBALL_KEY is empty after normalization."
             exit 1
           fi
           echo "::add-mask::$CLEAN_API_FOOTBALL_KEY"
           if [ -n "$CLEAN_STATS_API_KEY" ]; then echo "::add-mask::$CLEAN_STATS_API_KEY"; fi
+          if [ -n "$CLEAN_ODDS_API_KEY" ]; then echo "::add-mask::$CLEAN_ODDS_API_KEY"; fi
           printf 'API_FOOTBALL_KEY=%s\n' "$CLEAN_API_FOOTBALL_KEY" >> "$GITHUB_ENV"
           printf 'STATS_API_KEY=%s\n' "$CLEAN_STATS_API_KEY" >> "$GITHUB_ENV"
+          printf 'ODDS_API_KEY=%s\n' "$CLEAN_ODDS_API_KEY" >> "$GITHUB_ENV"
 
       - name: Create six-day global coverage configuration
         run: |
@@ -68,6 +73,7 @@ jobs:
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
+          ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
           TODAY_ONLY=false
           DAYS_BACK=0
@@ -108,6 +114,7 @@ jobs:
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
+          ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
           TODAY_ONLY=false
           DAYS_BACK=0
@@ -144,6 +151,12 @@ jobs:
         working-directory: scripts
         run: node enrich-xg.js
 
+      - name: Capture persistent multi-book movement for Leonidas and Spartacus
+        working-directory: scripts
+        env:
+          REBEL_ODDS_MAX_MATCHES: ${{ env.REBEL_ODDS_MAX_MATCHES }}
+        run: node enrich-rebel-odds.js
+
       - name: Promote final enriched board
         run: cp scripts/data.js data.js
 
@@ -173,9 +186,13 @@ jobs:
           const trends = deep.filter(m => m.leagueTrends && m.leagueTrends.sample);
           const h2h = deep.filter(m => m.h2h && m.h2h.played);
           const xg = matches.filter(m => m.xgReal);
+          const spartacusReady = matches.filter(m => Number(m.rebelOddsCoverage && (m.rebelOddsCoverage.eligibleBookmakers ?? m.rebelOddsCoverage.bookmakers) || 0) >= 3).length;
+          const leonidasReady = matches.filter(m => Number(m.rebelOddsCoverage && (m.rebelOddsCoverage.eligibleBookmakers ?? m.rebelOddsCoverage.bookmakers) || 0) >= 5).length;
+          const rebelMoving = matches.filter(m => Number(m.rebelOddsCoverage && m.rebelOddsCoverage.movingBookmakers || 0) >= 3).length;
           console.log(`Coverage: ${matches.length} fixtures across ${leagues.size} leagues and ${dates.length} active date(s).`);
           for (const date of dates) console.log(`  ${date}: ${byDate.get(date).length} fixtures`);
           console.log(`Deep evidence: ${deep.length} fixtures; stats=${stats.length}, trends=${trends.length}, h2h=${h2h.length}, xG=${xg.length}.`);
+          console.log(`Rebel odds: Spartacus-ready=${spartacusReady}, Leonidas-ready=${leonidasReady}, active movement=${rebelMoving}.`);
           if (!matches.length) console.log('No fixtures were returned for the requested date window; publishing an honest empty board.');
           if (dates.length === 1) console.log('Warning: only one active fixture date was returned by the API inside the requested window.');
           NODE

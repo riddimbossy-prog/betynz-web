@@ -5,7 +5,7 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="1.1.0";
+  const VERSION="1.2.0";
   const CONFIG={
     engines:{
       spartacus:{minBookmakers:3,minAgreement:.55,minMovement:.04,strongMovement:.06,requiredConfirmations:1,maxMildContradictions:1,minConfidence:68},
@@ -101,11 +101,18 @@
       if(n(odds.under35)>1.60)c++;
       if(n(odds.bttsYes)&&n(odds.bttsYes)<=1.95)c++;
       if(hasPositiveMove(match,"bttsYes",.01))c++;
+      if(market!=="over15"&&hasPositiveMove(match,"over15",.01))c++;
+      if(market!=="over25"&&hasPositiveMove(match,"over25",.01))c++;
+      if(market!=="over35"&&hasPositiveMove(match,"over35",.01))c++;
+      if((aggregate(match,"under25","drift").movement||0)>=.02||(aggregate(match,"under35","drift").movement||0)>=.02)c++;
       if(hasPositiveMove(match,"under25",.03)||hasPositiveMove(match,"bttsNo",.04))contradictions++;
     }else{
       if(n(odds.under35)&&n(odds.under35)<=1.40)c++;
       if(n(odds.bttsNo)&&n(odds.bttsNo)<=1.85)c++;
       if(hasPositiveMove(match,"bttsNo",.01))c++;
+      if(market!=="under25"&&hasPositiveMove(match,"under25",.01))c++;
+      if(market!=="under35"&&hasPositiveMove(match,"under35",.01))c++;
+      if((aggregate(match,"over25","drift").movement||0)>=.02||(aggregate(match,"over35","drift").movement||0)>=.02)c++;
       if(hasPositiveMove(match,"over25",.04)||hasPositiveMove(match,"bttsYes",.04))contradictions++;
     }
     return{confirmations:c,contradictions};
@@ -130,13 +137,16 @@
   function favoriteConfirmations(match,side){
     const fav=side==="home"?"home":"away",opp=side==="home"?"away":"home",dnb=side==="home"?"homeDnb":"awayDnb",dc=side==="home"?"dc1x":"dcx2",htftA=side==="home"?"htft11":"htft22",htftB=side==="home"?"htftX1":"htftX2";
     let confirmations=0,contradictions=0;
-    if(hasPositiveMove(match,opp,.01)||aggregate(match,opp,"drift").movement>=.02)confirmations++;
+    const favMove=aggregate(match,fav).movement||0,oppDrift=aggregate(match,opp,"drift").movement||0,drawDrift=aggregate(match,"draw","drift").movement||0;
+    if(oppDrift>=.02)confirmations++;
+    if(drawDrift>=.015)confirmations++;
+    if(favMove>=.02&&oppDrift>=.02)confirmations++;
     if(hasPositiveMove(match,dnb,.01)||currentOdds(match,dnb))confirmations++;
     if(hasPositiveMove(match,dc,.01)||currentOdds(match,dc))confirmations++;
     if(hasPositiveMove(match,htftA,.01)||hasPositiveMove(match,htftB,.01))confirmations++;
     if(n(match.odds&&match.odds.under35)>=1.40&&n(match.odds&&match.odds.bttsNo)<=1.70)confirmations++;
     if(hasPositiveMove(match,"draw",.05))contradictions++;
-    if(aggregate(match,fav).movement!=null&&aggregate(match,fav).movement<-.02)contradictions++;
+    if(favMove<-.02)contradictions++;
     return{confirmations,contradictions};
   }
   function analyzeFavorite(match,engineName){

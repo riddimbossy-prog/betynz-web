@@ -18,6 +18,7 @@ env:
   DEEP_MAX_LEAGUES: ${{ vars.DEEP_MAX_LEAGUES || '12' }}
   DEEP_MAX_MATCHES: ${{ vars.DEEP_MAX_MATCHES || '24' }}
   TSA_MAX_MATCHES: ${{ vars.TSA_MAX_MATCHES || '12' }}
+  REBEL_ODDS_MAX_MATCHES: ${{ vars.REBEL_ODDS_MAX_MATCHES || '36' }}
 
 jobs:
   refresh:
@@ -38,6 +39,7 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           if [ -z "$STATS_API_KEY" ]; then
             echo "STATS_API_KEY is missing; no priority enrichment can run."
@@ -46,6 +48,7 @@ jobs:
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
+          ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
           EOF_CONFIG
           cp data.js scripts/data.js
@@ -53,6 +56,12 @@ jobs:
       - name: Refresh xG, odds movement and confirmed lineups for priority fixtures
         working-directory: scripts
         run: node enrich-xg.js
+
+      - name: Refresh persistent Rebel bookmaker movement
+        working-directory: scripts
+        env:
+          REBEL_ODDS_MAX_MATCHES: ${{ env.REBEL_ODDS_MAX_MATCHES }}
+        run: node enrich-rebel-odds.js
 
       - name: Promote refreshed priority evidence
         run: cp scripts/data.js data.js

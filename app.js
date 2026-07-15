@@ -116,6 +116,15 @@
   }
 
   function allPicks(){return matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")))}
+  function rebelCoverage(id){
+    const threshold=id==="leonidas"?5:3;
+    const rows=matches.map(m=>m&&m.rebelOddsCoverage||{});
+    const ready=rows.filter(x=>Number(x.eligibleBookmakers??x.bookmakers??0)>=threshold).length;
+    const moving=rows.filter(x=>Number(x.movingBookmakers||0)>=threshold).length;
+    const collecting=rows.filter(x=>String(x.status||"")==="collecting").length;
+    return{threshold,ready,moving,collecting};
+  }
+
   function enginePicks(id){
     if(id==="zeus")return allPicks();
     if(enginePickCache.has(id))return enginePickCache.get(id);
@@ -250,7 +259,9 @@
         hero.hidden=false;
         hero.dataset.engineFamily=engine.family||"olympian";
         hero.style.setProperty("--engine-art",`url("${ENGINE_ART[engine.id]||ENGINE_ART.zeus}")`);
-        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div class="engine-picks-meta"><b>${engineRows.length}</b> qualified picks across <b>${engineDates.length}</b> active dates</div><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} engine artwork" loading="eager">`;
+        const coverage=engine.family==="rebel"?rebelCoverage(engine.id):null;
+        const metaText=coverage?`<b>${engineRows.length}</b> qualified signals · <b>${coverage.ready}</b> fixtures have ${coverage.threshold}+ bookmaker histories · <b>${coverage.moving}</b> show active movement`:`<b>${engineRows.length}</b> qualified picks across <b>${engineDates.length}</b> active dates`;
+        hero.innerHTML=`<div class="engine-picks-copy"><span>${esc(engine.role)}</span><h3>${esc(engine.name)} Engine Picks</h3><p>${esc(engine.summary)}</p><div class="engine-picks-meta">${metaText}</div><button class="engine-about-btn" type="button" data-engine-about="${engine.id}">How ${esc(engine.name)} works</button></div><img src="${esc(ENGINE_ART[engine.id]||ENGINE_ART.zeus)}" alt="${esc(engine.name)} engine artwork" loading="eager">`;
       }
     }else{
       if(title)title.textContent="Upcoming Predictions";
@@ -259,7 +270,14 @@
       if(hero){hero.hidden=true;hero.innerHTML="";hero.style.removeProperty("--engine-art");delete hero.dataset.engineFamily}
     }
 
-    $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty(engine?`${engine.name} has no qualified picks for ${friendlyDate(activeDate)}.`:"No engine clears the selected conditions.");
+    let emptyText="No engine clears the selected conditions.";
+    if(engine){
+      if(engine.family==="rebel"){
+        const c=rebelCoverage(engine.id);
+        emptyText=c.moving?`${engine.name} has movement data, but no market cleared its strict agreement and confirmation rules for ${friendlyDate(activeDate)}.`:`${engine.name} is collecting opening-to-current bookmaker movement. Run the hourly evidence refresh again after prices change.`;
+      }else emptyText=`${engine.name} has no qualified picks for ${friendlyDate(activeDate)}.`;
+    }
+    $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty(emptyText);
     updatePageArt();
   }
 
@@ -268,7 +286,9 @@
       const count=enginePicks(e.id).length;
       const art=ENGINE_ART[e.id]||ENGINE_ART.zeus;
       const rebel=e.family==="rebel";
-      return `<article class="engine-card deity-card ${rebel?"rebel-card":""}" data-engine-picks="${e.id}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${count} PICKS</span></div>${rebel?'<span class="engine-family-badge">REBEL</span>':''}<h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">View ${e.name} picks →</div></article>`
+      const coverage=rebel?rebelCoverage(e.id):null;
+      const status=count?`${count} PICKS`:rebel?(coverage.moving?`${coverage.moving} MOVING`:coverage.ready?`${coverage.ready} READY`:"COLLECTING"):"0 PICKS";
+      return `<article class="engine-card deity-card ${rebel?"rebel-card":""}" data-engine-picks="${e.id}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${status}</span></div>${rebel?'<span class="engine-family-badge">REBEL</span>':''}<h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">View ${e.name} picks →</div></article>`
     }).join("");
     $$('[data-engine-picks]').forEach(c=>{
       c.onclick=()=>viewEnginePicks(c.dataset.enginePicks);

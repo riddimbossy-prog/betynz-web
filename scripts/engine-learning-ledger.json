@@ -1,24 +1,10 @@
 {
   "version": "v193",
   "schemaVersion": 1,
-  "updated": "2026-07-14T23:56:58.101Z",
-  "minimumSamples": {
-    "teamFavorite": 5,
-    "teamUnderdog": 5,
-    "league": 12,
-    "matchup": 2,
-    "context": 6,
-    "hardVeto": 8
-  },
+  "updated": null,
+  "minimumSamples": {"teamFavorite":5,"teamUnderdog":5,"league":12,"matchup":2,"context":6,"hardVeto":8},
   "decayHalfLifeDays": 120,
-  "summary": {
-    "settledFixtures": 0,
-    "settledDecisions": 0,
-    "reviewedLosses": 0,
-    "attachedUpcoming": 47,
-    "highRiskUpcoming": 0,
-    "stableUpcoming": 0
-  },
+  "summary": {"settledFixtures":0,"settledDecisions":0,"reviewedLosses":0,"attachedUpcoming":0,"highRiskUpcoming":0,"stableUpcoming":0},
   "teams": {},
   "leagues": {},
   "matchups": {},

@@ -1,5 +1,5 @@
-const CACHE='betynz-v4.0-dashboard-ui';
-const CORE=['/','/index.html','/styles.css?v=4.0','/app.js?v=4.0','/rebel-engine-core.js?v=4.0','/olympian-engine-core.js?v=4.0','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
+const CACHE='betynz-v4.1-rebel-odds';
+const CORE=['/','/index.html','/styles.css?v=4.1','/app.js?v=4.1','/rebel-engine-core.js?v=4.1','/olympian-engine-core.js?v=4.1','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
