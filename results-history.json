@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "fixtureId": "1523761",
+    "home": "Charlestown City Blues",
+    "away": "Weston Bears",
+    "league": "Northern NSW NPL",
+    "kickoff": "2026-07-15T10:00:00.000Z",
+    "market": "Away Win",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": 1.55,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "ares",
+      "hermes",
+      "hera",
+      "hephaestus",
+      "demeter",
+      "hades",
+      "atlas",
+      "nike"
+    ],
+    "publishedAt": "2026-07-15T07:24:53.301Z",
+    "settledAt": "2026-07-15T11:52:06.770Z",
+    "score": "0-5",
+    "result": "Won"
+  }
+]

@@ -1,4 +1,96 @@
 {
+  "1493573": {
+    "fixtureId": "1493573",
+    "home": "Lexington",
+    "away": "New Mexico United",
+    "league": "USL Championship",
+    "kickoff": "2026-07-15T23:00:00.000Z",
+    "publishedAt": "2026-07-15T11:52:06.770Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "4 specialist engines agree on Away DNB.",
+        "Weighted support 4.6 leads the next market by 4.1.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.85
+    }
+  },
+  "1493574": {
+    "fixtureId": "1493574",
+    "home": "Miami FC",
+    "away": "Indy Eleven",
+    "league": "USL Championship",
+    "kickoff": "2026-07-15T23:00:00.000Z",
+    "publishedAt": "2026-07-15T11:52:06.770Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "7 specialist engines agree on Away DNB.",
+        "Weighted support 6.42 leads the next market by 5.87.",
+        "Data quality: 82/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 82,
+      "odds": 1.72
+    }
+  },
+  "1493575": {
+    "fixtureId": "1493575",
+    "home": "Sporting JAX",
+    "away": "Pittsburgh Riverhounds",
+    "league": "USL Championship",
+    "kickoff": "2026-07-15T23:30:00.000Z",
+    "publishedAt": "2026-07-15T11:52:06.770Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "9 specialist engines agree on Away DNB.",
+        "Weighted support 14 leads the next market by 13.4.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.42
+    }
+  },
   "1504261": {
     "fixtureId": "1504261",
     "home": "JIPPO",
@@ -28,6 +120,33 @@
       "odds": null
     }
   },
+  "1519402": {
+    "fixtureId": "1519402",
+    "home": "Leones del Norte",
+    "away": "Deportivo Cuenca",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-15T22:00:00.000Z",
+    "publishedAt": "2026-07-15T11:52:06.770Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A2",
+      "engineIds": [
+        "prometheus",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "3 specialist engines agree on Away DNB.",
+        "Weighted support 2.73 leads the next market by 0.41.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.07
+    }
+  },
   "1519403": {
     "fixtureId": "1519403",
     "home": "Libertad",
@@ -54,6 +173,36 @@
       "warnings": [],
       "dataQuality": 100,
       "odds": 2.05
+    }
+  },
+  "1519407": {
+    "fixtureId": "1519407",
+    "home": "Universidad Catolica",
+    "away": "LDU de Quito",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-15T22:00:00.000Z",
+    "publishedAt": "2026-07-15T11:52:06.770Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "6 specialist engines agree on Away DNB.",
+        "Weighted support 5.11 leads the next market by 3.28.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.95
     }
   },
   "1523761": {
