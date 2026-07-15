@@ -241,5 +241,62 @@
       "dataQuality": 100,
       "odds": 1.29
     }
+  },
+  "1576751": {
+    "fixtureId": "1576751",
+    "home": "Botafogo U20",
+    "away": "Santos U20",
+    "league": "Brasileiro U20 A",
+    "kickoff": "2026-07-16T00:00:00.000Z",
+    "publishedAt": "2026-07-15T20:25:53.478Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "demeter",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "6 specialist engines agree on Home DNB.",
+        "Weighted support 8.41 leads the next market by 7.91.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null
+    }
+  },
+  "1576753": {
+    "fixtureId": "1576753",
+    "home": "RB Bragantino U20",
+    "away": "Athletico PR U20",
+    "league": "Brasileiro U20 A",
+    "kickoff": "2026-07-16T00:00:00.000Z",
+    "publishedAt": "2026-07-15T20:25:53.478Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 90,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "hera",
+        "nike"
+      ],
+      "reasons": [
+        "3 specialist engines agree on Home DNB.",
+        "Weighted support 2.46 leads the next market by 1.86.",
+        "Data quality: 90/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 90,
+      "odds": null
+    }
   }
 }

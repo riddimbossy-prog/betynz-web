@@ -1,17 +1,25 @@
 {
   "version": "v196",
-  "updated": "2026-07-15T18:57:19.151Z",
+  "updated": "2026-07-15T20:25:44.951Z",
   "summary": {
     "fixtures": 47,
     "extreme": 0,
     "high": 0,
-    "low": 47,
-    "averageRisk": 9
+    "low": 44,
+    "averageRisk": 10
   },
   "commonFlags": [
     {
       "flag": "REST_IMBALANCE",
-      "count": 8
+      "count": 7
+    },
+    {
+      "flag": "KNOCKOUT_CONTEXT",
+      "count": 3
+    },
+    {
+      "flag": "FINAL_PRESSURE",
+      "count": 3
     }
   ],
   "fixtures": [
@@ -35,7 +43,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519419,
@@ -57,7 +65,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519412,
@@ -79,7 +87,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519414,
@@ -105,7 +113,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519408,
@@ -127,7 +135,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493578,
@@ -153,7 +161,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493583,
@@ -175,7 +183,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493580,
@@ -197,7 +205,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519415,
@@ -219,7 +227,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519411,
@@ -245,7 +253,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519409,
@@ -267,7 +275,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528656,
@@ -289,7 +297,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528657,
@@ -311,7 +319,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528655,
@@ -337,7 +345,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528777,
@@ -359,7 +367,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1504264,
@@ -381,7 +389,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1504265,
@@ -403,7 +411,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493581,
@@ -425,7 +433,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519410,
@@ -447,7 +455,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1526573,
@@ -469,7 +477,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519413,
@@ -491,7 +499,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493579,
@@ -513,7 +521,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493577,
@@ -535,7 +543,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493584,
@@ -557,7 +565,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493576,
@@ -583,7 +591,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493582,
@@ -605,7 +613,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1526575,
@@ -627,7 +635,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519406,
@@ -649,7 +657,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528651,
@@ -671,7 +679,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528652,
@@ -693,7 +701,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528653,
@@ -719,7 +727,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1528654,
@@ -741,7 +749,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1504263,
@@ -763,7 +771,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1504262,
@@ -785,7 +793,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1526574,
@@ -807,7 +815,63 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
+    },
+    {
+      "id": 1576753,
+      "date": "2026-07-16",
+      "home": "RB Bragantino U20",
+      "away": "Athletico PR U20",
+      "league": "Brasileiro U20 A",
+      "version": "v196",
+      "riskScore": 24,
+      "stabilityScore": 42,
+      "riskLevel": "WATCH",
+      "flags": [
+        "KNOCKOUT_CONTEXT",
+        "FINAL_PRESSURE"
+      ],
+      "reasons": [
+        "Knockout incentives can override ordinary league patterns.",
+        "Final-round pressure can change normal tempo and risk."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": -3
+      },
+      "generatedAt": "2026-07-15T20:25:44.950Z"
+    },
+    {
+      "id": 1576751,
+      "date": "2026-07-16",
+      "home": "Botafogo U20",
+      "away": "Santos U20",
+      "league": "Brasileiro U20 A",
+      "version": "v196",
+      "riskScore": 24,
+      "stabilityScore": 42,
+      "riskLevel": "WATCH",
+      "flags": [
+        "KNOCKOUT_CONTEXT",
+        "FINAL_PRESSURE"
+      ],
+      "reasons": [
+        "Knockout incentives can override ordinary league patterns.",
+        "Final-round pressure can change normal tempo and risk."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": -3
+      },
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519401,
@@ -829,29 +893,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
-    },
-    {
-      "id": 1585107,
-      "date": "2026-07-16",
-      "home": "Al Ahed",
-      "away": "Al Nejmeh",
-      "league": "Premier League",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1526572,
@@ -877,29 +919,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
-    },
-    {
-      "id": 1585108,
-      "date": "2026-07-16",
-      "home": "Al Ansar",
-      "away": "Jwaaya FC",
-      "league": "Premier League",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1526571,
@@ -921,7 +941,35 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
+    },
+    {
+      "id": 1576752,
+      "date": "2026-07-16",
+      "home": "Palmeiras U20",
+      "away": "Corinthians U20",
+      "league": "Brasileiro U20 A",
+      "version": "v196",
+      "riskScore": 24,
+      "stabilityScore": 42,
+      "riskLevel": "WATCH",
+      "flags": [
+        "KNOCKOUT_CONTEXT",
+        "FINAL_PRESSURE"
+      ],
+      "reasons": [
+        "Knockout incentives can override ordinary league patterns.",
+        "Final-round pressure can change normal tempo and risk."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": -3
+      },
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519400,
@@ -943,33 +991,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
-    },
-    {
-      "id": 1526576,
-      "date": "2026-07-15",
-      "home": "Cuniburo",
-      "away": "El Nacional",
-      "league": "Liga Pro Serie B",
-      "version": "v196",
-      "riskScore": 14,
-      "stabilityScore": 48,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "El Nacional has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519402,
@@ -991,7 +1013,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1519407,
@@ -1013,7 +1035,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493573,
@@ -1035,7 +1057,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493574,
@@ -1057,7 +1079,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     },
     {
       "id": 1493575,
@@ -1079,7 +1101,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T18:57:19.151Z"
+      "generatedAt": "2026-07-15T20:25:44.950Z"
     }
   ]
 }

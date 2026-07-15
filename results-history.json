@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "fixtureId": "1519403",
+    "home": "Libertad",
+    "away": "Tecnico Universitario",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-15T17:00:00.000Z",
+    "market": "Away DNB",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": 1.7,
+    "engineIds": [
+      "prometheus",
+      "ares",
+      "hades",
+      "nike"
+    ],
+    "publishedAt": "2026-07-15T18:57:28.037Z",
+    "settledAt": "2026-07-15T20:25:53.478Z",
+    "score": "1-0",
+    "result": "Lost"
+  }
+]
