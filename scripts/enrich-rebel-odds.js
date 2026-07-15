@@ -116,7 +116,9 @@ function parseApiFootballBooks(response){
     const bets=Array.isArray(bk&&bk.bets)?bk.bets:[],vals={},add=(k,v)=>{if(v!=null)vals[k]=v};
     const mw=findBet(bets,/match winner|1x2|full time result/i);add("home",pick(mw,/^(home|1)$/i));add("draw",pick(mw,/^(draw|x)$/i));add("away",pick(mw,/^(away|2)$/i));
     const ou=findBet(bets,/goals over\/under|over\/under|total goals/i);
-    add("over15",pick(ou,/over 1\.5/i));add("under15",pick(ou,/under 1\.5/i));add("over25",pick(ou,/over 2\.5/i));add("under25",pick(ou,/under 2\.5/i));add("over35",pick(ou,/over 3\.5/i));add("under35",pick(ou,/under 3\.5/i));
+    add("over15",pick(ou,/over 1\.5/i));add("under15",pick(ou,/under 1\.5/i));add("over20",pick(ou,/^over 2(?:\.0)?$/i));add("over25",pick(ou,/over 2\.5/i));add("under25",pick(ou,/under 2\.5/i));add("under30",pick(ou,/^under 3(?:\.0)?$/i));add("over35",pick(ou,/over 3\.5/i));add("under35",pick(ou,/under 3\.5/i));
+    const homeTotals=findBet(bets,/(?:home|team 1).*(?:team )?(?:total|over\/under)|(?:team )?(?:total|over\/under).*(?:home|team 1)/i);add("homeOver15",pick(homeTotals,/over 1\.5/i));add("homeOver25",pick(homeTotals,/over 2\.5/i));
+    const awayTotals=findBet(bets,/(?:away|team 2).*(?:team )?(?:total|over\/under)|(?:team )?(?:total|over\/under).*(?:away|team 2)/i);add("awayOver15",pick(awayTotals,/over 1\.5/i));add("awayOver25",pick(awayTotals,/over 2\.5/i));
     const btts=findBet(bets,/both teams (to )?score|btts/i);add("bttsYes",pick(btts,/^yes/i));add("bttsNo",pick(btts,/^no/i));
     const dc=findBet(bets,/double chance/i);add("dc1x",pick(dc,/home\/draw|1x|^1\/x/i));add("dc12",pick(dc,/home\/away|12|^1\/2/i));add("dcx2",pick(dc,/draw\/away|x2|^x\/2/i));
     const dnb=findBet(bets,/draw no bet|dnb/i);add("homeDnb",pick(dnb,/^(home|1)$/i));add("awayDnb",pick(dnb,/^(away|2)$/i));

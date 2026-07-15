@@ -132,7 +132,13 @@ function extractBookMarkets(bm){
   addOddsPair(open,current,"draw",findSelection(match,["draw","x"]));
   addOddsPair(open,current,"away",findSelection(match,["away","2"]));
   const totals=findMarket(markets,["total_goals","goals_over_under","over_under","match_goals"]);
-  for(const [key,aliases] of Object.entries({over15:["over 1.5","over15","o1.5"],under15:["under 1.5","under15","u1.5"],over25:["over 2.5","over25","o2.5"],under25:["under 2.5","under25","u2.5"],over35:["over 3.5","over35","o3.5"],under35:["under 3.5","under35","u3.5"]}))addOddsPair(open,current,key,findSelection(totals,aliases));
+  for(const [key,aliases] of Object.entries({over15:["over 1.5","over15","o1.5"],under15:["under 1.5","under15","u1.5"],over20:["over 2.0","over 2","over20","o2.0"],over25:["over 2.5","over25","o2.5"],under25:["under 2.5","under25","u2.5"],under30:["under 3.0","under 3","under30","u3.0"],over35:["over 3.5","over35","o3.5"],under35:["under 3.5","under35","u3.5"]}))addOddsPair(open,current,key,findSelection(totals,aliases));
+  const homeTotals=findMarket(markets,["home_team_total_goals","home_team_over_under","team_1_total_goals"]);
+  addOddsPair(open,current,"homeOver15",findSelection(homeTotals,["over 1.5","over15","o1.5"]));
+  addOddsPair(open,current,"homeOver25",findSelection(homeTotals,["over 2.5","over25","o2.5"]));
+  const awayTotals=findMarket(markets,["away_team_total_goals","away_team_over_under","team_2_total_goals"]);
+  addOddsPair(open,current,"awayOver15",findSelection(awayTotals,["over 1.5","over15","o1.5"]));
+  addOddsPair(open,current,"awayOver25",findSelection(awayTotals,["over 2.5","over25","o2.5"]));
   const btts=findMarket(markets,["both_teams_to_score","btts"]);
   addOddsPair(open,current,"bttsYes",findSelection(btts,["yes","btts yes"]));
   addOddsPair(open,current,"bttsNo",findSelection(btts,["no","btts no"]));

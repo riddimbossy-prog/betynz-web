@@ -964,3 +964,7 @@ button,select,input{letter-spacing:0}
   .match-state{padding-inline:6px}
   .match-score{min-width:38px;padding-inline:6px}
 }
+
+/* Betynz v4.3 — transparent Rebel audit details */
+.rebel-audit{line-height:1.85}
+.rebel-audit b{color:var(--text);font-weight:800}

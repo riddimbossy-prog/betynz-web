@@ -851,8 +851,15 @@ const FINISHED = new Set(["FT","AET","PEN"]);
 
       const ou = findBet(bets, /goals over\/under|over\/under|total goals/i);
       add("over15", pickValue(ou, /over 1\.5/i)); add("under15", pickValue(ou, /under 1\.5/i));
+      add("over20", pickValue(ou, /^over 2(?:\.0)?$/i));
       add("over25", pickValue(ou, /over 2\.5/i)); add("under25", pickValue(ou, /under 2\.5/i));
+      add("under30", pickValue(ou, /^under 3(?:\.0)?$/i));
       add("over35", pickValue(ou, /over 3\.5/i)); add("under35", pickValue(ou, /under 3\.5/i));
+
+      const homeTotals = findBet(bets, /(?:home|team 1).*(?:team )?(?:total|over\/under)|(?:team )?(?:total|over\/under).*(?:home|team 1)/i);
+      add("homeOver15", pickValue(homeTotals, /over 1\.5/i)); add("homeOver25", pickValue(homeTotals, /over 2\.5/i));
+      const awayTotals = findBet(bets, /(?:away|team 2).*(?:team )?(?:total|over\/under)|(?:team )?(?:total|over\/under).*(?:away|team 2)/i);
+      add("awayOver15", pickValue(awayTotals, /over 1\.5/i)); add("awayOver25", pickValue(awayTotals, /over 2\.5/i));
 
       const btts = findBet(bets, /both teams (to )?score|btts/i);
       add("bttsYes", pickValue(btts, /^yes/i)); add("bttsNo", pickValue(btts, /^no/i));

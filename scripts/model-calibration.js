@@ -92,8 +92,8 @@ function marketOdds(m,market){
   const o=m&&m.odds||{};
   const map={
     "Home Win":"home","Away Win":"away","Draw":"draw",
-    "Over 1.5 Goals":"over15","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35",
-    "Under 1.5 Goals":"under15","Under 2.5 Goals":"under25","Under 3.5 Goals":"under35",
+    "Over 1.5 Goals":"over15","Over 2.0 Asian Goals":"over20","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35",
+    "Under 1.5 Goals":"under15","Under 2.5 Goals":"under25","Under 3.0 Asian Goals":"under30","Under 3.5 Goals":"under35",
     "BTTS Yes":"bttsYes","BTTS No":"bttsNo",
     "Double Chance 1X":"dc1x","Double Chance 12":"dc12","Double Chance X2":"dcx2",
     "First Half Over 0.5":"fhOver05","First Half Under 1.5":"fhUnder15"

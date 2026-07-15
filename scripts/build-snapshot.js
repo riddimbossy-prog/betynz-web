@@ -10,7 +10,13 @@ function writeJSON(file,value){fs.writeFileSync(file,JSON.stringify(value,null,2
 function loadData(file){const code=fs.readFileSync(file,"utf8"),ctx={window:{}};vm.createContext(ctx);vm.runInContext(code,ctx,{filename:file});return ctx.window}
 function iso(v){try{return new Date(v).toISOString()}catch(_){return null}}
 function key(m){return String(m.id!=null?m.id:`${m.home}|${m.away}|${m.matchDate}`)}
-function publicPrediction(id,o){return {engine:id,bet:!!o.bet,market:o.bet?o.primary:"No Bet",confidence:Number(o.confidence||0),reasons:o.reasons||[],warnings:o.warnings||[],dataQuality:o.dataQuality??null,supportOnly:!!o.supportOnly}}
+function publicPrediction(id,o){
+  const out={engine:id,bet:!!o.bet,market:o.bet?o.primary:"No Bet",confidence:Number(o.confidence||0),reasons:o.reasons||[],warnings:o.warnings||[],dataQuality:o.dataQuality??null,supportOnly:!!o.supportOnly};
+  if(o&&o.rebel){
+    Object.assign(out,{rebel:true,originalMarket:o.originalMarket||null,finalMarket:o.finalMarket||o.primary||null,openingOdds:o.openingOdds??null,currentOdds:o.currentOdds??null,movement:o.movement??null,bookmakerCount:o.bookmakerCount??null,bookmakerAgreement:o.bookmakerAgreement??null,confirmations:o.confirmations??null,contradictions:o.contradictions??null,downgradeLevel:o.downgradeLevel??0,classification:o.classification||null,sourceMarket:o.sourceMarket||null});
+  }
+  return out;
+}
 function settleDecision(market,m){
   const mk=String(market||"");
   if(/first half/i.test(mk)){

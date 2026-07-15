@@ -5,7 +5,7 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="3.9.0";
+  const VERSION="4.3.0";
   const REBEL_API=(typeof require==="function"?(()=>{try{return require("./rebel-engine-core.js")}catch(_){return {}}})():typeof globalThis!=="undefined"?globalThis:{});
   const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
   const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,Number(v)||0));
@@ -18,8 +18,8 @@
   const MARKET_ODDS={
     "Home Win":"home","Away Win":"away","Home DNB":"homeDnb","Away DNB":"awayDnb",
     "Double Chance 1X":"dc1x","Double Chance X2":"dcx2","Double Chance 12":"dc12",
-    "Over 1.5 Goals":"over15","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35",
-    "Under 2.5 Goals":"under25","Under 3.5 Goals":"under35","Under 4.5 Goals":"under45",
+    "Over 1.5 Goals":"over15","Over 2.0 Asian Goals":"over20","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35",
+    "Under 2.5 Goals":"under25","Under 3.0 Asian Goals":"under30","Under 3.5 Goals":"under35","Under 4.5 Goals":"under45",
     "BTTS Yes":"bttsYes","BTTS No":"bttsNo",
     "Home Team Over 0.5 Goals":"homeOver05","Away Team Over 0.5 Goals":"awayOver05",
     "Home Team Over 1.5 Goals":"homeOver15","Away Team Over 1.5 Goals":"awayOver15",
@@ -345,7 +345,10 @@
       if(m==="Home Win")return h>a?"Won":"Lost";if(m==="Away Win")return a>h?"Won":"Lost";
       if(m==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(m==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";
       if(m==="Double Chance 1X")return h>=a?"Won":"Lost";if(m==="Double Chance X2")return a>=h?"Won":"Lost";
-      if(m==="Double Chance 12")return h!==a?"Won":"Lost";if(m.includes("Over 1.5")&&!m.includes("Team"))return t>=2?"Won":"Lost";
+      if(m==="Double Chance 12")return h!==a?"Won":"Lost";
+      if(m.includes("Over 2.0 Asian"))return t>2?"Won":t===2?"Void":"Lost";
+      if(m.includes("Under 3.0 Asian"))return t<3?"Won":t===3?"Void":"Lost";
+      if(m.includes("Over 1.5")&&!m.includes("Team"))return t>=2?"Won":"Lost";
       if(m.includes("Over 2.5"))return t>=3?"Won":"Lost";if(m.includes("Over 3.5"))return t>=4?"Won":"Lost";
       if(m.includes("Under 2.5"))return t<=2?"Won":"Lost";if(m.includes("Under 3.5"))return t<=3?"Won":"Lost";if(m.includes("Under 4.5"))return t<=4?"Won":"Lost";
       if(m==="BTTS Yes")return h>0&&a>0?"Won":"Lost";if(m==="BTTS No")return !(h>0&&a>0)?"Won":"Lost";

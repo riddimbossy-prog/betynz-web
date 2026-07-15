@@ -1,15 +1,15 @@
 {
   "name": "betynz-web",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "private": true,
-  "description": "Betynz live football product with new branding, live score labels, automatic board settlement, persistent PWA updates, mobile/Z Fold drawer navigation, 18 engines and multi-book odds movement.",
+  "description": "Betynz live football product with exact Rebel goal-market correction v1.1, transparent Leonidas/Spartacus downgrades, live settlement, PWA updates and 18 engines.",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",
     "validate": "node scripts/validate-product.js",
     "build": "node scripts/build-dist.js",
     "check": "node --check app.js && node --check rebel-engine-core.js && node --check olympian-engine-core.js && node --check scripts/seed-guard.js && node --check scripts/fetch-data.js && node --check scripts/select-enrichment-plan.js && node --check scripts/merge-enriched-data.js && node --check scripts/enrich-xg.js && node --check scripts/enrich-rebel-odds.js && node --check scripts/build-snapshot.js && npm run test:rebels && npm run validate",
-    "test:rebels": "node tests/rebel-engine-tests.js"
+    "test:rebels": "node tests/rebel-engine-tests.js && node tests/rebel-goal-correction-tests.js"
   },
   "engines": {
     "node": ">=20"
