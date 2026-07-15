@@ -1,6 +1,6 @@
 {
   "version": "v196",
-  "updated": "2026-07-15T07:38:45.996Z",
+  "updated": "2026-07-15T13:03:56.798Z",
   "summary": {
     "fixtures": 48,
     "extreme": 0,
@@ -35,7 +35,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519419,
@@ -57,7 +57,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519412,
@@ -79,7 +79,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519414,
@@ -105,7 +105,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519408,
@@ -127,7 +127,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493578,
@@ -153,7 +153,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493583,
@@ -175,7 +175,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493580,
@@ -197,59 +197,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523790,
-      "date": "2026-07-19",
-      "home": "Hamilton Olympic",
-      "away": "Belmont Swansea",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Belmont Swansea has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523791,
-      "date": "2026-07-19",
-      "home": "Charlestown City Blues",
-      "away": "Edgeworth Eagles",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Edgeworth Eagles has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519415,
@@ -271,7 +219,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519411,
@@ -297,7 +245,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519409,
@@ -319,7 +267,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1490329,
@@ -341,7 +289,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1490330,
@@ -363,95 +311,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523787,
-      "date": "2026-07-18",
-      "home": "Adamstown Rosebuds",
-      "away": "Valentine",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523786,
-      "date": "2026-07-18",
-      "home": "Cooks Hill United",
-      "away": "Broadmeadow Magic",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523788,
-      "date": "2026-07-18",
-      "home": "Lambton Jaffas",
-      "away": "Maitland",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523789,
-      "date": "2026-07-18",
-      "home": "Weston Bears",
-      "away": "Kahibah",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1520546,
@@ -473,7 +333,99 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528656,
+      "date": "2026-07-18",
+      "home": "Meizhou Kejia",
+      "away": "Dalian Huayi",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528657,
+      "date": "2026-07-18",
+      "home": "Nanjing City",
+      "away": "Guangzhou E-Power",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528655,
+      "date": "2026-07-18",
+      "home": "Guangxi Hengchen",
+      "away": "Shaanxi Union",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Guangxi Hengchen has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528777,
+      "date": "2026-07-18",
+      "home": "Heilongjiang Lava Spring",
+      "away": "Ningbo Professional",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1504264,
@@ -495,7 +447,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1504265,
@@ -517,7 +469,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493581,
@@ -539,7 +491,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519410,
@@ -561,7 +513,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519413,
@@ -583,7 +535,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493579,
@@ -605,7 +557,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493577,
@@ -627,7 +579,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493584,
@@ -649,7 +601,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493576,
@@ -675,7 +627,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493582,
@@ -697,7 +649,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519406,
@@ -719,7 +671,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1490326,
@@ -741,7 +693,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1490327,
@@ -763,7 +715,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1490328,
@@ -785,7 +737,99 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528651,
+      "date": "2026-07-17",
+      "home": "Changchun Yatai",
+      "away": "Wuxi Wugou",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528652,
+      "date": "2026-07-17",
+      "home": "Suzhou Dongwu",
+      "away": "Shenzhen Juniors",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528653,
+      "date": "2026-07-17",
+      "home": "Dongguan United",
+      "away": "Nantong Zhiyun",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Nantong Zhiyun has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
+    },
+    {
+      "id": 1528654,
+      "date": "2026-07-17",
+      "home": "Hebei Kungfu",
+      "away": "Yanbian Longding",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1504263,
@@ -807,7 +851,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1504262,
@@ -829,7 +873,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519401,
@@ -851,7 +895,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519400,
@@ -873,7 +917,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1490325,
@@ -895,51 +939,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523761,
-      "date": "2026-07-15",
-      "home": "Charlestown City Blues",
-      "away": "Weston Bears",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
-    },
-    {
-      "id": 1523779,
-      "date": "2026-07-15",
-      "home": "Kahibah",
-      "away": "Maitland",
-      "league": "Northern NSW NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1504261,
@@ -961,7 +961,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519403,
@@ -983,7 +983,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519402,
@@ -1005,7 +1005,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1519407,
@@ -1027,7 +1027,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493573,
@@ -1049,7 +1049,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493574,
@@ -1071,7 +1071,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     },
     {
       "id": 1493575,
@@ -1093,7 +1093,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T07:38:45.996Z"
+      "generatedAt": "2026-07-15T13:03:56.798Z"
     }
   ]
 }

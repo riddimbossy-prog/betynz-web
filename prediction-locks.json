@@ -120,6 +120,38 @@
       "odds": null
     }
   },
+  "1519401": {
+    "fixtureId": "1519401",
+    "home": "Barcelona SC",
+    "away": "Guayaquil City FC",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-16T00:30:00.000Z",
+    "publishedAt": "2026-07-15T13:04:06.280Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "8 specialist engines agree on Home Win.",
+        "Weighted support 11.28 leads the next market by 9.22.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.54
+    }
+  },
   "1519402": {
     "fixtureId": "1519402",
     "home": "Leones del Norte",
