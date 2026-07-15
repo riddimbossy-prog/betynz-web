@@ -1,13 +1,1085 @@
 {
   "version": "v196",
-  "updated": null,
+  "updated": "2026-07-15T18:57:19.151Z",
   "summary": {
-    "fixtures": 0,
+    "fixtures": 47,
     "extreme": 0,
     "high": 0,
-    "low": 0,
-    "averageRisk": 0
+    "low": 47,
+    "averageRisk": 9
   },
-  "commonFlags": [],
-  "fixtures": []
+  "commonFlags": [
+    {
+      "flag": "REST_IMBALANCE",
+      "count": 8
+    }
+  ],
+  "fixtures": [
+    {
+      "id": 1504266,
+      "date": "2026-07-21",
+      "home": "KäPa",
+      "away": "Klubi-04",
+      "league": "Ykkösliiga",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519419,
+      "date": "2026-07-21",
+      "home": "Libertad",
+      "away": "Delfin SC",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519412,
+      "date": "2026-07-20",
+      "home": "Independiente del Valle",
+      "away": "Emelec",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519414,
+      "date": "2026-07-20",
+      "home": "Mushuc Runa SC",
+      "away": "Orense SC",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 14,
+      "stabilityScore": 48,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Orense SC has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519408,
+      "date": "2026-07-19",
+      "home": "Barcelona SC",
+      "away": "Libertad",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493578,
+      "date": "2026-07-19",
+      "home": "FC Tulsa",
+      "away": "El Paso Locomotive",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "FC Tulsa has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493583,
+      "date": "2026-07-19",
+      "home": "San Antonio",
+      "away": "Las Vegas Lights",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493580,
+      "date": "2026-07-19",
+      "home": "Phoenix Rising",
+      "away": "Monterey Bay",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519415,
+      "date": "2026-07-19",
+      "home": "Tecnico Universitario",
+      "away": "Aucas",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519411,
+      "date": "2026-07-19",
+      "home": "Guayaquil City FC",
+      "away": "Manta FC",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 14,
+      "stabilityScore": 48,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Guayaquil City FC has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519409,
+      "date": "2026-07-18",
+      "home": "Delfin SC",
+      "away": "Macara",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528656,
+      "date": "2026-07-18",
+      "home": "Meizhou Kejia",
+      "away": "Dalian Huayi",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528657,
+      "date": "2026-07-18",
+      "home": "Nanjing City",
+      "away": "Guangzhou E-Power",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528655,
+      "date": "2026-07-18",
+      "home": "Guangxi Hengchen",
+      "away": "Shaanxi Union",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Guangxi Hengchen has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528777,
+      "date": "2026-07-18",
+      "home": "Heilongjiang Lava Spring",
+      "away": "Ningbo Professional",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1504264,
+      "date": "2026-07-18",
+      "home": "EIF",
+      "away": "JäPS",
+      "league": "Ykkösliiga",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1504265,
+      "date": "2026-07-18",
+      "home": "Kooteepee",
+      "away": "PK-35",
+      "league": "Ykkösliiga",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493581,
+      "date": "2026-07-18",
+      "home": "Pittsburgh Riverhounds",
+      "away": "Louisville City",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519410,
+      "date": "2026-07-18",
+      "home": "Deportivo Cuenca",
+      "away": "Universidad Catolica",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1526573,
+      "date": "2026-07-18",
+      "home": "Gualaceo SC",
+      "away": "22 de Julio",
+      "league": "Liga Pro Serie B",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519413,
+      "date": "2026-07-18",
+      "home": "LDU de Quito",
+      "away": "Leones del Norte",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493579,
+      "date": "2026-07-18",
+      "home": "Loudoun United",
+      "away": "Tampa Bay Rowdies",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493577,
+      "date": "2026-07-18",
+      "home": "Detroit City",
+      "away": "Indy Eleven",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493584,
+      "date": "2026-07-18",
+      "home": "Sporting JAX",
+      "away": "Brooklyn",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493576,
+      "date": "2026-07-18",
+      "home": "Charleston Battery",
+      "away": "Sacramento Republic",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 14,
+      "stabilityScore": 48,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Charleston Battery has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493582,
+      "date": "2026-07-18",
+      "home": "Rhode Island",
+      "away": "Hartford Athletic",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1526575,
+      "date": "2026-07-17",
+      "home": "Santo Domingo",
+      "away": "Deportivo Cuenca Juniors",
+      "league": "Liga Pro Serie B",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519406,
+      "date": "2026-07-17",
+      "home": "Orense SC",
+      "away": "Emelec",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528651,
+      "date": "2026-07-17",
+      "home": "Changchun Yatai",
+      "away": "Wuxi Wugou",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528652,
+      "date": "2026-07-17",
+      "home": "Suzhou Dongwu",
+      "away": "Shenzhen Juniors",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528653,
+      "date": "2026-07-17",
+      "home": "Dongguan United",
+      "away": "Nantong Zhiyun",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Nantong Zhiyun has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1528654,
+      "date": "2026-07-17",
+      "home": "Hebei Kungfu",
+      "away": "Yanbian Longding",
+      "league": "League One",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1504263,
+      "date": "2026-07-17",
+      "home": "Klubi-04",
+      "away": "Haka",
+      "league": "Ykkösliiga",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1504262,
+      "date": "2026-07-17",
+      "home": "KäPa",
+      "away": "SJK Akatemia",
+      "league": "Ykkösliiga",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1526574,
+      "date": "2026-07-17",
+      "home": "LDU Portoviejo",
+      "away": "Ind. Juniors",
+      "league": "Liga Pro Serie B",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519401,
+      "date": "2026-07-16",
+      "home": "Barcelona SC",
+      "away": "Guayaquil City FC",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1585107,
+      "date": "2026-07-16",
+      "home": "Al Ahed",
+      "away": "Al Nejmeh",
+      "league": "Premier League",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1526572,
+      "date": "2026-07-16",
+      "home": "Cumbayá",
+      "away": "9 de Octubre",
+      "league": "Liga Pro Serie B",
+      "version": "v196",
+      "riskScore": 14,
+      "stabilityScore": 48,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Cumbayá has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1585108,
+      "date": "2026-07-16",
+      "home": "Al Ansar",
+      "away": "Jwaaya FC",
+      "league": "Premier League",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1526571,
+      "date": "2026-07-16",
+      "home": "Atletico FC",
+      "away": "San Antonio",
+      "league": "Liga Pro Serie B",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519400,
+      "date": "2026-07-16",
+      "home": "Aucas",
+      "away": "Independiente del Valle",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1526576,
+      "date": "2026-07-15",
+      "home": "Cuniburo",
+      "away": "El Nacional",
+      "league": "Liga Pro Serie B",
+      "version": "v196",
+      "riskScore": 14,
+      "stabilityScore": 48,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "El Nacional has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519402,
+      "date": "2026-07-15",
+      "home": "Leones del Norte",
+      "away": "Deportivo Cuenca",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1519407,
+      "date": "2026-07-15",
+      "home": "Universidad Catolica",
+      "away": "LDU de Quito",
+      "league": "Liga Pro",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493573,
+      "date": "2026-07-15",
+      "home": "Lexington",
+      "away": "New Mexico United",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493574,
+      "date": "2026-07-15",
+      "home": "Miami FC",
+      "away": "Indy Eleven",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    },
+    {
+      "id": 1493575,
+      "date": "2026-07-15",
+      "home": "Sporting JAX",
+      "away": "Pittsburgh Riverhounds",
+      "league": "USL Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T18:57:19.151Z"
+    }
+  ]
 }
