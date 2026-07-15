@@ -1,11 +1,11 @@
-const CACHE='betynz-v4.3-rebel-goal-correction';
+const CACHE='betynz-v4.4-mobile-drawer-match-summary';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=4.3',
-  '/app.js?v=4.3',
-  '/rebel-engine-core.js?v=4.3',
-  '/olympian-engine-core.js?v=4.3',
+  '/styles.css?v=4.4',
+  '/app.js?v=4.4',
+  '/rebel-engine-core.js?v=4.4',
+  '/olympian-engine-core.js?v=4.4',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',

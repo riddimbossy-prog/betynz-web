@@ -230,7 +230,7 @@
     const statusHtml=matchStateHtml(m);
     const addAttributes=finished?'disabled aria-disabled="true"':`data-add-pick="${esc(slipKey(p))}"`;
     const addLabel=finished?"Match finished":added?"Remove from slip":"Add to slip";
-    return `<article class="match-row ${live?"is-live":""} ${finished?"is-finished":""}" data-pick-key="${esc(keyOf(m))}">
+    return `<article class="match-row ${live?"is-live":""} ${finished?"is-finished":""}" data-pick-key="${esc(keyOf(m))}" data-pick-detail-row="${esc(keyOf(m))}" data-pick-source="${p.engineOnly?"engine":"consensus"}" data-pick-engine="${esc(p.engine&&p.engine.id?p.engine.id:"zeus")}" role="button" tabindex="0" aria-label="Open prediction summary for ${esc(m.home)} versus ${esc(m.away)}">
       <div class="fixture-cell">
         <span class="league-flag">${leagueBadge(m)}</span>
         <div class="fixture-teams">
@@ -240,7 +240,7 @@
           ${statusHtml?`<div class="fixture-live-line">${statusHtml}</div>`:""}
         </div>
       </div>
-      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.engineOnly?"WATCH":p.grade}">${gradeLabel}</span> · <span class="lock-state ${stateClass}">${stateLabel}</span></small></div>
+      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}" data-pick-source="${p.engineOnly?"engine":"consensus"}" data-pick-engine="${esc(p.engine&&p.engine.id?p.engine.id:"zeus")}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.engineOnly?"WATCH":p.grade}">${gradeLabel}</span> · <span class="lock-state ${stateClass}">${stateLabel}</span></small></div>
       <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
       <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
       <div class="odds-cell">${p.odds?p.odds.toFixed(2):"—"}</div>
@@ -352,9 +352,80 @@
     showView("picks");
     toast(engineRows.length?`${engine.name} picks loaded.`:`${engine.name} has no qualified picks right now.`);
   }
-  function openEngine(id){const e=ENGINE_MAP[id];if(!e)return;$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
-  function openPickDetail(matchKey){let p=allPicks().find(x=>keyOf(x.m)===String(matchKey));if(picksFilter.engine!=="all"){const enginePick=enginePicks(picksFilter.engine).find(x=>keyOf(x.m)===String(matchKey));if(enginePick)p=enginePick}if(!p)return;const m=p.m,signal=p.engineOnly,displayGrade=signal?"SIGNAL":p.grade,statusText=signal?`${p.engine.name} specialist signal. Zeus has not necessarily published this market.`:p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional. It may change before the 12-hour lock window.";$("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${p.engine.glyph||"⚡"}</span><div><h2 id="engine-modal-title">${esc(m.home)} vs ${esc(m.away)}</h2><p>${esc(m.league||"Football")} · ${esc(friendlyDate(dateOf(m)))} · ${esc(kickoff(m))}</p></div></div><div class="decision-hero"><span class="grade ${signal?"WATCH":p.grade}">${displayGrade}</span><div><small>${signal?esc(p.engine.name)+" engine signal":"Zeus decision"}</small><b>${esc(marketClean(p.market))}</b></div><strong>${p.confidence}%</strong></div><h4>Why it qualified</h4><ul>${(p.reasons||[]).map(x=>`<li>${esc(x)}</li>`).join("")||"<li>No public reason was recorded.</li>"}</ul>${signal&&p.signal&&p.signal.rebel?`<h4>Rebel market audit</h4><div class="rule-box rebel-audit"><b>Original market:</b> ${esc(marketClean(p.signal.originalMarket||p.market))}<br><b>Final market:</b> ${esc(marketClean(p.signal.finalMarket||p.market))}<br><b>Opening odds:</b> ${p.signal.openingOdds!=null?esc(Number(p.signal.openingOdds).toFixed(2)):"—"}<br><b>Current odds:</b> ${p.signal.currentOdds!=null?esc(Number(p.signal.currentOdds).toFixed(2)):"—"}<br><b>Movement:</b> ${p.signal.movement!=null?esc((Number(p.signal.movement)*100).toFixed(1))+"%":"—"}<br><b>Bookmakers:</b> ${esc(p.signal.bookmakerCount??"—")} · <b>Agreement:</b> ${p.signal.bookmakerAgreement!=null?esc(Math.round(Number(p.signal.bookmakerAgreement)*100))+"%":"—"}<br><b>Confirmations:</b> ${esc(p.signal.confirmations??"—")} · <b>Downgrade:</b> ${esc(p.signal.downgradeLevel??0)} level(s)${p.signal.classification?`<br><b>Class:</b> ${esc(p.signal.classification)}`:""}</div>`:""}<h4>Prediction status</h4><div class="rule-box">${statusText}${p.dataQuality!=null?` Data quality: ${esc(p.dataQuality)}/100.`:""}</div>${p.warnings&&p.warnings.length?`<h4>Warnings</h4><ul>${p.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;$("#engine-modal-backdrop").classList.add("open");$("#engine-modal").classList.add("open")}
-  function closeEngine(){$("#engine-modal-backdrop").classList.remove("open");$("#engine-modal").classList.remove("open")}
+  function openEngine(id){
+    const e=ENGINE_MAP[id];if(!e)return;
+    const modal=$("#engine-modal");if(modal)modal.classList.remove("pick-summary-modal");
+    $("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;
+    $("#engine-modal-backdrop").classList.add("open");
+    $("#engine-modal").classList.add("open");
+  }
+
+  function resolveDetailPick(matchKey,engineId,source){
+    const key=String(matchKey);
+    if(source==="engine"&&engineId){
+      const exact=enginePicks(engineId).find(x=>keyOf(x.m)===key);
+      if(exact)return exact;
+    }
+    if(picksFilter.engine!=="all"){
+      const filtered=enginePicks(picksFilter.engine).find(x=>keyOf(x.m)===key);
+      if(filtered)return filtered;
+    }
+    return allPicks().find(x=>keyOf(x.m)===key)||null;
+  }
+
+  function evidenceCards(p){
+    const m=p.m,cards=[];
+    if(Number.isFinite(Number(m.homePPG))||Number.isFinite(Number(m.awayPPG)))cards.push(["Overall PPG",`${Number.isFinite(Number(m.homePPG))?Number(m.homePPG).toFixed(2):"—"} vs ${Number.isFinite(Number(m.awayPPG))?Number(m.awayPPG).toFixed(2):"—"}`]);
+    if(Number.isFinite(Number(m.homeVenuePPG))||Number.isFinite(Number(m.awayVenuePPG)))cards.push(["Venue PPG",`${Number.isFinite(Number(m.homeVenuePPG))?Number(m.homeVenuePPG).toFixed(2):"—"} vs ${Number.isFinite(Number(m.awayVenuePPG))?Number(m.awayVenuePPG).toFixed(2):"—"}`]);
+    if(m.xgReal&&(Number.isFinite(Number(m.xgHomeReal))||Number.isFinite(Number(m.xgAwayReal))))cards.push(["Trusted xG",`${Number.isFinite(Number(m.xgHomeReal))?Number(m.xgHomeReal).toFixed(2):"—"} vs ${Number.isFinite(Number(m.xgAwayReal))?Number(m.xgAwayReal).toFixed(2):"—"}`]);
+    if(p.odds)cards.push(["Current odds",Number(p.odds).toFixed(2)]);
+    if(p.dataQuality!=null)cards.push(["Data quality",`${Math.round(Number(p.dataQuality))}/100`]);
+    cards.push(["Model confidence",`${Math.round(Number(p.confidence||0))}%`]);
+    return cards.slice(0,6);
+  }
+
+  function openPickDetail(matchKey,engineId,source){
+    const p=resolveDetailPick(matchKey,engineId,source);if(!p)return;
+    const m=p.m,signal=!!p.engineOnly,displayGrade=signal?"SIGNAL":p.grade;
+    const statusText=signal?`${p.engine.name} produced this specialist signal. Zeus may still reject or change the market.`:p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional and still subject to the pre-kickoff safety checks.";
+    const supporting=(p.engines||[p.engine]).filter(Boolean);
+    const engineNames=[...new Set(supporting.map(e=>e.name).filter(Boolean))];
+    const reasons=(p.reasons||[]).filter(Boolean);
+    const warnings=(p.warnings||[]).filter(Boolean);
+    const cards=evidenceCards(p);
+    const resultState=isFinished(m)?settlePick(p):"Pending";
+    const modal=$("#engine-modal");if(modal)modal.classList.add("pick-summary-modal");
+    $("#engine-modal-content").innerHTML=`
+      <div class="modal-engine-head pick-summary-head">
+        <span class="engine-icon">${p.engine.glyph||"⚡"}</span>
+        <div><h2 id="engine-modal-title">${esc(m.home)} vs ${esc(m.away)}</h2><p>${esc(m.league||"Football")} · ${esc(friendlyDate(dateOf(m)))} · ${esc(kickoff(m))}${isLive(m)?` · LIVE ${esc(matchClock(m))} ${esc(scoreText(m))}`:isFinished(m)?` · ${esc(String(m.status||"FT").toUpperCase())} ${esc(scoreText(m))}`:""}</p></div>
+      </div>
+      <div class="decision-hero">
+        <span class="grade ${signal?"WATCH":p.grade}">${displayGrade}</span>
+        <div><small>${signal?esc(p.engine.name)+" engine signal":"Final Betynz market"}</small><b>${esc(marketClean(p.market))}</b></div>
+        <strong>${Math.round(Number(p.confidence||0))}%</strong>
+      </div>
+      <div class="summary-evidence-grid">${cards.map(([label,value])=>`<article><small>${esc(label)}</small><b>${esc(value)}</b></article>`).join("")}</div>
+      <h4>How this pick was reached</h4>
+      <div class="pick-summary-flow">
+        <article class="summary-step"><span>1</span><div><b>Data quality check</b><p>Betynz verified the fixture, league context, team samples and available market data before allowing an engine signal.</p></div></article>
+        <article class="summary-step"><span>2</span><div><b>Specialist analysis</b><p>${engineNames.length?`${esc(engineNames.join(", "))} supported the selected direction.`:`${esc(p.engine.name)} supplied the leading signal.`}</p></div></article>
+        <article class="summary-step"><span>3</span><div><b>Evidence that supported the market</b>${reasons.length?`<ul>${reasons.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>The market cleared the active engine thresholds and ranking rules.</p>`}</div></article>
+        <article class="summary-step"><span>4</span><div><b>Safety and contradiction check</b>${warnings.length?`<ul class="summary-warnings">${warnings.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>No major published contradiction was recorded for this selection.</p>`}</div></article>
+        <article class="summary-step final"><span>5</span><div><b>${signal?"Specialist output":"Zeus final decision"}</b><p>${esc(statusText)}${resultState!=="Pending"?` Final board settlement: ${esc(resultState)}.`:""}</p></div></article>
+      </div>
+      ${signal&&p.signal&&p.signal.rebel?`<h4>Rebel market audit</h4><div class="rule-box rebel-audit"><b>Original market:</b> ${esc(marketClean(p.signal.originalMarket||p.market))}<br><b>Final market:</b> ${esc(marketClean(p.signal.finalMarket||p.market))}<br><b>Opening odds:</b> ${p.signal.openingOdds!=null?esc(Number(p.signal.openingOdds).toFixed(2)):"—"}<br><b>Current odds:</b> ${p.signal.currentOdds!=null?esc(Number(p.signal.currentOdds).toFixed(2)):"—"}<br><b>Movement:</b> ${p.signal.movement!=null?esc((Number(p.signal.movement)*100).toFixed(1))+"%":"—"}<br><b>Bookmakers:</b> ${esc(p.signal.bookmakerCount??"—")} · <b>Agreement:</b> ${p.signal.bookmakerAgreement!=null?esc(Math.round(Number(p.signal.bookmakerAgreement)*100))+"%":"—"}<br><b>Confirmations:</b> ${esc(p.signal.confirmations??"—")} · <b>Downgrade:</b> ${esc(p.signal.downgradeLevel??0)} level(s)${p.signal.classification?`<br><b>Class:</b> ${esc(p.signal.classification)}`:""}</div>`:""}
+      <div class="summary-disclaimer">Model confidence is not a guarantee. Football outcomes remain uncertain.</div>`;
+    $("#engine-modal-backdrop").classList.add("open");
+    $("#engine-modal").classList.add("open");
+    requestAnimationFrame(()=>$("#engine-modal-close")?.focus());
+  }
+
+  function closeEngine(){
+    $("#engine-modal-backdrop").classList.remove("open");
+    $("#engine-modal").classList.remove("open");
+    $("#engine-modal").classList.remove("pick-summary-modal");
+  }
 
   function renderBankers(){
     const allRows=allPicks().filter(p=>isUpcoming(p.m)&&["A1","A2"].includes(p.grade));
@@ -444,6 +515,16 @@
   }
   function closeSidebar(){setSidebar(false)}
 
+  function bindNavigationControls(){
+    $$('[data-view]').forEach(control=>{
+      control.addEventListener("click",event=>{
+        event.preventDefault();event.stopPropagation();
+        closeSelectionDrawer();
+        showView(control.dataset.view);
+      });
+    });
+  }
+
   async function requestInstall(){
     if(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches){toast("Betynz is already installed.");return}
     if(deferredInstallPrompt){
@@ -487,14 +568,17 @@
 
   function wire(){
     $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
+    bindNavigationControls();
     document.addEventListener("click",e=>{
-      const nav=e.target.closest("[data-view]");
-      if(nav){e.preventDefault();closeSelectionDrawer();showView(nav.dataset.view);return}
-      const add=e.target.closest("[data-add-pick]");if(add){addPickByKey(add.dataset.addPick);return}
-      const detail=e.target.closest("[data-pick-detail]");if(detail){openPickDetail(detail.dataset.pickDetail);return}
-      const about=e.target.closest("[data-engine-about]");if(about){openEngine(about.dataset.engineAbout);return}
+      const add=e.target.closest("[data-add-pick]");if(add){e.preventDefault();e.stopPropagation();addPickByKey(add.dataset.addPick);return}
+      const detail=e.target.closest("[data-pick-detail]");if(detail){e.preventDefault();e.stopPropagation();openPickDetail(detail.dataset.pickDetail,detail.dataset.pickEngine,detail.dataset.pickSource);return}
+      const about=e.target.closest("[data-engine-about]");if(about){e.preventDefault();openEngine(about.dataset.engineAbout);return}
+      const row=e.target.closest("[data-pick-detail-row]");
+      if(row&&!e.target.closest("button,a,input,select,textarea,label")){openPickDetail(row.dataset.pickDetailRow,row.dataset.pickEngine,row.dataset.pickSource);return}
     });
-    const menu=$("#menu-btn");if(menu)menu.onclick=()=>setSidebar(!$("#sidebar").classList.contains("open"));
+    const menu=$("#menu-btn");if(menu){
+      menu.addEventListener("click",event=>{event.preventDefault();event.stopPropagation();setSidebar(!$("#sidebar").classList.contains("open"))});
+    }
     const sidebarBackdrop=$("#sidebar-backdrop");if(sidebarBackdrop)sidebarBackdrop.onclick=closeSidebar;
     if($("#dashboard-date"))$("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};
     if($("#dashboard-market"))$("#dashboard-market").onchange=renderDashboardList;
@@ -518,7 +602,12 @@
     if($("#drawer-backdrop"))$("#drawer-backdrop").onclick=closeSelectionDrawer;
     if($("#engine-modal-close"))$("#engine-modal-close").onclick=closeEngine;
     if($("#engine-modal-backdrop"))$("#engine-modal-backdrop").onclick=closeEngine;
-    document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeSelectionDrawer();closeSidebar()}});
+    document.addEventListener("keydown",e=>{
+      if(e.key==="Escape"){closeEngine();closeSelectionDrawer();closeSidebar();return}
+      if((e.key==="Enter"||e.key===" ")&&e.target.closest&&e.target.closest("[data-pick-detail-row]")&&!e.target.closest("button,a,input,select,textarea,label")){
+        e.preventDefault();const row=e.target.closest("[data-pick-detail-row]");openPickDetail(row.dataset.pickDetailRow,row.dataset.pickEngine,row.dataset.pickSource);
+      }
+    });
     if($("#add-visible"))$("#add-visible").onclick=()=>{const source=picksFilter.engine!=="all"?enginePicks(picksFilter.engine):allPicks();const dateRows=source.filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
     if($("#save-prefs"))$("#save-prefs").onclick=savePreferences;
     window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
