@@ -1,7 +1,21 @@
 {
   "version": "v193",
+<<<<<<< HEAD
   "updated": null,
   "summary": {"settledFixtures":0,"settledDecisions":0,"reviewedLosses":0,"teamProfiles":0,"leagueProfiles":0,"matchupProfiles":0,"activePatternBreakers":0,"upsetResistantTeams":0},
+=======
+  "updated": "2026-07-15T01:38:31.858Z",
+  "summary": {
+    "settledFixtures": 0,
+    "settledDecisions": 0,
+    "reviewedLosses": 0,
+    "teamProfiles": 0,
+    "leagueProfiles": 0,
+    "matchupProfiles": 0,
+    "activePatternBreakers": 0,
+    "upsetResistantTeams": 0
+  },
+>>>>>>> 80b097b79fb852538c60dea23cc73b5ed4c0857e
   "patternBreakers": [],
   "upsetResistant": [],
   "dangerousUnderdogs": [],
