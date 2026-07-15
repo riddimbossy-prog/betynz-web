@@ -1,1 +1,31 @@
-{}
+{
+  "1504261": {
+    "fixtureId": "1504261",
+    "home": "JIPPO",
+    "away": "MP",
+    "league": "Ykkösliiga",
+    "kickoff": "2026-07-15T15:30:00.000Z",
+    "publishedAt": "2026-07-15T03:59:27.483Z",
+    "engineVersion": "4.3.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "nike"
+      ],
+      "reasons": [
+        "5 specialist engines agree on Home DNB.",
+        "Weighted support 8.19 leads the next market by 6.68.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null
+    }
+  }
+}
