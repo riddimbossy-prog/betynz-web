@@ -27,5 +27,33 @@
       "dataQuality": 100,
       "odds": null
     }
+  },
+  "1519403": {
+    "fixtureId": "1519403",
+    "home": "Libertad",
+    "away": "Tecnico Universitario",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-15T17:00:00.000Z",
+    "publishedAt": "2026-07-15T06:02:30.420Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "ares",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "4 specialist engines agree on Away DNB.",
+        "Weighted support 5.6 leads the next market by 3.76.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.05
+    }
   }
 }
