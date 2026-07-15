@@ -1,6 +1,6 @@
 {
   "version": "v195",
-  "updated": "2026-07-15T07:24:44.332Z",
+  "updated": "2026-07-15T07:38:45.979Z",
   "summary": {
     "fixtures": 48,
     "qualified": 3,
@@ -107,7 +107,7 @@
       "market": "No Bet",
       "candidate": "Under 3.5 Goals",
       "score": 76.5,
-      "support": 0.73,
+      "support": 0.74,
       "supporters": [
         "League Bias"
       ],
