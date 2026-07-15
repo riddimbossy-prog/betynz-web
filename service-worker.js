@@ -1,11 +1,12 @@
-const CACHE='betynz-v4.7-universal-gg-rule';
+const CACHE='betynz-v4.8-account-monetization';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=4.7',
-  '/app.js?v=4.7',
-  '/rebel-engine-core.js?v=4.7',
-  '/olympian-engine-core.js?v=4.7',
+  '/styles.css?v=4.8',
+  '/app.js?v=4.8',
+  '/monetization-config.js?v=4.8',
+  '/rebel-engine-core.js?v=4.8',
+  '/olympian-engine-core.js?v=4.8',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',

@@ -20,14 +20,17 @@ This is the deployable Betynz core product for GitHub Pages. It uses GitHub Acti
 - PWA support
 - GitHub Pages release built from a safe `dist/` folder
 
-## What is intentionally not faked
+## Account and payment boundary
 
-There is no real user authentication, payment, premium subscription, community posting or bookmaker integration in this build. Those features require a private backend and should not be simulated in production.
+Version 4.8 includes a complete account, pricing and plan-access preview in the public interface. Preview accounts and test plan activations are stored only in the current browser so the owner can test the experience. They are not production authentication or proof of payment.
+
+Passwords and card details are never collected by this static GitHub Pages package. Production authentication, age verification, paid entitlements, receipts, cancellations and refunds must be confirmed by a secure backend and hosted checkout provider.
 
 ## Required GitHub repository secrets
 
 - `API_FOOTBALL_KEY`
 - `STATS_API_KEY`
+- `ODDS_API_KEY`
 - `DAYS_BACK` — recommended value `1`
 - `DAYS_FWD` — recommended value `6`
 
@@ -95,3 +98,15 @@ Run **Smart Global Coverage and Deep Enrichment** from GitHub Actions after inst
 - Rebel engines can support or challenge Zeus, but cannot create a public decision without Olympian confirmation.
 
 Run `npm run test:rebels` to verify the uploaded v1.1 rule examples.
+
+## v4.8 accounts and monetization
+
+- Free account: three public daily picks, live scores, settled results and basic explanations.
+- Olympian Pro: $8.99 monthly or $79 annually.
+- Zeus Supreme: $17.99 monthly or $159 annually.
+- Day Pass: $2.99 for 24 hours without renewal.
+- Premium gates cover the full seven-day board, saved picks, alerts, Olympian engines, Zeus, Bankers, Leonidas and Spartacus.
+- The drawer includes My Account, Plans, Saved Picks, Notifications, Payment History, Responsible Play, Support and Sign Out.
+- `monetization-config.js` contains public plan settings and hosted-checkout URLs only. Never place private payment or webhook keys there.
+
+See `MONETIZATION_SETUP.md` before connecting a production authentication or payment provider.

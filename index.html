@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4.7">
+  <link rel="stylesheet" href="styles.css?v=4.8">
 </head>
 <body>
   <div class="app-shell">
@@ -30,13 +30,21 @@
         <button type="button" class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
         <button type="button" class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
         <button type="button" class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
-        <button type="button" class="nav-item" data-view="profile"><span>○</span><b>Settings</b></button>
+        <div class="nav-divider"><span>ACCOUNT</span></div>
+        <button type="button" class="nav-item" data-view="profile"><span>○</span><b>My Account</b></button>
+        <button type="button" class="nav-item" data-view="pricing"><span>♛</span><b>Plans & Pricing</b></button>
+        <button type="button" class="nav-item" data-view="saved"><span>☆</span><b>Saved Picks</b></button>
+        <button type="button" class="nav-item" data-view="notifications"><span>◌</span><b>Notifications</b></button>
+        <button type="button" class="nav-item" data-view="billing"><span>▤</span><b>Payment History</b></button>
+        <button type="button" class="nav-item" data-view="responsible"><span>◈</span><b>Responsible Play</b></button>
+        <button type="button" class="nav-item" data-view="support"><span>?</span><b>Help & Support</b></button>
+        <button type="button" class="nav-item signout-nav" id="sidebar-signout" hidden><span>↪</span><b>Sign Out</b></button>
       </nav>
 
-      <section class="premium-card product-card">
-        <span class="crown">⚡</span>
-        <div><strong>18 Engines Active</strong><small>Every public selection must pass the Zeus consensus gate.</small></div>
-        <button type="button" data-view="methodology">View Method</button>
+      <section class="premium-card product-card" id="sidebar-plan-card">
+        <span class="crown">♛</span>
+        <div><strong id="sidebar-plan-name">Free Access</strong><small id="sidebar-plan-copy">Unlock full boards, alerts and advanced engine evidence.</small></div>
+        <button type="button" data-view="pricing" id="sidebar-plan-action">View Plans</button>
       </section>
 
       <div class="server-state"><i></i><span><b>System Status</b><small id="system-status">Checking data…</small></span></div>
@@ -49,7 +57,9 @@
         <div class="top-actions">
           <button class="install-app-btn" id="install-app-btn" type="button" hidden>Install App</button>
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
-          <button class="profile-chip" data-view="profile"><span class="avatar">BZ</span><span><b>Guest Settings</b><small>Local preferences</small></span><em>⌄</em></button>
+          <button class="top-upgrade-btn" id="top-upgrade-btn" type="button" data-view="pricing">Upgrade</button>
+          <button class="top-signin-btn" id="top-signin-btn" type="button" data-auth-open="signin">Sign In</button>
+          <button class="profile-chip" id="profile-chip" data-view="profile"><span class="avatar" id="profile-avatar">BZ</span><span><b id="profile-name">Guest</b><small id="profile-plan">Free preview</small></span><em>⌄</em></button>
         </div>
       </header>
 
@@ -173,9 +183,69 @@
           <section class="page-panel prose-panel"><h3>Public grading</h3><p><b>A1</b> requires at least three specialist confirmations, a strong consensus lead and an 88+ model score. <b>A2</b> requires at least two confirmations and an 82+ score. Lower-quality or contradictory matches are not published.</p><p>Model scores are not guarantees or real-world probabilities. Football outcomes remain uncertain.</p></section>
         </section>
 
+        <section class="view" data-view-panel="pricing">
+          <div class="page-head pricing-head"><div><span>BETYNZ ACCESS</span><h2>Choose the access that fits you</h2><p>Start free, then upgrade only when the advanced tools are useful to you.</p></div><span class="risk-note">18+ · Analytics access, never guaranteed outcomes</span></div>
+          <div class="billing-toggle" role="group" aria-label="Billing period"><button type="button" class="active" data-billing-cycle="monthly">Monthly</button><button type="button" data-billing-cycle="annual">Annual <span>Save about 20%</span></button></div>
+          <div class="pricing-grid" id="pricing-grid"></div>
+          <section class="page-panel plan-comparison"><div class="panel-title"><h3>Plan comparison</h3><span>Transparent feature access</span></div><div class="comparison-table" id="comparison-table"></div></section>
+          <section class="checkout-note"><b>Secure integration boundary</b><p>Betynz does not collect card details in the browser. Checkout buttons are ready to connect to a hosted payment page from Stripe, Paystack or another approved provider.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="saved">
+          <div class="page-head"><div><span>YOUR WATCHLIST</span><h2>Saved Picks</h2><p>Keep selected matches together without changing the official Betynz board.</p></div><button class="primary-btn compact" type="button" data-view="picks">Browse Board</button></div>
+          <section class="page-panel"><div id="saved-picks-content"></div></section>
+        </section>
+
+        <section class="view" data-view-panel="notifications">
+          <div class="page-head"><div><span>PERSONAL ALERTS</span><h2>Notifications</h2><p>Choose which Betynz updates should reach this device.</p></div><span class="plan-pill" id="notification-plan-pill">Pro feature</span></div>
+          <div class="notification-layout">
+            <section class="settings-card notification-card">
+              <h3>Alert preferences</h3>
+              <label class="toggle-row"><span><b>New qualified picks</b><small>Notify when a selected league receives a new pick.</small></span><input type="checkbox" id="notify-new-picks"></label>
+              <label class="toggle-row"><span><b>Pick changes</b><small>Notify when a provisional pick changes or is removed.</small></span><input type="checkbox" id="notify-pick-changes"></label>
+              <label class="toggle-row"><span><b>Live and final scores</b><small>Follow live status and settlement for saved matches.</small></span><input type="checkbox" id="notify-scores"></label>
+              <label class="toggle-row"><span><b>Rebel movement alerts</b><small>Supreme-only Leonidas and Spartacus price movement.</small></span><input type="checkbox" id="notify-rebels"></label>
+              <label><span>Favourite leagues</span><input type="text" id="notify-leagues" placeholder="Premier League, La Liga, MLS"></label>
+              <div class="settings-actions"><button class="primary-btn compact" id="save-notifications" type="button">Save Alerts</button><button class="secondary-btn compact" id="enable-browser-notifications" type="button">Enable on Device</button></div>
+            </section>
+            <aside class="account-info-card"><span>◌</span><h3>How alerts work</h3><p>Browser permission is requested only after you choose Enable on Device. Server-side push delivery still requires a secure notification backend.</p></aside>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="billing">
+          <div class="page-head"><div><span>ACCOUNT BILLING</span><h2>Payment History</h2><p>Receipts and subscription changes will appear here after checkout is connected.</p></div><button class="primary-btn compact" type="button" data-view="pricing">Manage Plan</button></div>
+          <section class="page-panel"><div id="billing-content"></div></section>
+        </section>
+
+        <section class="view" data-view-panel="responsible">
+          <div class="page-head"><div><span>PLAYER PROTECTION</span><h2>Responsible Play</h2><p>Betynz provides football analysis for adults. It does not guarantee results.</p></div><span class="risk-note">18+ only</span></div>
+          <div class="responsible-grid">
+            <article class="method-card"><span>01</span><h3>Set limits</h3><p>Choose a time limit for how long you use prediction tools and take regular breaks.</p></article>
+            <article class="method-card"><span>02</span><h3>Never chase results</h3><p>A losing result does not make the next prediction more likely to win.</p></article>
+            <article class="method-card"><span>03</span><h3>Use transparent records</h3><p>Review both won and lost settled picks rather than focusing only on successful outcomes.</p></article>
+            <article class="method-card"><span>04</span><h3>Pause access</h3><p>Use the account pause below when you need distance from prediction content.</p></article>
+          </div>
+          <section class="page-panel responsible-controls"><h3>Account controls</h3><label><span>Daily viewing reminder</span><select id="responsible-reminder"><option value="30">30 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="off">Off</option></select></label><button class="secondary-btn" id="pause-account" type="button">Pause prediction access for 7 days</button><p class="fine-print">During a pause, the dashboard remains available for scores and settled results, but current prediction details are hidden on this device.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="support">
+          <div class="page-head"><div><span>BETYNZ SUPPORT</span><h2>Help & Support</h2><p>Answers for accounts, plans, predictions, installation and data updates.</p></div></div>
+          <div class="support-grid">
+            <article class="support-card"><span>◎</span><h3>Account help</h3><p>Signup, email verification, age checks and account deletion.</p><button type="button" data-auth-open="signin">Open account access</button></article>
+            <article class="support-card"><span>♛</span><h3>Plans and billing</h3><p>Compare plans, review renewals and manage cancellation.</p><button type="button" data-view="pricing">View plans</button></article>
+            <article class="support-card"><span>⚡</span><h3>Prediction method</h3><p>Understand grades, engine consensus and settlement.</p><button type="button" data-view="methodology">Read methodology</button></article>
+            <article class="support-card"><span>⇩</span><h3>Install the app</h3><p>Add the Betynz PWA to your phone, Fold or tablet.</p><button type="button" data-install-app>Install Betynz</button></article>
+          </div>
+          <section class="page-panel support-contact"><h3>Contact support</h3><p>Connect this button to your verified support email or help-desk system before launch.</p><button class="primary-btn compact" id="support-contact-btn" type="button">Contact Support</button></section>
+        </section>
+
         <section class="view" data-view-panel="profile">
-          <div class="page-head"><div><span>YOUR BETYNZ</span><h2>Board Settings</h2><p>Preferences are stored only in this browser.</p></div></div>
-          <div class="profile-layout"><section class="profile-card"><div class="large-avatar">BZ</div><h3>Guest Mode</h3><p>No account or personal data required</p><button class="primary-btn" data-view="methodology">Read Methodology</button></section><section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my slip</span><input type="checkbox" id="remember-slip" checked></label><div class="settings-actions"><button type="button" class="primary-btn compact" id="save-prefs">Save Preferences</button><button type="button" class="secondary-btn compact install-settings-btn" data-install-app>Install Betynz App</button></div></section></div>
+          <div class="page-head"><div><span>YOUR BETYNZ</span><h2>My Account</h2><p id="account-page-subtitle">Create a free account to personalise your Betynz experience.</p></div><span class="plan-pill" id="account-plan-pill">Guest</span></div>
+          <div id="account-content"></div>
+          <div class="profile-layout account-settings-wrap">
+            <section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my selection list</span><input type="checkbox" id="remember-slip" checked></label><div class="settings-actions"><button type="button" class="primary-btn compact" id="save-prefs">Save Preferences</button><button type="button" class="secondary-btn compact install-settings-btn" data-install-app>Install Betynz App</button></div></section>
+            <section class="account-info-card"><span>🔒</span><h3>Account security</h3><p>The current package includes the complete account interface and access-control layer. Real sign-in, verification and payment records require a secure backend before launch.</p><button type="button" class="text-btn" data-view="support">Setup guidance</button></section>
+          </div>
         </section>
       </main>
 
@@ -185,7 +255,7 @@
 
   <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
 
-  <nav class="mobile-nav" aria-label="Mobile navigation"><button type="button" class="active" data-view="dashboard"><span>⌂</span>Home</button><button type="button" data-view="picks"><span>▦</span>Picks</button><button type="button" data-view="engines"><span>♜</span>Engines</button><button type="button" data-view="results"><span>↗</span>Results</button><button type="button" data-view="profile"><span>○</span>Settings</button></nav>
+  <nav class="mobile-nav" aria-label="Mobile navigation"><button type="button" class="active" data-view="dashboard"><span>⌂</span>Home</button><button type="button" data-view="picks"><span>▦</span>Picks</button><button type="button" data-view="engines"><span>♜</span>Engines</button><button type="button" data-view="results"><span>↗</span>Results</button><button type="button" data-view="profile"><span>○</span>Account</button></nav>
   <button type="button" class="mobile-slip" id="mobile-slip"><span>Slip</span><b id="mobile-slip-count">0</b><em id="mobile-slip-odds">1.00</em></button>
 
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
@@ -193,11 +263,15 @@
 
   <div class="modal-backdrop" id="engine-modal-backdrop"></div>
   <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button type="button" class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
+
+  <div class="modal-backdrop account-modal-backdrop" id="account-modal-backdrop"></div>
+  <section class="account-modal" id="account-modal" role="dialog" aria-modal="true" aria-labelledby="account-modal-title" aria-hidden="true"><button type="button" class="modal-close" id="account-modal-close">×</button><div id="account-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="rebel-engine-core.js?v=4.7"></script>
-  <script src="olympian-engine-core.js?v=4.7"></script>
-  <script src="data.js?v=4.7"></script>
-  <script src="app.js?v=4.7"></script>
+  <script src="monetization-config.js?v=4.8"></script>
+  <script src="rebel-engine-core.js?v=4.8"></script>
+  <script src="olympian-engine-core.js?v=4.8"></script>
+  <script src="data.js?v=4.8"></script>
+  <script src="app.js?v=4.8"></script>
 </body>
 </html>

@@ -48,9 +48,84 @@
   let installPromptAttempted=false;
   let slip=loadJSON("betynz-slip",[]);
   let preferences=loadJSON("betynz-preferences",{favoriteEngine:"zeus",confidence:76,rememberSlip:true});
+  const MONETIZATION=window.BETYNZ_MONETIZATION&&typeof window.BETYNZ_MONETIZATION==="object"?window.BETYNZ_MONETIZATION:{mode:"preview",currency:"USD",plans:{},checkoutUrls:{}};
+  const PLAN_LEVEL={guest:0,free:1,pro:2,supreme:3,day:3};
+  let billingCycle="monthly";
+  let account=loadJSON("betynz-account",{signedIn:false,name:"",email:"",country:"",plan:"guest",createdAt:null,expiresAt:null,pausedUntil:null});
+  let notificationPrefs=loadJSON("betynz-notifications",{newPicks:true,pickChanges:true,scores:true,rebels:false,leagues:""});
+  let paymentHistory=loadJSON("betynz-payment-history",[]);
 
   function loadJSON(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v==null?fallback:v}catch(_){return fallback}}
   function saveJSON(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(_){}}
+  function normalizeAccount(){
+    if(!account||typeof account!=="object")account={signedIn:false,plan:"guest"};
+    if(!account.signedIn){account.plan="guest";account.name="";account.email=""}
+    if(account.plan==="day"&&account.expiresAt&&Date.parse(account.expiresAt)<=Date.now()){
+      account.plan=account.signedIn?"free":"guest";account.expiresAt=null;saveAccount();
+    }
+    if(!Object.prototype.hasOwnProperty.call(PLAN_LEVEL,account.plan))account.plan=account.signedIn?"free":"guest";
+    return account;
+  }
+  function saveAccount(){saveJSON("betynz-account",account)}
+  function planKey(){normalizeAccount();return account.plan||"guest"}
+  function planLevel(){return PLAN_LEVEL[planKey()]||0}
+  function hasPlan(required){return planLevel()>=(PLAN_LEVEL[required]||0)}
+  function isPaused(){return !!(account.pausedUntil&&Date.parse(account.pausedUntil)>Date.now())}
+  function planName(key=planKey()){
+    if(key==="guest")return"Guest";
+    const cfg=MONETIZATION.plans&&MONETIZATION.plans[key];
+    return cfg&&cfg.name?cfg.name:key==="pro"?"Olympian Pro":key==="supreme"?"Zeus Supreme":key==="day"?"Day Pass":"Free";
+  }
+  function requiredPlanForEngine(id){if(id==="all")return"guest";if(id==="zeus"||id==="spartacus"||id==="leonidas")return"supreme";return"pro"}
+  function requiredPlanForView(name){if(name==="bankers")return"supreme";if(name==="saved"||name==="notifications")return"pro";if(name==="billing")return"free";return"guest"}
+  function featurePlanLabel(required){return required==="supreme"?"Zeus Supreme":required==="pro"?"Olympian Pro":"Free account"}
+  function formatMoney(value){const n=Number(value||0);try{return new Intl.NumberFormat("en",{style:"currency",currency:MONETIZATION.currency||"USD",maximumFractionDigits:n%1?2:0}).format(n)}catch(_){return `$${n.toFixed(n%1?2:0)}`}}
+  function accountInitials(){return account.signedIn?initials(account.name||account.email):"BZ"}
+  function publicLimit(){return hasPlan("pro")?7:3}
+  function lockedTeaser(required,title,copy){return `<div class="access-teaser"><span>♛</span><div><b>${esc(title)}</b><p>${esc(copy)}</p></div><button type="button" data-upgrade-required="${required}" data-upgrade-feature="${esc(title)}">View ${esc(featurePlanLabel(required))}</button></div>`}
+  function closeAccountModal(){const modal=$("#account-modal"),backdrop=$("#account-modal-backdrop");if(modal){modal.classList.remove("open");modal.setAttribute("aria-hidden","true")}if(backdrop)backdrop.classList.remove("open")}
+  function showAccountModal(html){closeEngine();const modal=$("#account-modal"),backdrop=$("#account-modal-backdrop");if(!modal||!backdrop)return;$("#account-modal-content").innerHTML=html;modal.classList.add("open");modal.setAttribute("aria-hidden","false");backdrop.classList.add("open");requestAnimationFrame(()=>modal.querySelector("input,button,select")?.focus())}
+  function openAuth(mode="signup"){
+    const signup=mode!=="signin";
+    const authNote=MONETIZATION.mode==="preview"?`<div class="integration-banner"><b>Preview mode</b><p>This package stores a test account only on this device. Connect a secure authentication service before launch.</p></div>`:"";
+    showAccountModal(`<div class="auth-modal-head"><span class="auth-mark">⚡</span><div><small>BETYNZ ACCOUNT</small><h2 id="account-modal-title">${signup?"Create your free account":"Sign in to Betynz"}</h2><p>${signup?"Save preferences and unlock the free account experience.":"Use your verified account email."}</p></div></div>${authNote}<div class="auth-switch"><button type="button" class="${signup?"active":""}" data-auth-open="signup">Create account</button><button type="button" class="${signup?"":"active"}" data-auth-open="signin">Sign in</button></div>${signup?`<form id="signup-form" class="auth-form"><label><span>Display name</span><input name="name" autocomplete="name" required maxlength="50"></label><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><div class="form-pair"><label><span>Country</span><input name="country" autocomplete="country-name" required></label><label><span>Date of birth</span><input name="dob" type="date" required></label></div><label class="consent-row"><input name="age" type="checkbox" required><span>I confirm I am 18 or older and legally permitted to access this content.</span></label><label class="consent-row"><input name="terms" type="checkbox" required><span>I accept the Terms, Privacy Notice and responsible-play rules.</span></label><button class="primary-btn" type="submit">Create Free Account</button></form>`:`<form id="signin-form" class="auth-form"><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><button class="primary-btn" type="submit">Continue with Email</button><p class="fine-print">Production sign-in should send a secure passwordless code or use Google/Apple authentication.</p></form>`}`);
+  }
+  function ageFromDob(value){const dob=new Date(`${value}T12:00:00`);if(!Number.isFinite(dob.getTime()))return 0;const now=new Date();let age=now.getFullYear()-dob.getFullYear();const md=now.getMonth()-dob.getMonth();if(md<0||(md===0&&now.getDate()<dob.getDate()))age--;return age}
+  function handleSignup(form){
+    const data=new FormData(form),dob=String(data.get("dob")||"");
+    if(ageFromDob(dob)<18){toast("Betynz account access is restricted to adults 18+.");return}
+    account={signedIn:true,name:String(data.get("name")||"").trim(),email:String(data.get("email")||"").trim().toLowerCase(),country:String(data.get("country")||"").trim(),plan:"free",createdAt:new Date().toISOString(),expiresAt:null,pausedUntil:null,preview:MONETIZATION.mode==="preview"};
+    saveAccount();closeAccountModal();renderAccountExperience();toast("Free account created on this device.");showView("profile");
+  }
+  function handleSignin(form){
+    const email=String(new FormData(form).get("email")||"").trim().toLowerCase();if(!email)return;
+    const existing=loadJSON("betynz-account",null);
+    account=existing&&existing.email===email?{...existing,signedIn:true}:{signedIn:true,name:email.split("@")[0]||"Betynz User",email,country:"",plan:"free",createdAt:new Date().toISOString(),expiresAt:null,pausedUntil:null,preview:MONETIZATION.mode==="preview"};
+    normalizeAccount();saveAccount();closeAccountModal();renderAccountExperience();toast("Signed in on this device.");showView("profile");
+  }
+  function signOut(){account={signedIn:false,name:"",email:"",country:"",plan:"guest",createdAt:null,expiresAt:null,pausedUntil:null};saveAccount();closeAccountModal();renderAccountExperience();showView("dashboard");toast("Signed out.")}
+  function openPaywall(required="pro",feature="this feature"){
+    if(required==="free"&&!account.signedIn){openAuth("signup");return}
+    const target=required==="supreme"?"supreme":"pro";
+    showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">♛</span><small>PREMIUM ACCESS</small><h2 id="account-modal-title">Unlock ${esc(feature)}</h2><p>${esc(feature)} requires <b>${esc(featurePlanLabel(required))}</b>. Your current access is ${esc(planName())}.</p><div class="paywall-actions">${!account.signedIn?`<button class="primary-btn" type="button" data-auth-open="signup">Create Free Account</button>`:`<button class="primary-btn" type="button" data-checkout-plan="${target}">View ${esc(featurePlanLabel(required))}</button>`}<button class="secondary-btn" type="button" data-view="pricing">Compare All Plans</button></div><p class="fine-print">Subscriptions provide access to analytics, alerts and tools. No prediction is guaranteed.</p></div>`);
+  }
+  function openCheckout(plan,cycle=billingCycle){
+    if(!account.signedIn){openAuth("signup");return}
+    const cfg=MONETIZATION.plans&&MONETIZATION.plans[plan];if(!cfg)return;
+    const key=plan==="day"?"day":`${plan}_${cycle}`;const url=MONETIZATION.checkoutUrls&&MONETIZATION.checkoutUrls[key];
+    if(url){location.href=url;return}
+    const amount=plan==="day"?cfg.oneTime:cfg[cycle];const renewal=plan==="day"?"One-time 24-hour access":cycle==="annual"?"Renews annually":"Renews monthly";
+    const preview=MONETIZATION.mode==="preview"?`<button class="secondary-btn preview-plan-btn" type="button" data-activate-preview-plan="${plan}" data-activate-preview-cycle="${cycle}">Activate test access on this device</button><p class="fine-print warning">Testing only. Remove preview mode when hosted checkout is connected.</p>`:"";
+    showAccountModal(`<div class="checkout-modal"><span class="paywall-icon">⚡</span><small>HOSTED CHECKOUT</small><h2 id="account-modal-title">${esc(cfg.name)}</h2><div class="checkout-price"><b>${esc(formatMoney(amount))}</b><span>${plan==="day"?"/ 24 hours":cycle==="annual"?"/ year":"/ month"}</span></div><p>${esc(cfg.description||"")}</p><div class="checkout-summary"><span>Account</span><b>${esc(account.email)}</b><span>Billing</span><b>${esc(renewal)}</b><span>Card handling</span><b>Hosted provider only</b></div><button class="primary-btn" type="button" id="unconfigured-checkout">Continue to Secure Checkout</button>${preview}<p class="fine-print">No card information is collected by this static website package.</p></div>`);
+  }
+  function activatePreviewPlan(plan,cycle){
+    if(MONETIZATION.mode!=="preview")return;
+    account.plan=plan;account.expiresAt=plan==="day"?new Date(Date.now()+24*60*60*1000).toISOString():null;saveAccount();
+    const cfg=MONETIZATION.plans[plan]||{},amount=plan==="day"?cfg.oneTime:cfg[cycle]||0;
+    paymentHistory.unshift({id:`preview-${Date.now()}`,date:new Date().toISOString(),plan:planName(plan),amount,status:"Preview",cycle:plan==="day"?"24 hours":cycle});saveJSON("betynz-payment-history",paymentHistory);
+    closeAccountModal();renderAccountExperience();toast(`${planName(plan)} preview activated.`);showView("profile");
+  }
+
   function keyOf(m){return String(m.id!=null?m.id:`${m.home}|${m.away}|${m.matchDate}`)}
   function dateOf(m){return m.matchDate||(m.kickoff?String(m.kickoff).slice(0,10):"Undated")}
   function kickoff(m){try{return new Date(m.kickoff).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}catch(_){return "—"}}
@@ -206,8 +281,8 @@
   function renderEngineTabs(){
     const featured=["zeus","athena","apollo","ares","hermes","spartacus","leonidas"].map(id=>ENGINE_MAP[id]).filter(Boolean);
     const tabs=[{id:"all",name:"All Engines",glyph:"◎"},...featured];
-    $("#engine-tabs").innerHTML=tabs.map(e=>`<button class="engine-tab ${activeDashboardEngine===e.id?"active":""}" data-engine-tab="${e.id}">${e.glyph||""} ${esc(e.name)}</button>`).join("");
-    $$("[data-engine-tab]").forEach(b=>b.onclick=()=>{activeDashboardEngine=b.dataset.engineTab;renderDashboardList();renderEngineTabs()});
+    $("#engine-tabs").innerHTML=tabs.map(e=>{const required=requiredPlanForEngine(e.id),locked=!hasPlan(required);return `<button class="engine-tab ${activeDashboardEngine===e.id?"active":""} ${locked?"locked":""}" data-engine-tab="${e.id}" ${locked?`data-required-plan="${required}"`:""}>${e.glyph||""} ${esc(e.name)}${locked?'<i>♛</i>':''}</button>`}).join("");
+    $$("[data-engine-tab]").forEach(b=>b.onclick=()=>{const required=b.dataset.requiredPlan;if(required){openPaywall(required,`${ENGINE_MAP[b.dataset.engineTab]?.name||"Engine"} analysis`);return}activeDashboardEngine=b.dataset.engineTab;renderDashboardList();renderEngineTabs()});
   }
 
   function filteredDashboardPicks(){
@@ -220,7 +295,7 @@
     return rows;
   }
   function oddsIn(v,range){if(range==="all")return true;if(!v)return false;const [a,b]=range.split("-").map(Number);return v>=a&&v<=b}
-  function renderDashboardList(){const rows=filteredDashboardPicks().slice(0,7);$("#dashboard-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No qualified picks for these filters.")}
+  function renderDashboardList(){const allRows=filteredDashboardPicks(),limit=publicLimit(),rows=allRows.slice(0,limit);let html=rows.length?rows.map(matchRow).join(""):empty("No qualified picks for these filters.");if(!hasPlan("pro")&&(allRows.length>limit||matches.filter(m=>dateOf(m)===activeDate&&isUpcoming(m)).length))html+=lockedTeaser("pro","Full Match Board","Create a free account, then upgrade to view every qualified pick, all filters and the complete seven-day board.");$("#dashboard-list").innerHTML=html}
   function matchRow(p){
     const m=p.m,finished=isFinished(m),live=isLive(m),settled=finished?settlePick(p):"Pending",added=slip.some(x=>x.key===slipKey(p));
     const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");
@@ -268,16 +343,19 @@
   function renderPicksView(){
     const ds=dates();
     const engine=ENGINE_MAP[picksFilter.engine]||null;
+    const requiredEnginePlan=engine?requiredPlanForEngine(engine.id):"guest";
+    if(engine&&!hasPlan(requiredEnginePlan)){openPaywall(requiredEnginePlan,`${engine.name} engine picks`);picksFilter.engine="all";return renderPicksView()}
     const engineRows=engine?enginePicks(engine.id):[];
     const engineDates=[...new Set(engineRows.map(p=>dateOf(p.m)))].sort();
     if(!activeDate)activeDate=engineDates[0]||ds[0]||todayISO;
     if(engine&&engineDates.length&&!engineDates.includes(activeDate))activeDate=engineDates.find(d=>d>=todayISO)||engineDates[0];
+    if(!hasPlan("pro")&&ds.includes(todayISO))activeDate=todayISO;
 
-    $("#date-strip").innerHTML=ds.map(d=>`<button class="date-btn ${d===activeDate?"active":""}" data-date="${d}"><b>${friendlyDate(d).split(" · ")[0]}</b><small>${friendlyDate(d).split(" · ")[1]||d}</small></button>`).join("");
-    $$('[data-date]').forEach(b=>b.onclick=()=>{activeDate=b.dataset.date;renderPicksView();renderDashboardSelectors();renderDashboardList()});
+    $("#date-strip").innerHTML=ds.map(d=>{const locked=!hasPlan("pro")&&d!==todayISO;return `<button class="date-btn ${d===activeDate?"active":""} ${locked?"locked":""}" data-date="${d}" ${locked?'data-required-plan="pro"':""}><b>${friendlyDate(d).split(" · ")[0]}${locked?' ♛':''}</b><small>${friendlyDate(d).split(" · ")[1]||d}</small></button>`}).join("");
+    $$('[data-date]').forEach(b=>b.onclick=()=>{if(b.dataset.requiredPlan){openPaywall("pro","Seven-day Match Board");return}activeDate=b.dataset.date;renderPicksView();renderDashboardSelectors();renderDashboardList()});
 
     const engSel=$("#picks-engine");
-    engSel.innerHTML=`<option value="all">All Engines</option>${ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("")}`;
+    engSel.innerHTML=`<option value="all">All Engines</option>${ENGINES.map(e=>{const locked=!hasPlan(requiredPlanForEngine(e.id));return `<option value="${e.id}">${e.name}${locked?" — Locked":""}</option>`}).join("")}`;
     engSel.value=picksFilter.engine||"all";
 
     const markets=[...new Set(allPicks().map(p=>marketFamily(p.market)))].sort();
@@ -325,7 +403,7 @@
         emptyText=c.moving?`${engine.name} has movement data, but no market cleared its strict agreement and confirmation rules for ${friendlyDate(activeDate)}.`:`${engine.name} is collecting opening-to-current bookmaker movement. Run the hourly evidence refresh again after prices change.`;
       }else emptyText=`${engine.name} has no qualified picks for ${friendlyDate(activeDate)}.`;
     }
-    $("#picks-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty(emptyText);
+    const boardLimit=hasPlan("pro")?rows.length:3;const visibleRows=rows.slice(0,boardLimit);let boardHtml=visibleRows.length?visibleRows.map(matchRow).join(""):empty(emptyText);if(!hasPlan("pro"))boardHtml+=lockedTeaser("pro","Complete seven-day board","Olympian Pro unlocks every qualified match, all Olympian engines, filters, saved picks and full explanations.");$("#picks-list").innerHTML=boardHtml;
     updatePageArt();
   }
 
@@ -336,7 +414,8 @@
       const rebel=e.family==="rebel";
       const coverage=rebel?rebelCoverage(e.id):null;
       const status=count?`${count} PICKS`:rebel?(coverage.moving?`${coverage.moving} MOVING`:coverage.ready?`${coverage.ready} READY`:"COLLECTING"):"0 PICKS";
-      return `<article class="engine-card deity-card ${rebel?"rebel-card":""}" data-engine-picks="${e.id}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${status}</span></div>${rebel?'<span class="engine-family-badge">REBEL</span>':''}<h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">View ${e.name} picks →</div></article>`
+      const required=requiredPlanForEngine(e.id),locked=!hasPlan(required);
+      return `<article class="engine-card deity-card ${rebel?"rebel-card":""} ${locked?"access-locked":""}" data-engine-picks="${e.id}" data-required-plan="${required}" style="--card-art:url('${art}')" role="button" tabindex="0" aria-label="View ${esc(e.name)} picks"><div class="engine-top"><span class="engine-icon">${e.glyph}</span><span class="engine-status">${locked?`♛ ${required==="supreme"?"SUPREME":"PRO"}`:status}</span></div>${rebel?'<span class="engine-family-badge">REBEL</span>':''}<h3>${e.name}</h3><small>${e.role}</small><p>${e.summary}</p><div class="engine-tags">${e.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="engine-card-cta">${locked?`Unlock with ${featurePlanLabel(required)}`:`View ${e.name} picks →`}</div></article>`
     }).join("");
     $$('[data-engine-picks]').forEach(c=>{
       c.onclick=()=>viewEnginePicks(c.dataset.enginePicks);
@@ -345,6 +424,7 @@
   }
   function viewEnginePicks(id){
     const engine=ENGINE_MAP[id];if(!engine)return;
+    const required=requiredPlanForEngine(id);if(!hasPlan(required)){openPaywall(required,`${engine.name} engine picks`);return}
     picksFilter={engine:id,market:"all",league:"all",grade:"all"};
     const engineRows=enginePicks(id);
     const availableDates=[...new Set(engineRows.map(p=>dateOf(p.m)))].sort();
@@ -386,7 +466,10 @@
 
   function openPickDetail(matchKey,engineId,source){
     const p=resolveDetailPick(matchKey,engineId,source);if(!p)return;
+    if(isPaused()){showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">◈</span><small>ACCESS PAUSED</small><h2 id="account-modal-title">Prediction access is paused</h2><p>Live scores and settled results remain available while current prediction details are hidden.</p><button class="secondary-btn" type="button" data-view="results">View Settled Results</button></div>`);return}
     const m=p.m,signal=!!p.engineOnly,displayGrade=signal?"SIGNAL":p.grade;
+    const required=signal?requiredPlanForEngine(p.engine.id):"guest";if(!hasPlan(required)){openPaywall(required,`${p.engine.name} match explanation`);return}
+    const basicOnly=!hasPlan("pro"),supreme=hasPlan("supreme");
     const statusText=signal?`${p.engine.name} produced this specialist signal. Zeus may still reject or change the market.`:p.locked?"Locked before kickoff and eligible for the verified public record.":"Provisional and still subject to the pre-kickoff safety checks.";
     const supporting=(p.engines||[p.engine]).filter(Boolean);
     const engineNames=[...new Set(supporting.map(e=>e.name).filter(Boolean))];
@@ -395,6 +478,9 @@
     const cards=evidenceCards(p);
     const resultState=isFinished(m)?settlePick(p):"Pending";
     const modal=$("#engine-modal");if(modal)modal.classList.add("pick-summary-modal");
+    const basicCards=(basicOnly?cards.filter(x=>["Current odds","Model confidence"].includes(x[0])):cards);
+    const advancedHtml=basicOnly?lockedTeaser("pro","Full prediction evidence","Olympian Pro reveals PPG, venue form, xG, all supporting reasons, warnings and contradiction checks."):`<div class="advanced-summary"><h4>Advanced evidence</h4><div class="pick-summary-flow"><article class="summary-step"><span>4</span><div><b>Data quality check</b><p>Betynz verified the fixture, league context, team samples and available market data before allowing an engine signal.</p></div></article><article class="summary-step"><span>5</span><div><b>All supporting evidence</b>${reasons.length?`<ul>${reasons.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>The market cleared the active engine thresholds and ranking rules.</p>`}</div></article><article class="summary-step"><span>6</span><div><b>Safety and contradiction check</b>${warnings.length?`<ul class="summary-warnings">${warnings.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>No major published contradiction was recorded for this selection.</p>`}</div></article></div></div>`;
+    const rebelAudit=signal&&p.signal&&p.signal.rebel?(supreme?`<h4>Rebel market audit</h4><div class="rule-box rebel-audit"><b>Original market:</b> ${esc(marketClean(p.signal.originalMarket||p.market))}<br><b>Final market:</b> ${esc(marketClean(p.signal.finalMarket||p.market))}<br><b>Opening odds:</b> ${p.signal.openingOdds!=null?esc(Number(p.signal.openingOdds).toFixed(2)):"—"}<br><b>Current odds:</b> ${p.signal.currentOdds!=null?esc(Number(p.signal.currentOdds).toFixed(2)):"—"}<br><b>Movement:</b> ${p.signal.movement!=null?esc((Number(p.signal.movement)*100).toFixed(1))+"%":"—"}<br><b>Bookmakers:</b> ${esc(p.signal.bookmakerCount??"—")} · <b>Agreement:</b> ${p.signal.bookmakerAgreement!=null?esc(Math.round(Number(p.signal.bookmakerAgreement)*100))+"%":"—"}<br><b>Confirmations:</b> ${esc(p.signal.confirmations??"—")} · <b>Downgrade:</b> ${esc(p.signal.downgradeLevel??0)} level(s)${p.signal.classification?`<br><b>Class:</b> ${esc(p.signal.classification)}`:""}</div>`:lockedTeaser("supreme","Rebel market audit","Zeus Supreme reveals opening odds, current odds, movement, bookmaker agreement, confirmations and downgrade logic.")):"";
     $("#engine-modal-content").innerHTML=`
       <div class="modal-engine-head pick-summary-head">
         <span class="engine-icon">${p.engine.glyph||"⚡"}</span>
@@ -405,16 +491,15 @@
         <div><small>${signal?esc(p.engine.name)+" engine signal":"Final Betynz market"}</small><b>${esc(marketClean(p.market))}</b></div>
         <strong>${Math.round(Number(p.confidence||0))}%</strong>
       </div>
-      <div class="summary-evidence-grid">${cards.map(([label,value])=>`<article><small>${esc(label)}</small><b>${esc(value)}</b></article>`).join("")}</div>
+      <div class="summary-evidence-grid">${basicCards.map(([label,value])=>`<article><small>${esc(label)}</small><b>${esc(value)}</b></article>`).join("")}</div>
       <h4>How this pick was reached</h4>
       <div class="pick-summary-flow">
-        <article class="summary-step"><span>1</span><div><b>Data quality check</b><p>Betynz verified the fixture, league context, team samples and available market data before allowing an engine signal.</p></div></article>
-        <article class="summary-step"><span>2</span><div><b>Specialist analysis</b><p>${engineNames.length?`${esc(engineNames.join(", "))} supported the selected direction.`:`${esc(p.engine.name)} supplied the leading signal.`}</p></div></article>
-        <article class="summary-step"><span>3</span><div><b>Evidence that supported the market</b>${reasons.length?`<ul>${reasons.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>The market cleared the active engine thresholds and ranking rules.</p>`}</div></article>
-        <article class="summary-step"><span>4</span><div><b>Safety and contradiction check</b>${warnings.length?`<ul class="summary-warnings">${warnings.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>No major published contradiction was recorded for this selection.</p>`}</div></article>
-        <article class="summary-step final"><span>5</span><div><b>${signal?"Specialist output":"Zeus final decision"}</b><p>${esc(statusText)}${resultState!=="Pending"?` Final board settlement: ${esc(resultState)}.`:""}</p></div></article>
+        <article class="summary-step"><span>1</span><div><b>Specialist support</b><p>${engineNames.length?`${esc(engineNames.join(", "))} supported the selected direction.`:`${esc(p.engine.name)} supplied the leading signal.`}</p></div></article>
+        <article class="summary-step"><span>2</span><div><b>Basic qualification reason</b>${reasons.length?`<p>${esc(reasons[0])}</p>`:`<p>The market cleared the active engine thresholds and ranking rules.</p>`}</div></article>
+        <article class="summary-step final"><span>3</span><div><b>${signal?"Specialist output":"Final board status"}</b><p>${esc(statusText)}${resultState!=="Pending"?` Final board settlement: ${esc(resultState)}.`:""}</p></div></article>
       </div>
-      ${signal&&p.signal&&p.signal.rebel?`<h4>Rebel market audit</h4><div class="rule-box rebel-audit"><b>Original market:</b> ${esc(marketClean(p.signal.originalMarket||p.market))}<br><b>Final market:</b> ${esc(marketClean(p.signal.finalMarket||p.market))}<br><b>Opening odds:</b> ${p.signal.openingOdds!=null?esc(Number(p.signal.openingOdds).toFixed(2)):"—"}<br><b>Current odds:</b> ${p.signal.currentOdds!=null?esc(Number(p.signal.currentOdds).toFixed(2)):"—"}<br><b>Movement:</b> ${p.signal.movement!=null?esc((Number(p.signal.movement)*100).toFixed(1))+"%":"—"}<br><b>Bookmakers:</b> ${esc(p.signal.bookmakerCount??"—")} · <b>Agreement:</b> ${p.signal.bookmakerAgreement!=null?esc(Math.round(Number(p.signal.bookmakerAgreement)*100))+"%":"—"}<br><b>Confirmations:</b> ${esc(p.signal.confirmations??"—")} · <b>Downgrade:</b> ${esc(p.signal.downgradeLevel??0)} level(s)${p.signal.classification?`<br><b>Class:</b> ${esc(p.signal.classification)}`:""}</div>`:""}
+      ${advancedHtml}
+      ${rebelAudit}
       <div class="summary-disclaimer">Model confidence is not a guarantee. Football outcomes remain uncertain.</div>`;
     $("#engine-modal-backdrop").classList.add("open");
     $("#engine-modal").classList.add("open");
@@ -464,16 +549,46 @@
 
 
   function slipKey(p){return `${keyOf(p.m)}|${p.market}`}
-  function addPickByKey(k){let p=allPicks().find(x=>slipKey(x)===k);if(!p&&picksFilter.engine!=="all")p=enginePicks(picksFilter.engine).find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip()}
+  function addPickByKey(k){if(!hasPlan("pro")){openPaywall("pro","Saved Picks");return}let p=allPicks().find(x=>slipKey(x)===k);if(!p&&picksFilter.engine!=="all")p=enginePicks(picksFilter.engine).find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip();renderSavedPicks()}
   function persistSlip(){if(preferences.rememberSlip!==false)saveJSON("betynz-slip",slip)}
-  function removeSlip(k){slip=slip.filter(x=>x.key!==k);persistSlip();renderAllPickLists();renderSlip()}
+  function removeSlip(k){slip=slip.filter(x=>x.key!==k);persistSlip();renderAllPickLists();renderSlip();renderSavedPicks()}
   function slipOdds(){return slip.reduce((x,l)=>x*(Number(l.odds)||1),1)}
   function slipHtml(){return slip.length?slip.map(l=>`<div class="slip-item"><div><b>${esc(l.home)} vs ${esc(l.away)}</b><small>${esc(marketClean(l.market))}${l.odds?` · ${Number(l.odds).toFixed(2)}`:""} · ${esc(l.engine)}</small></div><button data-remove-slip="${esc(l.key)}">×</button></div>`).join(""):`<div class="slip-empty">Tap + beside a qualified pick.</div>`}
-  function renderSlip(){const html=slipHtml(),odds=slipOdds().toFixed(2);$("#slip-items").innerHTML=html;$("#drawer-items").innerHTML=html;$("#slip-count").textContent=slip.length;$("#mobile-slip-count").textContent=slip.length;$("#slip-odds").textContent=odds;$("#drawer-odds").textContent=odds;$("#mobile-slip-odds").textContent=odds;$$('[data-remove-slip]').forEach(b=>b.onclick=()=>removeSlip(b.dataset.removeSlip))}
+  function renderSlip(){const html=slipHtml(),odds=slipOdds().toFixed(2);$("#slip-items").innerHTML=html;$("#drawer-items").innerHTML=html;$("#slip-count").textContent=slip.length;$("#mobile-slip-count").textContent=slip.length;$("#slip-odds").textContent=odds;$("#drawer-odds").textContent=odds;$("#mobile-slip-odds").textContent=odds}
   function copySlip(){if(!slip.length){toast("Your slip is empty.");return}const text=["BETYNZ — SMART BETTING PREDICTIONS",...slip.map((l,i)=>`${i+1}. ${l.home} vs ${l.away} — ${marketClean(l.market)}${l.odds?` @ ${Number(l.odds).toFixed(2)}`:""}`),`Total odds: ${slipOdds().toFixed(2)}`,"Predictions are informational. 18+"].join("\n");navigator.clipboard?.writeText(text).then(()=>toast("Slip copied.")).catch(()=>toast("Copy is unavailable in this browser."))}
 
   function renderPreferences(){const sel=$("#favorite-engine");sel.innerHTML=ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("");sel.value=preferences.favoriteEngine||"zeus";$("#confidence-pref").value=String(preferences.confidence||76);$("#remember-slip").checked=preferences.rememberSlip!==false}
   function savePreferences(){preferences={favoriteEngine:$("#favorite-engine").value,confidence:Number($("#confidence-pref").value),rememberSlip:$("#remember-slip").checked};saveJSON("betynz-preferences",preferences);if(!preferences.rememberSlip)localStorage.removeItem("betynz-slip");toast("Preferences saved.")}
+
+  function renderPlanChrome(){
+    normalizeAccount();const signed=!!account.signedIn,current=planKey(),name=planName();
+    const avatar=$("#profile-avatar"),profileName=$("#profile-name"),profilePlan=$("#profile-plan"),signin=$("#top-signin-btn"),upgrade=$("#top-upgrade-btn"),signout=$("#sidebar-signout");
+    if(avatar)avatar.textContent=accountInitials();if(profileName)profileName.textContent=signed?(account.name||"Betynz User"):"Guest";if(profilePlan)profilePlan.textContent=current==="day"&&account.expiresAt?`${name} · ${Math.max(1,Math.ceil((Date.parse(account.expiresAt)-Date.now())/36e5))}h left`:name;
+    if(signin)signin.hidden=signed;if(upgrade){upgrade.hidden=hasPlan("supreme");upgrade.textContent=hasPlan("pro")?"Go Supreme":"Upgrade"}if(signout)signout.hidden=!signed;
+    const cardName=$("#sidebar-plan-name"),cardCopy=$("#sidebar-plan-copy"),cardAction=$("#sidebar-plan-action");if(cardName)cardName.textContent=name;if(cardCopy)cardCopy.textContent=hasPlan("supreme")?"All Betynz engines and advanced evidence unlocked.":hasPlan("pro")?"Olympian access active. Upgrade for Zeus and the Rebels.":"Unlock full boards, alerts and advanced engine evidence.";if(cardAction)cardAction.textContent=hasPlan("supreme")?"Manage Plan":"View Plans";
+  }
+  function planFeatures(key){
+    const common={free:["3 daily public picks","Live scores and settled results","Basic match explanations","Public performance history"],pro:["Everything in Free","All Olympian engine picks","Complete seven-day Match Board","Full evidence and filters","Saved Picks and alerts","No advertising"],supreme:["Everything in Olympian Pro","Zeus consensus and Banker Board","Leonidas and Spartacus","Opening-to-current odds movement","Early changes and advanced history","Priority support"],day:["24 hours of Supreme access","No recurring charge","Zeus, Bankers and both Rebels","Full evidence and alerts"]};return common[key]||[];
+  }
+  function renderPricing(){
+    const root=$("#pricing-grid");if(!root)return;const cfg=MONETIZATION.plans||{},keys=["free","pro","supreme","day"];
+    root.innerHTML=keys.map(key=>{const item=cfg[key]||{},current=planKey()===key,featured=key==="supreme",amount=key==="day"?item.oneTime:item[billingCycle],suffix=key==="day"?"24 hours":billingCycle==="annual"?"year":"month",cta=current?"Current Plan":key==="free"?(account.signedIn?"Free Account Active":"Create Free Account"):key==="day"?"Get Day Pass":`Choose ${item.name||planName(key)}`;return `<article class="plan-card ${featured?"featured":""} ${current?"current":""}">${featured?'<span class="best-value">FULL ACCESS</span>':""}<div class="plan-title"><span>${key==="supreme"?"⚡":key==="pro"?"♙":key==="day"?"◷":"◎"}</span><div><h3>${esc(item.name||planName(key))}</h3><p>${esc(item.description||"")}</p></div></div><div class="plan-price"><b>${amount?esc(formatMoney(amount)):"Free"}</b>${amount?`<span>/ ${suffix}</span>`:""}</div><ul>${planFeatures(key).map(x=>`<li>${esc(x)}</li>`).join("")}</ul><button type="button" class="${featured?"primary-btn":"secondary-btn"}" ${current?'disabled aria-disabled="true"':key==="free"?'data-auth-open="signup"':`data-checkout-plan="${key}" data-checkout-cycle="${billingCycle}"`}>${esc(cta)}</button>${key==="day"?'<small class="renewal-note">One-time access · does not auto-renew</small>':key!=="free"?`<small class="renewal-note">${billingCycle==="annual"?"Annual renewal":"Monthly renewal"} · cancel through account portal</small>`:""}</article>`}).join("");
+    $$('[data-billing-cycle]').forEach(b=>b.classList.toggle("active",b.dataset.billingCycle===billingCycle));
+    const features=[["Daily public picks","3","All","All","All"],["Seven-day Match Board","—","✓","✓","✓"],["Olympian engine pages","Limited","All","All","All"],["Zeus consensus","—","—","✓","✓"],["Banker Board","—","—","✓","✓"],["Leonidas & Spartacus","—","—","✓","✓"],["Full evidence","—","✓","✓","✓"],["Saved picks & alerts","—","✓","✓","✓"],["Recurring payment","—","Yes","Yes","No"]];
+    const table=$("#comparison-table");if(table)table.innerHTML=`<div class="comparison-row header"><b>Feature</b><b>Free</b><b>Pro</b><b>Supreme</b><b>Day Pass</b></div>${features.map(r=>`<div class="comparison-row">${r.map((x,i)=>i?`<span>${esc(x)}</span>`:`<b>${esc(x)}</b>`).join("")}</div>`).join("")}`;
+  }
+  function renderAccount(){
+    const root=$("#account-content");if(!root)return;const signed=!!account.signedIn;const pill=$("#account-plan-pill"),sub=$("#account-page-subtitle");if(pill)pill.textContent=planName();if(sub)sub.textContent=signed?"Manage your Betynz access and account controls.":"Create a free account to personalise your Betynz experience.";
+    root.innerHTML=signed?`<div class="account-hero"><div class="large-avatar">${esc(accountInitials())}</div><div><span>${esc(planName())}</span><h3>${esc(account.name||"Betynz User")}</h3><p>${esc(account.email)}${account.country?` · ${esc(account.country)}`:""}</p>${account.preview?'<small>Local preview account · secure backend not connected</small>':""}</div><div class="account-hero-actions"><button class="primary-btn compact" type="button" data-view="pricing">${hasPlan("supreme")?"Manage Plan":"Upgrade Plan"}</button><button class="secondary-btn compact" type="button" id="account-signout">Sign Out</button></div></div><div class="account-stats"><article><small>Current plan</small><b>${esc(planName())}</b></article><article><small>Saved picks</small><b>${slip.length}</b></article><article><small>Alerts</small><b>${hasPlan("pro")?"Available":"Locked"}</b></article><article><small>Account status</small><b>${isPaused()?"Paused":"Active"}</b></article></div>`:`<section class="guest-account-card"><span>⚡</span><div><small>FREE ACCOUNT</small><h3>Save your Betynz preferences</h3><p>Create a free adult account to keep settings and prepare for subscription access.</p><div><button class="primary-btn compact" type="button" data-auth-open="signup">Create Free Account</button><button class="secondary-btn compact" type="button" data-auth-open="signin">Sign In</button></div></div></section>`;
+  }
+  function renderSavedPicks(){const root=$("#saved-picks-content");if(!root)return;if(!hasPlan("pro")){root.innerHTML=lockedTeaser("pro","Saved Picks","Olympian Pro lets you keep a personal list of qualified matches on this device.");return}root.innerHTML=slip.length?`<div class="saved-list">${slip.map(x=>`<article><div><small>${esc(friendlyDate(x.date))}</small><h3>${esc(x.home)} vs ${esc(x.away)}</h3><p>${esc(marketClean(x.market))}${x.odds?` · ${Number(x.odds).toFixed(2)}`:""} · ${esc(x.engine)}</p></div><button type="button" data-remove-slip="${esc(x.key)}" aria-label="Remove saved pick">×</button></article>`).join("")}</div><div class="saved-actions"><button class="primary-btn compact" id="saved-copy" type="button">Copy Saved List</button><button class="secondary-btn compact" id="saved-clear" type="button">Clear Saved Picks</button></div>`:empty("No saved picks yet. Tap + beside a qualified match.")}
+  function renderNotifications(){const locked=!hasPlan("pro");["notify-new-picks","notify-pick-changes","notify-scores","notify-rebels","notify-leagues","save-notifications","enable-browser-notifications"].forEach(id=>{const el=$("#"+id);if(el)el.disabled=locked});if($("#notify-new-picks"))$("#notify-new-picks").checked=!!notificationPrefs.newPicks;if($("#notify-pick-changes"))$("#notify-pick-changes").checked=!!notificationPrefs.pickChanges;if($("#notify-scores"))$("#notify-scores").checked=!!notificationPrefs.scores;if($("#notify-rebels"))$("#notify-rebels").checked=!!notificationPrefs.rebels;if($("#notify-leagues"))$("#notify-leagues").value=notificationPrefs.leagues||"";const pill=$("#notification-plan-pill");if(pill)pill.textContent=locked?"Olympian Pro required":planName()}
+  function saveNotifications(){if(!hasPlan("pro")){openPaywall("pro","Notifications");return}notificationPrefs={newPicks:$("#notify-new-picks").checked,pickChanges:$("#notify-pick-changes").checked,scores:$("#notify-scores").checked,rebels:$("#notify-rebels").checked,leagues:$("#notify-leagues").value.trim()};saveJSON("betynz-notifications",notificationPrefs);toast("Notification preferences saved.")}
+  async function enableBrowserNotifications(){if(!hasPlan("pro")){openPaywall("pro","Notifications");return}if(!("Notification" in window)){toast("Browser notifications are not supported here.");return}const result=await Notification.requestPermission();toast(result==="granted"?"Device notification permission enabled.":"Notification permission was not enabled.")}
+  function renderBilling(){const root=$("#billing-content");if(!root)return;if(!account.signedIn){root.innerHTML=lockedTeaser("free","Payment History","Sign in to view receipts and subscription changes.");return}root.innerHTML=paymentHistory.length?`<div class="billing-table"><div class="billing-row header"><span>Date</span><span>Plan</span><span>Amount</span><span>Status</span></div>${paymentHistory.map(x=>`<div class="billing-row"><span>${esc(new Date(x.date).toLocaleDateString())}</span><b>${esc(x.plan)}</b><span>${esc(formatMoney(x.amount))}</span><span class="billing-status">${esc(x.status)}</span></div>`).join("")}</div>`:`<div class="billing-empty"><span>▤</span><h3>No payment history</h3><p>Receipts will appear after a hosted checkout provider and account backend are connected.</p><button class="primary-btn compact" type="button" data-view="pricing">View Plans</button></div>`}
+  function renderResponsible(){const sel=$("#responsible-reminder");if(sel)sel.value=loadJSON("betynz-responsible",{reminder:"60"}).reminder||"60";const btn=$("#pause-account");if(btn)btn.textContent=isPaused()?`Paused until ${new Date(account.pausedUntil).toLocaleDateString()}`:"Pause prediction access for 7 days"}
+  function renderAccountExperience(){renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();renderEngineTabs();renderDashboardList();renderEngines();renderSlip()}
+
 
   function updatePageArt(){
     const shell=$(".main-shell");
@@ -489,7 +604,13 @@
     if(hero) hero.dataset.heroArt=activeView==="dashboard"?"zeus":"none";
   }
 
-  function showView(name){if(!$( `[data-view-panel="${name}"]`))name="dashboard";activeView=name;location.hash=name;$$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));$$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));closeSidebar();if(name==="picks")renderPicksView();if(name==="engines")renderEngines();if(name==="bankers")renderBankers();if(name==="results")renderResults();updatePageArt();window.scrollTo({top:0,behavior:"smooth"})}
+  function showView(name){
+    if(!$( `[data-view-panel="${name}"]`))name="dashboard";
+    const required=requiredPlanForView(name);if(!hasPlan(required)){const current=$("[data-view-panel].active")?.dataset.viewPanel||"dashboard";activeView=current;if(location.hash!==`#${current}`)history.replaceState(null,"",`#${current}`);closeSidebar();openPaywall(required,name==="bankers"?"Banker Board":name==="saved"?"Saved Picks":name==="notifications"?"Notifications":"Account billing");return}
+    if(isPaused()&&["picks","engines","bankers"].includes(name)){closeSidebar();showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">◈</span><small>ACCESS PAUSED</small><h2 id="account-modal-title">Prediction access is paused</h2><p>This device is paused until ${esc(new Date(account.pausedUntil).toLocaleString())}. Live scores and settled results remain available.</p><button class="secondary-btn" type="button" data-view="results">View Settled Results</button></div>`);return}
+    activeView=name;location.hash=name;$$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));$$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));closeSidebar();
+    if(name==="picks")renderPicksView();if(name==="engines")renderEngines();if(name==="bankers")renderBankers();if(name==="results")renderResults();if(name==="pricing")renderPricing();if(name==="profile")renderAccount();if(name==="saved")renderSavedPicks();if(name==="notifications")renderNotifications();if(name==="billing")renderBilling();if(name==="responsible")renderResponsible();updatePageArt();window.scrollTo({top:0,behavior:"smooth"})
+  }
   function renderAllPickLists(){renderDashboardList();if(activeView==="picks")renderPicksView();if(activeView==="bankers")renderBankers()}
   function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
 
@@ -517,9 +638,10 @@
 
   function bindNavigationControls(){
     $$('[data-view]').forEach(control=>{
+      control.dataset.navBound="true";
       control.addEventListener("click",event=>{
         event.preventDefault();event.stopPropagation();
-        closeSelectionDrawer();
+        closeSelectionDrawer();closeAccountModal();
         showView(control.dataset.view);
       });
     });
@@ -570,6 +692,13 @@
     $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
     bindNavigationControls();
     document.addEventListener("click",e=>{
+      const dynamicView=e.target.closest("[data-view]");if(dynamicView&&!dynamicView.dataset.navBound){e.preventDefault();e.stopPropagation();closeSelectionDrawer();closeAccountModal();showView(dynamicView.dataset.view);return}
+      const remove=e.target.closest("[data-remove-slip]");if(remove){e.preventDefault();e.stopPropagation();removeSlip(remove.dataset.removeSlip);return}
+      const auth=e.target.closest("[data-auth-open]");if(auth){e.preventDefault();e.stopPropagation();openAuth(auth.dataset.authOpen||"signup");return}
+      const upgrade=e.target.closest("[data-upgrade-required]");if(upgrade){e.preventDefault();e.stopPropagation();openPaywall(upgrade.dataset.upgradeRequired,upgrade.dataset.upgradeFeature||"this feature");return}
+      const checkout=e.target.closest("[data-checkout-plan]");if(checkout){e.preventDefault();e.stopPropagation();openCheckout(checkout.dataset.checkoutPlan,checkout.dataset.checkoutCycle||billingCycle);return}
+      const preview=e.target.closest("[data-activate-preview-plan]");if(preview){e.preventDefault();e.stopPropagation();activatePreviewPlan(preview.dataset.activatePreviewPlan,preview.dataset.activatePreviewCycle||billingCycle);return}
+      const cycle=e.target.closest("[data-billing-cycle]");if(cycle){e.preventDefault();billingCycle=cycle.dataset.billingCycle;renderPricing();return}
       const add=e.target.closest("[data-add-pick]");if(add){e.preventDefault();e.stopPropagation();addPickByKey(add.dataset.addPick);return}
       const detail=e.target.closest("[data-pick-detail]");if(detail){e.preventDefault();e.stopPropagation();openPickDetail(detail.dataset.pickDetail,detail.dataset.pickEngine,detail.dataset.pickSource);return}
       const about=e.target.closest("[data-engine-about]");if(about){e.preventDefault();openEngine(about.dataset.engineAbout);return}
@@ -584,7 +713,7 @@
     if($("#dashboard-market"))$("#dashboard-market").onchange=renderDashboardList;
     if($("#dashboard-odds"))$("#dashboard-odds").onchange=renderDashboardList;
     if($("#clear-filters"))$("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
-    if($("#picks-engine"))$("#picks-engine").onchange=e=>{picksFilter.engine=e.target.value;renderPicksView()};
+    if($("#picks-engine"))$("#picks-engine").onchange=e=>{const id=e.target.value,required=requiredPlanForEngine(id);if(!hasPlan(required)){e.target.value=picksFilter.engine;openPaywall(required,`${ENGINE_MAP[id]?.name||"Engine"} picks`);return}picksFilter.engine=id;renderPicksView()};
     if($("#picks-market"))$("#picks-market").onchange=e=>{picksFilter.market=e.target.value;renderPicksView()};
     if($("#picks-league"))$("#picks-league").onchange=e=>{picksFilter.league=e.target.value;renderPicksView()};
     if($("#picks-grade"))$("#picks-grade").onchange=e=>{picksFilter.grade=e.target.value;renderPicksView()};
@@ -594,7 +723,7 @@
     if($("#banker-odds"))$("#banker-odds").onchange=e=>{bankerFilter.odds=e.target.value;renderBankers()};
     if($("#banker-reset"))$("#banker-reset").onclick=()=>{bankerFilter={status:"all",grade:"all",league:"all",odds:"all"};renderBankers();toast("Banker filters reset.")};
     if($("#global-search"))$("#global-search").oninput=e=>{searchTerm=e.target.value.trim().toLowerCase();renderDashboardList();if(activeView==="picks")renderPicksView()};
-    if($("#clear-slip"))$("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};
+    if($("#clear-slip"))$("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderSavedPicks();renderAllPickLists()};
     if($("#copy-slip"))$("#copy-slip").onclick=copySlip;
     if($("#drawer-copy"))$("#drawer-copy").onclick=copySlip;
     if($("#mobile-slip"))$("#mobile-slip").onclick=openSelectionDrawer;
@@ -602,18 +731,29 @@
     if($("#drawer-backdrop"))$("#drawer-backdrop").onclick=closeSelectionDrawer;
     if($("#engine-modal-close"))$("#engine-modal-close").onclick=closeEngine;
     if($("#engine-modal-backdrop"))$("#engine-modal-backdrop").onclick=closeEngine;
+    if($("#account-modal-close"))$("#account-modal-close").onclick=closeAccountModal;
+    if($("#account-modal-backdrop"))$("#account-modal-backdrop").onclick=closeAccountModal;
+    document.addEventListener("submit",e=>{if(e.target.id==="signup-form"){e.preventDefault();handleSignup(e.target)}if(e.target.id==="signin-form"){e.preventDefault();handleSignin(e.target)}});
     document.addEventListener("keydown",e=>{
-      if(e.key==="Escape"){closeEngine();closeSelectionDrawer();closeSidebar();return}
+      if(e.key==="Escape"){closeEngine();closeAccountModal();closeSelectionDrawer();closeSidebar();return}
       if((e.key==="Enter"||e.key===" ")&&e.target.closest&&e.target.closest("[data-pick-detail-row]")&&!e.target.closest("button,a,input,select,textarea,label")){
         e.preventDefault();const row=e.target.closest("[data-pick-detail-row]");openPickDetail(row.dataset.pickDetailRow,row.dataset.pickEngine,row.dataset.pickSource);
       }
     });
-    if($("#add-visible"))$("#add-visible").onclick=()=>{const source=picksFilter.engine!=="all"?enginePicks(picksFilter.engine):allPicks();const dateRows=source.filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
+    if($("#add-visible"))$("#add-visible").onclick=()=>{if(!hasPlan("pro")){openPaywall("pro","Saved Picks");return}const source=picksFilter.engine!=="all"?enginePicks(picksFilter.engine):allPicks();const dateRows=source.filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
     if($("#save-prefs"))$("#save-prefs").onclick=savePreferences;
+    if($("#save-notifications"))$("#save-notifications").onclick=saveNotifications;
+    if($("#enable-browser-notifications"))$("#enable-browser-notifications").onclick=enableBrowserNotifications;
+    if($("#sidebar-signout"))$("#sidebar-signout").onclick=signOut;
+    if($("#support-contact-btn"))$("#support-contact-btn").onclick=()=>{const email=MONETIZATION.supportEmail||"";if(email)location.href=`mailto:${email}`;else toast("Connect a support email before launch.")};
+    if($("#pause-account"))$("#pause-account").onclick=()=>{if(isPaused()){toast("Prediction access is already paused.");return}account.pausedUntil=new Date(Date.now()+7*24*60*60*1000).toISOString();saveAccount();renderResponsible();toast("Prediction access paused for 7 days.")};
+    if($("#responsible-reminder"))$("#responsible-reminder").onchange=e=>{saveJSON("betynz-responsible",{reminder:e.target.value});toast("Viewing reminder saved.")};
+    document.addEventListener("click",e=>{if(e.target.id==="account-signout")signOut();if(e.target.id==="saved-copy")copySlip();if(e.target.id==="saved-clear"){slip=[];persistSlip();renderSlip();renderSavedPicks();renderAllPickLists();toast("Saved picks cleared.")}if(e.target.id==="unconfigured-checkout")toast("Connect a hosted checkout URL in monetization-config.js.")});
     window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
   }
 
   function init(){
+    normalizeAccount();
     const validMatchKeys=new Set(matches.map(keyOf));
     const originalSlipSize=slip.length;
     slip=slip.filter(item=>validMatchKeys.has(String(item.matchKey)));
@@ -624,7 +764,7 @@
     $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
     $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();setupPWA();updatePageArt();showView(activeView);
+    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();updatePageArt();showView(activeView);
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();
