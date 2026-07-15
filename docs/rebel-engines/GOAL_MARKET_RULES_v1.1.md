@@ -1,5 +1,7 @@
 # Betynz.com — Rebel Engines Goal-Market Correction v1.1
 
+> **Superseded final-market note:** The Under 3.5 and Over 1.5 final-selection limits in this v1.1 document are replaced by `GOAL_MARKET_SETTLEMENT_GATES_v1.2.md`.
+
 This document replaces every earlier Over/Under 1.5, 2.5 and 3.5 rule for Spartacus and Leonidas.
 
 ## 1. Over 2.5 Goals

@@ -5,17 +5,17 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="1.3.0";
+  const VERSION="1.4.0";
   const CONFIG={
     engines:{
       spartacus:{minBookmakers:3,minAgreement:.55,minMovement:.04,strongMovement:.06,requiredConfirmations:1,maxMildContradictions:1,minConfidence:68},
       leonidas:{minBookmakers:5,minAgreement:.70,minMovement:.06,strongMovement:.08,requiredConfirmations:2,maxMildContradictions:1,minConfidence:78}
     },
     goalMarkets:{
-      over15:{maxOdds:1.30},
+      over15:{maxOdds:1.29,requiresUnder35Above:1.40,drawMinExclusive:3.50,bttsYesMax:1.60},
       over25:{minOdds:1.20,maxOdds:1.70,requiresUnder35Above:1.60},
       under25:{minOdds:1.20,maxOdds:1.70,requiresOver15Above:1.60},
-      under35:{maxOdds:1.40,fallback:"over15"},
+      under35:{maxOdds:1.30,requiresOver15Above:1.40,drawMax:3.00,bttsNoMax:1.60,fallback:"over15"},
       over35:{minOdds:1.20,maxOddsExclusive:1.90,requiresUnder35Above:1.60}
     },
     favoriteRule:{
@@ -101,7 +101,15 @@
     const over15Safety=()=>{
       const ctx=goalBasePass(input,"over15",engine,true),move=movementOf(input,"over15");
       const related=confirmationsOf(input,"over15");
-      const pass=ctx.pass&&n(odds.over15)!=null&&n(odds.over15)<=1.30&&isStableOrShortening(move)&&!signalOf(input,"under25Strong",movementOf(input,"under25")>=engine.minMovement)&&!signalOf(input,"majorLowScoringHtFt",false)&&related>=1;
+      const settledOddsGate=n(odds.over15)!=null&&n(odds.over15)<=1.29&&n(odds.under35)!=null&&n(odds.under35)>1.40&&n(odds.draw)!=null&&n(odds.draw)>3.50&&n(odds.bttsYes)!=null&&n(odds.bttsYes)<=1.60;
+      const pass=ctx.pass&&settledOddsGate&&isStableOrShortening(move)&&!signalOf(input,"under25Strong",movementOf(input,"under25")>=engine.minMovement)&&!signalOf(input,"majorLowScoringHtFt",false)&&related>=1;
+      return pass?{ctx,move}:null;
+    };
+    const under35Safety=()=>{
+      const ctx=goalBasePass(input,"under35",engine,true),move=movementOf(input,"under35"),stableAgreement=ctx&&ctx.stat?ctx.stat.stableAgreement:0;
+      const directional=move>=engine.minMovement||(isStronglyStable(move)&&stableAgreement>=engine.minAgreement);
+      const settledOddsGate=n(odds.under35)!=null&&n(odds.under35)<=1.30&&n(odds.over15)!=null&&n(odds.over15)>1.40&&n(odds.draw)!=null&&n(odds.draw)<=3.00&&n(odds.bttsNo)!=null&&n(odds.bttsNo)<=1.60;
+      const pass=ctx.pass&&settledOddsGate&&directional&&!isViolentShortening(movementOf(input,"over25"),engine)&&!signalOf(input,"fhOver15Strong",movementOf(input,"fhOver15")>=engine.strongMovement)&&!signalOf(input,"teamOver25Major",movementOf(input,"homeOver25")>=engine.strongMovement||movementOf(input,"awayOver25")>=engine.strongMovement);
       return pass?{ctx,move}:null;
     };
 
@@ -127,7 +135,7 @@
         if(move>=engine.strongMovement&&ctx.contradictions===0)candidates.push(candidate("OVER_2_5","over25","OVER_2_5",3,ctx,"Over 2.5 passed 1.20–1.70, Under 3.5 above 1.60, shortening and confirmation controls."));
         else candidates.push(candidate("OVER_2_0_ASIAN","over25","OVER_2_5",2,ctx,"Over 2.5 direction was valid but not full-strength; one-level downgrade to Over 2.0 Asian Goals.",1));
       }else if(inRange(n(odds.over25),1.20,1.70)&&n(odds.under35)>1.60&&move>0&&!lowContradiction){
-        const safe=over15Safety();if(safe)candidates.push(candidate("OVER_1_5","over15","OVER_2_5",1,safe.ctx,"Over 2.5 retained positive direction but failed the full gate; final safety downgrade to Over 1.5 at 1.30 or lower.",2));
+        const safe=over15Safety();if(safe)candidates.push(candidate("OVER_1_5","over15","OVER_2_5",1,safe.ctx,"Over 2.5 retained positive direction but failed the full gate; final safety downgrade to Over 1.5 only after the 1.29, Under 3.5, draw and GG gates pass.",2));
       }
     }
 
@@ -140,32 +148,30 @@
         if(move>=engine.strongMovement&&ctx.contradictions===0)candidates.push(candidate("UNDER_2_5","under25","UNDER_2_5",3,ctx,"Under 2.5 passed 1.20–1.70, Over 1.5 above 1.60 and the low-goal confirmation gate."));
         else candidates.push(candidate("UNDER_3_0_ASIAN","under25","UNDER_2_5",2,ctx,"Under 2.5 direction was valid but not full-strength; one-level downgrade to Under 3.0 Asian Goals.",1));
       }else{
-        // When Over 1.5 itself is priced at 1.30 or lower, the corrected rule
+        // When Over 1.5 itself is priced at 1.29 or lower, the corrected rule
         // rejects Under 2.5 and checks the positive-goals safety market first.
-        const over15Ctx=goalBasePass(input,"over15",engine,true),over15Move=movementOf(input,"over15");
         const invalidUnder25Price=n(odds.over15)!=null&&n(odds.over15)<=1.60;
-        const over15Replacement=invalidUnder25Price&&over15Ctx.pass&&n(odds.over15)<=1.30&&isStableOrShortening(over15Move)&&!signalOf(input,"majorLowScoringHtFt",false)&&confirmationsOf(input,"over15")>=1;
-        if(over15Replacement)candidates.push(candidate("OVER_1_5","over15","UNDER_2_5",2,over15Ctx,"Under 2.5 was rejected because Over 1.5 was not above 1.60; Over 1.5 passed its own 1.30 replacement gate.",1));
-        else if(n(odds.under35)<=1.40&&signalOf(input,"under35Supported",n(odds.under35)!=null&&n(odds.under35)<=1.40&&isStableOrShortening(movementOf(input,"under35")))){
-          const u35=goalBasePass(input,"under35",engine,true);if(u35.pass)candidates.push(candidate("UNDER_3_5","under35","UNDER_2_5",1,u35,"Under 2.5 failed the exact gate; final safety downgrade to Under 3.5 at 1.40 or lower.",2));
+        const over15Replacement=invalidUnder25Price?over15Safety():null;
+        if(over15Replacement)candidates.push(candidate("OVER_1_5","over15","UNDER_2_5",2,over15Replacement.ctx,"Under 2.5 was rejected because Over 1.5 was not above 1.60; Over 1.5 passed the final 1.29, Under 3.5, draw and GG gates.",1));
+        else{
+          const u35=under35Safety();
+          if(u35)candidates.push(candidate("UNDER_3_5","under35","UNDER_2_5",1,u35.ctx,"Under 2.5 failed the exact gate; final safety downgrade to Under 3.5 only after the 1.30, Over 1.5, draw and NG gates passed.",2));
         }
       }
     }
 
     // 4) Under 3.5, including the mandatory automatic switch to Over 1.5.
     {
-      const ctx=goalBasePass(input,"under35",engine,true),move=movementOf(input,"under35"),stableAgreement=ctx&&ctx.stat?ctx.stat.stableAgreement:0;
-      const directional=move>=engine.minMovement||(isStronglyStable(move)&&stableAgreement>=engine.minAgreement);
-      const exact=ctx.pass&&n(odds.under35)!=null&&n(odds.under35)<=1.40&&directional&&!isViolentShortening(movementOf(input,"over25"),engine)&&!signalOf(input,"fhOver15Strong",movementOf(input,"fhOver15")>=engine.strongMovement)&&!signalOf(input,"teamOver25Major",movementOf(input,"homeOver25")>=engine.strongMovement||movementOf(input,"awayOver25")>=engine.strongMovement);
-      if(exact)candidates.push(candidate("UNDER_3_5","under35","UNDER_3_5",move>=engine.strongMovement?3:2,ctx,"Under 3.5 is 1.40 or lower and passed the controlled-goals movement gate."));
+      const safeUnder=under35Safety();
+      if(safeUnder)candidates.push(candidate("UNDER_3_5","under35","UNDER_3_5",safeUnder.move>=engine.strongMovement?3:2,safeUnder.ctx,"Under 3.5 passed the final settled-market gates: U3.5 at 1.30 or lower, O1.5 above 1.40, draw at 3.00 or lower and NG at 1.60 or lower."));
       if(n(odds.under35)>1.40){
-        const safe=over15Safety();if(safe)candidates.push(candidate("OVER_1_5","over15","UNDER_3_5",1,safe.ctx,"Under 3.5 was above 1.40; automatic switch to Over 1.5 at 1.30 or lower.",1));
+        const safe=over15Safety();if(safe)candidates.push(candidate("OVER_1_5","over15","UNDER_3_5",1,safe.ctx,"Under 3.5 was above 1.40; Over 1.5 passed the final 1.29, draw-above-3.50 and GG-at-1.60-or-lower gates.",1));
       }
     }
 
     // 5) Standalone Over 1.5 safety market.
     {
-      const safe=over15Safety();if(safe)candidates.push(candidate("OVER_1_5","over15","OVER_1_5",1,safe.ctx,"Over 1.5 passed the 1.30 ceiling, stable/shortening rule and related-goal confirmation."));
+      const safe=over15Safety();if(safe)candidates.push(candidate("OVER_1_5","over15","OVER_1_5",1,safe.ctx,"Over 1.5 passed the final settled-market gates: O1.5 at 1.29 or lower, U3.5 above 1.40, draw above 3.50 and GG at 1.60 or lower."));
     }
 
     const best=chooseGoalCandidate(candidates);
@@ -217,7 +223,7 @@
     return Math.round(clamp(score,CONFIG.engines[engineName].minConfidence,engineName==="leonidas"?92:86));
   }
   function buildGoalInput(match,engineName){
-    const engine=CONFIG.engines[engineName],keys=["over15","over20","over25","over35","under25","under30","under35","bttsYes","bttsNo","fhOver05","fhOver15","fhUnder15","homeOver15","awayOver15","homeOver25","awayOver25","htftXX","htftX1","htftX2"];
+    const engine=CONFIG.engines[engineName],keys=["draw","over15","over20","over25","over35","under25","under30","under35","bttsYes","bttsNo","fhOver05","fhOver15","fhUnder15","homeOver15","awayOver15","homeOver25","awayOver25","htftXX","htftX1","htftX2"];
     const odds={},movement={},marketStats={};
     for(const key of keys){const stat=aggregate(match,key);marketStats[key]=stat;movement[key]=stat.movement??0;odds[key]=stat.current??n(match&&match.odds&&match.odds[key]);}
     const strong=engine.strongMovement,min=engine.minMovement;

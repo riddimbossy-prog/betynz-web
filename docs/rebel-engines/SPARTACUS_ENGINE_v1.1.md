@@ -1,5 +1,7 @@
 # Betynz.com — Spartacus Rebel Engine v1.1
 
+> **Goal-market override:** Final Under 3.5 and Over 1.5 selections must pass every hard price gate in `GOAL_MARKET_SETTLEMENT_GATES_v1.2.md`.
+
 ## 1. Identity
 
 Spartacus is the broader rebel engine. It studies opening prices, current prices, bookmaker agreement and cross-market movement. When an aggressive market passes directionally but lacks full strength, Spartacus downgrades it.

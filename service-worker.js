@@ -1,18 +1,20 @@
-const CACHE='betynz-v4.4-mobile-drawer-match-summary';
+const CACHE='betynz-v4.6-rebel-final-market-gates';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=4.4',
-  '/app.js?v=4.4',
-  '/rebel-engine-core.js?v=4.4',
-  '/olympian-engine-core.js?v=4.4',
+  '/styles.css?v=4.6',
+  '/app.js?v=4.6',
+  '/rebel-engine-core.js?v=4.6',
+  '/olympian-engine-core.js?v=4.6',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',
   '/assets/icon-192.png',
   '/assets/icon-512.png',
   '/assets/maskable-icon.png',
-  '/assets/gods/zeus.webp'
+  '/assets/gods/zeus.webp',
+  '/assets/gods/spartacus.webp',
+  '/assets/gods/leonidas.webp'
 ];
 
 self.addEventListener('install',event=>{

@@ -1,5 +1,7 @@
 # Betynz.com — Leonidas Rebel Engine v1.1
 
+> **Goal-market override:** Final Under 3.5 and Over 1.5 selections must pass every hard price gate in `GOAL_MARKET_SETTLEMENT_GATES_v1.2.md`.
+
 ## 1. Identity
 
 Leonidas is the stronger version of Spartacus. It produces fewer selections and requires stronger movement, more bookmakers, deeper agreement and more related confirmations.

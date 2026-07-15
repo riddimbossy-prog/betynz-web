@@ -1,8 +1,8 @@
 {
   "name": "betynz-web",
-  "version": "4.4.0",
+  "version": "4.6.0",
   "private": true,
-  "description": "Betynz live football product with exact Rebel goal-market correction v1.1, transparent Leonidas/Spartacus downgrades, live settlement, PWA updates and 18 engines.",
+  "description": "Betynz live football product with Rebel v1.2 final Under 3.5 and Over 1.5 odds gates, mobile/Fold controls, live settlement and 18 engines.",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",

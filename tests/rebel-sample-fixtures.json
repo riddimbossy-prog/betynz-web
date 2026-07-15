@@ -7,8 +7,14 @@
       "bookmakerCount": 5,
       "bookmakerAgreement": 0.72,
       "confirmations": 2,
-      "odds": {"over25": 1.58, "under35": 1.68, "over15": 1.24},
-      "movement": {"over25": 0.06}
+      "odds": {
+        "over25": 1.58,
+        "under35": 1.68,
+        "over15": 1.24
+      },
+      "movement": {
+        "over25": 0.06
+      }
     },
     "expected": "OVER_2_5"
   },
@@ -20,7 +26,12 @@
       "bookmakerCount": 4,
       "bookmakerAgreement": 0.61,
       "confirmations": 1,
-      "odds": {"under35": 1.48, "over15": 1.27},
+      "odds": {
+        "under35": 1.48,
+        "over15": 1.27,
+        "draw": 3.6,
+        "bttsYes": 1.55
+      },
       "movement": {}
     },
     "expected": "OVER_1_5"
@@ -33,8 +44,14 @@
       "bookmakerCount": 7,
       "bookmakerAgreement": 0.78,
       "confirmations": 3,
-      "odds": {"under25": 1.64, "over15": 1.72, "under35": 1.28},
-      "movement": {"under25": 0.08}
+      "odds": {
+        "under25": 1.64,
+        "over15": 1.72,
+        "under35": 1.28
+      },
+      "movement": {
+        "under25": 0.08
+      }
     },
     "expected": "UNDER_2_5"
   },
