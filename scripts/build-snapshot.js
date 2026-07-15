@@ -11,6 +11,18 @@ function loadData(file){const code=fs.readFileSync(file,"utf8"),ctx={window:{}};
 function iso(v){try{return new Date(v).toISOString()}catch(_){return null}}
 function key(m){return String(m.id!=null?m.id:`${m.home}|${m.away}|${m.matchDate}`)}
 function publicPrediction(id,o){return {engine:id,bet:!!o.bet,market:o.bet?o.primary:"No Bet",confidence:Number(o.confidence||0),reasons:o.reasons||[],warnings:o.warnings||[],dataQuality:o.dataQuality??null,supportOnly:!!o.supportOnly}}
+function settleDecision(market,m){
+  const mk=String(market||"");
+  if(/first half/i.test(mk)){
+    if(m.htHome==null||m.htAway==null)return"Pending";
+    const total=Number(m.htHome)+Number(m.htAway);
+    if(/over 0\.5/i.test(mk))return total>=1?"Won":"Lost";
+    if(/over 1\.5/i.test(mk))return total>=2?"Won":"Lost";
+    if(/under 1\.5/i.test(mk))return total<=1?"Won":"Lost";
+    if(/under 2\.5/i.test(mk))return total<=2?"Won":"Lost";
+  }
+  return core.settleMarket(mk,m.homeGoals,m.awayGoals);
+}
 const source=fs.existsSync(path.join(HERE,"data.js"))?path.join(HERE,"data.js"):path.join(ROOT,"data.js");
 const loaded=loadData(source);
 const cleaned=removePackagedDemoFixtures(Array.isArray(loaded.MATCHES)?loaded.MATCHES:[]);
@@ -58,9 +70,11 @@ for(const m of matches){
   if(FINISHED.has(status)&&lock&&m.homeGoals!=null&&m.awayGoals!=null){
     const hk=`${fixtureKey}|${lock.decision.market}`;
     if(!historyKeys.has(hk)){
-      const settled=core.settleMarket(lock.decision.market,m.homeGoals,m.awayGoals);
-      history.push({fixtureId:fixtureKey,home:m.home,away:m.away,league:m.league,kickoff:iso(m.kickoff),market:lock.decision.market,confidence:lock.decision.confidence,grade:lock.decision.grade,odds:lock.decision.odds??null,engineIds:lock.decision.engineIds||[],publishedAt:lock.publishedAt,settledAt:nowISO,score:`${m.homeGoals}-${m.awayGoals}`,result:settled});
-      historyKeys.add(hk);settledAdded++;
+      const settled=settleDecision(lock.decision.market,m);
+      if(["Won","Lost","Void"].includes(settled)){
+        history.push({fixtureId:fixtureKey,home:m.home,away:m.away,league:m.league,kickoff:iso(m.kickoff),market:lock.decision.market,confidence:lock.decision.confidence,grade:lock.decision.grade,odds:lock.decision.odds??null,engineIds:lock.decision.engineIds||[],publishedAt:lock.publishedAt,settledAt:nowISO,score:`${m.homeGoals}-${m.awayGoals}`,result:settled});
+        historyKeys.add(hk);settledAdded++;
+      }
     }
   }
 }
@@ -69,7 +83,7 @@ const trimmed=history.slice(0,500);
 const settled=trimmed.filter(x=>["Won","Lost","Void"].includes(x.result)),wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
 assertNoPackagedDemoFixtures(matches,"Olympian snapshot");
 const sourceName=isDemo?"demo":!isReady?"waiting-for-live-sync":matches.length?"API-Football + TheStatsAPI":"API-Football (no fixtures returned)";
-const meta={product:"Betynz",version:"3.9.0",engineVersion:core.VERSION,source:sourceName,generatedAt:nowISO,dataUpdated:loaded.DATA_UPDATED||null,isDemo,isReady,fixtureCount:matches.length,qualifiedCount:qualified,lockedCount:Object.keys(locks).length,historyCount:trimmed.length,record:{wins,losses,voids:settled.filter(x=>x.result==="Void").length,hitRate:wins+losses?Math.round(wins/(wins+losses)*100):null},engineCounts};
+const meta={product:"Betynz",version:"4.2.0",engineVersion:core.VERSION,source:sourceName,generatedAt:nowISO,dataUpdated:loaded.DATA_UPDATED||null,isDemo,isReady,fixtureCount:matches.length,qualifiedCount:qualified,lockedCount:Object.keys(locks).length,historyCount:trimmed.length,record:{wins,losses,voids:settled.filter(x=>x.result==="Void").length,hitRate:wins+losses?Math.round(wins/(wins+losses)*100):null},engineCounts};
 const js=[isDemo?"window.BETYNZ_DEMO = true;":"window.BETYNZ_DEMO = false;",`window.BETYNZ_READY = ${JSON.stringify(isReady)};`,`window.DATA_UPDATED = ${JSON.stringify(meta.dataUpdated)};`,`window.BETYNZ_META = ${JSON.stringify(meta,null,2)};`,`window.BETYNZ_HISTORY = ${JSON.stringify(trimmed,null,2)};`,`window.MATCHES = ${JSON.stringify(matches,null,2)};`,""].join("\n");
 fs.writeFileSync(path.join(ROOT,"data.js"),js);fs.writeFileSync(path.join(HERE,"data.js"),js);
 writeJSON(lockFile,locks);writeJSON(historyFile,trimmed);writeJSON(path.join(ROOT,"api-status.json"),meta);

@@ -1,5 +1,19 @@
-const CACHE='betynz-v4.1-rebel-odds';
-const CORE=['/','/index.html','/styles.css?v=4.1','/app.js?v=4.1','/rebel-engine-core.js?v=4.1','/olympian-engine-core.js?v=4.1','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.webp'];
+const CACHE='betynz-v4.2-live-pwa-drawer';
+const CORE=[
+  '/',
+  '/index.html',
+  '/styles.css?v=4.2',
+  '/app.js?v=4.2',
+  '/rebel-engine-core.js?v=4.2',
+  '/olympian-engine-core.js?v=4.2',
+  '/manifest.webmanifest',
+  '/assets/betynz-logo.webp',
+  '/assets/betynz-mark.png',
+  '/assets/icon-192.png',
+  '/assets/icon-512.png',
+  '/assets/maskable-icon.png',
+  '/assets/gods/zeus.webp'
+];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
@@ -17,8 +31,12 @@ self.addEventListener('activate',event=>{
   );
 });
 
+self.addEventListener('message',event=>{
+  if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();
+});
+
 self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET') return;
+  if(event.request.method!=='GET')return;
   const url=new URL(event.request.url);
 
   if(url.pathname.endsWith('/data.js')||url.pathname.endsWith('/api-status.json')){
@@ -52,13 +70,15 @@ self.addEventListener('fetch',event=>{
   }
 
   event.respondWith(
-    caches.match(event.request)
-      .then(hit=>hit||fetch(event.request).then(response=>{
+    caches.match(event.request).then(hit=>{
+      const network=fetch(event.request).then(response=>{
         if(response.ok&&url.origin===self.location.origin){
           const copy=response.clone();
           caches.open(CACHE).then(cache=>cache.put(event.request,copy));
         }
         return response;
-      }))
+      });
+      return hit||network;
+    })
   );
 });

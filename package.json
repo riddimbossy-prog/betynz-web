@@ -1,8 +1,8 @@
 {
   "name": "betynz-web",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "private": true,
-  "description": "Betynz live football product with 16 Olympian engines, Leonidas and Spartacus Rebel engines, persistent multi-book odds movement, six-day coverage, adaptive enrichment and responsive deity engine pages.",
+  "description": "Betynz live football product with new branding, live score labels, automatic board settlement, persistent PWA updates, mobile/Z Fold drawer navigation, 18 engines and multi-book odds movement.",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",

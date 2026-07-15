@@ -44,6 +44,8 @@
   let bankerFilter={status:"all",grade:"all",league:"all",odds:"all"};
   let searchTerm="";
   let toastTimer=null;
+  let deferredInstallPrompt=null;
+  let installPromptAttempted=false;
   let slip=loadJSON("betynz-slip",[]);
   let preferences=loadJSON("betynz-preferences",{favoriteEngine:"zeus",confidence:76,rememberSlip:true});
 
@@ -138,12 +140,48 @@
   function friendlyDate(d){if(!d)return"All dates";const x=new Date(`${d}T12:00:00`);const delta=Math.round((x-new Date(`${todayISO}T12:00:00`))/86400000);const prefix=delta===0?"Today":delta===1?"Tomorrow":delta===-1?"Yesterday":x.toLocaleDateString([],{weekday:"short"});return `${prefix} · ${x.toLocaleDateString([],{month:"short",day:"numeric"})}`}
   function isUpcoming(m){return !FINISHED.has(String(m.status||"").toUpperCase())}
   function isLive(m){return LIVE.has(String(m.status||"").toUpperCase())}
+  function isFinished(m){return FINISHED.has(String(m.status||"").toUpperCase())}
+  function hasScore(m){return m&&m.homeGoals!=null&&m.awayGoals!=null}
+  function scoreText(m){return hasScore(m)?`${Number(m.homeGoals)}–${Number(m.awayGoals)}`:"—"}
+  function matchClock(m){
+    if(!isLive(m))return "";
+    const elapsed=Number(m.elapsed),extra=Number(m.elapsedExtra);
+    if(Number.isFinite(elapsed)&&elapsed>0)return `${elapsed}${Number.isFinite(extra)&&extra>0?`+${extra}`:""}′`;
+    const status=String(m.status||"").toUpperCase();
+    return status==="HT"?"HT":status||"LIVE";
+  }
+  function matchStateHtml(m){
+    if(isLive(m))return `<span class="match-state live"><i></i>LIVE${matchClock(m)?` ${esc(matchClock(m))}`:""}</span><strong class="match-score live-score">${scoreText(m)}</strong>`;
+    if(isFinished(m)&&hasScore(m))return `<span class="match-state finished">${esc(String(m.status||"FT").toUpperCase())}</span><strong class="match-score">${scoreText(m)}</strong>`;
+    return "";
+  }
 
   function settlePick(p){
-    const m=p.m;if(m.homeGoals==null||m.awayGoals==null||!FINISHED.has(String(m.status||"").toUpperCase()))return"Pending";
-    if(typeof window.settle==="function"){try{return window.settle(p.market,m.homeGoals,m.awayGoals,m.status,m)||"Pending"}catch(_){}}
-    const h=Number(m.homeGoals),a=Number(m.awayGoals),t=h+a,mk=normalizeMarket(p.market);
-    if(mk==="Home Win")return h>a?"Won":"Lost";if(mk==="Away Win")return a>h?"Won":"Lost";if(mk==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(mk==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";if(mk==="Double Chance 1X")return h>=a?"Won":"Lost";if(mk==="Double Chance X2")return a>=h?"Won":"Lost";if(mk==="Double Chance 12")return h!==a?"Won":"Lost";if(mk.includes("Over 1.5")&&!mk.includes("Team"))return t>=2?"Won":"Lost";if(mk.includes("Over 2.5"))return t>=3?"Won":"Lost";if(mk.includes("Over 3.5"))return t>=4?"Won":"Lost";if(mk.includes("Under 2.5"))return t<=2?"Won":"Lost";if(mk.includes("Under 3.5"))return t<=3?"Won":"Lost";if(mk==="BTTS Yes")return h>0&&a>0?"Won":"Lost";if(mk==="BTTS No")return !(h>0&&a>0)?"Won":"Lost";if(mk.includes("Home Team Over 0.5"))return h>=1?"Won":"Lost";if(mk.includes("Away Team Over 0.5"))return a>=1?"Won":"Lost";if(mk.includes("Home Team Over 1.5"))return h>=2?"Won":"Lost";if(mk.includes("Away Team Over 1.5"))return a>=2?"Won":"Lost";return"Pending";
+    const m=p.m;if(!hasScore(m)||!isFinished(m))return"Pending";
+    const mk=normalizeMarket(p.market),h=Number(m.homeGoals),a=Number(m.awayGoals),t=h+a;
+    const hh=m.htHome!=null?Number(m.htHome):null,ha=m.htAway!=null?Number(m.htAway):null,ht=hh!=null&&ha!=null?hh+ha:null;
+    if(/first half/i.test(mk)){
+      if(ht==null)return"Pending";
+      if(/over 0\.5/i.test(mk))return ht>=1?"Won":"Lost";
+      if(/over 1\.5/i.test(mk))return ht>=2?"Won":"Lost";
+      if(/under 1\.5/i.test(mk))return ht<=1?"Won":"Lost";
+      if(/under 2\.5/i.test(mk))return ht<=2?"Won":"Lost";
+    }
+    if(typeof window.settleMarket==="function"){try{const result=window.settleMarket(mk,h,a);if(result&&result!=="Pending")return result}catch(_){}}
+    if(mk==="Home Win")return h>a?"Won":"Lost";if(mk==="Away Win")return a>h?"Won":"Lost";if(mk==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(mk==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";if(mk==="Double Chance 1X")return h>=a?"Won":"Lost";if(mk==="Double Chance X2")return a>=h?"Won":"Lost";if(mk==="Double Chance 12")return h!==a?"Won":"Lost";
+    if(mk.includes("Over 1.5")&&!mk.includes("Team"))return t>=2?"Won":"Lost";if(mk.includes("Over 2.5")&&!mk.includes("Team"))return t>=3?"Won":"Lost";if(mk.includes("Over 3.5")&&!mk.includes("Team"))return t>=4?"Won":"Lost";if(mk.includes("Under 1.5")&&!mk.includes("Team"))return t<=1?"Won":"Lost";if(mk.includes("Under 2.5")&&!mk.includes("Team"))return t<=2?"Won":"Lost";if(mk.includes("Under 3.5")&&!mk.includes("Team"))return t<=3?"Won":"Lost";if(mk.includes("Under 4.5")&&!mk.includes("Team"))return t<=4?"Won":"Lost";
+    if(mk==="BTTS Yes")return h>0&&a>0?"Won":"Lost";if(mk==="BTTS No")return !(h>0&&a>0)?"Won":"Lost";
+    if(mk.includes("Home Team Over 0.5"))return h>=1?"Won":"Lost";if(mk.includes("Away Team Over 0.5"))return a>=1?"Won":"Lost";if(mk.includes("Home Team Over 1.5"))return h>=2?"Won":"Lost";if(mk.includes("Away Team Over 1.5"))return a>=2?"Won":"Lost";if(mk.includes("Home Team Over 2.5"))return h>=3?"Won":"Lost";if(mk.includes("Away Team Over 2.5"))return a>=3?"Won":"Lost";
+    return"Pending";
+  }
+
+
+  function boardSettlements(){
+    const verifiedMap=new Map(history.filter(x=>x&&["Won","Lost","Void"].includes(x.result)).map(x=>[`${x.fixtureId}|${normalizeMarket(x.market)}`,x]));
+    return allPicks().filter(p=>isFinished(p.m)&&hasScore(p.m)).map(p=>{
+      const fixtureId=keyOf(p.m),market=normalizeMarket(p.market),verified=verifiedMap.get(`${fixtureId}|${market}`);
+      return verified?{...verified,verified:true,locked:true}:{fixtureId,home:p.m.home,away:p.m.away,league:p.m.league,kickoff:p.m.kickoff,market,confidence:p.confidence,grade:p.grade,odds:p.odds||null,engineIds:(p.engines||[]).map(e=>e.id),score:`${p.m.homeGoals}-${p.m.awayGoals}`,result:settlePick(p),verified:false,locked:!!p.locked};
+    }).filter(x=>["Won","Lost","Void"].includes(x.result)).sort((a,b)=>String(b.kickoff||"").localeCompare(String(a.kickoff||"")));
   }
 
   function renderMetrics(){
@@ -152,9 +190,10 @@
     const wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
     const hit=wins+losses?Math.round(wins/(wins+losses)*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
     const active=ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
+    const liveCount=matches.filter(isLive).length;
     $("#metric-grid").innerHTML=[
       ["♜",active,"Active Engines",isDemo?"Demo snapshot":isPending?"Waiting for verified data":"Qualified systems"],
-      ["▦",matches.filter(isUpcoming).length,"Upcoming Matches",`${dates().length} board days`],
+      ["▦",matches.filter(isUpcoming).length,"Upcoming Matches",`${liveCount} live · ${dates().length} board days`],
       ["◎",settled.length?`${hit}%`:"—","Verified Record",settled.length?`${settled.length} locked results`:"Waiting for locked results"],
       ["◆",avg,"Average Pick Odds",priced.length?"Current qualified prices":"Odds pending"]
     ].map(x=>`<article class="metric-card"><span class="metric-icon">${x[0]}</span><div><b>${esc(x[1])}</b><small>${esc(x[2])}</small><em>${esc(x[3])}</em></div></article>`).join("");
@@ -182,26 +221,34 @@
   function oddsIn(v,range){if(range==="all")return true;if(!v)return false;const [a,b]=range.split("-").map(Number);return v>=a&&v<=b}
   function renderDashboardList(){const rows=filteredDashboardPicks().slice(0,7);$("#dashboard-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No qualified picks for these filters.")}
   function matchRow(p){
-    const m=p.m,added=slip.some(x=>x.key===slipKey(p));const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");const gradeLabel=p.engineOnly?"SIGNAL":p.grade;const stateLabel=p.engineOnly?(p.rebel?"REBEL":"ENGINE"):(p.locked?"LOCKED":"PROVISIONAL");
-    return `<article class="match-row" data-pick-key="${esc(keyOf(m))}">
+    const m=p.m,finished=isFinished(m),live=isLive(m),settled=finished?settlePick(p):"Pending",added=slip.some(x=>x.key===slipKey(p));
+    const eng=p.engines.slice(0,2).map(e=>e.name).join(" + ");
+    const gradeLabel=p.engineOnly?"SIGNAL":p.grade;
+    const stateLabel=finished&&settled!=="Pending"?settled:p.engineOnly?(p.rebel?"REBEL":"ENGINE"):(p.locked?"LOCKED":"PROVISIONAL");
+    const stateClass=finished&&settled!=="Pending"?`settled ${String(settled).toLowerCase()}`:p.engineOnly?"provisional":p.locked?"locked":"provisional";
+    const statusHtml=matchStateHtml(m);
+    const addAttributes=finished?'disabled aria-disabled="true"':`data-add-pick="${esc(slipKey(p))}"`;
+    const addLabel=finished?"Match finished":added?"Remove from slip":"Add to slip";
+    return `<article class="match-row ${live?"is-live":""} ${finished?"is-finished":""}" data-pick-key="${esc(keyOf(m))}">
       <div class="fixture-cell">
         <span class="league-flag">${leagueBadge(m)}</span>
         <div class="fixture-teams">
           <div class="team-line"><span class="team-logo-wrap">${teamCrest(m.homeLogo,m.home)}</span><b>${esc(m.home)}</b></div>
           <div class="team-line"><span class="team-logo-wrap">${teamCrest(m.awayLogo,m.away)}</span><b>${esc(m.away)}</b></div>
-          <small>${esc(m.league||"Football")} · ${kickoff(m)}${isLive(m)?" · LIVE":""}</small>
+          <small>${esc(m.league||"Football")} · ${kickoff(m)}</small>
+          ${statusHtml?`<div class="fixture-live-line">${statusHtml}</div>`:""}
         </div>
       </div>
-      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.engineOnly?"WATCH":p.grade}">${gradeLabel}</span> · <span class="lock-state ${p.engineOnly?"provisional":p.locked?"locked":"provisional"}">${stateLabel}</span></small></div>
+      <div class="market-cell"><button class="pick-detail-link" data-pick-detail="${esc(keyOf(m))}">${esc(marketClean(p.market))}</button><small>${esc(marketFamily(p.market))} · <span class="grade ${p.engineOnly?"WATCH":p.grade}">${gradeLabel}</span> · <span class="lock-state ${stateClass}">${stateLabel}</span></small></div>
       <div class="engine-cell"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</div>
       <div class="confidence"><span class="confidence-ring" style="--v:${p.confidence}"><span>${p.confidence}%</span></span></div>
       <div class="odds-cell">${p.odds?p.odds.toFixed(2):"—"}</div>
       <div class="mobile-match-footer" aria-hidden="true">
         <span class="mobile-engine"><span class="engine-glyph">${p.engine.glyph}</span>${esc(eng)}</span>
-        <span class="mobile-confidence">${p.confidence}%</span>
+        ${live||finished?`<span class="mobile-live-score">${live?`LIVE ${esc(matchClock(m))}`:esc(String(m.status||"FT").toUpperCase())} · ${scoreText(m)}</span>`:`<span class="mobile-confidence">${p.confidence}%</span>`}
         <span class="mobile-odds">${p.odds?p.odds.toFixed(2):"No odds"}</span>
       </div>
-      <button class="add-btn ${added?"added":""}" data-add-pick="${esc(slipKey(p))}" aria-label="${added?"Remove from":"Add to"} slip">${added?"✓":"+"}</button>
+      <button class="add-btn ${added?"added":""} ${finished?"disabled":""}" ${addAttributes} aria-label="${addLabel}">${finished?"FT":added?"✓":"+"}</button>
     </article>`;
   }
   function empty(text){return `<div class="empty-state"><b>Nothing forced</b>${esc(text)}</div>`}
@@ -213,8 +260,8 @@
   }
 
   function renderRecentResults(){
-    const rows=history.slice(0,5);
-    $("#recent-results").innerHTML=rows.length?rows.map(x=>`<div class="recent-result"><span>${esc(x.home)} vs ${esc(x.away)}</span><b class="${String(x.result).toLowerCase()}">${esc(x.result)}${x.odds?` · ${Number(x.odds).toFixed(2)}`:""}</b></div>`).join(""):`<div class="slip-empty">No locked results yet.</div>`;
+    const rows=boardSettlements().slice(0,5);
+    $("#recent-results").innerHTML=rows.length?rows.map(x=>`<div class="recent-result"><span>${esc(x.home)} vs ${esc(x.away)}<small>${esc(x.score||"—")} · ${x.verified?"LOCKED":"BOARD"}</small></span><b class="${String(x.result).toLowerCase()}">${esc(x.result)}${x.odds?` · ${Number(x.odds).toFixed(2)}`:""}</b></div>`).join(""):`<div class="slip-empty">No finished board picks yet.</div>`;
   }
 
   function renderPicksView(){
@@ -336,10 +383,13 @@
     $("#banker-list").innerHTML=rows.length?rows.map(matchRow).join(""):empty("No bankers match the selected filters.");
   }
   function renderResults(){
-    const rows=history.filter(x=>["Won","Lost","Void"].includes(x.result)),wins=rows.filter(x=>x.result==="Won").length,losses=rows.filter(x=>x.result==="Lost").length,voids=rows.filter(x=>x.result==="Void").length,rate=wins+losses?Math.round(wins/(wins+losses)*100):0;
-    $("#result-metrics").innerHTML=[[rows.length,"Settled"],[wins,"Won"],[losses,"Lost"],[rows.length?`${rate}%`:"—","Hit rate"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b></article>`).join("");
-    $("#results-list").innerHTML=rows.length?`<div class="result-head"><span>Match</span><span>Selection</span><span>Score</span><span>Result</span></div>${rows.map(x=>`<div class="result-row"><span><b>${esc(x.home)} vs ${esc(x.away)}</b><br><small>${esc(String(x.kickoff||"").slice(0,10))}</small></span><span>${esc(marketClean(x.market))}</span><span>${esc(x.score||"—")}</span><span class="result-status ${String(x.result).toLowerCase()}">${esc(x.result)}</span></div>`).join("")}`:empty("Only predictions locked before kickoff are counted in the public record.");
+    const rows=boardSettlements();
+    const wins=rows.filter(x=>x.result==="Won").length,losses=rows.filter(x=>x.result==="Lost").length,verified=rows.filter(x=>x.verified).length,rate=wins+losses?Math.round(wins/(wins+losses)*100):0;
+    $("#result-metrics").innerHTML=[[rows.length,"Board Settled"],[wins,"Won"],[losses,"Lost"],[verified,"Verified Locks"]].map(x=>`<article class="summary-card"><small>${x[1]}</small><b>${x[0]}</b></article>`).join("");
+    $("#results-list").innerHTML=rows.length?`<div class="result-head"><span>Match</span><span>Selection</span><span>Score</span><span>Result</span></div>${rows.map(x=>`<div class="result-row"><span><b>${esc(x.home)} vs ${esc(x.away)}</b><br><small>${esc(String(x.kickoff||"").slice(0,10))} · ${x.verified?"VERIFIED LOCK":"BOARD SETTLEMENT"}</small></span><span>${esc(marketClean(x.market))}</span><span>${esc(x.score||"—")}</span><span class="result-status ${String(x.result).toLowerCase()}">${esc(x.result)}</span></div>`).join("")}`:empty("Finished board picks will settle automatically when final scores arrive.");
+    const rateNode=$("#results-rate-note");if(rateNode)rateNode.textContent=rows.length?`${rate}% board hit rate · ${verified} verified locked result${verified===1?"":"s"}`:"Waiting for finished games.";
   }
+
 
   function slipKey(p){return `${keyOf(p.m)}|${p.market}`}
   function addPickByKey(k){let p=allPicks().find(x=>slipKey(x)===k);if(!p&&picksFilter.engine!=="all")p=enginePicks(picksFilter.engine).find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip()}
@@ -371,9 +421,21 @@
   function renderAllPickLists(){renderDashboardList();if(activeView==="picks")renderPicksView();if(activeView==="bankers")renderBankers()}
   function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
 
+  function closeSelectionDrawer(){
+    const drawer=$("#mobile-drawer"),backdrop=$("#drawer-backdrop");
+    if(drawer)drawer.classList.remove("open");
+    if(backdrop)backdrop.classList.remove("open");
+  }
+  function openSelectionDrawer(){
+    closeSidebar();
+    const drawer=$("#mobile-drawer"),backdrop=$("#drawer-backdrop");
+    if(drawer)drawer.classList.add("open");
+    if(backdrop)backdrop.classList.add("open");
+  }
   function setSidebar(open){
     const sidebar=$("#sidebar"),backdrop=$("#sidebar-backdrop"),menu=$("#menu-btn");
     if(!sidebar)return;
+    if(open)closeSelectionDrawer();
     sidebar.classList.toggle("open",!!open);
     if(backdrop)backdrop.classList.toggle("open",!!open);
     document.body.classList.toggle("sidebar-open",!!open);
@@ -381,29 +443,83 @@
   }
   function closeSidebar(){setSidebar(false)}
 
+  async function requestInstall(){
+    if(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches){toast("Betynz is already installed.");return}
+    if(deferredInstallPrompt){
+      deferredInstallPrompt.prompt();
+      const choice=await deferredInstallPrompt.userChoice.catch(()=>null);
+      deferredInstallPrompt=null;
+      const btn=$("#install-app-btn");if(btn)btn.hidden=true;
+      if(choice&&choice.outcome==="accepted")toast("Betynz installation started.");
+      return;
+    }
+    const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+    toast(isiOS?"On iPhone/iPad: Share → Add to Home Screen.":"Use your browser menu and choose Install app.");
+  }
+  function setupPWA(){
+    const installBtn=$("#install-app-btn");
+    if(installBtn)installBtn.onclick=requestInstall;
+    $$('[data-install-app]').forEach(button=>button.onclick=requestInstall);
+    window.addEventListener("beforeinstallprompt",event=>{
+      event.preventDefault();
+      deferredInstallPrompt=event;
+      if(installBtn){installBtn.hidden=false;installBtn.classList.add("ready")}
+      $$('[data-install-app]').forEach(button=>button.hidden=false);
+    });
+    window.addEventListener("appinstalled",()=>{deferredInstallPrompt=null;if(installBtn)installBtn.hidden=true;$$('[data-install-app]').forEach(button=>button.hidden=true);toast("Betynz installed.")});
+    if(!("serviceWorker" in navigator))return;
+    let refreshing=false,registration=null;
+    const activateWaiting=()=>{if(registration&&registration.waiting)registration.waiting.postMessage({type:"SKIP_WAITING"})};
+    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){refreshing=true;location.reload()}});
+    navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).then(reg=>{
+      registration=reg;
+      activateWaiting();
+      reg.addEventListener("updatefound",()=>{
+        const worker=reg.installing;if(!worker)return;
+        worker.addEventListener("statechange",()=>{if(worker.state==="installed"&&navigator.serviceWorker.controller)worker.postMessage({type:"SKIP_WAITING"})});
+      });
+      reg.update().catch(()=>{});
+      setInterval(()=>reg.update().catch(()=>{}),5*60*1000);
+      document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")reg.update().catch(()=>{})});
+    }).catch(()=>{});
+  }
+
   function wire(){
-    $$('[data-view]').forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
     $$('[data-toast]').forEach(b=>b.addEventListener("click",()=>toast(b.dataset.toast)));
-    document.addEventListener("click",e=>{const b=e.target.closest("[data-add-pick]");if(b){addPickByKey(b.dataset.addPick);return}const d=e.target.closest("[data-pick-detail]");if(d){openPickDetail(d.dataset.pickDetail);return}const about=e.target.closest("[data-engine-about]");if(about){openEngine(about.dataset.engineAbout)}});
-    $("#menu-btn").onclick=()=>setSidebar(!$("#sidebar").classList.contains("open"));
+    document.addEventListener("click",e=>{
+      const nav=e.target.closest("[data-view]");
+      if(nav){e.preventDefault();closeSelectionDrawer();showView(nav.dataset.view);return}
+      const add=e.target.closest("[data-add-pick]");if(add){addPickByKey(add.dataset.addPick);return}
+      const detail=e.target.closest("[data-pick-detail]");if(detail){openPickDetail(detail.dataset.pickDetail);return}
+      const about=e.target.closest("[data-engine-about]");if(about){openEngine(about.dataset.engineAbout);return}
+    });
+    const menu=$("#menu-btn");if(menu)menu.onclick=()=>setSidebar(!$("#sidebar").classList.contains("open"));
     const sidebarBackdrop=$("#sidebar-backdrop");if(sidebarBackdrop)sidebarBackdrop.onclick=closeSidebar;
-    $("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};$("#dashboard-market").onchange=renderDashboardList;$("#dashboard-odds").onchange=renderDashboardList;
-    $("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
-    $("#picks-engine").onchange=e=>{picksFilter.engine=e.target.value;renderPicksView()};
-    $("#picks-market").onchange=e=>{picksFilter.market=e.target.value;renderPicksView()};
-    $("#picks-league").onchange=e=>{picksFilter.league=e.target.value;renderPicksView()};
-    $("#picks-grade").onchange=e=>{picksFilter.grade=e.target.value;renderPicksView()};
-    $("#banker-status").onchange=e=>{bankerFilter.status=e.target.value;renderBankers()};
-    $("#banker-grade").onchange=e=>{bankerFilter.grade=e.target.value;renderBankers()};
-    $("#banker-league").onchange=e=>{bankerFilter.league=e.target.value;renderBankers()};
-    $("#banker-odds").onchange=e=>{bankerFilter.odds=e.target.value;renderBankers()};
-    $("#banker-reset").onclick=()=>{bankerFilter={status:"all",grade:"all",league:"all",odds:"all"};renderBankers();toast("Banker filters reset.")};
-    $("#global-search").oninput=e=>{searchTerm=e.target.value.trim().toLowerCase();renderDashboardList();if(activeView==="picks")renderPicksView()};
-    $("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};$("#copy-slip").onclick=copySlip;$("#drawer-copy").onclick=copySlip;
-    $("#mobile-slip").onclick=()=>{$("#mobile-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open")};const closeDrawer=()=>{$("#mobile-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open")};$("#drawer-close").onclick=closeDrawer;$("#drawer-backdrop").onclick=closeDrawer;
-    $("#engine-modal-close").onclick=closeEngine;$("#engine-modal-backdrop").onclick=closeEngine;document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeDrawer();closeSidebar()}});
-    $("#add-visible").onclick=()=>{const source=picksFilter.engine!=="all"?enginePicks(picksFilter.engine):allPicks();const dateRows=source.filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
-    $("#save-prefs").onclick=savePreferences;
+    if($("#dashboard-date"))$("#dashboard-date").onchange=e=>{activeDate=e.target.value;renderDashboardList()};
+    if($("#dashboard-market"))$("#dashboard-market").onchange=renderDashboardList;
+    if($("#dashboard-odds"))$("#dashboard-odds").onchange=renderDashboardList;
+    if($("#clear-filters"))$("#clear-filters").onclick=()=>{activeDashboardEngine="all";$("#dashboard-market").value="all";$("#dashboard-odds").value="all";renderEngineTabs();renderDashboardList()};
+    if($("#picks-engine"))$("#picks-engine").onchange=e=>{picksFilter.engine=e.target.value;renderPicksView()};
+    if($("#picks-market"))$("#picks-market").onchange=e=>{picksFilter.market=e.target.value;renderPicksView()};
+    if($("#picks-league"))$("#picks-league").onchange=e=>{picksFilter.league=e.target.value;renderPicksView()};
+    if($("#picks-grade"))$("#picks-grade").onchange=e=>{picksFilter.grade=e.target.value;renderPicksView()};
+    if($("#banker-status"))$("#banker-status").onchange=e=>{bankerFilter.status=e.target.value;renderBankers()};
+    if($("#banker-grade"))$("#banker-grade").onchange=e=>{bankerFilter.grade=e.target.value;renderBankers()};
+    if($("#banker-league"))$("#banker-league").onchange=e=>{bankerFilter.league=e.target.value;renderBankers()};
+    if($("#banker-odds"))$("#banker-odds").onchange=e=>{bankerFilter.odds=e.target.value;renderBankers()};
+    if($("#banker-reset"))$("#banker-reset").onclick=()=>{bankerFilter={status:"all",grade:"all",league:"all",odds:"all"};renderBankers();toast("Banker filters reset.")};
+    if($("#global-search"))$("#global-search").oninput=e=>{searchTerm=e.target.value.trim().toLowerCase();renderDashboardList();if(activeView==="picks")renderPicksView()};
+    if($("#clear-slip"))$("#clear-slip").onclick=()=>{slip=[];persistSlip();renderSlip();renderAllPickLists()};
+    if($("#copy-slip"))$("#copy-slip").onclick=copySlip;
+    if($("#drawer-copy"))$("#drawer-copy").onclick=copySlip;
+    if($("#mobile-slip"))$("#mobile-slip").onclick=openSelectionDrawer;
+    if($("#drawer-close"))$("#drawer-close").onclick=closeSelectionDrawer;
+    if($("#drawer-backdrop"))$("#drawer-backdrop").onclick=closeSelectionDrawer;
+    if($("#engine-modal-close"))$("#engine-modal-close").onclick=closeEngine;
+    if($("#engine-modal-backdrop"))$("#engine-modal-backdrop").onclick=closeEngine;
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeEngine();closeSelectionDrawer();closeSidebar()}});
+    if($("#add-visible"))$("#add-visible").onclick=()=>{const source=picksFilter.engine!=="all"?enginePicks(picksFilter.engine):allPicks();const dateRows=source.filter(p=>dateOf(p.m)===activeDate&&isUpcoming(p.m));dateRows.forEach(p=>{const k=slipKey(p);if(!slip.some(x=>x.key===k))slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)})});persistSlip();renderSlip();renderAllPickLists();toast(`${dateRows.length} visible picks added.`)};
+    if($("#save-prefs"))$("#save-prefs").onclick=savePreferences;
     window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
   }
 
@@ -414,14 +530,11 @@
     if(slip.length!==originalSlipSize)persistSlip();
     const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
     const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
-    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";$("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":matches.length?"Live Data":"Live · No Fixtures";
+    const liveNow=matches.filter(isLive).length;
+    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
+    $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();updatePageArt();showView(activeView);
-    if("serviceWorker" in navigator){
-      let refreshing=false;
-      navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){refreshing=true;location.reload()}});
-      navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).then(reg=>reg.update()).catch(()=>{});
-    }
+    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();wire();setupPWA();updatePageArt();showView(activeView);
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

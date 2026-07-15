@@ -30,6 +30,7 @@ jobs:
       STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
       ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
+      CONFIG_DAYS_BACK: ${{ secrets.DAYS_BACK }}
 
     steps:
       - name: Checkout repository
@@ -66,17 +67,19 @@ jobs:
           printf 'STATS_API_KEY=%s\n' "$CLEAN_STATS_API_KEY" >> "$GITHUB_ENV"
           printf 'ODDS_API_KEY=%s\n' "$CLEAN_ODDS_API_KEY" >> "$GITHUB_ENV"
 
-      - name: Create six-day global coverage configuration
+      - name: Create yesterday plus six-day global coverage configuration
         run: |
           DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
+          DAYS_BACK_SAFE="${CONFIG_DAYS_BACK:-1}"
           if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
+          if ! [[ "$DAYS_BACK_SAFE" =~ ^[0-9]+$ ]] || [ "$DAYS_BACK_SAFE" -lt 1 ]; then DAYS_BACK_SAFE=1; fi
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
           ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
           TODAY_ONLY=false
-          DAYS_BACK=0
+          DAYS_BACK=${DAYS_BACK_SAFE}
           DAYS_FWD=${DAYS_FWD_SAFE}
           LEAGUES=ALL
           MAX_LEAGUES=0
@@ -89,7 +92,7 @@ jobs:
           EOF_CONFIG
           cp data.js scripts/data.js
 
-      - name: Discover every league across today and the next six days
+      - name: Discover every league from yesterday through the next six days
         working-directory: scripts
         run: node fetch-data.js
 
@@ -99,11 +102,13 @@ jobs:
       - name: Build adaptive enrichment plan
         run: node scripts/select-enrichment-plan.js
 
-      - name: Create six-day deep-pass configuration
+      - name: Create yesterday plus six-day deep-pass configuration
         id: deep_config
         run: |
           DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
+          DAYS_BACK_SAFE="${CONFIG_DAYS_BACK:-1}"
           if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
+          if ! [[ "$DAYS_BACK_SAFE" =~ ^[0-9]+$ ]] || [ "$DAYS_BACK_SAFE" -lt 1 ]; then DAYS_BACK_SAFE=1; fi
           LEAGUES=$(node -e "const p=require('./scripts/enrichment-plan.json');process.stdout.write((p.selected.leagueIds||[]).join(','))")
           COUNT=$(node -e "const p=require('./scripts/enrichment-plan.json');process.stdout.write(String((p.selected.leagueIds||[]).length))")
           if [ -z "$LEAGUES" ]; then
@@ -117,7 +122,7 @@ jobs:
           ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
           TODAY_ONLY=false
-          DAYS_BACK=0
+          DAYS_BACK=${DAYS_BACK_SAFE}
           DAYS_FWD=${DAYS_FWD_SAFE}
           LEAGUES=${LEAGUES}
           MAX_LEAGUES=${COUNT}

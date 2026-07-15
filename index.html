@@ -14,24 +14,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4.1">
+  <link rel="stylesheet" href="styles.css?v=4.2">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
-      <a class="brand" href="#dashboard" aria-label="Betynz home">
-        <img src="assets/betynz-mark.svg" alt="">
-        <span>BETYNZ<em>.com</em></span>
+      <a class="brand brand-new" href="#dashboard" aria-label="Betynz home">
+        <img src="assets/betynz-logo.webp" alt="Betynz.com — Predict Smarter, Let the Gods Decide">
       </a>
 
       <nav class="side-nav">
-        <button class="nav-item active" data-view="dashboard"><span>⌂</span><b>Dashboard</b></button>
-        <button class="nav-item" data-view="picks"><span>▦</span><b>Match Board</b></button>
-        <button class="nav-item" data-view="engines"><span>♜</span><b>Olympian Engines</b></button>
-        <button class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
-        <button class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
-        <button class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
-        <button class="nav-item" data-view="profile"><span>○</span><b>Settings</b></button>
+        <button type="button" class="nav-item active" data-view="dashboard"><span>⌂</span><b>Dashboard</b></button>
+        <button type="button" class="nav-item" data-view="picks"><span>▦</span><b>Match Board</b></button>
+        <button type="button" class="nav-item" data-view="engines"><span>♜</span><b>Olympian Engines</b></button>
+        <button type="button" class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
+        <button type="button" class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
+        <button type="button" class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
+        <button type="button" class="nav-item" data-view="profile"><span>○</span><b>Settings</b></button>
       </nav>
 
       <section class="premium-card product-card">
@@ -48,6 +47,7 @@
         <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">☰</button>
         <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Search matches, teams or leagues…" autocomplete="off"></label>
         <div class="top-actions">
+          <button class="install-app-btn" id="install-app-btn" type="button" hidden>Install App</button>
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
           <button class="profile-chip" data-view="profile"><span class="avatar">BZ</span><span><b>Guest Settings</b><small>Local preferences</small></span><em>⌄</em></button>
         </div>
@@ -158,6 +158,7 @@
         <section class="view" data-view-panel="results">
           <div class="page-head"><div><span>TRANSPARENT RECORD</span><h2>Settled Results</h2><p>Completed picks are marked won, lost or void using final match scores.</p></div></div>
           <div class="result-metrics" id="result-metrics"></div>
+          <p class="results-rate-note" id="results-rate-note">Finished board picks settle automatically when final scores arrive.</p>
           <section class="page-panel"><div class="result-table" id="results-list"></div></section>
         </section>
 
@@ -174,7 +175,7 @@
 
         <section class="view" data-view-panel="profile">
           <div class="page-head"><div><span>YOUR BETYNZ</span><h2>Board Settings</h2><p>Preferences are stored only in this browser.</p></div></div>
-          <div class="profile-layout"><section class="profile-card"><div class="large-avatar">BZ</div><h3>Guest Mode</h3><p>No account or personal data required</p><button class="primary-btn" data-view="methodology">Read Methodology</button></section><section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my slip</span><input type="checkbox" id="remember-slip" checked></label><button class="primary-btn compact" id="save-prefs">Save Preferences</button></section></div>
+          <div class="profile-layout"><section class="profile-card"><div class="large-avatar">BZ</div><h3>Guest Mode</h3><p>No account or personal data required</p><button class="primary-btn" data-view="methodology">Read Methodology</button></section><section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my slip</span><input type="checkbox" id="remember-slip" checked></label><div class="settings-actions"><button type="button" class="primary-btn compact" id="save-prefs">Save Preferences</button><button type="button" class="secondary-btn compact install-settings-btn" data-install-app>Install Betynz App</button></div></section></div>
         </section>
       </main>
 
@@ -184,19 +185,19 @@
 
   <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
 
-  <nav class="mobile-nav" aria-label="Mobile navigation"><button class="active" data-view="dashboard"><span>⌂</span>Home</button><button data-view="picks"><span>▦</span>Picks</button><button data-view="engines"><span>♜</span>Engines</button><button data-view="results"><span>↗</span>Results</button><button data-view="profile"><span>○</span>Settings</button></nav>
-  <button class="mobile-slip" id="mobile-slip"><span>Slip</span><b id="mobile-slip-count">0</b><em id="mobile-slip-odds">1.00</em></button>
+  <nav class="mobile-nav" aria-label="Mobile navigation"><button type="button" class="active" data-view="dashboard"><span>⌂</span>Home</button><button type="button" data-view="picks"><span>▦</span>Picks</button><button type="button" data-view="engines"><span>♜</span>Engines</button><button type="button" data-view="results"><span>↗</span>Results</button><button type="button" data-view="profile"><span>○</span>Settings</button></nav>
+  <button type="button" class="mobile-slip" id="mobile-slip"><span>Slip</span><b id="mobile-slip-count">0</b><em id="mobile-slip-odds">1.00</em></button>
 
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
-  <aside class="mobile-drawer" id="mobile-drawer"><div class="drawer-head"><h3>Selection List</h3><button id="drawer-close">×</button></div><div id="drawer-items" class="slip-items"></div><div class="slip-total"><span>Total Odds</span><b id="drawer-odds">1.00</b></div><button class="primary-btn" id="drawer-copy">Copy Analysis List</button></aside>
+  <aside class="mobile-drawer" id="mobile-drawer"><div class="drawer-head"><h3>Selection List</h3><button type="button" id="drawer-close">×</button></div><div id="drawer-items" class="slip-items"></div><div class="slip-total"><span>Total Odds</span><b id="drawer-odds">1.00</b></div><button class="primary-btn" id="drawer-copy">Copy Analysis List</button></aside>
 
   <div class="modal-backdrop" id="engine-modal-backdrop"></div>
-  <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
+  <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button type="button" class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="rebel-engine-core.js?v=4.1"></script>
-  <script src="olympian-engine-core.js?v=4.1"></script>
-  <script src="data.js?v=2.6"></script>
-  <script src="app.js?v=4.1"></script>
+  <script src="rebel-engine-core.js?v=4.2"></script>
+  <script src="olympian-engine-core.js?v=4.2"></script>
+  <script src="data.js?v=4.2"></script>
+  <script src="app.js?v=4.2"></script>
 </body>
 </html>

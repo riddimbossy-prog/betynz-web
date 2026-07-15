@@ -1,4 +1,4 @@
-name: Refresh Today's Scores and Deploy
+name: Refresh Live & Finished Scores and Deploy
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   refresh:
-    name: Refresh scores
+    name: Refresh live and finished scores
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -42,7 +42,7 @@ jobs:
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           SEASON=$(date -u +%Y)
-          DAYS_BACK=1
+          DAYS_BACK=2
           EOF_CONFIG
           cp data.js scripts/data.js
 
