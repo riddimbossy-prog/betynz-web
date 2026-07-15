@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T00:54:18.375Z",
+  "generatedAt": "2026-07-15T01:36:36.809Z",
   "mode": "adaptive-two-pass",
   "today": "2026-07-15",
   "limits": {
@@ -12,15 +12,14 @@
     "leagues": 137
   },
   "selected": {
-    "leagues": 6,
+    "leagues": 5,
     "fixtures": 48,
     "leagueIds": [
       255,
-      344,
       242,
+      281,
       1087,
-      295,
-      1
+      329
     ],
     "leagueSeasons": [
       {
@@ -32,20 +31,20 @@
         "priority": 123.08
       },
       {
-        "leagueId": 344,
-        "season": "2026",
-        "league": "Primera División",
-        "country": "Bolivia",
-        "fixtureCount": 12,
-        "priority": 122.19
-      },
-      {
         "leagueId": 242,
         "season": "2026",
         "league": "Liga Pro",
         "country": "Ecuador",
         "fixtureCount": 16,
         "priority": 121.66
+      },
+      {
+        "leagueId": 281,
+        "season": "2026",
+        "league": "Primera División",
+        "country": "Peru",
+        "fixtureCount": 9,
+        "priority": 119.21
       },
       {
         "leagueId": 1087,
@@ -56,20 +55,12 @@
         "priority": 119.06
       },
       {
-        "leagueId": 295,
+        "leagueId": 329,
         "season": "2026",
-        "league": "K3 League",
-        "country": "South-Korea",
-        "fixtureCount": 1,
-        "priority": 91.22
-      },
-      {
-        "leagueId": 1,
-        "season": "2026",
-        "league": "World Cup",
-        "country": "World",
-        "fixtureCount": 1,
-        "priority": 80.61
+        "league": "Meistriliiga",
+        "country": "Estonia",
+        "fixtureCount": 5,
+        "priority": 106.97
       }
     ],
     "fixtureIds": [
@@ -85,27 +76,15 @@
       "1493584",
       "1493577",
       "1493581",
-      "1538384",
-      "1538386",
-      "1538388",
-      "1538385",
-      "1538390",
-      "1538391",
-      "1538396",
-      "1538393",
-      "1538392",
-      "1538394",
-      "1538395",
-      "1538389",
       "1519401",
       "1519403",
       "1519407",
       "1519402",
       "1519400",
-      "1519405",
       "1519406",
       "1519412",
       "1519408",
+      "1519405",
       "1519413",
       "1519411",
       "1519419",
@@ -113,40 +92,52 @@
       "1519414",
       "1519415",
       "1519410",
+      "1549411",
+      "1549416",
+      "1549413",
+      "1549418",
+      "1549412",
+      "1549417",
+      "1549410",
+      "1549415",
+      "1549414",
       "1504261",
       "1504263",
       "1504262",
       "1504264",
       "1504265",
       "1504266",
-      "1520546",
-      "1586077"
+      "1513589",
+      "1513591",
+      "1513592",
+      "1513590",
+      "1513593"
     ],
     "tsaFixtureIds": [
       "1519401",
       "1493575",
-      "1538384",
       "1493579",
-      "1538386",
       "1504261",
+      "1549411",
       "1493573",
+      "1549416",
       "1504263",
       "1519403",
       "1519407",
       "1519402",
-      "1538388",
       "1519400",
       "1493583",
       "1504262",
       "1493576",
-      "1519405",
+      "1549413",
       "1519406",
+      "1549418",
+      "1549412",
       "1504264",
-      "1493580",
-      "1493574",
-      "1519412",
-      "1519408",
-      "1538385"
+      "1549417",
+      "1549410",
+      "1513589",
+      "1493580"
     ]
   },
   "topCandidates": [
@@ -181,16 +172,6 @@
       "dataQuality": 88
     },
     {
-      "id": 1538384,
-      "home": "Blooming",
-      "away": "Gualberto Villarroel SJ",
-      "league": "Primera División",
-      "leagueId": 344,
-      "kickoff": "2026-07-15T00:00:00+00:00",
-      "priority": 123.19,
-      "dataQuality": 70
-    },
-    {
       "id": 1493579,
       "home": "Loudoun United",
       "away": "Tampa Bay Rowdies",
@@ -207,7 +188,7 @@
       "league": "Primera División",
       "leagueId": 344,
       "kickoff": "2026-07-16T00:00:00+00:00",
-      "priority": 121.19,
+      "priority": 121.13,
       "dataQuality": 70
     },
     {
@@ -347,6 +328,16 @@
       "league": "Ykkösliiga",
       "leagueId": 1087,
       "kickoff": "2026-07-17T16:00:00+00:00",
+      "priority": 117.62,
+      "dataQuality": 88
+    },
+    {
+      "id": 1492140,
+      "home": "Bahia",
+      "away": "Chapecoense-sc",
+      "league": "Serie A",
+      "leagueId": 71,
+      "kickoff": "2026-07-17T22:30:00+00:00",
       "priority": 117.62,
       "dataQuality": 88
     }

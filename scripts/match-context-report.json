@@ -1,29 +1,17 @@
 {
   "version": "v196",
-  "updated": "2026-07-15T00:56:25.646Z",
+  "updated": "2026-07-15T01:38:31.986Z",
   "summary": {
-    "fixtures": 46,
+    "fixtures": 47,
     "extreme": 0,
     "high": 0,
-    "low": 45,
-    "averageRisk": 11
+    "low": 47,
+    "averageRisk": 9
   },
   "commonFlags": [
     {
       "flag": "REST_IMBALANCE",
-      "count": 11
-    },
-    {
-      "flag": "KNOCKOUT_CONTEXT",
-      "count": 1
-    },
-    {
-      "flag": "FINAL_PRESSURE",
-      "count": 1
-    },
-    {
-      "flag": "OPENING_PHASE",
-      "count": 1
+      "count": 7
     }
   ],
   "fixtures": [
@@ -47,7 +35,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519419,
@@ -69,13 +57,13 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
-      "id": 1538392,
-      "date": "2026-07-21",
-      "home": "Independiente Petrolero",
-      "away": "Real Potosí",
+      "id": 1549411,
+      "date": "2026-07-20",
+      "home": "Alianza Lima",
+      "away": "Sport Huancayo",
       "league": "Primera División",
       "version": "v196",
       "riskScore": 8,
@@ -91,7 +79,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519412,
@@ -113,59 +101,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538393,
-      "date": "2026-07-20",
-      "home": "Blooming",
-      "away": "Real Tomayapo",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Blooming has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538389,
-      "date": "2026-07-20",
-      "home": "San Antonio Bulo Bulo",
-      "away": "ABB",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "San Antonio Bulo Bulo has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519414,
@@ -191,29 +127,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538394,
-      "date": "2026-07-20",
-      "home": "Nacional Potosí",
-      "away": "Real Oruro",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519408,
@@ -235,7 +149,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493578,
@@ -261,33 +175,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538396,
-      "date": "2026-07-19",
-      "home": "Aurora",
-      "away": "Oriente Petrolero",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Oriente Petrolero has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493583,
@@ -309,7 +197,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493580,
@@ -331,7 +219,107 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1513592,
+      "date": "2026-07-19",
+      "home": "FC Levadia Tallinn",
+      "away": "Tammeka",
+      "league": "Meistriliiga",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "FC Levadia Tallinn has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1513591,
+      "date": "2026-07-19",
+      "home": "Kuressaare",
+      "away": "Kalju Nomme",
+      "league": "Meistriliiga",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Kalju Nomme has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1549416,
+      "date": "2026-07-19",
+      "home": "Club Deportivo Los Chankas",
+      "away": "Sport Boys",
+      "league": "Primera División",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1513593,
+      "date": "2026-07-19",
+      "home": "Laagri",
+      "away": "Paide",
+      "league": "Meistriliiga",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Paide has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519415,
@@ -353,7 +341,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519411,
@@ -375,33 +363,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538395,
-      "date": "2026-07-18",
-      "home": "Bolívar",
-      "away": "Guabirá",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Guabirá has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519409,
@@ -423,14 +385,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
-      "id": 1520546,
+      "id": 1549412,
       "date": "2026-07-18",
-      "home": "Dangjin Citizen",
-      "away": "Jeonbuk Motors II",
-      "league": "K3 League",
+      "home": "Cienciano",
+      "away": "FBC Melgar",
+      "league": "Primera División",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -445,7 +407,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1504264,
@@ -467,7 +429,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1504265,
@@ -489,7 +451,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1513590,
+      "date": "2026-07-18",
+      "home": "Trans Narva",
+      "away": "Vaprus",
+      "league": "Meistriliiga",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493581,
@@ -511,24 +495,20 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
-      "id": 1538391,
+      "id": 1549417,
       "date": "2026-07-18",
-      "home": "Always Ready",
-      "away": "Universitario de Vinto",
+      "home": "UCV Moquegua",
+      "away": "Comerciantes Unidos",
       "league": "Primera División",
       "version": "v196",
-      "riskScore": 18,
+      "riskScore": 8,
       "stabilityScore": 47,
       "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Universitario de Vinto has a material rest advantage."
-      ],
+      "flags": [],
+      "reasons": [],
       "missingEvidence": [
         "AVAILABILITY"
       ],
@@ -537,7 +517,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1549410,
+      "date": "2026-07-18",
+      "home": "ADT",
+      "away": "Universitario",
+      "league": "Primera División",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519410,
@@ -559,7 +561,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1549415,
+      "date": "2026-07-18",
+      "home": "Atletico Grau",
+      "away": "UTC Cajamarca",
+      "league": "Primera División",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519413,
@@ -581,29 +605,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538390,
-      "date": "2026-07-18",
-      "home": "Gualberto Villarroel SJ",
-      "away": "The Strongest",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493579,
@@ -625,7 +627,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493577,
@@ -647,7 +649,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493584,
@@ -669,7 +671,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493576,
@@ -695,7 +697,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493582,
@@ -717,7 +719,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1549413,
+      "date": "2026-07-18",
+      "home": "Cusco",
+      "away": "Alianza Atletico",
+      "league": "Primera División",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519406,
@@ -739,7 +763,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1504263,
@@ -761,7 +785,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1504262,
@@ -783,14 +807,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
-      "id": 1538386,
-      "date": "2026-07-16",
-      "home": "The Strongest",
-      "away": "Oriente Petrolero",
-      "league": "Primera División",
+      "id": 1513589,
+      "date": "2026-07-17",
+      "home": "Flora Tallinn",
+      "away": "Nõmme United",
+      "league": "Meistriliiga",
       "version": "v196",
       "riskScore": 18,
       "stabilityScore": 47,
@@ -799,7 +823,7 @@
         "REST_IMBALANCE"
       ],
       "reasons": [
-        "Oriente Petrolero has a material rest advantage."
+        "Flora Tallinn has a material rest advantage."
       ],
       "missingEvidence": [
         "AVAILABILITY"
@@ -809,7 +833,51 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1549414,
+      "date": "2026-07-17",
+      "home": "FC Cajamarca",
+      "away": "Juan Pablo II College",
+      "league": "Primera División",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
+    },
+    {
+      "id": 1549418,
+      "date": "2026-07-17",
+      "home": "Sporting Cristal",
+      "away": "Deportivo Garcilaso",
+      "league": "Primera División",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519401,
@@ -831,33 +899,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538385,
-      "date": "2026-07-16",
-      "home": "ABB",
-      "away": "Independiente Petrolero",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 14,
-      "stabilityScore": 48,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "ABB has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519400,
@@ -879,7 +921,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1504261,
@@ -901,7 +943,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519403,
@@ -923,63 +965,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1586077,
-      "date": "2026-07-15",
-      "home": "England",
-      "away": "Argentina",
-      "league": "World Cup",
-      "version": "v196",
-      "riskScore": 32,
-      "stabilityScore": 39,
-      "riskLevel": "WATCH",
-      "flags": [
-        "KNOCKOUT_CONTEXT",
-        "FINAL_PRESSURE",
-        "OPENING_PHASE"
-      ],
-      "reasons": [
-        "Knockout incentives can override ordinary league patterns.",
-        "Final-round pressure can change normal tempo and risk.",
-        "Early-season samples are less stable."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": -3
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
-    },
-    {
-      "id": 1538388,
-      "date": "2026-07-15",
-      "home": "Real Potosí",
-      "away": "San Antonio Bulo Bulo",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "San Antonio Bulo Bulo has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519402,
@@ -1001,7 +987,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1519407,
@@ -1023,7 +1009,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493573,
@@ -1045,7 +1031,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493574,
@@ -1067,7 +1053,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     },
     {
       "id": 1493575,
@@ -1089,7 +1075,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-15T00:56:25.646Z"
+      "generatedAt": "2026-07-15T01:38:31.986Z"
     }
   ]
 }
