@@ -1,19 +1,354 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-07-15T07:22:27.113Z",
   "mode": "adaptive-two-pass",
-  "today": null,
-  "limits": {},
+  "today": "2026-07-15",
+  "limits": {
+    "maxLeagues": 18,
+    "maxMatches": 48,
+    "tsaMax": 24
+  },
   "coverage": {
-    "fixtures": 0,
-    "leagues": 0
+    "fixtures": 1589,
+    "leagues": 137
   },
   "selected": {
-    "leagues": 0,
-    "fixtures": 0,
-    "leagueIds": [],
-    "leagueSeasons": [],
-    "fixtureIds": [],
-    "tsaFixtureIds": []
+    "leagues": 6,
+    "fixtures": 48,
+    "leagueIds": [
+      255,
+      481,
+      242,
+      253,
+      1087,
+      295
+    ],
+    "leagueSeasons": [
+      {
+        "leagueId": 255,
+        "season": "2026",
+        "league": "USL Championship",
+        "country": "USA",
+        "fixtureCount": 12,
+        "priority": 123.08
+      },
+      {
+        "leagueId": 481,
+        "season": "2026",
+        "league": "Northern NSW NPL",
+        "country": "Australia",
+        "fixtureCount": 8,
+        "priority": 122.33
+      },
+      {
+        "leagueId": 242,
+        "season": "2026",
+        "league": "Liga Pro",
+        "country": "Ecuador",
+        "fixtureCount": 15,
+        "priority": 121.66
+      },
+      {
+        "leagueId": 253,
+        "season": "2026",
+        "league": "Major League Soccer",
+        "country": "USA",
+        "fixtureCount": 6,
+        "priority": 120.9
+      },
+      {
+        "leagueId": 1087,
+        "season": "2026",
+        "league": "Ykkösliiga",
+        "country": "Finland",
+        "fixtureCount": 6,
+        "priority": 119.06
+      },
+      {
+        "leagueId": 295,
+        "season": "2026",
+        "league": "K3 League",
+        "country": "South-Korea",
+        "fixtureCount": 1,
+        "priority": 91.22
+      }
+    ],
+    "fixtureIds": [
+      "1493575",
+      "1493579",
+      "1493573",
+      "1493583",
+      "1493576",
+      "1493580",
+      "1493574",
+      "1493582",
+      "1493578",
+      "1493584",
+      "1493577",
+      "1493581",
+      "1523779",
+      "1523761",
+      "1523786",
+      "1523787",
+      "1523790",
+      "1523789",
+      "1523788",
+      "1523791",
+      "1519401",
+      "1519403",
+      "1519407",
+      "1519402",
+      "1519400",
+      "1519406",
+      "1519412",
+      "1519408",
+      "1519411",
+      "1519413",
+      "1519409",
+      "1519414",
+      "1519415",
+      "1519410",
+      "1519419",
+      "1490328",
+      "1490329",
+      "1490327",
+      "1490325",
+      "1490330",
+      "1490326",
+      "1504261",
+      "1504263",
+      "1504262",
+      "1504264",
+      "1504265",
+      "1504266",
+      "1520546"
+    ],
+    "tsaFixtureIds": [
+      "1519401",
+      "1523779",
+      "1493575",
+      "1493579",
+      "1490328",
+      "1504261",
+      "1490329",
+      "1523761",
+      "1493573",
+      "1504263",
+      "1519403",
+      "1519407",
+      "1519402",
+      "1519400",
+      "1493583",
+      "1504262",
+      "1493576",
+      "1519406",
+      "1490327",
+      "1523786",
+      "1504264",
+      "1493580",
+      "1493574",
+      "1490325"
+    ]
   },
-  "topCandidates": []
+  "topCandidates": [
+    {
+      "id": 1526576,
+      "home": "Cuniburo",
+      "away": "El Nacional",
+      "league": "Liga Pro Serie B",
+      "leagueId": 243,
+      "kickoff": "2026-07-15T19:30:00+00:00",
+      "priority": 135.06,
+      "dataQuality": 88
+    },
+    {
+      "id": 1519401,
+      "home": "Barcelona SC",
+      "away": "Guayaquil City FC",
+      "league": "Liga Pro",
+      "leagueId": 242,
+      "kickoff": "2026-07-16T00:30:00+00:00",
+      "priority": 126.82,
+      "dataQuality": 88
+    },
+    {
+      "id": 1523779,
+      "home": "Kahibah",
+      "away": "Maitland",
+      "league": "Northern NSW NPL",
+      "leagueId": 481,
+      "kickoff": "2026-07-15T10:00:00+00:00",
+      "priority": 124.8,
+      "dataQuality": 88
+    },
+    {
+      "id": 1493575,
+      "home": "Sporting JAX",
+      "away": "Pittsburgh Riverhounds",
+      "league": "USL Championship",
+      "leagueId": 255,
+      "kickoff": "2026-07-15T23:30:00+00:00",
+      "priority": 124.44,
+      "dataQuality": 88
+    },
+    {
+      "id": 1493579,
+      "home": "Loudoun United",
+      "away": "Tampa Bay Rowdies",
+      "league": "USL Championship",
+      "leagueId": 255,
+      "kickoff": "2026-07-18T23:00:00+00:00",
+      "priority": 121.72,
+      "dataQuality": 88
+    },
+    {
+      "id": 1490328,
+      "home": "Seattle Sounders",
+      "away": "Portland Timbers",
+      "league": "Major League Soccer",
+      "leagueId": 253,
+      "kickoff": "2026-07-17T02:30:00+00:00",
+      "priority": 121.54,
+      "dataQuality": 88
+    },
+    {
+      "id": 1538386,
+      "home": "The Strongest",
+      "away": "Oriente Petrolero",
+      "league": "Primera División",
+      "leagueId": 344,
+      "kickoff": "2026-07-16T00:00:00+00:00",
+      "priority": 121.14,
+      "dataQuality": 70
+    },
+    {
+      "id": 1576800,
+      "home": "Cerro",
+      "away": "Racing Montevideo",
+      "league": "Primera División - Apertura",
+      "leagueId": 268,
+      "kickoff": "2026-07-19T16:00:00+00:00",
+      "priority": 120.58,
+      "dataQuality": 88
+    },
+    {
+      "id": 1504261,
+      "home": "JIPPO",
+      "away": "MP",
+      "league": "Ykkösliiga",
+      "leagueId": 1087,
+      "kickoff": "2026-07-15T15:30:00+00:00",
+      "priority": 120.5,
+      "dataQuality": 88
+    },
+    {
+      "id": 1549411,
+      "home": "Alianza Lima",
+      "away": "Sport Huancayo",
+      "league": "Primera División",
+      "leagueId": 281,
+      "kickoff": "2026-07-20T00:00:00+00:00",
+      "priority": 120.45,
+      "dataQuality": 88
+    },
+    {
+      "id": 1490329,
+      "home": "Nashville SC",
+      "away": "Atlanta United FC",
+      "league": "Major League Soccer",
+      "leagueId": 253,
+      "kickoff": "2026-07-18T00:10:00+00:00",
+      "priority": 120.26,
+      "dataQuality": 88
+    },
+    {
+      "id": 1507003,
+      "home": "Bucheon FC 1995",
+      "away": "FC Seoul",
+      "league": "K League 1",
+      "leagueId": 292,
+      "kickoff": "2026-07-19T10:30:00+00:00",
+      "priority": 120.1,
+      "dataQuality": 88
+    },
+    {
+      "id": 1542001,
+      "home": "Hercílio Luz",
+      "away": "Juventus SC",
+      "league": "Catarinense - 2",
+      "leagueId": 936,
+      "kickoff": "2026-07-15T22:30:00+00:00",
+      "priority": 120.02,
+      "dataQuality": 70
+    },
+    {
+      "id": 1523761,
+      "home": "Charlestown City Blues",
+      "away": "Weston Bears",
+      "league": "Northern NSW NPL",
+      "leagueId": 481,
+      "kickoff": "2026-07-15T10:00:00+00:00",
+      "priority": 119.86,
+      "dataQuality": 70
+    },
+    {
+      "id": 1517309,
+      "home": "Forge",
+      "away": "Pacific FC",
+      "league": "Canadian Premier League",
+      "leagueId": 479,
+      "kickoff": "2026-07-16T23:00:00+00:00",
+      "priority": 118.97,
+      "dataQuality": 70
+    },
+    {
+      "id": 1492299,
+      "home": "Vitoria",
+      "away": "Vasco DA Gama",
+      "league": "Serie A",
+      "leagueId": 71,
+      "kickoff": "2026-07-16T22:30:00+00:00",
+      "priority": 118.48,
+      "dataQuality": 88
+    },
+    {
+      "id": 1493898,
+      "home": "One Knoxville",
+      "away": "Fort Wayne",
+      "league": "USL League One",
+      "leagueId": 489,
+      "kickoff": "2026-07-15T22:30:00+00:00",
+      "priority": 118.37,
+      "dataQuality": 88
+    },
+    {
+      "id": 1576751,
+      "home": "Botafogo U20",
+      "away": "Santos U20",
+      "league": "Brasileiro U20 A",
+      "leagueId": 740,
+      "kickoff": "2026-07-16T00:00:00+00:00",
+      "priority": 118.26,
+      "dataQuality": 88
+    },
+    {
+      "id": 1493573,
+      "home": "Lexington",
+      "away": "New Mexico United",
+      "league": "USL Championship",
+      "leagueId": 255,
+      "kickoff": "2026-07-15T23:00:00+00:00",
+      "priority": 118.02,
+      "dataQuality": 88
+    },
+    {
+      "id": 1549416,
+      "home": "Club Deportivo Los Chankas",
+      "away": "Sport Boys",
+      "league": "Primera División",
+      "leagueId": 281,
+      "kickoff": "2026-07-19T16:00:00+00:00",
+      "priority": 117.97,
+      "dataQuality": 88
+    }
+  ]
 }

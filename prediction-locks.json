@@ -1,1 +1,126 @@
-{}
+{
+  "1504261": {
+    "fixtureId": "1504261",
+    "home": "JIPPO",
+    "away": "MP",
+    "league": "Ykkösliiga",
+    "kickoff": "2026-07-15T15:30:00.000Z",
+    "publishedAt": "2026-07-15T07:24:53.301Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "nike"
+      ],
+      "reasons": [
+        "5 specialist engines agree on Home DNB.",
+        "Weighted support 8.19 leads the next market by 6.68.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null
+    }
+  },
+  "1519403": {
+    "fixtureId": "1519403",
+    "home": "Libertad",
+    "away": "Tecnico Universitario",
+    "league": "Liga Pro",
+    "kickoff": "2026-07-15T17:00:00.000Z",
+    "publishedAt": "2026-07-15T07:24:53.301Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "ares",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "4 specialist engines agree on Away DNB.",
+        "Weighted support 5.6 leads the next market by 3.76.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.05
+    }
+  },
+  "1523761": {
+    "fixtureId": "1523761",
+    "home": "Charlestown City Blues",
+    "away": "Weston Bears",
+    "league": "Northern NSW NPL",
+    "kickoff": "2026-07-15T10:00:00.000Z",
+    "publishedAt": "2026-07-15T07:24:53.301Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "10 specialist engines agree on Away Win.",
+        "Weighted support 14.29 leads the next market by 13.69.",
+        "Data quality: 82/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 82,
+      "odds": 1.55
+    }
+  },
+  "1523779": {
+    "fixtureId": "1523779",
+    "home": "Kahibah",
+    "away": "Maitland",
+    "league": "Northern NSW NPL",
+    "kickoff": "2026-07-15T10:00:00.000Z",
+    "publishedAt": "2026-07-15T07:24:53.301Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "9 specialist engines agree on Away Win.",
+        "Weighted support 14 leads the next market by 12.61.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.92
+    }
+  }
+}
