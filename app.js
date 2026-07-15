@@ -49,11 +49,19 @@
   let slip=loadJSON("betynz-slip",[]);
   let preferences=loadJSON("betynz-preferences",{favoriteEngine:"zeus",confidence:76,rememberSlip:true});
   const MONETIZATION=window.BETYNZ_MONETIZATION&&typeof window.BETYNZ_MONETIZATION==="object"?window.BETYNZ_MONETIZATION:{mode:"preview",currency:"USD",plans:{},checkoutUrls:{}};
+  const BACKEND=window.BetynzBackend||null;
+  const secureBackendConfigured=()=>!!(BACKEND&&typeof BACKEND.configured==="function"&&BACKEND.configured());
+  const FREE_LAUNCH=MONETIZATION.freeLaunch===true;
+  const SUBSCRIPTIONS_ENABLED=MONETIZATION.subscriptionsEnabled===true;
+  const usingSecureBackend=()=>MONETIZATION.mode==="production"&&secureBackendConfigured();
   const PLAN_LEVEL={guest:0,free:1,pro:2,supreme:3,day:3};
   let billingCycle="monthly";
   let account=loadJSON("betynz-account",{signedIn:false,name:"",email:"",country:"",plan:"guest",createdAt:null,expiresAt:null,pausedUntil:null});
   let notificationPrefs=loadJSON("betynz-notifications",{newPicks:true,pickChanges:true,scores:true,rebels:false,leagues:""});
   let paymentHistory=loadJSON("betynz-payment-history",[]);
+  let backendHydrating=false;
+  let backendHydrated=false;
+  let slipSyncTimer=null;
 
   function loadJSON(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v==null?fallback:v}catch(_){return fallback}}
   function saveJSON(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(_){}}
@@ -69,54 +77,157 @@
   function saveAccount(){saveJSON("betynz-account",account)}
   function planKey(){normalizeAccount();return account.plan||"guest"}
   function planLevel(){return PLAN_LEVEL[planKey()]||0}
-  function hasPlan(required){return planLevel()>=(PLAN_LEVEL[required]||0)}
+  function hasPlan(required){return FREE_LAUNCH||planLevel()>=(PLAN_LEVEL[required]||0)}
   function isPaused(){return !!(account.pausedUntil&&Date.parse(account.pausedUntil)>Date.now())}
   function planName(key=planKey()){
+    if(FREE_LAUNCH)return "Free Full Access";
     if(key==="guest")return"Guest";
     const cfg=MONETIZATION.plans&&MONETIZATION.plans[key];
     return cfg&&cfg.name?cfg.name:key==="pro"?"Olympian Pro":key==="supreme"?"Zeus Supreme":key==="day"?"Day Pass":"Free";
   }
-  function requiredPlanForEngine(id){if(id==="all")return"guest";if(id==="zeus"||id==="spartacus"||id==="leonidas")return"supreme";return"pro"}
-  function requiredPlanForView(name){if(name==="bankers")return"supreme";if(name==="saved"||name==="notifications")return"pro";if(name==="billing")return"free";return"guest"}
-  function featurePlanLabel(required){return required==="supreme"?"Zeus Supreme":required==="pro"?"Olympian Pro":"Free account"}
-  function formatMoney(value){const n=Number(value||0);try{return new Intl.NumberFormat("en",{style:"currency",currency:MONETIZATION.currency||"USD",maximumFractionDigits:n%1?2:0}).format(n)}catch(_){return `$${n.toFixed(n%1?2:0)}`}}
+  function requiredPlanForEngine(id){if(FREE_LAUNCH)return "guest";if(id==="all")return"guest";if(id==="zeus"||id==="spartacus"||id==="leonidas")return"supreme";return"pro"}
+  function requiredPlanForView(name){if(FREE_LAUNCH)return "guest";if(name==="bankers")return"supreme";if(name==="saved"||name==="notifications")return"pro";if(name==="billing")return"free";return"guest"}
+  function featurePlanLabel(required){if(FREE_LAUNCH)return "Free Full Access";return required==="supreme"?"Zeus Supreme":required==="pro"?"Olympian Pro":"Free account"}
+  function formatMoney(value,currency=MONETIZATION.currency||"USD"){const n=Number(value||0);try{return new Intl.NumberFormat("en",{style:"currency",currency:String(currency||"USD").toUpperCase(),maximumFractionDigits:n%1?2:0}).format(n)}catch(_){return `${String(currency||"USD").toUpperCase()} ${n.toFixed(n%1?2:0)}`}}
   function accountInitials(){return account.signedIn?initials(account.name||account.email):"BZ"}
-  function publicLimit(){return hasPlan("pro")?7:3}
+  function publicLimit(){return FREE_LAUNCH?7:(hasPlan("pro")?7:3)}
   function lockedTeaser(required,title,copy){return `<div class="access-teaser"><span>♛</span><div><b>${esc(title)}</b><p>${esc(copy)}</p></div><button type="button" data-upgrade-required="${required}" data-upgrade-feature="${esc(title)}">View ${esc(featurePlanLabel(required))}</button></div>`}
   function closeAccountModal(){const modal=$("#account-modal"),backdrop=$("#account-modal-backdrop");if(modal){modal.classList.remove("open");modal.setAttribute("aria-hidden","true")}if(backdrop)backdrop.classList.remove("open")}
   function showAccountModal(html){closeEngine();const modal=$("#account-modal"),backdrop=$("#account-modal-backdrop");if(!modal||!backdrop)return;$("#account-modal-content").innerHTML=html;modal.classList.add("open");modal.setAttribute("aria-hidden","false");backdrop.classList.add("open");requestAnimationFrame(()=>modal.querySelector("input,button,select")?.focus())}
+  function googleButton(label="Continue with Google"){
+    return `<button class="google-auth-btn" type="button" data-google-auth><span class="google-g">G</span>${esc(label)}</button>`;
+  }
+  function authDivider(){return `<div class="auth-divider"><span>or</span></div>`}
   function openAuth(mode="signup"){
     const signup=mode!=="signin";
-    const authNote=MONETIZATION.mode==="preview"?`<div class="integration-banner"><b>Preview mode</b><p>This package stores a test account only on this device. Connect a secure authentication service before launch.</p></div>`:"";
-    showAccountModal(`<div class="auth-modal-head"><span class="auth-mark">⚡</span><div><small>BETYNZ ACCOUNT</small><h2 id="account-modal-title">${signup?"Create your free account":"Sign in to Betynz"}</h2><p>${signup?"Save preferences and unlock the free account experience.":"Use your verified account email."}</p></div></div>${authNote}<div class="auth-switch"><button type="button" class="${signup?"active":""}" data-auth-open="signup">Create account</button><button type="button" class="${signup?"":"active"}" data-auth-open="signin">Sign in</button></div>${signup?`<form id="signup-form" class="auth-form"><label><span>Display name</span><input name="name" autocomplete="name" required maxlength="50"></label><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><div class="form-pair"><label><span>Country</span><input name="country" autocomplete="country-name" required></label><label><span>Date of birth</span><input name="dob" type="date" required></label></div><label class="consent-row"><input name="age" type="checkbox" required><span>I confirm I am 18 or older and legally permitted to access this content.</span></label><label class="consent-row"><input name="terms" type="checkbox" required><span>I accept the Terms, Privacy Notice and responsible-play rules.</span></label><button class="primary-btn" type="submit">Create Free Account</button></form>`:`<form id="signin-form" class="auth-form"><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><button class="primary-btn" type="submit">Continue with Email</button><p class="fine-print">Production sign-in should send a secure passwordless code or use Google/Apple authentication.</p></form>`}`);
+    const authNote=usingSecureBackend()?`<div class="integration-banner secure"><b>Secure account access</b><p>Use email and password or continue with Google. Email confirmation remains enabled.</p></div>`:MONETIZATION.mode==="preview"?`<div class="integration-banner"><b>Preview mode</b><p>This package stores a test account only on this device. Connect Supabase before launch.</p></div>`:`<div class="integration-banner"><b>Backend setup required</b><p>Add your public Supabase URL and anon key in backend-config.js, then enable the connection.</p></div>`;
+    const signupForm=`${googleButton("Create account with Google")}${authDivider()}<form id="signup-form" class="auth-form"><label><span>Display name</span><input name="name" autocomplete="name" required maxlength="50"></label><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><div class="form-pair"><label><span>Country</span><input name="country" autocomplete="country-name" required></label><label><span>Date of birth</span><input name="dob" type="date" required></label></div><label><span>Password</span><input name="password" type="password" autocomplete="new-password" minlength="8" required></label><label><span>Confirm password</span><input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required></label><p class="password-hint">Use at least 8 characters. A longer, unique password is safer.</p><label class="consent-row"><input name="age" type="checkbox" required><span>I confirm I am 18 or older and legally permitted to access this content.</span></label><label class="consent-row"><input name="terms" type="checkbox" required><span>I accept the Terms, Privacy Notice and responsible-play rules.</span></label><button class="primary-btn" type="submit">Create Free Account</button></form>`;
+    const signinForm=`${googleButton("Sign in with Google")}${authDivider()}<form id="signin-form" class="auth-form"><label><span>Email address</span><input name="email" type="email" autocomplete="email" required></label><label><span>Password</span><input name="password" type="password" autocomplete="current-password" required></label><button class="primary-btn" type="submit">Sign In</button><button class="text-auth-btn" type="button" data-reset-password>Forgot password?</button></form>`;
+    showAccountModal(`<div class="auth-modal-head"><span class="auth-mark">⚡</span><div><small>BETYNZ ACCOUNT</small><h2 id="account-modal-title">${signup?"Create your free account":"Sign in to Betynz"}</h2><p>${signup?"Save preferences and sync your free access across devices.":"Use your password or Google account."}</p></div></div>${authNote}<div class="auth-switch"><button type="button" class="${signup?"active":""}" data-auth-open="signup">Create account</button><button type="button" class="${signup?"":"active"}" data-auth-open="signin">Sign in</button></div>${signup?signupForm:signinForm}`);
+  }
+  function openProfileCompletion(){
+    showAccountModal(`<div class="auth-modal-head"><span class="auth-mark">18+</span><div><small>COMPLETE YOUR ACCOUNT</small><h2 id="account-modal-title">Finish secure setup</h2><p>Google supplied your identity. Betynz still needs adult eligibility and account preferences.</p></div></div><form id="complete-profile-form" class="auth-form"><label><span>Display name</span><input name="name" autocomplete="name" required maxlength="50" value="${esc(account.name||"")}"></label><div class="form-pair"><label><span>Country</span><input name="country" autocomplete="country-name" required></label><label><span>Date of birth</span><input name="dob" type="date" required></label></div><label class="consent-row"><input name="age" type="checkbox" required><span>I confirm I am 18 or older and legally permitted to access this content.</span></label><label class="consent-row"><input name="terms" type="checkbox" required><span>I accept the Terms, Privacy Notice and responsible-play rules.</span></label><button class="primary-btn" type="submit">Complete Account</button></form>`);
+  }
+  function openNewPassword(){
+    showAccountModal(`<div class="auth-modal-head"><span class="auth-mark">🔐</span><div><small>PASSWORD RECOVERY</small><h2 id="account-modal-title">Choose a new password</h2><p>Your recovery link was verified.</p></div></div><form id="new-password-form" class="auth-form"><label><span>New password</span><input name="password" type="password" autocomplete="new-password" minlength="8" required></label><label><span>Confirm new password</span><input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required></label><button class="primary-btn" type="submit">Update Password</button></form>`);
   }
   function ageFromDob(value){const dob=new Date(`${value}T12:00:00`);if(!Number.isFinite(dob.getTime()))return 0;const now=new Date();let age=now.getFullYear()-dob.getFullYear();const md=now.getMonth()-dob.getMonth();if(md<0||(md===0&&now.getDate()<dob.getDate()))age--;return age}
-  function handleSignup(form){
-    const data=new FormData(form),dob=String(data.get("dob")||"");
+  async function handleSignup(form){
+    const data=new FormData(form),dob=String(data.get("dob")||""),password=String(data.get("password")||""),confirmPassword=String(data.get("confirmPassword")||"");
     if(ageFromDob(dob)<18){toast("Betynz account access is restricted to adults 18+.");return}
-    account={signedIn:true,name:String(data.get("name")||"").trim(),email:String(data.get("email")||"").trim().toLowerCase(),country:String(data.get("country")||"").trim(),plan:"free",createdAt:new Date().toISOString(),expiresAt:null,pausedUntil:null,preview:MONETIZATION.mode==="preview"};
-    saveAccount();closeAccountModal();renderAccountExperience();toast("Free account created on this device.");showView("profile");
+    if(password.length<8){toast("Use a password with at least 8 characters.");return}
+    if(password!==confirmPassword){toast("The passwords do not match.");return}
+    const input={name:String(data.get("name")||"").trim(),email:String(data.get("email")||"").trim().toLowerCase(),country:String(data.get("country")||"").trim(),dob,password};
+    if(MONETIZATION.mode==="production"&&!usingSecureBackend()){toast("Secure backend setup is incomplete.");return}
+    if(usingSecureBackend()){
+      const button=form.querySelector('button[type="submit"]');if(button){button.disabled=true;button.textContent="Creating secure account…"}
+      try{const result=await BACKEND.signUpWithPassword(input);closeAccountModal();toast(result&&result.session?"Account created and signed in.":"Account created. Check your email to confirm it.");if(result&&result.session)await hydrateSecureAccount()}
+      catch(err){toast(err&&err.message?err.message:"Account creation failed.")}
+      finally{if(button){button.disabled=false;button.textContent="Create Free Account"}}
+      return;
+    }
+    account={signedIn:true,name:input.name,email:input.email,country:input.country,plan:"free",createdAt:new Date().toISOString(),expiresAt:null,pausedUntil:null,preview:true};
+    saveAccount();closeAccountModal();renderAccountExperience();toast("Free preview account created on this device.");showView("profile");
   }
-  function handleSignin(form){
-    const email=String(new FormData(form).get("email")||"").trim().toLowerCase();if(!email)return;
+  async function handleSignin(form){
+    const data=new FormData(form),email=String(data.get("email")||"").trim().toLowerCase(),password=String(data.get("password")||"");if(!email||!password)return;
+    if(MONETIZATION.mode==="production"&&!usingSecureBackend()){toast("Secure backend setup is incomplete.");return}
+    if(usingSecureBackend()){
+      const button=form.querySelector('button[type="submit"]');if(button){button.disabled=true;button.textContent="Signing in…"}
+      try{await BACKEND.signInWithPassword(email,password);closeAccountModal();await hydrateSecureAccount();toast("Signed in securely.");showView("profile")}
+      catch(err){toast(err&&err.message?err.message:"Sign-in failed.")}
+      finally{if(button){button.disabled=false;button.textContent="Sign In"}}
+      return;
+    }
     const existing=loadJSON("betynz-account",null);
-    account=existing&&existing.email===email?{...existing,signedIn:true}:{signedIn:true,name:email.split("@")[0]||"Betynz User",email,country:"",plan:"free",createdAt:new Date().toISOString(),expiresAt:null,pausedUntil:null,preview:MONETIZATION.mode==="preview"};
+    account=existing&&existing.email===email?{...existing,signedIn:true}:{signedIn:true,name:email.split("@")[0]||"Betynz User",email,country:"",plan:"free",createdAt:new Date().toISOString(),expiresAt:null,pausedUntil:null,preview:true};
     normalizeAccount();saveAccount();closeAccountModal();renderAccountExperience();toast("Signed in on this device.");showView("profile");
   }
-  function signOut(){account={signedIn:false,name:"",email:"",country:"",plan:"guest",createdAt:null,expiresAt:null,pausedUntil:null};saveAccount();closeAccountModal();renderAccountExperience();showView("dashboard");toast("Signed out.")}
+  async function handleGoogleAuth(){
+    if(!usingSecureBackend()){toast("Connect the secure backend before using Google sign-in.");return}
+    try{await BACKEND.signInWithGoogle()}catch(err){toast(err&&err.message?err.message:"Google sign-in could not start.")}
+  }
+  async function handlePasswordReset(){
+    const email=prompt("Enter the email address for your Betynz account:");if(!email)return;
+    if(!usingSecureBackend()){toast("Connect the secure backend before resetting passwords.");return}
+    try{await BACKEND.sendPasswordReset(email);toast("Password reset email sent.")}catch(err){toast(err&&err.message?err.message:"Password reset failed.")}
+  }
+  async function handleNewPassword(form){
+    const data=new FormData(form),password=String(data.get("password")||""),confirm=String(data.get("confirmPassword")||"");
+    if(password.length<8){toast("Use at least 8 characters.");return}if(password!==confirm){toast("The passwords do not match.");return}
+    try{await BACKEND.updatePassword(password);closeAccountModal();toast("Password updated.")}catch(err){toast(err&&err.message?err.message:"Password update failed.")}
+  }
+  async function handleCompleteProfile(form){
+    const data=new FormData(form),dob=String(data.get("dob")||"");if(ageFromDob(dob)<18){toast("Betynz account access is restricted to adults 18+.");return}
+    const input={name:String(data.get("name")||"").trim(),country:String(data.get("country")||"").trim(),dob};
+    try{await BACKEND.completeProfile(input);closeAccountModal();await hydrateSecureAccount();toast("Secure account completed.");showView("profile")}
+    catch(err){toast(err&&err.message?err.message:"Account completion failed.")}
+  }
+  async function signOut(){
+    try{if(usingSecureBackend())await BACKEND.signOut()}catch(err){toast(err&&err.message?err.message:"Sign-out failed.");return}
+    account={signedIn:false,name:"",email:"",country:"",plan:"guest",createdAt:null,expiresAt:null,pausedUntil:null};
+    slip=[];paymentHistory=[];saveAccount();saveJSON("betynz-slip",slip);closeAccountModal();renderAccountExperience();showView("dashboard");toast("Signed out.");
+  }
+
+  function mapRemotePick(item){return {key:item.client_key,matchKey:item.match_key,home:item.home,away:item.away,market:item.market,odds:item.odds,engine:item.engine,date:item.match_date}}
+  async function hydrateSecureAccount(){
+    if(!usingSecureBackend()||backendHydrating)return;
+    backendHydrating=true;
+    try{
+      const state=await BACKEND.accountState();
+      if(!state){
+        account={signedIn:false,name:"",email:"",country:"",plan:"guest",createdAt:null,expiresAt:null,pausedUntil:null};
+        backendHydrated=true;saveAccount();renderAccountExperience();return;
+      }
+      const profileComplete=state.profile_complete!==false;
+      account={signedIn:true,name:state.display_name||state.google_name||"Betynz User",email:state.email||"",country:state.country||"",plan:profileComplete?(state.plan||"free"):"free",createdAt:state.created_at||null,expiresAt:state.plan_expires_at||null,pausedUntil:state.paused_until||null,preview:false,emailVerified:!!state.email_verified,profileComplete,subscriptionCycle:state.subscription_cycle||null,subscriptionProvider:state.subscription_provider||null,canCancelSubscription:!!state.can_cancel_subscription,cancelAtPeriodEnd:!!state.cancel_at_period_end};
+      if(!profileComplete){
+        saveAccount();backendHydrated=true;renderAccountExperience();
+        if(!$("#account-modal").classList.contains("open"))openProfileCompletion();
+        return;
+      }
+      const [remotePrefs,remotePicks,remoteBilling]=await Promise.all([BACKEND.preferences(),BACKEND.savedPicks(),BACKEND.billing()]);
+      if(remotePrefs){preferences={favoriteEngine:remotePrefs.favorite_engine||"zeus",confidence:Number(remotePrefs.min_confidence)||76,rememberSlip:remotePrefs.remember_slip!==false};notificationPrefs=remotePrefs.notifications||notificationPrefs;saveJSON("betynz-responsible",{reminder:remotePrefs.responsible_reminder||"60"})}
+      slip=(remotePicks||[]).map(mapRemotePick);paymentHistory=(remoteBilling||[]).map(x=>({id:x.provider_event_id,date:x.created_at,plan:planName(x.plan),amount:x.amount,currency:x.currency,status:x.status,cycle:x.description||""}));
+      saveAccount();saveJSON("betynz-preferences",preferences);saveJSON("betynz-notifications",notificationPrefs);saveJSON("betynz-slip",slip);saveJSON("betynz-payment-history",paymentHistory);
+      backendHydrated=true;renderPreferences();renderAccountExperience();renderBilling();
+    }catch(err){console.error("Betynz backend hydrate failed",err);toast("Secure account data could not be loaded.")}
+    finally{backendHydrating=false}
+  }
+  async function initializeSecureBackend(){
+    if(!usingSecureBackend())return;
+    try{
+      await BACKEND.init((event)=>{if(event==="PASSWORD_RECOVERY")openNewPassword();else hydrateSecureAccount()});
+      await hydrateSecureAccount();
+    }catch(err){console.error("Betynz backend init failed",err);toast("Secure backend connection failed.")}
+  }
   function openPaywall(required="pro",feature="this feature"){
+    if(FREE_LAUNCH){toast(`${feature} is included in Free Full Access.`);return}
     if(required==="free"&&!account.signedIn){openAuth("signup");return}
     const target=required==="supreme"?"supreme":"pro";
     showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">♛</span><small>PREMIUM ACCESS</small><h2 id="account-modal-title">Unlock ${esc(feature)}</h2><p>${esc(feature)} requires <b>${esc(featurePlanLabel(required))}</b>. Your current access is ${esc(planName())}.</p><div class="paywall-actions">${!account.signedIn?`<button class="primary-btn" type="button" data-auth-open="signup">Create Free Account</button>`:`<button class="primary-btn" type="button" data-checkout-plan="${target}">View ${esc(featurePlanLabel(required))}</button>`}<button class="secondary-btn" type="button" data-view="pricing">Compare All Plans</button></div><p class="fine-print">Subscriptions provide access to analytics, alerts and tools. No prediction is guaranteed.</p></div>`);
   }
-  function openCheckout(plan,cycle=billingCycle){
+  async function openCheckout(plan,cycle=billingCycle){
+    if(FREE_LAUNCH||!SUBSCRIPTIONS_ENABLED){toast("Subscriptions are disabled during the free launch phase.");return}
     if(!account.signedIn){openAuth("signup");return}
     const cfg=MONETIZATION.plans&&MONETIZATION.plans[plan];if(!cfg)return;
+    if(usingSecureBackend()){
+      try{const result=await BACKEND.createCheckout(plan,cycle);if(result&&result.url){location.href=result.url;return}throw new Error("Checkout URL was not returned.")}
+      catch(err){toast(err&&err.message?err.message:"Secure checkout is not configured yet.");return}
+    }
     const key=plan==="day"?"day":`${plan}_${cycle}`;const url=MONETIZATION.checkoutUrls&&MONETIZATION.checkoutUrls[key];
     if(url){location.href=url;return}
     const amount=plan==="day"?cfg.oneTime:cfg[cycle];const renewal=plan==="day"?"One-time 24-hour access":cycle==="annual"?"Renews annually":"Renews monthly";
     const preview=MONETIZATION.mode==="preview"?`<button class="secondary-btn preview-plan-btn" type="button" data-activate-preview-plan="${plan}" data-activate-preview-cycle="${cycle}">Activate test access on this device</button><p class="fine-print warning">Testing only. Remove preview mode when hosted checkout is connected.</p>`:"";
     showAccountModal(`<div class="checkout-modal"><span class="paywall-icon">⚡</span><small>HOSTED CHECKOUT</small><h2 id="account-modal-title">${esc(cfg.name)}</h2><div class="checkout-price"><b>${esc(formatMoney(amount))}</b><span>${plan==="day"?"/ 24 hours":cycle==="annual"?"/ year":"/ month"}</span></div><p>${esc(cfg.description||"")}</p><div class="checkout-summary"><span>Account</span><b>${esc(account.email)}</b><span>Billing</span><b>${esc(renewal)}</b><span>Card handling</span><b>Hosted provider only</b></div><button class="primary-btn" type="button" id="unconfigured-checkout">Continue to Secure Checkout</button>${preview}<p class="fine-print">No card information is collected by this static website package.</p></div>`);
+  }
+  function openCancelSubscription(){
+    if(!account.canCancelSubscription){toast("No active recurring subscription is available to cancel.");return}
+    showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">⏹</span><small>SUBSCRIPTION CONTROL</small><h2 id="account-modal-title">Cancel automatic renewal?</h2><p>Your current access remains active until the paid period ends. This does not reverse completed payments.</p><div class="paywall-actions"><button class="primary-btn" type="button" data-confirm-cancel-subscription>Cancel Renewal</button><button class="secondary-btn" type="button" data-view="profile">Keep Subscription</button></div></div>`);
+  }
+  async function confirmCancelSubscription(){
+    try{const result=await BACKEND.cancelSubscription();closeAccountModal();await hydrateSecureAccount();toast(result&&result.message?result.message:"Automatic renewal cancelled.")}
+    catch(err){toast(err&&err.message?err.message:"Subscription cancellation failed.")}
   }
   function activatePreviewPlan(plan,cycle){
     if(MONETIZATION.mode!=="preview")return;
@@ -550,7 +661,10 @@
 
   function slipKey(p){return `${keyOf(p.m)}|${p.market}`}
   function addPickByKey(k){if(!hasPlan("pro")){openPaywall("pro","Saved Picks");return}let p=allPicks().find(x=>slipKey(x)===k);if(!p&&picksFilter.engine!=="all")p=enginePicks(picksFilter.engine).find(x=>slipKey(x)===k);if(!p)return;const idx=slip.findIndex(x=>x.key===k);if(idx>=0)slip.splice(idx,1);else slip.push({key:k,matchKey:keyOf(p.m),home:p.m.home,away:p.m.away,market:p.market,odds:p.odds,engine:p.engine.name,date:dateOf(p.m)});persistSlip();renderAllPickLists();renderSlip();renderSavedPicks()}
-  function persistSlip(){if(preferences.rememberSlip!==false)saveJSON("betynz-slip",slip)}
+  function persistSlip(){
+    if(preferences.rememberSlip!==false)saveJSON("betynz-slip",slip);
+    if(usingSecureBackend()&&account.signedIn){clearTimeout(slipSyncTimer);slipSyncTimer=setTimeout(()=>BACKEND.syncSavedPicks(slip).catch(err=>console.error("Saved-pick sync failed",err)),450)}
+  }
   function removeSlip(k){slip=slip.filter(x=>x.key!==k);persistSlip();renderAllPickLists();renderSlip();renderSavedPicks()}
   function slipOdds(){return slip.reduce((x,l)=>x*(Number(l.odds)||1),1)}
   function slipHtml(){return slip.length?slip.map(l=>`<div class="slip-item"><div><b>${esc(l.home)} vs ${esc(l.away)}</b><small>${esc(marketClean(l.market))}${l.odds?` · ${Number(l.odds).toFixed(2)}`:""} · ${esc(l.engine)}</small></div><button data-remove-slip="${esc(l.key)}">×</button></div>`).join(""):`<div class="slip-empty">Tap + beside a qualified pick.</div>`}
@@ -558,34 +672,42 @@
   function copySlip(){if(!slip.length){toast("Your slip is empty.");return}const text=["BETYNZ — SMART BETTING PREDICTIONS",...slip.map((l,i)=>`${i+1}. ${l.home} vs ${l.away} — ${marketClean(l.market)}${l.odds?` @ ${Number(l.odds).toFixed(2)}`:""}`),`Total odds: ${slipOdds().toFixed(2)}`,"Predictions are informational. 18+"].join("\n");navigator.clipboard?.writeText(text).then(()=>toast("Slip copied.")).catch(()=>toast("Copy is unavailable in this browser."))}
 
   function renderPreferences(){const sel=$("#favorite-engine");sel.innerHTML=ENGINES.map(e=>`<option value="${e.id}">${e.name}</option>`).join("");sel.value=preferences.favoriteEngine||"zeus";$("#confidence-pref").value=String(preferences.confidence||76);$("#remember-slip").checked=preferences.rememberSlip!==false}
-  function savePreferences(){preferences={favoriteEngine:$("#favorite-engine").value,confidence:Number($("#confidence-pref").value),rememberSlip:$("#remember-slip").checked};saveJSON("betynz-preferences",preferences);if(!preferences.rememberSlip)localStorage.removeItem("betynz-slip");toast("Preferences saved.")}
+  async function savePreferences(){preferences={favoriteEngine:$("#favorite-engine").value,confidence:Number($("#confidence-pref").value),rememberSlip:$("#remember-slip").checked};saveJSON("betynz-preferences",preferences);if(!preferences.rememberSlip)localStorage.removeItem("betynz-slip");try{if(usingSecureBackend()&&account.signedIn)await BACKEND.savePreferences(preferences);toast("Preferences saved securely.")}catch(err){toast(err&&err.message?err.message:"Preferences could not be saved.")}}
 
   function renderPlanChrome(){
-    normalizeAccount();const signed=!!account.signedIn,current=planKey(),name=planName();
+    normalizeAccount();const signed=!!account.signedIn,name=planName();
     const avatar=$("#profile-avatar"),profileName=$("#profile-name"),profilePlan=$("#profile-plan"),signin=$("#top-signin-btn"),upgrade=$("#top-upgrade-btn"),signout=$("#sidebar-signout");
-    if(avatar)avatar.textContent=accountInitials();if(profileName)profileName.textContent=signed?(account.name||"Betynz User"):"Guest";if(profilePlan)profilePlan.textContent=current==="day"&&account.expiresAt?`${name} · ${Math.max(1,Math.ceil((Date.parse(account.expiresAt)-Date.now())/36e5))}h left`:name;
-    if(signin)signin.hidden=signed;if(upgrade){upgrade.hidden=hasPlan("supreme");upgrade.textContent=hasPlan("pro")?"Go Supreme":"Upgrade"}if(signout)signout.hidden=!signed;
-    const cardName=$("#sidebar-plan-name"),cardCopy=$("#sidebar-plan-copy"),cardAction=$("#sidebar-plan-action");if(cardName)cardName.textContent=name;if(cardCopy)cardCopy.textContent=hasPlan("supreme")?"All Betynz engines and advanced evidence unlocked.":hasPlan("pro")?"Olympian access active. Upgrade for Zeus and the Rebels.":"Unlock full boards, alerts and advanced engine evidence.";if(cardAction)cardAction.textContent=hasPlan("supreme")?"Manage Plan":"View Plans";
+    if(avatar)avatar.textContent=accountInitials();
+    if(profileName)profileName.textContent=signed?(account.name||"Betynz User"):"Guest";
+    if(profilePlan)profilePlan.textContent=name;
+    if(signin)signin.hidden=signed;
+    if(upgrade)upgrade.hidden=true;
+    if(signout)signout.hidden=!signed;
+    const cardName=$("#sidebar-plan-name"),cardCopy=$("#sidebar-plan-copy"),cardAction=$("#sidebar-plan-action");
+    if(cardName)cardName.textContent="Free Full Access";
+    if(cardCopy)cardCopy.textContent="All 18 engines, the seven-day board, Bankers, Rebels, explanations and alerts are free during launch.";
+    if(cardAction){cardAction.textContent=signed?"My Account":"Create Account";cardAction.dataset.view=signed?"profile":"profile"}
   }
-  function planFeatures(key){
-    const common={free:["3 daily public picks","Live scores and settled results","Basic match explanations","Public performance history"],pro:["Everything in Free","All Olympian engine picks","Complete seven-day Match Board","Full evidence and filters","Saved Picks and alerts","No advertising"],supreme:["Everything in Olympian Pro","Zeus consensus and Banker Board","Leonidas and Spartacus","Opening-to-current odds movement","Early changes and advanced history","Priority support"],day:["24 hours of Supreme access","No recurring charge","Zeus, Bankers and both Rebels","Full evidence and alerts"]};return common[key]||[];
+  function planFeatures(){
+    return ["All 16 Olympian engines","Zeus consensus and Banker Board","Leonidas and Spartacus","Complete seven-day Match Board","Opening-to-current odds evidence","Saved picks and alerts","Live scores and automatic settlement","No subscription or payment required"];
   }
   function renderPricing(){
-    const root=$("#pricing-grid");if(!root)return;const cfg=MONETIZATION.plans||{},keys=["free","pro","supreme","day"];
-    root.innerHTML=keys.map(key=>{const item=cfg[key]||{},current=planKey()===key,featured=key==="supreme",amount=key==="day"?item.oneTime:item[billingCycle],suffix=key==="day"?"24 hours":billingCycle==="annual"?"year":"month",cta=current?"Current Plan":key==="free"?(account.signedIn?"Free Account Active":"Create Free Account"):key==="day"?"Get Day Pass":`Choose ${item.name||planName(key)}`;return `<article class="plan-card ${featured?"featured":""} ${current?"current":""}">${featured?'<span class="best-value">FULL ACCESS</span>':""}<div class="plan-title"><span>${key==="supreme"?"⚡":key==="pro"?"♙":key==="day"?"◷":"◎"}</span><div><h3>${esc(item.name||planName(key))}</h3><p>${esc(item.description||"")}</p></div></div><div class="plan-price"><b>${amount?esc(formatMoney(amount)):"Free"}</b>${amount?`<span>/ ${suffix}</span>`:""}</div><ul>${planFeatures(key).map(x=>`<li>${esc(x)}</li>`).join("")}</ul><button type="button" class="${featured?"primary-btn":"secondary-btn"}" ${current?'disabled aria-disabled="true"':key==="free"?'data-auth-open="signup"':`data-checkout-plan="${key}" data-checkout-cycle="${billingCycle}"`}>${esc(cta)}</button>${key==="day"?'<small class="renewal-note">One-time access · does not auto-renew</small>':key!=="free"?`<small class="renewal-note">${billingCycle==="annual"?"Annual renewal":"Monthly renewal"} · cancel through account portal</small>`:""}</article>`}).join("");
-    $$('[data-billing-cycle]').forEach(b=>b.classList.toggle("active",b.dataset.billingCycle===billingCycle));
-    const features=[["Daily public picks","3","All","All","All"],["Seven-day Match Board","—","✓","✓","✓"],["Olympian engine pages","Limited","All","All","All"],["Zeus consensus","—","—","✓","✓"],["Banker Board","—","—","✓","✓"],["Leonidas & Spartacus","—","—","✓","✓"],["Full evidence","—","✓","✓","✓"],["Saved picks & alerts","—","✓","✓","✓"],["Recurring payment","—","Yes","Yes","No"]];
-    const table=$("#comparison-table");if(table)table.innerHTML=`<div class="comparison-row header"><b>Feature</b><b>Free</b><b>Pro</b><b>Supreme</b><b>Day Pass</b></div>${features.map(r=>`<div class="comparison-row">${r.map((x,i)=>i?`<span>${esc(x)}</span>`:`<b>${esc(x)}</b>`).join("")}</div>`).join("")}`;
+    const root=$("#pricing-grid");if(!root)return;
+    root.innerHTML=`<article class="plan-card featured current free-launch-card"><span class="best-value">FREE LAUNCH</span><div class="plan-title"><span>⚡</span><div><h3>Free Full Access</h3><p>Every Betynz board and engine is unlocked while the platform grows its community.</p></div></div><div class="plan-price"><b>Free</b><span>No card required</span></div><ul>${planFeatures().map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${account.signedIn?'<button type="button" class="primary-btn" data-view="profile">Manage Free Account</button>':'<button type="button" class="primary-btn" data-auth-open="signup">Create Free Account</button>'}<small class="renewal-note">Accounts are optional for viewing. Sign in to sync preferences and saved picks.</small></article>`;
+    $$("[data-billing-cycle]").forEach(b=>b.hidden=true);
+    const table=$("#comparison-table");if(table)table.innerHTML=`<div class="comparison-row header"><b>Launch feature</b><b>Access</b></div>${planFeatures().map(x=>`<div class="comparison-row"><b>${esc(x)}</b><span>Included</span></div>`).join("")}`;
   }
   function renderAccount(){
-    const root=$("#account-content");if(!root)return;const signed=!!account.signedIn;const pill=$("#account-plan-pill"),sub=$("#account-page-subtitle");if(pill)pill.textContent=planName();if(sub)sub.textContent=signed?"Manage your Betynz access and account controls.":"Create a free account to personalise your Betynz experience.";
-    root.innerHTML=signed?`<div class="account-hero"><div class="large-avatar">${esc(accountInitials())}</div><div><span>${esc(planName())}</span><h3>${esc(account.name||"Betynz User")}</h3><p>${esc(account.email)}${account.country?` · ${esc(account.country)}`:""}</p>${account.preview?'<small>Local preview account · secure backend not connected</small>':""}</div><div class="account-hero-actions"><button class="primary-btn compact" type="button" data-view="pricing">${hasPlan("supreme")?"Manage Plan":"Upgrade Plan"}</button><button class="secondary-btn compact" type="button" id="account-signout">Sign Out</button></div></div><div class="account-stats"><article><small>Current plan</small><b>${esc(planName())}</b></article><article><small>Saved picks</small><b>${slip.length}</b></article><article><small>Alerts</small><b>${hasPlan("pro")?"Available":"Locked"}</b></article><article><small>Account status</small><b>${isPaused()?"Paused":"Active"}</b></article></div>`:`<section class="guest-account-card"><span>⚡</span><div><small>FREE ACCOUNT</small><h3>Save your Betynz preferences</h3><p>Create a free adult account to keep settings and prepare for subscription access.</p><div><button class="primary-btn compact" type="button" data-auth-open="signup">Create Free Account</button><button class="secondary-btn compact" type="button" data-auth-open="signin">Sign In</button></div></div></section>`;
+    const root=$("#account-content");if(!root)return;const signed=!!account.signedIn;const pill=$("#account-plan-pill"),sub=$("#account-page-subtitle");
+    if(pill)pill.textContent="Free Full Access";
+    if(sub)sub.textContent=signed?"Manage your secure account and synced preferences.":"All boards are free. Create an account only to sync preferences and saved picks.";
+    root.innerHTML=signed?`<div class="account-hero"><div class="large-avatar">${esc(accountInitials())}</div><div><span>FREE FULL ACCESS</span><h3>${esc(account.name||"Betynz User")}</h3><p>${esc(account.email)}${account.country?` · ${esc(account.country)}`:""}</p>${account.preview?'<small>Local preview account · secure backend not connected</small>':account.emailVerified?'<small>Verified secure account</small>':'<small>Secure account</small>'}</div><div class="account-hero-actions"><button class="primary-btn compact" type="button" data-view="pricing">View Free Access</button><button class="secondary-btn compact" type="button" id="account-signout">Sign Out</button></div></div><div class="account-stats"><article><small>Current access</small><b>Free Full Access</b></article><article><small>Saved picks</small><b>${slip.length}</b></article><article><small>Alerts</small><b>Available</b></article><article><small>Account status</small><b>${isPaused()?"Paused":"Active"}</b></article></div>`:`<section class="guest-account-card"><span>⚡</span><div><small>FREE FULL ACCESS</small><h3>Everything is unlocked</h3><p>Browse all 18 engines, Bankers, Rebels and the seven-day board without payment. Create a free adult account to sync settings and saved picks across devices.</p><div><button class="primary-btn compact" type="button" data-auth-open="signup">Create Free Account</button><button class="secondary-btn compact" type="button" data-auth-open="signin">Sign In</button></div></div></section>`;
   }
-  function renderSavedPicks(){const root=$("#saved-picks-content");if(!root)return;if(!hasPlan("pro")){root.innerHTML=lockedTeaser("pro","Saved Picks","Olympian Pro lets you keep a personal list of qualified matches on this device.");return}root.innerHTML=slip.length?`<div class="saved-list">${slip.map(x=>`<article><div><small>${esc(friendlyDate(x.date))}</small><h3>${esc(x.home)} vs ${esc(x.away)}</h3><p>${esc(marketClean(x.market))}${x.odds?` · ${Number(x.odds).toFixed(2)}`:""} · ${esc(x.engine)}</p></div><button type="button" data-remove-slip="${esc(x.key)}" aria-label="Remove saved pick">×</button></article>`).join("")}</div><div class="saved-actions"><button class="primary-btn compact" id="saved-copy" type="button">Copy Saved List</button><button class="secondary-btn compact" id="saved-clear" type="button">Clear Saved Picks</button></div>`:empty("No saved picks yet. Tap + beside a qualified match.")}
-  function renderNotifications(){const locked=!hasPlan("pro");["notify-new-picks","notify-pick-changes","notify-scores","notify-rebels","notify-leagues","save-notifications","enable-browser-notifications"].forEach(id=>{const el=$("#"+id);if(el)el.disabled=locked});if($("#notify-new-picks"))$("#notify-new-picks").checked=!!notificationPrefs.newPicks;if($("#notify-pick-changes"))$("#notify-pick-changes").checked=!!notificationPrefs.pickChanges;if($("#notify-scores"))$("#notify-scores").checked=!!notificationPrefs.scores;if($("#notify-rebels"))$("#notify-rebels").checked=!!notificationPrefs.rebels;if($("#notify-leagues"))$("#notify-leagues").value=notificationPrefs.leagues||"";const pill=$("#notification-plan-pill");if(pill)pill.textContent=locked?"Olympian Pro required":planName()}
-  function saveNotifications(){if(!hasPlan("pro")){openPaywall("pro","Notifications");return}notificationPrefs={newPicks:$("#notify-new-picks").checked,pickChanges:$("#notify-pick-changes").checked,scores:$("#notify-scores").checked,rebels:$("#notify-rebels").checked,leagues:$("#notify-leagues").value.trim()};saveJSON("betynz-notifications",notificationPrefs);toast("Notification preferences saved.")}
-  async function enableBrowserNotifications(){if(!hasPlan("pro")){openPaywall("pro","Notifications");return}if(!("Notification" in window)){toast("Browser notifications are not supported here.");return}const result=await Notification.requestPermission();toast(result==="granted"?"Device notification permission enabled.":"Notification permission was not enabled.")}
-  function renderBilling(){const root=$("#billing-content");if(!root)return;if(!account.signedIn){root.innerHTML=lockedTeaser("free","Payment History","Sign in to view receipts and subscription changes.");return}root.innerHTML=paymentHistory.length?`<div class="billing-table"><div class="billing-row header"><span>Date</span><span>Plan</span><span>Amount</span><span>Status</span></div>${paymentHistory.map(x=>`<div class="billing-row"><span>${esc(new Date(x.date).toLocaleDateString())}</span><b>${esc(x.plan)}</b><span>${esc(formatMoney(x.amount))}</span><span class="billing-status">${esc(x.status)}</span></div>`).join("")}</div>`:`<div class="billing-empty"><span>▤</span><h3>No payment history</h3><p>Receipts will appear after a hosted checkout provider and account backend are connected.</p><button class="primary-btn compact" type="button" data-view="pricing">View Plans</button></div>`}
+  function renderSavedPicks(){const root=$("#saved-picks-content");if(!root)return;root.innerHTML=slip.length?`<div class="saved-list">${slip.map(x=>`<article><div><small>${esc(friendlyDate(x.date))}</small><h3>${esc(x.home)} vs ${esc(x.away)}</h3><p>${esc(marketClean(x.market))}${x.odds?` · ${Number(x.odds).toFixed(2)}`:""} · ${esc(x.engine)}</p></div><button type="button" data-remove-slip="${esc(x.key)}" aria-label="Remove saved pick">×</button></article>`).join("")}</div><div class="saved-actions"><button class="primary-btn compact" id="saved-copy" type="button">Copy Saved List</button><button class="secondary-btn compact" id="saved-clear" type="button">Clear Saved Picks</button></div>`:empty("No saved picks yet. Tap + beside a qualified match.")}
+  function renderNotifications(){const locked=false;["notify-new-picks","notify-pick-changes","notify-scores","notify-rebels","notify-leagues","save-notifications","enable-browser-notifications"].forEach(id=>{const el=$("#"+id);if(el)el.disabled=locked});if($("#notify-new-picks"))$("#notify-new-picks").checked=!!notificationPrefs.newPicks;if($("#notify-pick-changes"))$("#notify-pick-changes").checked=!!notificationPrefs.pickChanges;if($("#notify-scores"))$("#notify-scores").checked=!!notificationPrefs.scores;if($("#notify-rebels"))$("#notify-rebels").checked=!!notificationPrefs.rebels;if($("#notify-leagues"))$("#notify-leagues").value=notificationPrefs.leagues||"";const pill=$("#notification-plan-pill");if(pill)pill.textContent="Free Full Access"}
+  async function saveNotifications(){notificationPrefs={newPicks:$("#notify-new-picks").checked,pickChanges:$("#notify-pick-changes").checked,scores:$("#notify-scores").checked,rebels:$("#notify-rebels").checked,leagues:$("#notify-leagues").value.trim()};saveJSON("betynz-notifications",notificationPrefs);try{if(usingSecureBackend()&&account.signedIn)await BACKEND.saveNotifications(notificationPrefs);toast(account.signedIn?"Notification preferences saved securely.":"Notification preferences saved on this device.")}catch(err){toast(err&&err.message?err.message:"Notification preferences could not be saved.")}}
+  async function enableBrowserNotifications(){if(!("Notification" in window)){toast("Browser notifications are not supported here.");return}const result=await Notification.requestPermission();toast(result==="granted"?"Device notification permission enabled.":"Notification permission was not enabled.")}
+  function renderBilling(){const root=$("#billing-content");if(!root)return;root.innerHTML=`<div class="billing-empty"><span>◎</span><h3>Subscriptions are not active</h3><p>Betynz is in a free-access launch phase. No payment method, checkout or recurring charge is required.</p><button class="primary-btn compact" type="button" data-view="pricing">View Free Access</button></div>`}
   function renderResponsible(){const sel=$("#responsible-reminder");if(sel)sel.value=loadJSON("betynz-responsible",{reminder:"60"}).reminder||"60";const btn=$("#pause-account");if(btn)btn.textContent=isPaused()?`Paused until ${new Date(account.pausedUntil).toLocaleDateString()}`:"Pause prediction access for 7 days"}
   function renderAccountExperience(){renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();renderEngineTabs();renderDashboardList();renderEngines();renderSlip()}
 
@@ -695,6 +817,10 @@
       const dynamicView=e.target.closest("[data-view]");if(dynamicView&&!dynamicView.dataset.navBound){e.preventDefault();e.stopPropagation();closeSelectionDrawer();closeAccountModal();showView(dynamicView.dataset.view);return}
       const remove=e.target.closest("[data-remove-slip]");if(remove){e.preventDefault();e.stopPropagation();removeSlip(remove.dataset.removeSlip);return}
       const auth=e.target.closest("[data-auth-open]");if(auth){e.preventDefault();e.stopPropagation();openAuth(auth.dataset.authOpen||"signup");return}
+      const google=e.target.closest("[data-google-auth]");if(google){e.preventDefault();e.stopPropagation();handleGoogleAuth();return}
+      const reset=e.target.closest("[data-reset-password]");if(reset){e.preventDefault();e.stopPropagation();handlePasswordReset();return}
+      const cancel=e.target.closest("[data-cancel-subscription]");if(cancel){e.preventDefault();e.stopPropagation();openCancelSubscription();return}
+      const confirmCancel=e.target.closest("[data-confirm-cancel-subscription]");if(confirmCancel){e.preventDefault();e.stopPropagation();confirmCancelSubscription();return}
       const upgrade=e.target.closest("[data-upgrade-required]");if(upgrade){e.preventDefault();e.stopPropagation();openPaywall(upgrade.dataset.upgradeRequired,upgrade.dataset.upgradeFeature||"this feature");return}
       const checkout=e.target.closest("[data-checkout-plan]");if(checkout){e.preventDefault();e.stopPropagation();openCheckout(checkout.dataset.checkoutPlan,checkout.dataset.checkoutCycle||billingCycle);return}
       const preview=e.target.closest("[data-activate-preview-plan]");if(preview){e.preventDefault();e.stopPropagation();activatePreviewPlan(preview.dataset.activatePreviewPlan,preview.dataset.activatePreviewCycle||billingCycle);return}
@@ -733,7 +859,7 @@
     if($("#engine-modal-backdrop"))$("#engine-modal-backdrop").onclick=closeEngine;
     if($("#account-modal-close"))$("#account-modal-close").onclick=closeAccountModal;
     if($("#account-modal-backdrop"))$("#account-modal-backdrop").onclick=closeAccountModal;
-    document.addEventListener("submit",e=>{if(e.target.id==="signup-form"){e.preventDefault();handleSignup(e.target)}if(e.target.id==="signin-form"){e.preventDefault();handleSignin(e.target)}});
+    document.addEventListener("submit",e=>{if(e.target.id==="signup-form"){e.preventDefault();handleSignup(e.target)}if(e.target.id==="signin-form"){e.preventDefault();handleSignin(e.target)}if(e.target.id==="complete-profile-form"){e.preventDefault();handleCompleteProfile(e.target)}if(e.target.id==="new-password-form"){e.preventDefault();handleNewPassword(e.target)}});
     document.addEventListener("keydown",e=>{
       if(e.key==="Escape"){closeEngine();closeAccountModal();closeSelectionDrawer();closeSidebar();return}
       if((e.key==="Enter"||e.key===" ")&&e.target.closest&&e.target.closest("[data-pick-detail-row]")&&!e.target.closest("button,a,input,select,textarea,label")){
@@ -746,9 +872,9 @@
     if($("#enable-browser-notifications"))$("#enable-browser-notifications").onclick=enableBrowserNotifications;
     if($("#sidebar-signout"))$("#sidebar-signout").onclick=signOut;
     if($("#support-contact-btn"))$("#support-contact-btn").onclick=()=>{const email=MONETIZATION.supportEmail||"";if(email)location.href=`mailto:${email}`;else toast("Connect a support email before launch.")};
-    if($("#pause-account"))$("#pause-account").onclick=()=>{if(isPaused()){toast("Prediction access is already paused.");return}account.pausedUntil=new Date(Date.now()+7*24*60*60*1000).toISOString();saveAccount();renderResponsible();toast("Prediction access paused for 7 days.")};
+    if($("#pause-account"))$("#pause-account").onclick=async()=>{if(isPaused()){toast("Prediction access is already paused.");return}try{account.pausedUntil=usingSecureBackend()&&account.signedIn?await BACKEND.pauseAccess(7):new Date(Date.now()+7*24*60*60*1000).toISOString();saveAccount();renderResponsible();toast("Prediction access paused for 7 days.")}catch(err){toast(err&&err.message?err.message:"Account pause failed.")}};
     if($("#responsible-reminder"))$("#responsible-reminder").onchange=e=>{saveJSON("betynz-responsible",{reminder:e.target.value});toast("Viewing reminder saved.")};
-    document.addEventListener("click",e=>{if(e.target.id==="account-signout")signOut();if(e.target.id==="saved-copy")copySlip();if(e.target.id==="saved-clear"){slip=[];persistSlip();renderSlip();renderSavedPicks();renderAllPickLists();toast("Saved picks cleared.")}if(e.target.id==="unconfigured-checkout")toast("Connect a hosted checkout URL in monetization-config.js.")});
+    document.addEventListener("click",e=>{if(e.target.id==="account-signout")signOut();if(e.target.id==="saved-copy")copySlip();if(e.target.id==="saved-clear"){slip=[];persistSlip();renderSlip();renderSavedPicks();renderAllPickLists();toast("Saved picks cleared.")}if(e.target.id==="unconfigured-checkout")toast("Subscriptions are disabled during the free launch phase.")});
     window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
   }
 
@@ -764,7 +890,7 @@
     $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
     $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();updatePageArt();showView(activeView);
+    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();updatePageArt();showView(activeView);initializeSecureBackend();
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

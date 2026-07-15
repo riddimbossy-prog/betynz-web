@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#08090c">
   <meta name="description" content="Betynz.com — smart football predictions powered by disciplined data engines.">
   <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
   <title>Betynz.com — Smart Betting Predictions</title>
   <link rel="canonical" href="https://betynz.com/">
   <link rel="manifest" href="manifest.webmanifest">
@@ -14,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4.8">
+  <link rel="stylesheet" href="styles.css?v=5.1">
 </head>
 <body>
   <div class="app-shell">
@@ -32,10 +34,9 @@
         <button type="button" class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
         <div class="nav-divider"><span>ACCOUNT</span></div>
         <button type="button" class="nav-item" data-view="profile"><span>○</span><b>My Account</b></button>
-        <button type="button" class="nav-item" data-view="pricing"><span>♛</span><b>Plans & Pricing</b></button>
+        <button type="button" class="nav-item" data-view="pricing"><span>◎</span><b>Free Access</b></button>
         <button type="button" class="nav-item" data-view="saved"><span>☆</span><b>Saved Picks</b></button>
         <button type="button" class="nav-item" data-view="notifications"><span>◌</span><b>Notifications</b></button>
-        <button type="button" class="nav-item" data-view="billing"><span>▤</span><b>Payment History</b></button>
         <button type="button" class="nav-item" data-view="responsible"><span>◈</span><b>Responsible Play</b></button>
         <button type="button" class="nav-item" data-view="support"><span>?</span><b>Help & Support</b></button>
         <button type="button" class="nav-item signout-nav" id="sidebar-signout" hidden><span>↪</span><b>Sign Out</b></button>
@@ -43,8 +44,8 @@
 
       <section class="premium-card product-card" id="sidebar-plan-card">
         <span class="crown">♛</span>
-        <div><strong id="sidebar-plan-name">Free Access</strong><small id="sidebar-plan-copy">Unlock full boards, alerts and advanced engine evidence.</small></div>
-        <button type="button" data-view="pricing" id="sidebar-plan-action">View Plans</button>
+        <div><strong id="sidebar-plan-name">Free Access</strong><small id="sidebar-plan-copy">All 18 engines and advanced evidence are free during launch.</small></div>
+        <button type="button" data-view="pricing" id="sidebar-plan-action">Create Account</button>
       </section>
 
       <div class="server-state"><i></i><span><b>System Status</b><small id="system-status">Checking data…</small></span></div>
@@ -57,7 +58,7 @@
         <div class="top-actions">
           <button class="install-app-btn" id="install-app-btn" type="button" hidden>Install App</button>
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
-          <button class="top-upgrade-btn" id="top-upgrade-btn" type="button" data-view="pricing">Upgrade</button>
+          <button class="top-upgrade-btn" id="top-upgrade-btn" type="button" data-view="pricing" hidden>Free Access</button>
           <button class="top-signin-btn" id="top-signin-btn" type="button" data-auth-open="signin">Sign In</button>
           <button class="profile-chip" id="profile-chip" data-view="profile"><span class="avatar" id="profile-avatar">BZ</span><span><b id="profile-name">Guest</b><small id="profile-plan">Free preview</small></span><em>⌄</em></button>
         </div>
@@ -184,11 +185,11 @@
         </section>
 
         <section class="view" data-view-panel="pricing">
-          <div class="page-head pricing-head"><div><span>BETYNZ ACCESS</span><h2>Choose the access that fits you</h2><p>Start free, then upgrade only when the advanced tools are useful to you.</p></div><span class="risk-note">18+ · Analytics access, never guaranteed outcomes</span></div>
-          <div class="billing-toggle" role="group" aria-label="Billing period"><button type="button" class="active" data-billing-cycle="monthly">Monthly</button><button type="button" data-billing-cycle="annual">Annual <span>Save about 20%</span></button></div>
+          <div class="page-head pricing-head"><div><span>BETYNZ FREE LAUNCH</span><h2>Every engine is unlocked</h2><p>No subscription, checkout or payment method is required during the launch phase.</p></div><span class="risk-note">18+ · Informational analysis · No guaranteed outcomes</span></div>
+          <div class="billing-toggle" role="group" aria-label="Access status" hidden><button type="button" class="active" data-billing-cycle="monthly">Free</button></div>
           <div class="pricing-grid" id="pricing-grid"></div>
           <section class="page-panel plan-comparison"><div class="panel-title"><h3>Plan comparison</h3><span>Transparent feature access</span></div><div class="comparison-table" id="comparison-table"></div></section>
-          <section class="checkout-note"><b>Secure integration boundary</b><p>Betynz does not collect card details in the browser. Checkout buttons are ready to connect to a hosted payment page from Stripe, Paystack or another approved provider.</p></section>
+          <section class="checkout-note"><b>Free launch policy</b><p>Monetization is intentionally disabled. Account creation is optional for viewing and is used only to sync preferences, saved picks and notifications.</p></section>
         </section>
 
         <section class="view" data-view-panel="saved">
@@ -197,7 +198,7 @@
         </section>
 
         <section class="view" data-view-panel="notifications">
-          <div class="page-head"><div><span>PERSONAL ALERTS</span><h2>Notifications</h2><p>Choose which Betynz updates should reach this device.</p></div><span class="plan-pill" id="notification-plan-pill">Pro feature</span></div>
+          <div class="page-head"><div><span>PERSONAL ALERTS</span><h2>Notifications</h2><p>Choose which Betynz updates should reach this device.</p></div><span class="plan-pill" id="notification-plan-pill">Free Full Access</span></div>
           <div class="notification-layout">
             <section class="settings-card notification-card">
               <h3>Alert preferences</h3>
@@ -211,10 +212,6 @@
             <aside class="account-info-card"><span>◌</span><h3>How alerts work</h3><p>Browser permission is requested only after you choose Enable on Device. Server-side push delivery still requires a secure notification backend.</p></aside>
           </div>
         </section>
-
-        <section class="view" data-view-panel="billing">
-          <div class="page-head"><div><span>ACCOUNT BILLING</span><h2>Payment History</h2><p>Receipts and subscription changes will appear here after checkout is connected.</p></div><button class="primary-btn compact" type="button" data-view="pricing">Manage Plan</button></div>
-          <section class="page-panel"><div id="billing-content"></div></section>
         </section>
 
         <section class="view" data-view-panel="responsible">
@@ -232,7 +229,7 @@
           <div class="page-head"><div><span>BETYNZ SUPPORT</span><h2>Help & Support</h2><p>Answers for accounts, plans, predictions, installation and data updates.</p></div></div>
           <div class="support-grid">
             <article class="support-card"><span>◎</span><h3>Account help</h3><p>Signup, email verification, age checks and account deletion.</p><button type="button" data-auth-open="signin">Open account access</button></article>
-            <article class="support-card"><span>♛</span><h3>Plans and billing</h3><p>Compare plans, review renewals and manage cancellation.</p><button type="button" data-view="pricing">View plans</button></article>
+            <article class="support-card"><span>◎</span><h3>Free access</h3><p>All engines and boards are currently unlocked. No payment is required.</p><button type="button" data-view="pricing">View access</button></article>
             <article class="support-card"><span>⚡</span><h3>Prediction method</h3><p>Understand grades, engine consensus and settlement.</p><button type="button" data-view="methodology">Read methodology</button></article>
             <article class="support-card"><span>⇩</span><h3>Install the app</h3><p>Add the Betynz PWA to your phone, Fold or tablet.</p><button type="button" data-install-app>Install Betynz</button></article>
           </div>
@@ -244,7 +241,7 @@
           <div id="account-content"></div>
           <div class="profile-layout account-settings-wrap">
             <section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my selection list</span><input type="checkbox" id="remember-slip" checked></label><div class="settings-actions"><button type="button" class="primary-btn compact" id="save-prefs">Save Preferences</button><button type="button" class="secondary-btn compact install-settings-btn" data-install-app>Install Betynz App</button></div></section>
-            <section class="account-info-card"><span>🔒</span><h3>Account security</h3><p>The current package includes the complete account interface and access-control layer. Real sign-in, verification and payment records require a secure backend before launch.</p><button type="button" class="text-btn" data-view="support">Setup guidance</button></section>
+            <section class="account-info-card"><span>🔒</span><h3>Account security</h3><p>Email/password and Google authentication, database row-level security and secure cloud syncing are supported. Private service keys remain in Supabase only.</p><button type="button" class="text-btn" data-view="support">Backend guidance</button></section>
           </div>
         </section>
       </main>
@@ -268,10 +265,13 @@
   <section class="account-modal" id="account-modal" role="dialog" aria-modal="true" aria-labelledby="account-modal-title" aria-hidden="true"><button type="button" class="modal-close" id="account-modal-close">×</button><div id="account-modal-content"></div></section>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="monetization-config.js?v=4.8"></script>
-  <script src="rebel-engine-core.js?v=4.8"></script>
-  <script src="olympian-engine-core.js?v=4.8"></script>
-  <script src="data.js?v=4.8"></script>
-  <script src="app.js?v=4.8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="backend-config.js?v=5.1"></script>
+  <script src="backend-client.js?v=5.1"></script>
+  <script src="monetization-config.js?v=5.1"></script>
+  <script src="rebel-engine-core.js?v=5.1"></script>
+  <script src="olympian-engine-core.js?v=5.1"></script>
+  <script src="data.js?v=5.1"></script>
+  <script src="app.js?v=5.1"></script>
 </body>
 </html>

@@ -1,12 +1,14 @@
-const CACHE='betynz-v4.8-account-monetization';
+const CACHE='betynz-v5.1-free-launch-access';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=4.8',
-  '/app.js?v=4.8',
-  '/monetization-config.js?v=4.8',
-  '/rebel-engine-core.js?v=4.8',
-  '/olympian-engine-core.js?v=4.8',
+  '/styles.css?v=5.1',
+  '/app.js?v=5.1',
+  '/backend-config.js?v=5.1',
+  '/backend-client.js?v=5.1',
+  '/monetization-config.js?v=5.1',
+  '/rebel-engine-core.js?v=5.1',
+  '/olympian-engine-core.js?v=5.1',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',

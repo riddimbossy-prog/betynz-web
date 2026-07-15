@@ -1404,3 +1404,22 @@ body.sidebar-open{overflow:hidden;touch-action:none}
   .guest-account-card>div>div,.account-hero-actions,.saved-actions{grid-template-columns:1fr}
   .auth-modal-head h2,.paywall-modal h2,.checkout-modal h2{font-size:21px}
 }
+
+/* v5.0 secure password, Google OAuth and subscription controls */
+.google-auth-btn{
+  width:100%;min-height:44px;border:1px solid #d7dce2;border-radius:10px;background:#fff;color:#181b20;
+  display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;font:800 12px/1 "Manrope",system-ui,sans-serif;cursor:pointer;
+}
+.google-auth-btn:hover{background:#f4f6f8;border-color:#fff}
+.google-auth-btn:focus-visible,.text-auth-btn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.google-g{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#4285f4;border:1px solid #d7dce2;font-weight:950;font-family:Arial,sans-serif}
+.auth-divider{display:flex;align-items:center;gap:10px;margin:13px 0;color:#7f8894;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+.auth-divider::before,.auth-divider::after{content:"";height:1px;background:var(--line);flex:1}
+.auth-divider span{padding:0 4px}
+.text-auth-btn{border:0;background:transparent;color:var(--orange2);font:800 11px/1.2 "Manrope",system-ui,sans-serif;cursor:pointer;padding:6px 0 0;text-align:center}
+.password-hint{margin:-5px 0 0;color:#818b96;font-size:10px;line-height:1.5}
+.account-hero-actions{flex-wrap:wrap}
+@media(max-width:760px){
+  .google-auth-btn{min-height:46px;font-size:13px}
+  .auth-divider{margin:12px 0}
+}

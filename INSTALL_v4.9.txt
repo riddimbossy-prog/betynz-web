@@ -1,0 +1,12 @@
+BETYNZ v4.9 — SECURE BACKEND INSTALL
+
+1. Replace the contents of your local betynz-web folder with this package, keeping the hidden .git folder.
+2. Commit and push the frontend update.
+3. Create a Supabase project.
+4. Run supabase/migrations/202607150001_secure_accounts.sql in the Supabase SQL editor.
+5. Add your public Supabase URL and anon key to backend-config.js and change enabled to true.
+6. Deploy the included Edge Functions.
+7. Add payment checkout/portal URLs as Supabase function secrets, not GitHub Pages files.
+8. Commit: Connect Betynz secure account backend
+
+Never add SUPABASE_SERVICE_ROLE_KEY or payment/webhook secrets to this repository.

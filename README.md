@@ -110,3 +110,7 @@ Run `npm run test:rebels` to verify the uploaded v1.1 rule examples.
 - `monetization-config.js` contains public plan settings and hosted-checkout URLs only. Never place private payment or webhook keys there.
 
 See `MONETIZATION_SETUP.md` before connecting a production authentication or payment provider.
+
+## v4.9 secure backend
+
+The account interface can now use Supabase passwordless authentication, Postgres Row Level Security, server-derived plan entitlements, cloud preferences, saved picks, receipts and account-pause controls. Follow `SECURE_BACKEND_SETUP.md` before enabling production access.
