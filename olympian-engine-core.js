@@ -5,11 +5,12 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="4.3.0";
+  const VERSION="4.7.0";
   const REBEL_API=(typeof require==="function"?(()=>{try{return require("./rebel-engine-core.js")}catch(_){return {}}})():typeof globalThis!=="undefined"?globalThis:{});
   const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
   const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,Number(v)||0));
   const n=(v,f=null)=>{const x=Number(v);return Number.isFinite(x)?x:f};
+  const marketPrice=v=>{if(v===null||v===undefined||v==="")return null;const x=Number(v);return Number.isFinite(x)&&x>1?x:null};
   const avg=a=>{const x=a.filter(Number.isFinite);return x.length?x.reduce((s,v)=>s+v,0)/x.length:null};
   const round=(v,d=1)=>Number.isFinite(v)?Number(v.toFixed(d)):null;
   const pct=v=>Math.round(clamp(v));
@@ -23,7 +24,7 @@
     "BTTS Yes":"bttsYes","BTTS No":"bttsNo",
     "Home Team Over 0.5 Goals":"homeOver05","Away Team Over 0.5 Goals":"awayOver05",
     "Home Team Over 1.5 Goals":"homeOver15","Away Team Over 1.5 Goals":"awayOver15",
-    "First Half Over 0.5":"fhOver05","First Half Under 1.5":"fhUnder15",
+    "First Half Over 0.5":"fhOver05","First Half Over 1.5":"fhOver15","First Half Under 1.5":"fhUnder15",
     "Second Half Over 0.5":"shOver05","Second Half Over 1.5":"shOver15"
   };
 
@@ -51,6 +52,15 @@
   function leagueGPG(m){return n(val(m,"leagueAvg.goalsPerGame"),n(val(m,"leagueTrends.gpg"),null))}
   function odds(m,market){const k=MARKET_ODDS[market],x=k&&m.odds?n(m.odds[k],null):null;return x&&x>1?x:null}
   function implied(o){return o&&o>1?1/o:null}
+  function balancedOneXTwo(m){
+    const o=m&&m.odds||{},home=marketPrice(o.home),away=marketPrice(o.away);
+    if(home==null||away==null||home<=1||away<=1)return{pass:false,home,away,gap:null,favorite:null};
+    const gap=Math.abs(home-away),favorite=Math.min(home,away);
+    // Reuse the established Betynz balance detector: either the two win prices
+    // are almost level, or neither side is priced as a clear favourite.
+    const pass=gap<0.12||favorite>2.25;
+    return{pass,home,away,gap:round(gap,2),favorite};
+  }
   function positionalEdge(m){
     const h=n(m.homePos,null),a=n(m.awayPos,null),size=n(m.tableSize,20);
     return h&&a?clamp((a-h)/Math.max(8,size)*3,-1.2,1.2):0;
@@ -100,6 +110,40 @@
   }
   function no(engine,reason,dq,warnings=[]){return {bet:false,engine,version:VERSION,primary:"No Bet",confidence:0,reasons:[reason],warnings,dataQuality:dq}}
   function qualityGate(m,engine,min=54){const q=dataQuality(m);return q.score<min?no(engine,`Data quality ${q.score}/100 is below this engine's ${min}-point gate.`,q.score,q.missing):null}
+
+  function universalGGRule(m,predictions={}){
+    const homePPG=overallPPG(m,"home"),awayPPG=overallPPG(m,"away"),league=leagueGPG(m),o=m&&m.odds||{};
+    const under35=marketPrice(o.under35),draw=marketPrice(o.draw),fhOver15=marketPrice(o.fhOver15),gg=marketPrice(o.bttsYes),balance=balancedOneXTwo(m);
+    const checks={
+      homePPG:homePPG!=null&&homePPG>1.50,
+      awayPPG:awayPPG!=null&&awayPPG>1.50,
+      highScoringLeague:league!=null&&league>=2.80,
+      under35Price:under35!=null&&under35>1.60,
+      drawPrice:draw!=null&&draw>3.70,
+      balancedOdds:balance.pass,
+      firstHalfOver15:fhOver15!=null&&fhOver15<2.00,
+      ggPrice:gg!=null&&gg<=1.70
+    };
+    const pass=Object.values(checks).every(Boolean);
+    const supporters=Object.entries(predictions||{}).filter(([id,x])=>id!=="zeus"&&x&&x.bet&&standardMarket(x.primary)==="BTTS Yes").map(([id])=>id);
+    const evidence={homePPG,awayPPG,leagueGPG:league,under35,draw,homeOdds:balance.home,awayOdds:balance.away,oddsGap:balance.gap,fhOver15,gg};
+    if(!pass)return{pass:false,checks,evidence,supporters};
+    const q=dataQuality(m);
+    let confidence=86;
+    if(homePPG>=1.75&&awayPPG>=1.75)confidence+=1;
+    if(league>=3.00)confidence+=1;
+    if(gg<=1.60)confidence+=1;
+    confidence+=Math.min(2,supporters.length);
+    confidence=clamp(confidence,84,91);
+    const grade=confidence>=88&&q.score>=72?"A1":"A2";
+    const reasons=[
+      `Both teams exceed 1.50 PPG (${round(homePPG,2)} and ${round(awayPPG,2)}).`,
+      `The league is high-scoring at ${round(league,2)} goals per match and the 1X2 prices are balanced (${balance.home.toFixed(2)} / ${balance.away.toFixed(2)}).`,
+      `GG gates passed: U3.5 ${under35.toFixed(2)} > 1.60, Draw ${draw.toFixed(2)} > 3.70, 1H O1.5 ${fhOver15.toFixed(2)} < 2.00, GG ${gg.toFixed(2)} <= 1.70.`
+    ];
+    const output=mk("Zeus","BTTS Yes",confidence,reasons,[],{dataQuality:q.score,grade,engineIds:supporters,universalRule:"GG_HIGH_SCORING_BALANCED_V1",universalRuleEvidence:evidence});
+    return{pass:true,checks,evidence,supporters,output,decision:{market:"BTTS Yes",confidence:output.confidence,grade,engineIds:supporters,reasons,warnings:[],dataQuality:q.score,odds:gg,universalRule:"GG_HIGH_SCORING_BALANCED_V1",universalRuleEvidence:evidence}};
+  }
 
   function saferResult(m,b,engine,strict=0){
     const side=b.edge>=0?"home":"away",e=Math.abs(b.edge),att=side==="home"?b.ha:b.aa,oppAtt=side==="home"?b.aa:b.ha,oppDef=side==="home"?b.ad:b.hd;
@@ -333,11 +377,16 @@
   function evaluateMatch(m){
     const predictions={};for(const [id,fn] of Object.entries(SPECIALISTS))predictions[id]=fn(m);
     const zeus=zeusRecommend(m);predictions.zeus=zeus;
+    const gg=universalGGRule(m,predictions);
+    if(gg.pass){
+      predictions.zeus=gg.output;
+      return{predictions,decision:gg.decision,rejection:null};
+    }
     return {predictions,decision:zeus.bet?{market:zeus.primary,confidence:zeus.confidence,grade:zeus.grade||"WATCH",engineIds:zeus.engineIds||[],reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,odds:odds(m,zeus.primary)}:null,rejection:zeus.bet?null:{reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality}};
   }
   function evaluateAll(matches){return (matches||[]).map(m=>({match:m,...evaluateMatch(m)}));}
 
-  return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,zeusRecommend,
+  return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,universalGGRule,balancedOneXTwo,zeusRecommend,
     prometheusRecommend,athenaRecommend,apolloRecommend,aresRecommend,poseidonRecommend,hermesRecommend,
     heraRecommend,artemisRecommend,hephaestusRecommend,demeterRecommend,dionysusRecommend,hadesRecommend,
     atlasRecommend,orionRecommend,nikeRecommend,spartacusRecommend,leonidasRecommend,settleMarket:function(market,h,a){

@@ -1,11 +1,11 @@
-const CACHE='betynz-v4.6-rebel-final-market-gates';
+const CACHE='betynz-v4.7-universal-gg-rule';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=4.6',
-  '/app.js?v=4.6',
-  '/rebel-engine-core.js?v=4.6',
-  '/olympian-engine-core.js?v=4.6',
+  '/styles.css?v=4.7',
+  '/app.js?v=4.7',
+  '/rebel-engine-core.js?v=4.7',
+  '/olympian-engine-core.js?v=4.7',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',
