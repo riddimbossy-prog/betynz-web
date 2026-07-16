@@ -3,19 +3,19 @@
   "version": "4.7.0",
   "engineVersion": "4.7.0",
   "source": "API-Football + TheStatsAPI",
-  "generatedAt": "2026-07-15T20:46:20.419Z",
+  "generatedAt": "2026-07-16T00:10:37.574Z",
   "dataUpdated": "2026-07-15T20:25:45.400Z",
   "isDemo": false,
   "isReady": true,
   "fixtureCount": 1802,
   "qualifiedCount": 50,
   "lockedCount": 10,
-  "historyCount": 1,
+  "historyCount": 4,
   "record": {
-    "wins": 0,
-    "losses": 1,
-    "voids": 0,
-    "hitRate": 0
+    "wins": 1,
+    "losses": 2,
+    "voids": 1,
+    "hitRate": 33
   },
   "engineCounts": {
     "prometheus": 565,
