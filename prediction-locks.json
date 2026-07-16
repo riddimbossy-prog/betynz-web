@@ -1,4 +1,93 @@
 {
+  "1490325": {
+    "fixtureId": "1490325",
+    "home": "CF Montreal",
+    "away": "Toronto FC",
+    "league": "Major League Soccer",
+    "kickoff": "2026-07-16T23:30:00.000Z",
+    "publishedAt": "2026-07-16T12:07:12.126Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hera",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "6 specialist engines agree on Home Win.",
+        "Weighted support 7.64 leads the next market by 6.6.",
+        "Data quality: 82/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 82,
+      "odds": 2
+    }
+  },
+  "1492291": {
+    "fixtureId": "1492291",
+    "home": "Botafogo",
+    "away": "Santos",
+    "league": "Serie A",
+    "kickoff": "2026-07-16T22:30:00.000Z",
+    "publishedAt": "2026-07-16T12:07:12.126Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "5 specialist engines agree on Home Win.",
+        "Weighted support 7.36 leads the next market by 6.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.11
+    }
+  },
+  "1492299": {
+    "fixtureId": "1492299",
+    "home": "Vitoria",
+    "away": "Vasco DA Gama",
+    "league": "Serie A",
+    "kickoff": "2026-07-16T22:30:00.000Z",
+    "publishedAt": "2026-07-16T12:07:12.126Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hera",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "6 specialist engines agree on Home Win.",
+        "Weighted support 9.45 leads the next market by 8.45.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.4
+    }
+  },
   "1493573": {
     "fixtureId": "1493573",
     "home": "Lexington",
