@@ -208,6 +208,33 @@
       "odds": 1.8
     }
   },
+  "1526572": {
+    "fixtureId": "1526572",
+    "home": "Cumbayá",
+    "away": "9 de Octubre",
+    "league": "Liga Pro Serie B",
+    "kickoff": "2026-07-16T16:00:00.000Z",
+    "publishedAt": "2026-07-16T06:30:12.365Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "demeter",
+        "nike"
+      ],
+      "reasons": [
+        "3 specialist engines agree on Away DNB.",
+        "Weighted support 4.34 leads the next market by 2.46.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null
+    }
+  },
   "1526576": {
     "fixtureId": "1526576",
     "home": "Cuniburo",
