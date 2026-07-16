@@ -1,14 +1,15 @@
-const CACHE='betynz-v5.1-free-launch-access';
+const CACHE='betynz-v5.4-ppg-direction-gate';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=5.1',
-  '/app.js?v=5.1',
-  '/backend-config.js?v=5.1',
-  '/backend-client.js?v=5.1',
-  '/monetization-config.js?v=5.1',
-  '/rebel-engine-core.js?v=5.1',
-  '/olympian-engine-core.js?v=5.1',
+  '/styles.css?v=5.4',
+  '/app.js?v=5.4',
+  '/community-features.js?v=5.4',
+  '/backend-config.js?v=5.4',
+  '/backend-client.js?v=5.4',
+  '/monetization-config.js?v=5.4',
+  '/rebel-engine-core.js?v=5.4',
+  '/olympian-engine-core.js?v=5.4',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',
@@ -86,4 +87,13 @@ self.addEventListener('fetch',event=>{
       return hit||network;
     })
   );
+});
+
+self.addEventListener('notificationclick',event=>{
+  event.notification.close();
+  event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{
+    const target=list.find(c=>'focus' in c);
+    if(target){target.focus();target.navigate('/#notifications');return}
+    if(self.clients.openWindow)return self.clients.openWindow('/#notifications');
+  }));
 });

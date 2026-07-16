@@ -15,7 +15,7 @@
     if(!client){
       client=window.supabase.createClient(clean(cfg.supabaseUrl),clean(cfg.supabaseAnonKey),{
         auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:"pkce"},
-        global:{headers:{"x-client-info":"betynz-web/5.0"}}
+        global:{headers:{"x-client-info":"betynz-web/5.3"}}
       });
     }
     return client;
@@ -135,12 +135,57 @@
   async function cancelSubscription(){return invokeFunction("cancelSubscription",{confirm:"CANCEL_RENEWAL"})}
   async function deleteAccount(){return invokeFunction("deleteAccount",{confirm:"DELETE"})}
 
+
+  async function communityComments(matchKey){
+    const {data,error}=await requireClient().from("community_comments").select("id,match_key,body,created_at,updated_at,user_id").eq("match_key",clean(matchKey)).is("deleted_at",null).order("created_at",{ascending:true}).limit(100);
+    throwIf(error);return Array.isArray(data)?data:[];
+  }
+  async function addCommunityComment(matchKey,body){
+    const c=requireClient();const {data:{user},error:userError}=await c.auth.getUser();throwIf(userError);if(!user)throw new Error("Sign in required to comment.");
+    const text=clean(body);if(text.length<2||text.length>500)throw new Error("Comments must contain 2–500 characters.");
+    const {data,error}=await c.from("community_comments").insert({user_id:user.id,match_key:clean(matchKey),body:text}).select("id,match_key,body,created_at,updated_at,user_id").single();throwIf(error);return data;
+  }
+  async function deleteCommunityComment(id){
+    const {error}=await requireClient().from("community_comments").update({deleted_at:new Date().toISOString(),body:"[removed]"}).eq("id",clean(id));throwIf(error);
+  }
+  async function communityReactions(matchKey){
+    const {data,error}=await requireClient().from("community_reactions").select("reaction,user_id").eq("match_key",clean(matchKey));throwIf(error);return Array.isArray(data)?data:[];
+  }
+  async function setCommunityReaction(matchKey,reaction){
+    const c=requireClient();const {data:{user},error:userError}=await c.auth.getUser();throwIf(userError);if(!user)throw new Error("Sign in required to sync reactions.");
+    const allowed=["useful","strong","watch"];if(!allowed.includes(reaction))throw new Error("Invalid reaction.");
+    const {error}=await c.from("community_reactions").upsert({user_id:user.id,match_key:clean(matchKey),reaction},{onConflict:"user_id,match_key"});throwIf(error);
+  }
+  async function removeCommunityReaction(matchKey){
+    const c=requireClient();const {data:{user},error:userError}=await c.auth.getUser();throwIf(userError);if(!user)throw new Error("Sign in required.");
+    const {error}=await c.from("community_reactions").delete().eq("user_id",user.id).eq("match_key",clean(matchKey));throwIf(error);
+  }
+  async function follows(){const {data,error}=await requireClient().from("user_follows").select("item_type,item_key,label,created_at").order("created_at",{ascending:true});throwIf(error);return Array.isArray(data)?data:[]}
+  async function setFollow(itemType,itemKey,label){
+    const c=requireClient();const {data:{user},error:userError}=await c.auth.getUser();throwIf(userError);if(!user)throw new Error("Sign in required to sync follows.");
+    const type=clean(itemType);if(!["engine","league","team"].includes(type))throw new Error("Invalid follow type.");
+    const {error}=await c.from("user_follows").upsert({user_id:user.id,item_type:type,item_key:clean(itemKey),label:clean(label).slice(0,120)},{onConflict:"user_id,item_type,item_key"});throwIf(error);
+  }
+  async function removeFollow(itemType,itemKey){
+    const c=requireClient();const {data:{user},error:userError}=await c.auth.getUser();throwIf(userError);if(!user)throw new Error("Sign in required.");
+    const {error}=await c.from("user_follows").delete().eq("user_id",user.id).eq("item_type",clean(itemType)).eq("item_key",clean(itemKey));throwIf(error);
+  }
+  async function recordActivity(){
+    const c=requireClient();const {data:{user},error:userError}=await c.auth.getUser();throwIf(userError);if(!user)return;
+    const day=new Date().toISOString().slice(0,10);const {error}=await c.from("user_activity_days").upsert({user_id:user.id,activity_date:day},{onConflict:"user_id,activity_date"});throwIf(error);
+  }
+  async function activityDays(){const {data,error}=await requireClient().from("user_activity_days").select("activity_date").order("activity_date",{ascending:false}).limit(400);throwIf(error);return Array.isArray(data)?data:[]}
+  async function adminOverview(){const {data,error}=await requireClient().rpc("get_admin_overview");throwIf(error);return data||null}
+
   window.BetynzBackend=Object.freeze({
     configured,init,
     signUpWithPassword,signInWithPassword,signInWithGoogle,
     sendPasswordReset,updatePassword,completeProfile,
     signOut,accountState,preferences,savePreferences,saveNotifications,
     savedPicks,syncSavedPicks,billing,pauseAccess,
-    createCheckout,cancelSubscription,deleteAccount
+    createCheckout,cancelSubscription,deleteAccount,
+    communityComments,addCommunityComment,deleteCommunityComment,
+    communityReactions,setCommunityReaction,removeCommunityReaction,
+    follows,setFollow,removeFollow,recordActivity,activityDays,adminOverview
   });
 })();

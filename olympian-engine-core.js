@@ -5,11 +5,11 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="4.7.0";
+  const VERSION="5.4.0";
   const REBEL_API=(typeof require==="function"?(()=>{try{return require("./rebel-engine-core.js")}catch(_){return {}}})():typeof globalThis!=="undefined"?globalThis:{});
   const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
   const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,Number(v)||0));
-  const n=(v,f=null)=>{const x=Number(v);return Number.isFinite(x)?x:f};
+  const n=(v,f=null)=>{if(v===null||v===undefined||v==="")return f;const x=Number(v);return Number.isFinite(x)?x:f};
   const marketPrice=v=>{if(v===null||v===undefined||v==="")return null;const x=Number(v);return Number.isFinite(x)&&x>1?x:null};
   const avg=a=>{const x=a.filter(Number.isFinite);return x.length?x.reduce((s,v)=>s+v,0)/x.length:null};
   const round=(v,d=1)=>Number.isFinite(v)?Number(v.toFixed(d)):null;
@@ -111,12 +111,55 @@
   function no(engine,reason,dq,warnings=[]){return {bet:false,engine,version:VERSION,primary:"No Bet",confidence:0,reasons:[reason],warnings,dataQuality:dq}}
   function qualityGate(m,engine,min=54){const q=dataQuality(m);return q.score<min?no(engine,`Data quality ${q.score}/100 is below this engine's ${min}-point gate.`,q.score,q.missing):null}
 
+  function ppgDirectionAgreement(m){
+    const homeOverall=overallPPG(m,"home"),awayOverall=overallPPG(m,"away");
+    const homeSplit=venuePPG(m,"home"),awaySplit=venuePPG(m,"away");
+    const missing=[];
+    if(homeOverall==null)missing.push("home overall PPG");
+    if(awayOverall==null)missing.push("away overall PPG");
+    if(homeSplit==null)missing.push("home split PPG");
+    if(awaySplit==null)missing.push("away split PPG");
+    const overallGap=missing.length?null:homeOverall-awayOverall;
+    const splitGap=missing.length?null:homeSplit-awaySplit;
+    const direction=x=>x==null||Math.abs(x)<0.005?"level":x>0?"home":"away";
+    const overallDirection=direction(overallGap),splitDirection=direction(splitGap);
+    const pass=!missing.length&&overallDirection!=="level"&&overallDirection===splitDirection;
+    let reason;
+    if(missing.length)reason=`PPG confirmation is incomplete: ${missing.join(", ")} missing.`;
+    else if(overallDirection==="level"||splitDirection==="level")reason=`PPG confirmation is inconclusive: overall ${round(homeOverall,2)}-${round(awayOverall,2)}, split ${round(homeSplit,2)}-${round(awaySplit,2)}.`;
+    else if(overallDirection!==splitDirection)reason=`PPG conflict: overall favours ${overallDirection==="home"?"Home":"Away"} (${round(homeOverall,2)}-${round(awayOverall,2)}), but the home/away split favours ${splitDirection==="home"?"Home":"Away"} (${round(homeSplit,2)}-${round(awaySplit,2)}).`;
+    else reason=`PPG agreement passed: overall and home/away split both favour ${overallDirection==="home"?"Home":"Away"} (${round(homeOverall,2)}-${round(awayOverall,2)} overall; ${round(homeSplit,2)}-${round(awaySplit,2)} split).`;
+    return{pass,direction:pass?overallDirection:null,overallDirection,splitDirection,reason,missing,evidence:{homeOverallPPG:round(homeOverall,2),awayOverallPPG:round(awayOverall,2),homeSplitPPG:round(homeSplit,2),awaySplitPPG:round(awaySplit,2),overallGap:round(overallGap,2),splitGap:round(splitGap,2)}};
+  }
+  function marketDirection(market){
+    const x=String(market||"").trim();
+    if(x==="Double Chance 1X"||/^Home (Win|DNB|Double Chance|Win to Nil)/i.test(x)||/^Home Team Over/i.test(x)||/^(1\/1|X\/1|2\/1)$/i.test(x))return"home";
+    if(x==="Double Chance X2"||/^Away (Win|DNB|Double Chance|Win to Nil)/i.test(x)||/^Away Team Over/i.test(x)||/^(2\/2|X\/2|1\/2)$/i.test(x))return"away";
+    if(/^Home Team Under/i.test(x))return"away";
+    if(/^Away Team Under/i.test(x))return"home";
+    return null;
+  }
+  function applyPPGDirectionGate(m,out){
+    if(!out||!out.bet||!out.primary||String(out.primary).toLowerCase()==="no bet")return out;
+    const gate=ppgDirectionAgreement(m),engine=out.engine||"Engine",dq=out.dataQuality??dataQuality(m).score;
+    if(!gate.pass)return{...no(engine,gate.reason,dq,out.warnings||[]),ppgAgreement:gate};
+    const required=marketDirection(out.primary);
+    if(required&&required!==gate.direction){
+      const label=required==="home"?"Home":"Away";
+      return{...no(engine,`${label}-side market rejected because both overall and split PPG point to ${gate.direction==="home"?"Home":"Away"}.`,dq,[gate.reason,...(out.warnings||[])]),ppgAgreement:gate};
+    }
+    return{...out,reasons:[gate.reason,...(out.reasons||[])].slice(0,4),ppgAgreement:gate};
+  }
+
   function universalGGRule(m,predictions={}){
-    const homePPG=overallPPG(m,"home"),awayPPG=overallPPG(m,"away"),league=leagueGPG(m),o=m&&m.odds||{};
+    const homePPG=overallPPG(m,"home"),awayPPG=overallPPG(m,"away"),homeSplitPPG=venuePPG(m,"home"),awaySplitPPG=venuePPG(m,"away"),league=leagueGPG(m),o=m&&m.odds||{},ppgGate=ppgDirectionAgreement(m);
     const under35=marketPrice(o.under35),draw=marketPrice(o.draw),fhOver15=marketPrice(o.fhOver15),gg=marketPrice(o.bttsYes),balance=balancedOneXTwo(m);
     const checks={
-      homePPG:homePPG!=null&&homePPG>1.50,
-      awayPPG:awayPPG!=null&&awayPPG>1.50,
+      ppgDirectionAgreement:ppgGate.pass,
+      homeOverallPPG:homePPG!=null&&homePPG>1.50,
+      awayOverallPPG:awayPPG!=null&&awayPPG>1.50,
+      homeSplitPPG:homeSplitPPG!=null&&homeSplitPPG>1.50,
+      awaySplitPPG:awaySplitPPG!=null&&awaySplitPPG>1.50,
       highScoringLeague:league!=null&&league>=2.80,
       under35Price:under35!=null&&under35>1.60,
       drawPrice:draw!=null&&draw>3.70,
@@ -126,23 +169,24 @@
     };
     const pass=Object.values(checks).every(Boolean);
     const supporters=Object.entries(predictions||{}).filter(([id,x])=>id!=="zeus"&&x&&x.bet&&standardMarket(x.primary)==="BTTS Yes").map(([id])=>id);
-    const evidence={homePPG,awayPPG,leagueGPG:league,under35,draw,homeOdds:balance.home,awayOdds:balance.away,oddsGap:balance.gap,fhOver15,gg};
+    const evidence={homePPG,awayPPG,homeSplitPPG,awaySplitPPG,ppgAgreement:ppgGate,leagueGPG:league,under35,draw,homeOdds:balance.home,awayOdds:balance.away,oddsGap:balance.gap,fhOver15,gg};
     if(!pass)return{pass:false,checks,evidence,supporters};
     const q=dataQuality(m);
     let confidence=86;
-    if(homePPG>=1.75&&awayPPG>=1.75)confidence+=1;
+    if(homePPG>=1.75&&awayPPG>=1.75&&homeSplitPPG>=1.75&&awaySplitPPG>=1.75)confidence+=1;
     if(league>=3.00)confidence+=1;
     if(gg<=1.60)confidence+=1;
     confidence+=Math.min(2,supporters.length);
     confidence=clamp(confidence,84,91);
     const grade=confidence>=88&&q.score>=72?"A1":"A2";
     const reasons=[
-      `Both teams exceed 1.50 PPG (${round(homePPG,2)} and ${round(awayPPG,2)}).`,
+      `Both teams exceed 1.50 in overall and split PPG (overall ${round(homePPG,2)} / ${round(awayPPG,2)}; split ${round(homeSplitPPG,2)} / ${round(awaySplitPPG,2)}).`,
+      ppgGate.reason,
       `The league is high-scoring at ${round(league,2)} goals per match and the 1X2 prices are balanced (${balance.home.toFixed(2)} / ${balance.away.toFixed(2)}).`,
       `GG gates passed: U3.5 ${under35.toFixed(2)} > 1.60, Draw ${draw.toFixed(2)} > 3.70, 1H O1.5 ${fhOver15.toFixed(2)} < 2.00, GG ${gg.toFixed(2)} <= 1.70.`
     ];
-    const output=mk("Zeus","BTTS Yes",confidence,reasons,[],{dataQuality:q.score,grade,engineIds:supporters,universalRule:"GG_HIGH_SCORING_BALANCED_V1",universalRuleEvidence:evidence});
-    return{pass:true,checks,evidence,supporters,output,decision:{market:"BTTS Yes",confidence:output.confidence,grade,engineIds:supporters,reasons,warnings:[],dataQuality:q.score,odds:gg,universalRule:"GG_HIGH_SCORING_BALANCED_V1",universalRuleEvidence:evidence}};
+    const output=mk("Zeus","BTTS Yes",confidence,reasons,[],{dataQuality:q.score,grade,engineIds:supporters,ppgAgreement:ppgGate,universalRule:"GG_HIGH_SCORING_BALANCED_V2",universalRuleEvidence:evidence});
+    return{pass:true,checks,evidence,supporters,output,decision:{market:"BTTS Yes",confidence:output.confidence,grade,engineIds:supporters,reasons,warnings:[],dataQuality:q.score,odds:gg,ppgAgreement:ppgGate,universalRule:"GG_HIGH_SCORING_BALANCED_V2",universalRuleEvidence:evidence}};
   }
 
   function saferResult(m,b,engine,strict=0){
@@ -333,7 +377,7 @@
   function opposite(a,b){a=String(a);b=String(b);return (a.includes("Over 2.5")&&b.includes("Under 2.5"))||(a.includes("Under 2.5")&&b.includes("Over 2.5"))||(a==="BTTS Yes"&&b==="BTTS No")||(a==="BTTS No"&&b==="BTTS Yes")||(a==="Home Win"&&/^Away/.test(b))||(a==="Away Win"&&/^Home/.test(b));}
   function zeusRecommend(m){
     const engine="Zeus",q=dataQuality(m);if(q.score<68)return no(engine,`Data quality ${q.score}/100 is below Zeus's release gate.`,q.score,q.missing);
-    const outputs=Object.entries(SPECIALISTS).map(([id,fn])=>({id,...fn(m)})).filter(x=>x.bet&&x.primary!=="No Bet");
+    const outputs=Object.entries(SPECIALISTS).map(([id,fn])=>({id,...applyPPGDirectionGate(m,fn(m))})).filter(x=>x.bet&&x.primary!=="No Bet");
     if(outputs.length<2)return no(engine,"Fewer than two specialist engines produced a qualified candidate.",q.score);
     const groups={};for(const o of outputs){const k=o.primary;(groups[k]??={market:k,items:[],support:0}).items.push(o);groups[k].support+=(AUTH[o.id]||1)*clamp((o.confidence-68)/22,.15,1.4)}
     const ranked=Object.values(groups).sort((a,b)=>b.support-a.support||b.items.length-a.items.length);
@@ -371,25 +415,26 @@
     if(grade==="A2"&&(evidenceCount<2||!deepTagged)){grade="WATCH";confidence=Math.min(confidence,81);warnings.push("Public release withheld until at least two deep-evidence pillars confirm the market.");}
 
     const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100; deep evidence: ${evidenceCount}/7.${rebelItems.length?` Rebel confirmation: ${rebelItems.map(x=>x.id==="leonidas"?"Leonidas":"Spartacus").join(" + ")}.`:""}`];
-    return mk(engine,best.market,confidence,reasons,warnings,{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs,evidence,evidenceCount});
+    const ppgAgreement=ppgDirectionAgreement(m);
+    return applyPPGDirectionGate(m,mk(engine,best.market,confidence,reasons,warnings,{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs,evidence,evidenceCount,ppgAgreement}));
   }
 
   function evaluateMatch(m){
-    const predictions={};for(const [id,fn] of Object.entries(SPECIALISTS))predictions[id]=fn(m);
+    const predictions={};for(const [id,fn] of Object.entries(SPECIALISTS))predictions[id]=applyPPGDirectionGate(m,fn(m));
     const zeus=zeusRecommend(m);predictions.zeus=zeus;
     const gg=universalGGRule(m,predictions);
     if(gg.pass){
       predictions.zeus=gg.output;
       return{predictions,decision:gg.decision,rejection:null};
     }
-    return {predictions,decision:zeus.bet?{market:zeus.primary,confidence:zeus.confidence,grade:zeus.grade||"WATCH",engineIds:zeus.engineIds||[],reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,odds:odds(m,zeus.primary)}:null,rejection:zeus.bet?null:{reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality}};
+    return {predictions,decision:zeus.bet?{market:zeus.primary,confidence:zeus.confidence,grade:zeus.grade||"WATCH",engineIds:zeus.engineIds||[],reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,odds:odds(m,zeus.primary),ppgAgreement:zeus.ppgAgreement||ppgDirectionAgreement(m)}:null,rejection:zeus.bet?null:{reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,ppgAgreement:zeus.ppgAgreement||ppgDirectionAgreement(m)}};
   }
   function evaluateAll(matches){return (matches||[]).map(m=>({match:m,...evaluateMatch(m)}));}
 
-  return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,universalGGRule,balancedOneXTwo,zeusRecommend,
-    prometheusRecommend,athenaRecommend,apolloRecommend,aresRecommend,poseidonRecommend,hermesRecommend,
-    heraRecommend,artemisRecommend,hephaestusRecommend,demeterRecommend,dionysusRecommend,hadesRecommend,
-    atlasRecommend,orionRecommend,nikeRecommend,spartacusRecommend,leonidasRecommend,settleMarket:function(market,h,a){
+  return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,universalGGRule,balancedOneXTwo,ppgDirectionAgreement,applyPPGDirectionGate,zeusRecommend,
+    prometheusRecommend:m=>applyPPGDirectionGate(m,prometheusRecommend(m)),athenaRecommend:m=>applyPPGDirectionGate(m,athenaRecommend(m)),apolloRecommend:m=>applyPPGDirectionGate(m,apolloRecommend(m)),aresRecommend:m=>applyPPGDirectionGate(m,aresRecommend(m)),poseidonRecommend:m=>applyPPGDirectionGate(m,poseidonRecommend(m)),hermesRecommend:m=>applyPPGDirectionGate(m,hermesRecommend(m)),
+    heraRecommend:m=>applyPPGDirectionGate(m,heraRecommend(m)),artemisRecommend:m=>applyPPGDirectionGate(m,artemisRecommend(m)),hephaestusRecommend:m=>applyPPGDirectionGate(m,hephaestusRecommend(m)),demeterRecommend:m=>applyPPGDirectionGate(m,demeterRecommend(m)),dionysusRecommend:m=>applyPPGDirectionGate(m,dionysusRecommend(m)),hadesRecommend:m=>applyPPGDirectionGate(m,hadesRecommend(m)),
+    atlasRecommend:m=>applyPPGDirectionGate(m,atlasRecommend(m)),orionRecommend:m=>applyPPGDirectionGate(m,orionRecommend(m)),nikeRecommend:m=>applyPPGDirectionGate(m,nikeRecommend(m)),spartacusRecommend:m=>applyPPGDirectionGate(m,spartacusRecommend(m)),leonidasRecommend:m=>applyPPGDirectionGate(m,leonidasRecommend(m)),settleMarket:function(market,h,a){
       h=n(h,null);a=n(a,null);if(h==null||a==null)return"Pending";const t=h+a,m=String(market||"");
       if(m==="Home Win")return h>a?"Won":"Lost";if(m==="Away Win")return a>h?"Won":"Lost";
       if(m==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(m==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";

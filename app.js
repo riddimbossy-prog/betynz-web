@@ -180,7 +180,7 @@
         backendHydrated=true;saveAccount();renderAccountExperience();return;
       }
       const profileComplete=state.profile_complete!==false;
-      account={signedIn:true,name:state.display_name||state.google_name||"Betynz User",email:state.email||"",country:state.country||"",plan:profileComplete?(state.plan||"free"):"free",createdAt:state.created_at||null,expiresAt:state.plan_expires_at||null,pausedUntil:state.paused_until||null,preview:false,emailVerified:!!state.email_verified,profileComplete,subscriptionCycle:state.subscription_cycle||null,subscriptionProvider:state.subscription_provider||null,canCancelSubscription:!!state.can_cancel_subscription,cancelAtPeriodEnd:!!state.cancel_at_period_end};
+      account={id:state.id,signedIn:true,name:state.display_name||state.google_name||"Betynz User",email:state.email||"",country:state.country||"",plan:profileComplete?(state.plan||"free"):"free",createdAt:state.created_at||null,expiresAt:state.plan_expires_at||null,pausedUntil:state.paused_until||null,preview:false,emailVerified:!!state.email_verified,profileComplete,subscriptionCycle:state.subscription_cycle||null,subscriptionProvider:state.subscription_provider||null,canCancelSubscription:!!state.can_cancel_subscription,cancelAtPeriodEnd:!!state.cancel_at_period_end,isAdmin:!!state.is_admin};
       if(!profileComplete){
         saveAccount();backendHydrated=true;renderAccountExperience();
         if(!$("#account-modal").classList.contains("open"))openProfileCompletion();
@@ -274,7 +274,7 @@
     if(m.zeusDecision&&m.zeusDecision.market){
       const z=ENGINE_MAP.zeus,ids=Array.isArray(m.zeusDecision.engineIds)?m.zeusDecision.engineIds:[];
       const engs=[z,...ids.map(id=>ENGINE_MAP[id]).filter(Boolean)];
-      const p={m,market:normalizeMarket(m.zeusDecision.market),confidence:Math.round(Number(m.zeusDecision.confidence||0)),grade:m.zeusDecision.grade||"WATCH",engine:z,engines:engs,votes:ids.length,odds:Number(m.zeusDecision.odds)||priceOf(m,m.zeusDecision.market),conflict:false,reasons:m.zeusDecision.reasons||[],warnings:m.zeusDecision.warnings||[],locked:!!m.zeusDecision.locked,provisional:!!m.zeusDecision.provisional,dataQuality:m.zeusDecision.dataQuality??null};
+      const p={m,market:normalizeMarket(m.zeusDecision.market),confidence:Math.round(Number(m.zeusDecision.confidence||0)),grade:m.zeusDecision.grade||"WATCH",engine:z,engines:engs,votes:ids.length,odds:Number(m.zeusDecision.odds)||priceOf(m,m.zeusDecision.market),conflict:false,reasons:m.zeusDecision.reasons||[],warnings:m.zeusDecision.warnings||[],locked:!!m.zeusDecision.locked,provisional:!!m.zeusDecision.provisional,dataQuality:m.zeusDecision.dataQuality??null,ppgAgreement:m.zeusDecision.ppgAgreement||null};
       pickCache.set(mk,p);return p;
     }
     const votes=[];
@@ -546,7 +546,7 @@
   function openEngine(id){
     const e=ENGINE_MAP[id];if(!e)return;
     const modal=$("#engine-modal");if(modal)modal.classList.remove("pick-summary-modal");
-    $("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}</div>`;
+    $("#engine-modal-content").innerHTML=`<div class="modal-engine-head"><span class="engine-icon">${e.glyph}</span><div><h2 id="engine-modal-title">${e.name} Engine</h2><p>${e.role}</p></div></div><h4>Purpose</h4><div class="rule-box">${e.summary}</div><h4>How it works</h4><ul>${e.checks.map(x=>`<li>${x}</li>`).join("")}</ul><h4>Final safety gate</h4><div class="rule-box">${e.gate}<br><br><b>Universal PPG direction gate:</b> overall PPG and the relevant home/away split PPG must point to the same team before any signal can be published.</div>`;
     $("#engine-modal-backdrop").classList.add("open");
     $("#engine-modal").classList.add("open");
   }
@@ -568,11 +568,13 @@
     const m=p.m,cards=[];
     if(Number.isFinite(Number(m.homePPG))||Number.isFinite(Number(m.awayPPG)))cards.push(["Overall PPG",`${Number.isFinite(Number(m.homePPG))?Number(m.homePPG).toFixed(2):"—"} vs ${Number.isFinite(Number(m.awayPPG))?Number(m.awayPPG).toFixed(2):"—"}`]);
     if(Number.isFinite(Number(m.homeVenuePPG))||Number.isFinite(Number(m.awayVenuePPG)))cards.push(["Venue PPG",`${Number.isFinite(Number(m.homeVenuePPG))?Number(m.homeVenuePPG).toFixed(2):"—"} vs ${Number.isFinite(Number(m.awayVenuePPG))?Number(m.awayVenuePPG).toFixed(2):"—"}`]);
+    const ppg=p.ppgAgreement||(p.signal&&p.signal.ppgAgreement)||null;
+    if(ppg&&ppg.pass)cards.push(["PPG agreement",`Both favour ${ppg.direction==="home"?"Home":"Away"}`]);
     if(m.xgReal&&(Number.isFinite(Number(m.xgHomeReal))||Number.isFinite(Number(m.xgAwayReal))))cards.push(["Trusted xG",`${Number.isFinite(Number(m.xgHomeReal))?Number(m.xgHomeReal).toFixed(2):"—"} vs ${Number.isFinite(Number(m.xgAwayReal))?Number(m.xgAwayReal).toFixed(2):"—"}`]);
     if(p.odds)cards.push(["Current odds",Number(p.odds).toFixed(2)]);
     if(p.dataQuality!=null)cards.push(["Data quality",`${Math.round(Number(p.dataQuality))}/100`]);
     cards.push(["Model confidence",`${Math.round(Number(p.confidence||0))}%`]);
-    return cards.slice(0,6);
+    return cards.slice(0,7);
   }
 
   function openPickDetail(matchKey,engineId,source){
@@ -611,9 +613,11 @@
       </div>
       ${advancedHtml}
       ${rebelAudit}
+      <section class="match-community-shell" id="match-community-shell" data-community-match="${esc(keyOf(m))}"><div class="community-loading">Loading reactions and discussion…</div></section>
       <div class="summary-disclaimer">Model confidence is not a guarantee. Football outcomes remain uncertain.</div>`;
     $("#engine-modal-backdrop").classList.add("open");
     $("#engine-modal").classList.add("open");
+    window.dispatchEvent(new CustomEvent("betynz:pick-detail",{detail:{matchKey:keyOf(m),home:m.home,away:m.away,league:m.league||"Football",kickoff:kickoff(m),date:dateOf(m),market:marketClean(p.market),confidence:Math.round(Number(p.confidence||0)),grade:displayGrade,odds:p.odds||null,engine:p.engine&&p.engine.name?p.engine.name:"Zeus"}}));
     requestAnimationFrame(()=>$("#engine-modal-close")?.focus());
   }
 

@@ -11,7 +11,7 @@ function loadData(file){const code=fs.readFileSync(file,"utf8"),ctx={window:{}};
 function iso(v){try{return new Date(v).toISOString()}catch(_){return null}}
 function key(m){return String(m.id!=null?m.id:`${m.home}|${m.away}|${m.matchDate}`)}
 function publicPrediction(id,o){
-  const out={engine:id,bet:!!o.bet,market:o.bet?o.primary:"No Bet",confidence:Number(o.confidence||0),reasons:o.reasons||[],warnings:o.warnings||[],dataQuality:o.dataQuality??null,supportOnly:!!o.supportOnly};
+  const out={engine:id,bet:!!o.bet,market:o.bet?o.primary:"No Bet",confidence:Number(o.confidence||0),reasons:o.reasons||[],warnings:o.warnings||[],dataQuality:o.dataQuality??null,supportOnly:!!o.supportOnly,ppgAgreement:o.ppgAgreement||null};
   if(o&&o.rebel){
     Object.assign(out,{rebel:true,originalMarket:o.originalMarket||null,finalMarket:o.finalMarket||o.primary||null,openingOdds:o.openingOdds??null,currentOdds:o.currentOdds??null,movement:o.movement??null,bookmakerCount:o.bookmakerCount??null,bookmakerAgreement:o.bookmakerAgreement??null,confirmations:o.confirmations??null,contradictions:o.contradictions??null,downgradeLevel:o.downgradeLevel??0,classification:o.classification||null,sourceMarket:o.sourceMarket||null});
   }
@@ -89,7 +89,7 @@ const trimmed=history.slice(0,500);
 const settled=trimmed.filter(x=>["Won","Lost","Void"].includes(x.result)),wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
 assertNoPackagedDemoFixtures(matches,"Olympian snapshot");
 const sourceName=isDemo?"demo":!isReady?"waiting-for-live-sync":matches.length?"API-Football + TheStatsAPI":"API-Football (no fixtures returned)";
-const meta={product:"Betynz",version:"4.7.0",engineVersion:core.VERSION,source:sourceName,generatedAt:nowISO,dataUpdated:loaded.DATA_UPDATED||null,isDemo,isReady,fixtureCount:matches.length,qualifiedCount:qualified,lockedCount:Object.keys(locks).length,historyCount:trimmed.length,record:{wins,losses,voids:settled.filter(x=>x.result==="Void").length,hitRate:wins+losses?Math.round(wins/(wins+losses)*100):null},engineCounts};
+const meta={product:"Betynz",version:"5.4.0",engineVersion:core.VERSION,source:sourceName,generatedAt:nowISO,dataUpdated:loaded.DATA_UPDATED||null,isDemo,isReady,fixtureCount:matches.length,qualifiedCount:qualified,lockedCount:Object.keys(locks).length,historyCount:trimmed.length,record:{wins,losses,voids:settled.filter(x=>x.result==="Void").length,hitRate:wins+losses?Math.round(wins/(wins+losses)*100):null},engineCounts};
 const js=[isDemo?"window.BETYNZ_DEMO = true;":"window.BETYNZ_DEMO = false;",`window.BETYNZ_READY = ${JSON.stringify(isReady)};`,`window.DATA_UPDATED = ${JSON.stringify(meta.dataUpdated)};`,`window.BETYNZ_META = ${JSON.stringify(meta,null,2)};`,`window.BETYNZ_HISTORY = ${JSON.stringify(trimmed,null,2)};`,`window.MATCHES = ${JSON.stringify(matches,null,2)};`,""].join("\n");
 fs.writeFileSync(path.join(ROOT,"data.js"),js);fs.writeFileSync(path.join(HERE,"data.js"),js);
 writeJSON(lockFile,locks);writeJSON(historyFile,trimmed);writeJSON(path.join(ROOT,"api-status.json"),meta);

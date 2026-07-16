@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5.1">
+  <link rel="stylesheet" href="styles.css?v=5.4">
 </head>
 <body>
   <div class="app-shell">
@@ -31,6 +31,8 @@
         <button type="button" class="nav-item" data-view="engines"><span>♜</span><b>Olympian Engines</b></button>
         <button type="button" class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
         <button type="button" class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
+        <button type="button" class="nav-item" data-view="community"><span>♧</span><b>Community</b></button>
+        <button type="button" class="nav-item" data-view="performance"><span>◫</span><b>Engine Performance</b></button>
         <button type="button" class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
         <div class="nav-divider"><span>ACCOUNT</span></div>
         <button type="button" class="nav-item" data-view="profile"><span>○</span><b>My Account</b></button>
@@ -39,6 +41,7 @@
         <button type="button" class="nav-item" data-view="notifications"><span>◌</span><b>Notifications</b></button>
         <button type="button" class="nav-item" data-view="responsible"><span>◈</span><b>Responsible Play</b></button>
         <button type="button" class="nav-item" data-view="support"><span>?</span><b>Help & Support</b></button>
+        <button type="button" class="nav-item" data-view="health"><span>●</span><b>System Health</b></button>
         <button type="button" class="nav-item signout-nav" id="sidebar-signout" hidden><span>↪</span><b>Sign Out</b></button>
       </nav>
 
@@ -59,6 +62,7 @@
           <button class="install-app-btn" id="install-app-btn" type="button" hidden>Install App</button>
           <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
           <button class="top-upgrade-btn" id="top-upgrade-btn" type="button" data-view="pricing" hidden>Free Access</button>
+          <button class="notification-center-btn" id="notification-center-btn" type="button" aria-label="Open notification centre"><span>◌</span><b id="notification-unread">0</b></button>
           <button class="top-signin-btn" id="top-signin-btn" type="button" data-auth-open="signin">Sign In</button>
           <button class="profile-chip" id="profile-chip" data-view="profile"><span class="avatar" id="profile-avatar">BZ</span><span><b id="profile-name">Guest</b><small id="profile-plan">Free preview</small></span><em>⌄</em></button>
         </div>
@@ -84,6 +88,7 @@
 
               <section class="board-panel">
                 <div class="engine-tabs" id="engine-tabs"></div>
+                <div class="favorite-shortcuts" id="favorite-shortcuts" aria-label="Favourite shortcuts"></div>
                 <div class="filter-row">
                   <select id="dashboard-date"></select>
                   <select id="dashboard-market"><option value="all">All Markets</option></select>
@@ -173,6 +178,21 @@
           <section class="page-panel"><div class="result-table" id="results-list"></div></section>
         </section>
 
+        <section class="view" data-view-panel="community">
+          <div class="page-head"><div><span>BETYNZ COMMUNITY</span><h2>Follow. React. Discuss.</h2><p>Build a personal football-analysis space around the engines, leagues and teams you follow.</p></div><span class="risk-note">Respectful discussion · 18+</span></div>
+          <div id="community-content"></div>
+        </section>
+
+        <section class="view" data-view-panel="performance">
+          <div class="page-head"><div><span>PUBLIC ENGINE RECORDS</span><h2>Engine Performance</h2><p>Transparent settled records only. Engines with no verified sample are clearly marked.</p></div><button class="secondary-btn compact" type="button" data-view="results">View Settled Picks</button></div>
+          <div id="performance-content"></div>
+        </section>
+
+        <section class="view" data-view-panel="health">
+          <div class="page-head"><div><span>LAUNCH RELIABILITY</span><h2>System Health</h2><p>Current fixture, odds, scoring and deployment status from the public data snapshot.</p></div><button class="secondary-btn compact" id="refresh-health" type="button">Refresh Status</button></div>
+          <div id="health-content"></div>
+        </section>
+
         <section class="view" data-view-panel="methodology">
           <div class="page-head"><div><span>TRANSPARENT MODEL</span><h2>How Betynz Works</h2><p>Every selection must pass data-quality, specialist and Zeus consensus controls.</p></div></div>
           <div class="method-grid">
@@ -212,7 +232,6 @@
             <aside class="account-info-card"><span>◌</span><h3>How alerts work</h3><p>Browser permission is requested only after you choose Enable on Device. Server-side push delivery still requires a secure notification backend.</p></aside>
           </div>
         </section>
-        </section>
 
         <section class="view" data-view-panel="responsible">
           <div class="page-head"><div><span>PLAYER PROTECTION</span><h2>Responsible Play</h2><p>Betynz provides football analysis for adults. It does not guarantee results.</p></div><span class="risk-note">18+ only</span></div>
@@ -232,8 +251,20 @@
             <article class="support-card"><span>◎</span><h3>Free access</h3><p>All engines and boards are currently unlocked. No payment is required.</p><button type="button" data-view="pricing">View access</button></article>
             <article class="support-card"><span>⚡</span><h3>Prediction method</h3><p>Understand grades, engine consensus and settlement.</p><button type="button" data-view="methodology">Read methodology</button></article>
             <article class="support-card"><span>⇩</span><h3>Install the app</h3><p>Add the Betynz PWA to your phone, Fold or tablet.</p><button type="button" data-install-app>Install Betynz</button></article>
+          <article class="support-card"><span>▤</span><h3>Terms</h3><p>Account rules, permitted use and prediction disclaimers.</p><button type="button" data-view="terms">Read Terms</button></article>
+            <article class="support-card"><span>◇</span><h3>Privacy</h3><p>What Betynz stores and how account data is handled.</p><button type="button" data-view="privacy">Read Privacy Notice</button></article>
           </div>
           <section class="page-panel support-contact"><h3>Contact support</h3><p>Connect this button to your verified support email or help-desk system before launch.</p><button class="primary-btn compact" id="support-contact-btn" type="button">Contact Support</button></section>
+        </section>
+
+        <section class="view" data-view-panel="terms">
+          <div class="page-head"><div><span>LEGAL</span><h2>Terms of Use</h2><p>Effective July 2026</p></div></div>
+          <section class="page-panel prose-panel legal-copy"><h3>Adult access</h3><p>Betynz is intended only for adults who are legally permitted to view football prediction content in their location.</p><h3>Informational service</h3><p>Selections, grades, odds and confidence scores are analytical opinions. They are not guarantees, financial advice or instructions to gamble.</p><h3>Fair use</h3><p>Do not scrape, resell, impersonate users, manipulate comments, attack the service or attempt to access private backend credentials.</p><h3>Accounts and community</h3><p>Users are responsible for account security and respectful participation. Spam, harassment and misleading claims may be removed.</p><h3>Availability</h3><p>Fixtures, odds, scores and third-party services may be delayed, incomplete or unavailable. Betynz may change or suspend features to protect reliability.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="privacy">
+          <div class="page-head"><div><span>LEGAL</span><h2>Privacy Notice</h2><p>Effective July 2026</p></div></div>
+          <section class="page-panel prose-panel legal-copy"><h3>Data used</h3><p>When secure accounts are enabled, Betynz stores the account email, display name, country, adult-eligibility date, preferences, saved picks, follows, reactions and comments.</p><h3>Authentication</h3><p>Password and Google sign-in are handled by Supabase Auth. Betynz does not store raw passwords.</p><h3>Local storage</h3><p>Guest preferences, onboarding status, follows and notification history may be stored on the current device.</p><h3>Data control</h3><p>Signed-in users can request account deletion from My Account. Local guest data can be cleared from the same page.</p><h3>Third parties</h3><p>Fixture, odds, score, authentication and hosting providers process only the information needed to deliver their services.</p></section>
         </section>
 
         <section class="view" data-view-panel="profile">
@@ -243,6 +274,7 @@
             <section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my selection list</span><input type="checkbox" id="remember-slip" checked></label><div class="settings-actions"><button type="button" class="primary-btn compact" id="save-prefs">Save Preferences</button><button type="button" class="secondary-btn compact install-settings-btn" data-install-app>Install Betynz App</button></div></section>
             <section class="account-info-card"><span>🔒</span><h3>Account security</h3><p>Email/password and Google authentication, database row-level security and secure cloud syncing are supported. Private service keys remain in Supabase only.</p><button type="button" class="text-btn" data-view="support">Backend guidance</button></section>
           </div>
+          <section class="page-panel account-launch-tools" id="account-launch-tools"></section>
         </section>
       </main>
 
@@ -263,15 +295,22 @@
 
   <div class="modal-backdrop account-modal-backdrop" id="account-modal-backdrop"></div>
   <section class="account-modal" id="account-modal" role="dialog" aria-modal="true" aria-labelledby="account-modal-title" aria-hidden="true"><button type="button" class="modal-close" id="account-modal-close">×</button><div id="account-modal-content"></div></section>
+  <div class="notification-drawer-backdrop" id="notification-drawer-backdrop"></div>
+  <aside class="notification-drawer" id="notification-drawer" aria-label="Notification centre"><div class="drawer-head"><h3>Updates</h3><button type="button" id="notification-drawer-close">×</button></div><div id="notification-feed" class="notification-feed"></div><button class="text-btn" id="mark-notifications-read" type="button">Mark all as read</button></aside>
+
+  <div class="onboarding-backdrop" id="onboarding-backdrop" hidden></div>
+  <section class="onboarding-modal" id="onboarding-modal" hidden role="dialog" aria-modal="true" aria-labelledby="onboarding-title"><div id="onboarding-content"></div></section>
+
   <div class="toast" id="toast" role="status"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="backend-config.js?v=5.1"></script>
-  <script src="backend-client.js?v=5.1"></script>
-  <script src="monetization-config.js?v=5.1"></script>
-  <script src="rebel-engine-core.js?v=5.1"></script>
-  <script src="olympian-engine-core.js?v=5.1"></script>
-  <script src="data.js?v=5.1"></script>
-  <script src="app.js?v=5.1"></script>
+  <script src="backend-config.js?v=5.4"></script>
+  <script src="backend-client.js?v=5.4"></script>
+  <script src="monetization-config.js?v=5.4"></script>
+  <script src="rebel-engine-core.js?v=5.4"></script>
+  <script src="olympian-engine-core.js?v=5.4"></script>
+  <script src="data.js?v=5.4"></script>
+  <script src="app.js?v=5.4"></script>
+  <script src="community-features.js?v=5.4"></script>
 </body>
 </html>
