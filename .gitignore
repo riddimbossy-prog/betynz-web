@@ -1,6 +1,8 @@
-.env
-server/.env
-server/node_modules/
 node_modules/
+dist/
+scripts/config.txt
+config.txt
+.env
+.env.*
+*.log
 .DS_Store
-npm-debug.log*

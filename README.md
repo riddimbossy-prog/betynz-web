@@ -1,53 +1,116 @@
-# BetsPapa
+# Betynz.com — Real Product v3.9
 
-Royal-purple responsive football prediction platform with a private Render backend, Supabase database, API-Football importer, HT/FT profile builder, common-sense prediction engine, and automatic result grading.
+**Tagline:** Smart Betting Predictions
 
-## Architecture
+This is the deployable Betynz core product for GitHub Pages. It uses GitHub Actions as the private data-processing layer and publishes only generated public football data.
 
-```text
-betspapa.com             GitHub Pages frontend
-api.betspapa.com         Render Node.js backend
-Supabase                 Database and authentication
-API-Football             Fixtures, teams, halftime and fulltime scores
-The Odds API             Reserved for bookmaker-odds validation
-```
+## What is real in v2.0
 
-## Main features
+- API-Football fixture, standings, team statistics, odds and score pipeline
+- Optional TheStatsAPI xG and multi-book odds enrichment
+- Six-day forward board plus one-day score lookback
+- Fifteen independently implemented Olympian specialist engines
+- Leonidas and Spartacus Rebel odds-movement engines
+- Zeus consensus, contradiction and data-quality gate
+- Pre-kickoff prediction locking for record integrity
+- Public results history based only on locked predictions
+- A1, A2, Watchlist and No Bet outcomes
+- Responsive black/orange dashboard, engine directory, banker board, results, methodology and data-status views
+- Local selection list and preferences
+- PWA support
+- GitHub Pages release built from a safe `dist/` folder
 
-- Responsive royal-purple UI for desktop, tablet, phone and Z Fold.
-- Hamburger drawer and mobile bottom navigation.
-- HT/FT transition matrix covering 1/1 through 2/2.
-- Correct home/away orientation.
-- Overall, Home, Away and Recent-6 profiles.
-- Latest GG confirmation from both teams' scoring and conceding thresholds.
-- One-sided dominant-team Over 2.5 route.
-- Under 3.5 ceiling safeguards.
-- Protected API-Football fixture importer.
-- Automatic prediction storage in Supabase.
-- Automatic grading after fixtures finish.
-- Live frontend feed with demo fallback.
+## Account and payment boundary
 
-## Deploy frontend
+Version 4.8 includes a complete account, pricing and plan-access preview in the public interface. Preview accounts and test plan activations are stored only in the current browser so the owner can test the experience. They are not production authentication or proof of payment.
 
-Push the repository root to `riddimbossy-prog/Betspapa`. GitHub Pages serves the root through `betspapa.com`.
+Passwords and card details are never collected by this static GitHub Pages package. Production authentication, age verification, paid entitlements, receipts, cancellations and refunds must be confirmed by a secure backend and hosted checkout provider.
 
-## Deploy backend
+## Required GitHub repository secrets
 
-Render settings:
+- `API_FOOTBALL_KEY`
+- `STATS_API_KEY`
+- `ODDS_API_KEY`
+- `DAYS_BACK` — recommended value `1`
+- `DAYS_FWD` — recommended value `6`
 
-```text
-Root Directory: server
-Build Command: npm install
-Start Command: npm start
-Health Check Path: /api/health
-```
+Never commit API keys to this repository.
 
-See `RENDER_SETUP.md` and `ADMIN_PIPELINE_GUIDE.md`.
+## GitHub permission
 
-## Test
+Open:
+
+`Settings → Actions → General → Workflow permissions`
+
+Select **Read and write permissions**.
+
+## First live run
+
+1. Upload all files in this folder to the root of `betynz-web`.
+2. Commit to `main`.
+3. Wait for **Deploy Betynz Product** to succeed.
+4. Open **Actions → Update Betynz Product Data → Run workflow**.
+5. When that workflow succeeds, it replaces the demo snapshot with real API data.
+
+## Product workflows
+
+### Deploy Betynz Product
+
+Validates the code, builds a public `dist/` folder, and deploys only safe public assets to GitHub Pages. Source scripts, private runtime files and internal model ledgers are not published.
+
+### Update Betynz Product Data
+
+Runs every six hours. It creates a temporary config from GitHub Secrets, fetches and enriches data, evaluates all Olympian and Rebel engines, applies Zeus, locks eligible predictions, validates the snapshot and commits generated public data.
+
+### Update Betynz Live Scores
+
+Runs every 15 minutes. It refreshes match status and scores, settles locked predictions, updates the verified record and republishes the data snapshot.
+
+## Prediction integrity
+
+Predictions more than 12 hours from kickoff are provisional. Inside the 12-hour window, an eligible Zeus decision is locked. Only a decision that was locked before kickoff can enter `results-history.json`.
+
+Model scores are internal evidence scores, not guarantees or certified probabilities.
+
+## Local checks
 
 ```bash
-cd server
-npm install
-npm test
+npm run snapshot
+npm run check
+npm run build
+npm run serve
 ```
+
+Open `http://localhost:8080`.
+
+## v2.4 adaptive enrichment
+
+The live data workflow now uses a two-pass model. Pass one discovers every competition returned for today. Pass two ranks fixtures and spends deeper API calls only where they can materially improve a Zeus decision. The complete board remains visible, but A1/A2 public selections require independent deep evidence.
+
+Run **Smart Global Coverage and Deep Enrichment** from GitHub Actions after installing the package. The hourly **Refresh Priority Evidence** workflow updates xG, odds movement and near-kickoff lineups for the current shortlist.
+
+## v3.9 Rebel engines
+
+- **Spartacus** scans broader multi-book movement using a minimum of three timestamped bookmakers and 55% directional agreement.
+- **Leonidas** is stricter, requiring at least five timestamped bookmakers, 70% agreement and two related confirmations.
+- Both engines use the uploaded v1.1 goal-market and favourite downgrade rules.
+- Missing opening prices, weak agreement or contradictory movement produces No Bet.
+- Rebel engines can support or challenge Zeus, but cannot create a public decision without Olympian confirmation.
+
+Run `npm run test:rebels` to verify the uploaded v1.1 rule examples.
+
+## v4.8 accounts and monetization
+
+- Free account: three public daily picks, live scores, settled results and basic explanations.
+- Olympian Pro: $8.99 monthly or $79 annually.
+- Zeus Supreme: $17.99 monthly or $159 annually.
+- Day Pass: $2.99 for 24 hours without renewal.
+- Premium gates cover the full seven-day board, saved picks, alerts, Olympian engines, Zeus, Bankers, Leonidas and Spartacus.
+- The drawer includes My Account, Plans, Saved Picks, Notifications, Payment History, Responsible Play, Support and Sign Out.
+- `monetization-config.js` contains public plan settings and hosted-checkout URLs only. Never place private payment or webhook keys there.
+
+See `MONETIZATION_SETUP.md` before connecting a production authentication or payment provider.
+
+## v4.9 secure backend
+
+The account interface can now use Supabase passwordless authentication, Postgres Row Level Security, server-derived plan entitlements, cloud preferences, saved picks, receipts and account-pause controls. Follow `SECURE_BACKEND_SETUP.md` before enabling production access.
