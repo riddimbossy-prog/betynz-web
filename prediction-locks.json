@@ -29,6 +29,40 @@
       "odds": 2
     }
   },
+  "1490327": {
+    "fixtureId": "1490327",
+    "home": "St. Louis City",
+    "away": "Sporting Kansas City",
+    "league": "Major League Soccer",
+    "kickoff": "2026-07-17T00:30:00.000Z",
+    "publishedAt": "2026-07-16T13:06:31.049Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "10 specialist engines agree on Home Win.",
+        "Weighted support 14.29 leads the next market by 12.88.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.44
+    }
+  },
   "1492291": {
     "fixtureId": "1492291",
     "home": "Botafogo",
