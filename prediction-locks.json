@@ -299,6 +299,35 @@
       "odds": null
     }
   },
+  "1576752": {
+    "fixtureId": "1576752",
+    "home": "Palmeiras U20",
+    "away": "Corinthians U20",
+    "league": "Brasileiro U20 A",
+    "kickoff": "2026-07-16T19:00:00.000Z",
+    "publishedAt": "2026-07-16T07:56:11.480Z",
+    "engineVersion": "4.7.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "ares",
+        "hephaestus",
+        "demeter",
+        "nike"
+      ],
+      "reasons": [
+        "5 specialist engines agree on Home DNB.",
+        "Weighted support 7.56 leads the next market by 6.96.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null
+    }
+  },
   "1576753": {
     "fixtureId": "1576753",
     "home": "RB Bragantino U20",
