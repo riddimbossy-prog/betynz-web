@@ -1,11 +1,11 @@
 {
   "version": "v196",
-  "updated": "2026-07-16T07:56:02.651Z",
+  "updated": "2026-07-16T13:14:54.242Z",
   "summary": {
-    "fixtures": 63,
+    "fixtures": 62,
     "extreme": 0,
     "high": 0,
-    "low": 62,
+    "low": 61,
     "averageRisk": 9
   },
   "commonFlags": [
@@ -43,7 +43,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490334,
@@ -65,7 +65,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490335,
@@ -87,7 +87,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490333,
@@ -109,7 +109,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490332,
@@ -131,7 +131,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490331,
@@ -153,29 +153,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1504266,
-      "date": "2026-07-21",
-      "home": "KäPa",
-      "away": "Klubi-04",
-      "league": "Ykkösliiga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1492290,
@@ -197,29 +175,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549411,
-      "date": "2026-07-20",
-      "home": "Alianza Lima",
-      "away": "Sport Huancayo",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522147,
@@ -241,14 +197,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
-      "id": 1549416,
+      "id": 1517820,
       "date": "2026-07-19",
-      "home": "Club Deportivo Los Chankas",
-      "away": "Sport Boys",
-      "league": "Primera División",
+      "home": "Central Coast II",
+      "away": "Northern Tigers",
+      "league": "New South Wales NPL 2",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -263,7 +219,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1527107,
+      "date": "2026-07-19",
+      "home": "FK Beograd",
+      "away": "Adelaide United II",
+      "league": "South Australia NPL",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490329,
@@ -285,29 +263,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549412,
-      "date": "2026-07-18",
-      "home": "Cienciano",
-      "away": "FBC Melgar",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490330,
@@ -329,7 +285,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522212,
@@ -351,7 +307,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522213,
@@ -373,7 +329,73 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1527104,
+      "date": "2026-07-18",
+      "home": "Adelaide City",
+      "away": "Croydon Kings",
+      "league": "South Australia NPL",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1527106,
+      "date": "2026-07-18",
+      "home": "West Adelaide",
+      "away": "Sturt Lions",
+      "league": "South Australia NPL",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1527105,
+      "date": "2026-07-18",
+      "home": "Playford City Patriots",
+      "away": "MetroStars",
+      "league": "South Australia NPL",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522145,
@@ -395,7 +417,95 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517815,
+      "date": "2026-07-18",
+      "home": "Hills Brumbies",
+      "away": "Hakoah Sydney City",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517816,
+      "date": "2026-07-18",
+      "home": "Canterbury Bankstown",
+      "away": "Blacktown Spartans",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517818,
+      "date": "2026-07-18",
+      "home": "Inter Lions",
+      "away": "Rydalmere Lions",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517817,
+      "date": "2026-07-18",
+      "home": "Mt Druitt Town",
+      "away": "Newcastle Jets II",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522146,
@@ -417,7 +527,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517819,
+      "date": "2026-07-18",
+      "home": "Bulls Academy",
+      "away": "Bankstown City Lions",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1528656,
@@ -439,7 +571,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1528657,
@@ -461,7 +593,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1528655,
@@ -487,7 +619,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1528777,
@@ -509,139 +641,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1504264,
-      "date": "2026-07-18",
-      "home": "EIF",
-      "away": "JäPS",
-      "league": "Ykkösliiga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1504265,
-      "date": "2026-07-18",
-      "home": "Kooteepee",
-      "away": "PK-35",
-      "league": "Ykkösliiga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549417,
-      "date": "2026-07-18",
-      "home": "UCV Moquegua",
-      "away": "Comerciantes Unidos",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549410,
-      "date": "2026-07-18",
-      "home": "ADT",
-      "away": "Universitario",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549415,
-      "date": "2026-07-18",
-      "home": "Atletico Grau",
-      "away": "UTC Cajamarca",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549413,
-      "date": "2026-07-18",
-      "home": "Cusco",
-      "away": "Alianza Atletico",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490326,
@@ -663,7 +663,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490327,
@@ -685,7 +685,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1490328,
@@ -707,7 +707,73 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1527102,
+      "date": "2026-07-17",
+      "home": "Campbelltown City",
+      "away": "Adelaide Comets",
+      "league": "South Australia NPL",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517903,
+      "date": "2026-07-17",
+      "home": "Hurstville FC",
+      "away": "Dulwich Hill",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
+    },
+    {
+      "id": 1517904,
+      "date": "2026-07-17",
+      "home": "Prospect United",
+      "away": "Macarthur Rams",
+      "league": "New South Wales NPL 2",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522148,
@@ -733,7 +799,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.241Z"
     },
     {
       "id": 1522144,
@@ -755,7 +821,29 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
+    },
+    {
+      "id": 1527103,
+      "date": "2026-07-17",
+      "home": "West Torrens Birkalla",
+      "away": "Para Hills Knights",
+      "league": "South Australia NPL",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1528651,
@@ -777,7 +865,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1528652,
@@ -799,7 +887,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1528653,
@@ -825,7 +913,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1528654,
@@ -847,95 +935,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1504263,
-      "date": "2026-07-17",
-      "home": "Klubi-04",
-      "away": "Haka",
-      "league": "Ykkösliiga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1504262,
-      "date": "2026-07-17",
-      "home": "KäPa",
-      "away": "SJK Akatemia",
-      "league": "Ykkösliiga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549414,
-      "date": "2026-07-17",
-      "home": "FC Cajamarca",
-      "away": "Juan Pablo II College",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1549418,
-      "date": "2026-07-17",
-      "home": "Sporting Cristal",
-      "away": "Deportivo Garcilaso",
-      "league": "Primera División",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1492140,
@@ -957,7 +957,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1492295,
@@ -979,7 +979,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1492297,
@@ -1001,7 +1001,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1576752,
@@ -1029,7 +1029,7 @@
         "hardVeto": false,
         "adjustment": -3
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1492291,
@@ -1051,7 +1051,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1492299,
@@ -1073,7 +1073,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1490325,
@@ -1095,7 +1095,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1554929,
@@ -1117,7 +1117,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1548837,
@@ -1139,7 +1139,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1560604,
@@ -1161,7 +1161,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1567624,
@@ -1183,7 +1183,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1584840,
@@ -1205,7 +1205,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1560606,
@@ -1227,7 +1227,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1547958,
@@ -1249,7 +1249,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1562916,
@@ -1271,7 +1271,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1562917,
@@ -1293,7 +1293,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1567627,
@@ -1315,7 +1315,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1546668,
@@ -1337,7 +1337,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1546670,
@@ -1359,7 +1359,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1546673,
@@ -1381,7 +1381,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     },
     {
       "id": 1547968,
@@ -1403,29 +1403,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
-    },
-    {
-      "id": 1583305,
-      "date": "2026-07-14",
-      "home": "Alton Town",
-      "away": "Ashford Town (Middlesex)",
-      "league": "Friendlies Clubs",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T07:56:02.651Z"
+      "generatedAt": "2026-07-16T13:14:54.242Z"
     }
   ]
 }
