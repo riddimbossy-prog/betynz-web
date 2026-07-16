@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T21:14:05.262Z",
+  "generatedAt": "2026-07-16T23:20:10.443Z",
   "mode": "adaptive-two-pass",
   "today": "2026-07-16",
   "limits": {
@@ -8,22 +8,31 @@
     "tsaMax": 24
   },
   "coverage": {
-    "fixtures": 1577,
-    "leagues": 139
+    "fixtures": 1573,
+    "leagues": 138
   },
   "selected": {
-    "leagues": 7,
+    "leagues": 8,
     "fixtures": 48,
     "leagueIds": [
+      71,
       253,
       170,
       1087,
-      71,
       836,
       165,
-      328
+      479,
+      295
     ],
     "leagueSeasons": [
+      {
+        "leagueId": 71,
+        "season": "2026",
+        "league": "Serie A",
+        "country": "Brazil",
+        "fixtureCount": 7,
+        "priority": 129.05
+      },
       {
         "leagueId": 253,
         "season": "2026",
@@ -49,14 +58,6 @@
         "priority": 127.62
       },
       {
-        "leagueId": 71,
-        "season": "2026",
-        "league": "Serie A",
-        "country": "Brazil",
-        "fixtureCount": 7,
-        "priority": 126.05
-      },
-      {
         "leagueId": 836,
         "season": "2026",
         "league": "Victoria NPL 2",
@@ -69,19 +70,34 @@
         "season": "2026",
         "league": "1. Deild",
         "country": "Iceland",
-        "fixtureCount": 6,
-        "priority": 124.41
+        "fixtureCount": 5,
+        "priority": 124.4
       },
       {
-        "leagueId": 328,
+        "leagueId": 479,
         "season": "2026",
-        "league": "Esiliiga A",
-        "country": "Estonia",
+        "league": "Canadian Premier League",
+        "country": "Canada",
         "fixtureCount": 4,
-        "priority": 117.36
+        "priority": 119.37
+      },
+      {
+        "leagueId": 295,
+        "season": "2026",
+        "league": "K3 League",
+        "country": "South-Korea",
+        "fixtureCount": 1,
+        "priority": 97.22
       }
     ],
     "fixtureIds": [
+      "1492140",
+      "1492299",
+      "1492291",
+      "1492295",
+      "1492294",
+      "1492297",
+      "1492290",
       "1490328",
       "1490329",
       "1490327",
@@ -104,15 +120,8 @@
       "1504263",
       "1504262",
       "1504264",
-      "1504265",
       "1504266",
-      "1492299",
-      "1492140",
-      "1492291",
-      "1492295",
-      "1492294",
-      "1492297",
-      "1492290",
+      "1504265",
       "1522148",
       "1522146",
       "1522144",
@@ -123,18 +132,20 @@
       "1514234",
       "1514235",
       "1514233",
-      "1514231",
       "1514236",
       "1514232",
-      "1519601",
-      "1519598",
-      "1519600",
-      "1519599"
+      "1517309",
+      "1517310",
+      "1517311",
+      "1517312",
+      "1520546"
     ],
     "tsaFixtureIds": [
       "1490328",
       "1528652",
       "1504263",
+      "1492140",
+      "1517309",
       "1492299",
       "1528654",
       "1522148",
@@ -143,19 +154,17 @@
       "1504262",
       "1528653",
       "1522146",
-      "1492140",
-      "1519601",
       "1514235",
       "1492291",
       "1490327",
+      "1492295",
       "1522144",
       "1528655",
-      "1492295",
       "1528656",
       "1490334",
       "1528777",
-      "1519598",
-      "1492294"
+      "1492294",
+      "1492297"
     ]
   },
   "topCandidates": [
@@ -190,6 +199,26 @@
       "dataQuality": 88
     },
     {
+      "id": 1492140,
+      "home": "Bahia",
+      "away": "Chapecoense-sc",
+      "league": "Serie A",
+      "leagueId": 71,
+      "kickoff": "2026-07-17T22:30:00+00:00",
+      "priority": 129.62,
+      "dataQuality": 88
+    },
+    {
+      "id": 1517309,
+      "home": "Forge",
+      "away": "Pacific FC",
+      "league": "Canadian Premier League",
+      "leagueId": 479,
+      "kickoff": "2026-07-17T00:00:00+00:00",
+      "priority": 128.97,
+      "dataQuality": 70
+    },
+    {
       "id": 1527103,
       "home": "West Torrens Birkalla",
       "away": "Para Hills Knights",
@@ -217,6 +246,16 @@
       "leagueId": 71,
       "kickoff": "2026-07-16T22:30:00+00:00",
       "priority": 128.48,
+      "dataQuality": 88
+    },
+    {
+      "id": 1493579,
+      "home": "Loudoun United",
+      "away": "Tampa Bay Rowdies",
+      "league": "USL Championship",
+      "leagueId": 255,
+      "kickoff": "2026-07-18T23:00:00+00:00",
+      "priority": 127.7,
       "dataQuality": 88
     },
     {
@@ -266,7 +305,7 @@
       "league": "1. Deild",
       "leagueId": 165,
       "kickoff": "2026-07-17T19:15:00+00:00",
-      "priority": 125.73,
+      "priority": 125.72,
       "dataQuality": 88
     },
     {
@@ -290,16 +329,6 @@
       "dataQuality": 88
     },
     {
-      "id": 1519400,
-      "home": "Aucas",
-      "away": "Independiente del Valle",
-      "league": "Liga Pro",
-      "leagueId": 242,
-      "kickoff": "2026-07-16T21:30:00+00:00",
-      "priority": 124.92,
-      "dataQuality": 88
-    },
-    {
       "id": 1528653,
       "home": "Dongguan United",
       "away": "Nantong Zhiyun",
@@ -320,13 +349,13 @@
       "dataQuality": 88
     },
     {
-      "id": 1492140,
-      "home": "Bahia",
-      "away": "Chapecoense-sc",
-      "league": "Serie A",
-      "leagueId": 71,
-      "kickoff": "2026-07-17T22:30:00+00:00",
-      "priority": 123.62,
+      "id": 1513222,
+      "home": "Toronto II",
+      "away": "FC Cincinnati II",
+      "league": "MLS Next Pro",
+      "leagueId": 909,
+      "kickoff": "2026-07-17T23:00:00+00:00",
+      "priority": 123.56,
       "dataQuality": 88
     },
     {
@@ -337,26 +366,6 @@
       "leagueId": 164,
       "kickoff": "2026-07-18T16:00:00+00:00",
       "priority": 123.3,
-      "dataQuality": 88
-    },
-    {
-      "id": 1576795,
-      "home": "Albion FC",
-      "away": "Juventud",
-      "league": "Primera División - Apertura",
-      "leagueId": 268,
-      "kickoff": "2026-07-17T18:00:00+00:00",
-      "priority": 123.22,
-      "dataQuality": 88
-    },
-    {
-      "id": 1519601,
-      "home": "Tartu Welco",
-      "away": "FC Tallinn",
-      "league": "Esiliiga A",
-      "leagueId": 328,
-      "kickoff": "2026-07-18T16:00:00+00:00",
-      "priority": 123.2,
       "dataQuality": 88
     }
   ]

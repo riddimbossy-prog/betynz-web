@@ -243,6 +243,154 @@
       }
     }
   },
+  "1517309": {
+    "fixtureId": "1517309",
+    "home": "Forge",
+    "away": "Pacific FC",
+    "league": "Canadian Premier League",
+    "kickoff": "2026-07-17T00:00:00.000Z",
+    "publishedAt": "2026-07-16T23:22:30.559Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (2.58-0.25 overall; 2.67-0.4 split).",
+        "8 specialist engines agree on Home DNB.",
+        "Weighted support 12.95 leads the next market by 12.4.",
+        "Data quality: 82/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 82,
+      "odds": 1.16,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.58-0.25 overall; 2.67-0.4 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.58,
+          "awayOverallPPG": 0.25,
+          "homeSplitPPG": 2.67,
+          "awaySplitPPG": 0.4,
+          "overallGap": 2.33,
+          "splitGap": 2.27
+        }
+      }
+    }
+  },
+  "1522144": {
+    "fixtureId": "1522144",
+    "home": "Northcote City",
+    "away": "Manningham United Blues",
+    "league": "Victoria NPL 2",
+    "kickoff": "2026-07-17T10:30:00.000Z",
+    "publishedAt": "2026-07-16T23:22:30.559Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.95-1.45 overall; 2-1.1 split).",
+        "8 specialist engines agree on Home Win.",
+        "Weighted support 11.28 leads the next market by 10.24.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.62,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.95-1.45 overall; 2-1.1 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.95,
+          "awayOverallPPG": 1.45,
+          "homeSplitPPG": 2,
+          "awaySplitPPG": 1.1,
+          "overallGap": 0.5,
+          "splitGap": 0.9
+        }
+      }
+    }
+  },
+  "1522148": {
+    "fixtureId": "1522148",
+    "home": "Melbourne Knights",
+    "away": "Brunswick City",
+    "league": "Victoria NPL 2",
+    "kickoff": "2026-07-17T10:30:00.000Z",
+    "publishedAt": "2026-07-16T23:22:30.559Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (2.05-1.2 overall; 2.5-0.8 split).",
+        "9 specialist engines agree on Home Win.",
+        "Weighted support 12.54 leads the next market by 11.5.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.42,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.05-1.2 overall; 2.5-0.8 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.05,
+          "awayOverallPPG": 1.2,
+          "homeSplitPPG": 2.5,
+          "awaySplitPPG": 0.8,
+          "overallGap": 0.85,
+          "splitGap": 1.7
+        }
+      }
+    }
+  },
   "1526571": {
     "fixtureId": "1526571",
     "home": "Atletico FC",
@@ -285,6 +433,56 @@
           "awaySplitPPG": 0.75,
           "overallGap": 0.44,
           "splitGap": 1.39
+        }
+      }
+    }
+  },
+  "1528652": {
+    "fixtureId": "1528652",
+    "home": "Suzhou Dongwu",
+    "away": "Shenzhen Juniors",
+    "league": "League One",
+    "kickoff": "2026-07-17T11:00:00.000Z",
+    "publishedAt": "2026-07-16T23:22:30.559Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (0.43-1.79 overall; 0.57-1.86 split).",
+        "9 specialist engines agree on Away Win.",
+        "Weighted support 14 leads the next market by 13.4.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.84,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (0.43-1.79 overall; 0.57-1.86 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 0.43,
+          "awayOverallPPG": 1.79,
+          "homeSplitPPG": 0.57,
+          "awaySplitPPG": 1.86,
+          "overallGap": -1.36,
+          "splitGap": -1.29
         }
       }
     }
