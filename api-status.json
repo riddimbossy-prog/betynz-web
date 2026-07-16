@@ -1,15 +1,15 @@
 {
   "product": "Betynz",
-  "version": "3.9.0",
-  "engineVersion": "3.9.0",
-  "source": "waiting-for-live-sync",
-  "generatedAt": "2026-07-14T23:18:55.674Z",
-  "dataUpdated": null,
+  "version": "5.4.0",
+  "engineVersion": "5.4.0",
+  "source": "API-Football + TheStatsAPI",
+  "generatedAt": "2026-07-16T18:59:39.256Z",
+  "dataUpdated": "2026-07-16T18:59:33.454Z",
   "isDemo": false,
-  "isReady": false,
-  "fixtureCount": 0,
-  "qualifiedCount": 0,
-  "lockedCount": 0,
+  "isReady": true,
+  "fixtureCount": 1848,
+  "qualifiedCount": 32,
+  "lockedCount": 5,
   "historyCount": 0,
   "record": {
     "wins": 0,
@@ -17,5 +17,23 @@
     "voids": 0,
     "hitRate": null
   },
-  "engineCounts": {}
+  "engineCounts": {
+    "prometheus": 441,
+    "athena": 289,
+    "ares": 263,
+    "hermes": 240,
+    "hera": 275,
+    "hades": 180,
+    "atlas": 245,
+    "zeus": 347,
+    "nike": 315,
+    "spartacus": 79,
+    "apollo": 19,
+    "poseidon": 134,
+    "hephaestus": 23,
+    "artemis": 28,
+    "dionysus": 11,
+    "demeter": 18,
+    "leonidas": 9
+  }
 }
