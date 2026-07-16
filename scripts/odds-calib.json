@@ -1,7 +1,33 @@
 {
   "version": "1.0",
-  "updated": "2026-07-16T19:56:46.036Z",
+  "updated": "2026-07-16T21:16:45.767Z",
   "leagues": {
+    "165": {
+      "name": "1. Deild",
+      "markets": {
+        "Home Win": {
+          "1.20-1.44": {
+            "n": 1,
+            "hits": 1,
+            "hit": 1
+          }
+        },
+        "Away Win": {
+          "2.50+": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        },
+        "Under 3.5 Goals": {
+          "2.00-2.49": {
+            "n": 1,
+            "hits": 0,
+            "hit": 0
+          }
+        }
+      }
+    },
     "328": {
       "name": "Esiliiga A",
       "markets": {

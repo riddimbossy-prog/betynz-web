@@ -1,1 +1,49 @@
-[]
+[
+  {
+    "fixtureId": "1514231",
+    "home": "Afturelding",
+    "away": "Leiknir R.",
+    "league": "1. Deild",
+    "kickoff": "2026-07-16T19:15:00.000Z",
+    "market": "Home DNB",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": null,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "ares",
+      "hera",
+      "hephaestus",
+      "demeter",
+      "atlas",
+      "nike"
+    ],
+    "publishedAt": "2026-07-16T19:56:52.938Z",
+    "settledAt": "2026-07-16T21:16:54.660Z",
+    "score": "3-2",
+    "result": "Won"
+  },
+  {
+    "fixtureId": "1526571",
+    "home": "Atletico FC",
+    "away": "San Antonio",
+    "league": "Liga Pro Serie B",
+    "kickoff": "2026-07-16T19:00:00.000Z",
+    "market": "Home DNB",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": null,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "hera",
+      "atlas",
+      "nike"
+    ],
+    "publishedAt": "2026-07-16T18:59:39.256Z",
+    "settledAt": "2026-07-16T21:16:54.660Z",
+    "score": "4-1",
+    "result": "Won"
+  }
+]
