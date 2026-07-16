@@ -194,6 +194,55 @@
       }
     }
   },
+  "1514231": {
+    "fixtureId": "1514231",
+    "home": "Afturelding",
+    "away": "Leiknir R.",
+    "league": "1. Deild",
+    "kickoff": "2026-07-16T19:15:00.000Z",
+    "publishedAt": "2026-07-16T19:56:52.938Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (2.15-1.46 overall; 2.17-1.33 split).",
+        "8 specialist engines agree on Home DNB.",
+        "Weighted support 12.95 leads the next market by 11.62.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.15-1.46 overall; 2.17-1.33 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.15,
+          "awayOverallPPG": 1.46,
+          "homeSplitPPG": 2.17,
+          "awaySplitPPG": 1.33,
+          "overallGap": 0.69,
+          "splitGap": 0.84
+        }
+      }
+    }
+  },
   "1526571": {
     "fixtureId": "1526571",
     "home": "Atletico FC",

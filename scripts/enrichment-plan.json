@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T18:57:03.558Z",
+  "generatedAt": "2026-07-16T19:54:31.697Z",
   "mode": "adaptive-two-pass",
   "today": "2026-07-16",
   "limits": {
@@ -8,8 +8,8 @@
     "tsaMax": 24
   },
   "coverage": {
-    "fixtures": 1612,
-    "leagues": 141
+    "fixtures": 1602,
+    "leagues": 140
   },
   "selected": {
     "leagues": 7,
@@ -20,8 +20,8 @@
       253,
       71,
       836,
-      243,
-      365
+      165,
+      328
     ],
     "leagueSeasons": [
       {
@@ -65,20 +65,20 @@
         "priority": 125.72
       },
       {
-        "leagueId": 243,
+        "leagueId": 165,
         "season": "2026",
-        "league": "Liga Pro Serie B",
-        "country": "Ecuador",
-        "fixtureCount": 5,
-        "priority": 124.31
+        "league": "1. Deild",
+        "country": "Iceland",
+        "fixtureCount": 6,
+        "priority": 124.41
       },
       {
-        "leagueId": 365,
+        "leagueId": 328,
         "season": "2026",
-        "league": "Virsliga",
-        "country": "Latvia",
-        "fixtureCount": 5,
-        "priority": 118.95
+        "league": "Esiliiga A",
+        "country": "Estonia",
+        "fixtureCount": 4,
+        "priority": 117.36
       }
     ],
     "fixtureIds": [
@@ -120,19 +120,18 @@
       "1522213",
       "1522145",
       "1522147",
-      "1526571",
-      "1526575",
-      "1526574",
-      "1526573",
-      "1526582",
-      "1515884",
-      "1515885",
-      "1515887",
-      "1515886",
-      "1515888"
+      "1514234",
+      "1514235",
+      "1514231",
+      "1514233",
+      "1514236",
+      "1514232",
+      "1519601",
+      "1519598",
+      "1519600",
+      "1519599"
     ],
     "tsaFixtureIds": [
-      "1526571",
       "1528652",
       "1504263",
       "1492299",
@@ -140,22 +139,23 @@
       "1528654",
       "1522148",
       "1490329",
+      "1514234",
       "1504262",
-      "1515884",
       "1528653",
       "1522146",
       "1492140",
+      "1519601",
+      "1514235",
       "1492291",
+      "1514231",
       "1490327",
       "1522144",
-      "1526575",
       "1528655",
       "1492295",
       "1528656",
       "1490334",
-      "1515885",
       "1528777",
-      "1492294"
+      "1519598"
     ]
   },
   "topCandidates": [
@@ -280,6 +280,16 @@
       "dataQuality": 88
     },
     {
+      "id": 1514234,
+      "home": "Fylkir",
+      "away": "Njardvik",
+      "league": "1. Deild",
+      "leagueId": 165,
+      "kickoff": "2026-07-17T19:15:00+00:00",
+      "priority": 125.73,
+      "dataQuality": 88
+    },
+    {
       "id": 1504262,
       "home": "KäPa",
       "away": "SJK Akatemia",
@@ -347,16 +357,6 @@
       "leagueId": 164,
       "kickoff": "2026-07-18T16:00:00+00:00",
       "priority": 123.3,
-      "dataQuality": 88
-    },
-    {
-      "id": 1576795,
-      "home": "Albion FC",
-      "away": "Juventud",
-      "league": "Primera División - Apertura",
-      "leagueId": 268,
-      "kickoff": "2026-07-17T18:00:00+00:00",
-      "priority": 123.22,
       "dataQuality": 88
     }
   ]

@@ -1,46 +1,20 @@
 {
   "version": "v196",
-  "updated": "2026-07-16T18:59:32.926Z",
+  "updated": "2026-07-16T19:56:46.889Z",
   "summary": {
-    "fixtures": 48,
+    "fixtures": 47,
     "extreme": 0,
     "high": 0,
-    "low": 48,
+    "low": 47,
     "averageRisk": 9
   },
   "commonFlags": [
     {
       "flag": "REST_IMBALANCE",
-      "count": 4
+      "count": 5
     }
   ],
   "fixtures": [
-    {
-      "id": 1526582,
-      "date": "2026-07-22",
-      "home": "San Antonio",
-      "away": "Cumbayá",
-      "league": "Liga Pro Serie B",
-      "version": "v196",
-      "riskScore": 14,
-      "stabilityScore": 48,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "San Antonio has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
-    },
     {
       "id": 1492294,
       "date": "2026-07-22",
@@ -61,7 +35,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490334,
@@ -83,7 +57,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490335,
@@ -105,7 +79,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490333,
@@ -127,7 +101,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490332,
@@ -149,7 +123,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490331,
@@ -171,7 +145,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1504266,
@@ -193,7 +167,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1492290,
@@ -215,14 +189,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
-      "id": 1515885,
+      "id": 1514236,
       "date": "2026-07-20",
-      "home": "FS Jelgava",
-      "away": "Rīgas FS",
-      "league": "Virsliga",
+      "home": "HK Kopavogur",
+      "away": "Vestri",
+      "league": "1. Deild",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -237,29 +211,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
-    },
-    {
-      "id": 1515888,
-      "date": "2026-07-20",
-      "home": "Super Nova",
-      "away": "Grobiņa",
-      "league": "Virsliga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522147,
@@ -281,51 +233,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
-    },
-    {
-      "id": 1515886,
-      "date": "2026-07-19",
-      "home": "Ogre United",
-      "away": "BFC Daugavpils",
-      "league": "Virsliga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
-    },
-    {
-      "id": 1515887,
-      "date": "2026-07-19",
-      "home": "Auda",
-      "away": "FK Liepaja",
-      "league": "Virsliga",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490329,
@@ -347,7 +255,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490330,
@@ -369,7 +277,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522212,
@@ -391,7 +299,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522213,
@@ -413,7 +321,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522145,
@@ -435,7 +343,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522146,
@@ -457,7 +365,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528656,
@@ -479,7 +387,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528657,
@@ -501,7 +409,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528655,
@@ -527,7 +435,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528777,
@@ -549,7 +457,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1504264,
@@ -571,7 +479,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1504265,
@@ -593,14 +501,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
-      "id": 1515884,
+      "id": 1514232,
       "date": "2026-07-18",
-      "home": "Riga",
-      "away": "Tukums",
-      "league": "Virsliga",
+      "home": "Grindavik",
+      "away": "IR Reykjavik",
+      "league": "1. Deild",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -615,20 +523,24 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
-      "id": 1526573,
+      "id": 1514233,
       "date": "2026-07-18",
-      "home": "Gualaceo SC",
-      "away": "22 de Julio",
-      "league": "Liga Pro Serie B",
+      "home": "Grotta",
+      "away": "Ægir",
+      "league": "1. Deild",
       "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
+      "riskScore": 14,
+      "stabilityScore": 48,
       "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Ægir has a material rest advantage."
+      ],
       "missingEvidence": [
         "AVAILABILITY"
       ],
@@ -637,14 +549,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
-      "id": 1526575,
-      "date": "2026-07-17",
-      "home": "Santo Domingo",
-      "away": "Deportivo Cuenca Juniors",
-      "league": "Liga Pro Serie B",
+      "id": 1514235,
+      "date": "2026-07-18",
+      "home": "Throttur Reykjavik",
+      "away": "Völsungur",
+      "league": "1. Deild",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -659,7 +571,95 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
+    },
+    {
+      "id": 1519598,
+      "date": "2026-07-18",
+      "home": "Flora II",
+      "away": "Maardu",
+      "league": "Esiliiga A",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T19:56:46.889Z"
+    },
+    {
+      "id": 1519601,
+      "date": "2026-07-18",
+      "home": "Tartu Welco",
+      "away": "FC Tallinn",
+      "league": "Esiliiga A",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T19:56:46.889Z"
+    },
+    {
+      "id": 1519600,
+      "date": "2026-07-18",
+      "home": "Tallinna Kalev",
+      "away": "Nõmme United II",
+      "league": "Esiliiga A",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T19:56:46.889Z"
+    },
+    {
+      "id": 1519599,
+      "date": "2026-07-18",
+      "home": "Nõmme Kalju II",
+      "away": "FCI Levadia II",
+      "league": "Esiliiga A",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490326,
@@ -681,7 +681,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490327,
@@ -703,7 +703,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490328,
@@ -725,7 +725,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522148,
@@ -751,7 +751,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1522144,
@@ -773,7 +773,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528651,
@@ -795,7 +795,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528652,
@@ -817,7 +817,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528653,
@@ -843,7 +843,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1528654,
@@ -865,7 +865,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1504263,
@@ -887,7 +887,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1504262,
@@ -909,20 +909,24 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
-      "id": 1526574,
+      "id": 1514234,
       "date": "2026-07-17",
-      "home": "LDU Portoviejo",
-      "away": "Ind. Juniors",
-      "league": "Liga Pro Serie B",
+      "home": "Fylkir",
+      "away": "Njardvik",
+      "league": "1. Deild",
       "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
+      "riskScore": 14,
+      "stabilityScore": 48,
       "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Njardvik has a material rest advantage."
+      ],
       "missingEvidence": [
         "AVAILABILITY"
       ],
@@ -931,7 +935,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1492140,
@@ -953,7 +957,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1492295,
@@ -975,7 +979,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1492297,
@@ -997,29 +1001,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
-    },
-    {
-      "id": 1526571,
-      "date": "2026-07-16",
-      "home": "Atletico FC",
-      "away": "San Antonio",
-      "league": "Liga Pro Serie B",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1492291,
@@ -1041,7 +1023,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1492299,
@@ -1063,7 +1045,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     },
     {
       "id": 1490325,
@@ -1085,7 +1067,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-16T18:59:32.926Z"
+      "generatedAt": "2026-07-16T19:56:46.889Z"
     }
   ]
 }
