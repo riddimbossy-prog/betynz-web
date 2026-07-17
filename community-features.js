@@ -168,7 +168,8 @@
     });
     document.addEventListener("submit",e=>{if(e.target.id==="match-comment-form"){e.preventDefault();postComment(e.target)}});
     window.addEventListener("betynz:pick-detail",e=>loadMatchCommunity(e.detail));
-    window.addEventListener("hashchange",()=>{const v=(location.hash||"#dashboard").slice(1);if(v==="community")renderCommunity();if(v==="performance")renderPerformance();if(v==="health")renderHealth();if(v==="profile")renderAccountTools()});
+    const renderForView=v=>{if(v==="community")renderCommunity();if(v==="performance")renderPerformance();if(v==="health")renderHealth();if(v==="profile")renderAccountTools()};
+    window.addEventListener("betynz:viewchange",event=>renderForView(event.detail&&event.detail.view||"dashboard"));
     $("#refresh-health")?.addEventListener("click",renderHealth);
   }
   function observe(){new MutationObserver(()=>decorateEngineCards()).observe(document.body,{childList:true,subtree:true})}

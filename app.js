@@ -735,12 +735,31 @@
     if(hero) hero.dataset.heroArt=activeView==="dashboard"?"zeus":"none";
   }
 
-  function showView(name){
+  function showView(name,options={}){
     if(!$( `[data-view-panel="${name}"]`))name="dashboard";
-    const required=requiredPlanForView(name);if(!hasPlan(required)){const current=$("[data-view-panel].active")?.dataset.viewPanel||"dashboard";activeView=current;if(location.hash!==`#${current}`)history.replaceState(null,"",`#${current}`);closeSidebar();openPaywall(required,name==="bankers"?"Banker Board":name==="saved"?"Saved Picks":name==="notifications"?"Notifications":"Account billing");return}
-    if(isPaused()&&["picks","engines","bankers"].includes(name)){closeSidebar();showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">◈</span><small>ACCESS PAUSED</small><h2 id="account-modal-title">Prediction access is paused</h2><p>This device is paused until ${esc(new Date(account.pausedUntil).toLocaleString())}. Live scores and settled results remain available.</p><button class="secondary-btn" type="button" data-view="results">View Settled Results</button></div>`);return}
-    activeView=name;location.hash=name;$$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));$$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));closeSidebar();
-    if(name==="picks")renderPicksView();if(name==="engines")renderEngines();if(name==="bankers")renderBankers();if(name==="results")renderResults();if(name==="pricing")renderPricing();if(name==="profile")renderAccount();if(name==="saved")renderSavedPicks();if(name==="notifications")renderNotifications();if(name==="billing")renderBilling();if(name==="responsible")renderResponsible();updatePageArt();window.scrollTo({top:0,behavior:"smooth"})
+    const required=requiredPlanForView(name);if(!hasPlan(required)){const current=$("[data-view-panel].active")?.dataset.viewPanel||"dashboard";activeView=current;if(location.hash!==`#${current}`)history.replaceState(null,"",`#${current}`);closeSidebar(true);openPaywall(required,name==="bankers"?"Banker Board":name==="saved"?"Saved Picks":name==="notifications"?"Notifications":"Account billing");return}
+    if(isPaused()&&["picks","engines","bankers"].includes(name)){closeSidebar(true);showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">◈</span><small>ACCESS PAUSED</small><h2 id="account-modal-title">Prediction access is paused</h2><p>This device is paused until ${esc(new Date(account.pausedUntil).toLocaleString())}. Live scores and settled results remain available.</p><button class="secondary-btn" type="button" data-view="results">View Settled Results</button></div>`);return}
+
+    const route=`#${name}`;
+    if(options.updateHistory!==false&&location.hash!==route){
+      const method=options.replaceHistory?"replaceState":"pushState";
+      history[method](null,"",route);
+    }
+
+    const changed=activeView!==name||!$(`[data-view-panel="${name}"]`)?.classList.contains("active");
+    activeView=name;
+    $$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));
+    $$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+    closeSidebar(true);
+    closeSelectionDrawer();
+
+    // Views are pre-rendered during initialization and updated by their own state actions.
+    // Avoid rebuilding large fixture lists on every navigation tap.
+    if(changed||options.force){
+      updatePageArt();
+      window.scrollTo({top:0,left:0,behavior:"auto"});
+      window.dispatchEvent(new CustomEvent("betynz:viewchange",{detail:{view:name}}));
+    }
   }
   function renderAllPickLists(){renderDashboardList();if(activeView==="picks")renderPicksView();if(activeView==="bankers")renderBankers()}
   function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
@@ -756,16 +775,24 @@
     if(drawer)drawer.classList.add("open");
     if(backdrop)backdrop.classList.add("open");
   }
-  function setSidebar(open){
+  function setSidebar(open,immediate=false){
     const sidebar=$("#sidebar"),backdrop=$("#sidebar-backdrop"),menu=$("#menu-btn");
     if(!sidebar)return;
     if(open)closeSelectionDrawer();
+    if(immediate){
+      sidebar.classList.add("nav-instant");
+      if(backdrop)backdrop.classList.add("nav-instant");
+    }
     sidebar.classList.toggle("open",!!open);
     if(backdrop)backdrop.classList.toggle("open",!!open);
     document.body.classList.toggle("sidebar-open",!!open);
     if(menu)menu.setAttribute("aria-expanded",open?"true":"false");
+    if(immediate)requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      sidebar.classList.remove("nav-instant");
+      if(backdrop)backdrop.classList.remove("nav-instant");
+    }));
   }
-  function closeSidebar(){setSidebar(false)}
+  function closeSidebar(immediate=false){setSidebar(false,immediate)}
 
   function bindNavigationControls(){
     $$('[data-view]').forEach(control=>{
@@ -884,7 +911,12 @@
     if($("#pause-account"))$("#pause-account").onclick=async()=>{if(isPaused()){toast("Prediction access is already paused.");return}try{account.pausedUntil=usingSecureBackend()&&account.signedIn?await BACKEND.pauseAccess(7):new Date(Date.now()+7*24*60*60*1000).toISOString();saveAccount();renderResponsible();toast("Prediction access paused for 7 days.")}catch(err){toast(err&&err.message?err.message:"Account pause failed.")}};
     if($("#responsible-reminder"))$("#responsible-reminder").onchange=e=>{saveJSON("betynz-responsible",{reminder:e.target.value});toast("Viewing reminder saved.")};
     document.addEventListener("click",e=>{if(e.target.id==="account-signout")signOut();if(e.target.id==="saved-copy")copySlip();if(e.target.id==="saved-clear"){slip=[];persistSlip();renderSlip();renderSavedPicks();renderAllPickLists();toast("Saved picks cleared.")}if(e.target.id==="unconfigured-checkout")toast("Subscriptions are disabled during the free launch phase.")});
-    window.addEventListener("hashchange",()=>showView((location.hash||"#dashboard").slice(1)));
+    const syncHistoryView=()=>{
+      const next=(location.hash||"#dashboard").slice(1);
+      if(next!==activeView)showView(next,{updateHistory:false});
+    };
+    window.addEventListener("popstate",syncHistoryView);
+    window.addEventListener("hashchange",syncHistoryView);
   }
 
   function init(){
@@ -899,7 +931,7 @@
     $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
     $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();updatePageArt();showView(activeView);initializeSecureBackend();
+    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();showView(activeView,{replaceHistory:true,force:true});initializeSecureBackend();
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

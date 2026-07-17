@@ -1,8 +1,8 @@
 {
   "name": "betynz-web",
-  "version": "5.7.0",
+  "version": "5.8.0",
   "private": true,
-  "description": "Betynz v5.6 PPG and defence decision rules with automatic strong-favourite wins, protected DNB downgrades, GG qualification and low-PPG under routing.",
+  "description": "Betynz v5.8 fast SPA navigation, clean Zeus launch screen and touch-optimized mobile, Z Fold and tablet tabs.",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",

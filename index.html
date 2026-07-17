@@ -24,24 +24,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5.7">
+  <link rel="stylesheet" href="styles.css?v=5.8">
 </head>
 <body>
   <div class="app-launch-splash" id="app-launch-splash" aria-hidden="true">
-    <div class="app-launch-splash__brand">
-      <img src="assets/betynz-mark.png" alt="">
-      <strong>BETYNZ<span>.com</span></strong>
-      <p>Let the Gods Decide.</p>
+    <div class="app-launch-splash__loading" aria-label="Loading Betynz">
+      <span class="app-launch-splash__bolt">ϟ</span>
       <div class="app-launch-splash__loader"><i></i></div>
+      <small>Preparing the board</small>
     </div>
   </div>
   <script>
     (function(){
       var splash=document.getElementById('app-launch-splash');
       if(!splash)return;
-      var hide=function(){splash.classList.add('is-leaving');setTimeout(function(){splash.remove();},520)};
-      window.addEventListener('load',function(){setTimeout(hide,1050)},{once:true});
-      setTimeout(hide,3200);
+      try{
+        if(sessionStorage.getItem('betynz-splash-seen-v58')){splash.remove();return;}
+        sessionStorage.setItem('betynz-splash-seen-v58','1');
+      }catch(_){ }
+      var hidden=false;
+      var hide=function(){if(hidden)return;hidden=true;splash.classList.add('is-leaving');setTimeout(function(){splash.remove();},280)};
+      window.addEventListener('load',function(){setTimeout(hide,420)},{once:true});
+      setTimeout(hide,1800);
     }());
   </script>
   <div class="app-shell">
@@ -329,13 +333,13 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="backend-config.js?v=5.7"></script>
-  <script src="backend-client.js?v=5.7"></script>
-  <script src="monetization-config.js?v=5.7"></script>
-  <script src="rebel-engine-core.js?v=5.7"></script>
-  <script src="olympian-engine-core.js?v=5.7"></script>
-  <script src="data.js?v=5.7"></script>
-  <script src="app.js?v=5.7"></script>
-  <script src="community-features.js?v=5.7"></script>
+  <script src="backend-config.js?v=5.8"></script>
+  <script src="backend-client.js?v=5.8"></script>
+  <script src="monetization-config.js?v=5.8"></script>
+  <script src="rebel-engine-core.js?v=5.8"></script>
+  <script src="olympian-engine-core.js?v=5.8"></script>
+  <script src="data.js?v=5.8"></script>
+  <script src="app.js?v=5.8"></script>
+  <script src="community-features.js?v=5.8"></script>
 </body>
 </html>
