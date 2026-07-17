@@ -203,6 +203,12 @@
     // caused a self-triggering loop when follow-button text was updated.
     observer.observe(grid,{childList:true,subtree:false});
   }
-  async function init(){await recordActivity();seedNotices();renderNotificationCenter();renderCommunity();renderPerformance();renderHealth();renderFavoriteShortcuts();renderAccountTools();decorateEngineCards();wire();observe();hydrateRemoteFollows();setTimeout(hydrateRemoteFollows,2500);setTimeout(recordActivity,3000);setTimeout(()=>openOnboarding(false),1750)}
+  async function init(){
+    seedNotices();renderNotificationCenter();renderFavoriteShortcuts();renderAccountTools();decorateEngineCards();wire();observe();
+    const initial=(location.hash||"#dashboard").slice(1);renderForView(initial);
+    setTimeout(()=>recordActivity().catch(()=>{}),900);
+    setTimeout(()=>hydrateRemoteFollows().catch(()=>{}),1400);
+    setTimeout(()=>openOnboarding(false),1750);
+  }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

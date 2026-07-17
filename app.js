@@ -62,6 +62,8 @@
   let paymentHistory=loadJSON("betynz-payment-history",[]);
   let backendHydrating=false;
   let backendHydrated=false;
+  let backendInitStarted=false;
+  const renderedViews=new Set(["dashboard"]);
   let slipSyncTimer=null;
 
   function loadJSON(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v==null?fallback:v}catch(_){return fallback}}
@@ -196,11 +198,16 @@
     finally{backendHydrating=false}
   }
   async function initializeSecureBackend(){
-    if(!usingSecureBackend())return;
+    if(!usingSecureBackend()||backendInitStarted)return;
+    if(!window.supabase||typeof window.supabase.createClient!=="function"){
+      window.addEventListener("betynz:supabase-ready",initializeSecureBackend,{once:true});
+      return;
+    }
+    backendInitStarted=true;
     try{
       await BACKEND.init((event)=>{if(event==="PASSWORD_RECOVERY")openNewPassword();else hydrateSecureAccount()});
       await hydrateSecureAccount();
-    }catch(err){console.error("Betynz backend init failed",err);toast("Secure backend connection failed.")}
+    }catch(err){backendInitStarted=false;console.error("Betynz backend init failed",err)}
   }
   function openPaywall(required="pro",feature="this feature"){
     if(FREE_LAUNCH){toast(`${feature} is included in Free Full Access.`);return}
@@ -742,6 +749,34 @@
     if(hero) hero.dataset.heroArt=activeView==="dashboard"?"zeus":"none";
   }
 
+  function renderViewData(name){
+    if(renderedViews.has(name))return;
+    switch(name){
+      case "picks": renderPicksView(); break;
+      case "engines": renderEngines(); break;
+      case "bankers": renderBankers(); break;
+      case "results": renderResults(); break;
+      case "profile": renderAccount(); renderPreferences(); break;
+      case "pricing": renderPricing(); break;
+      case "saved": renderSavedPicks(); break;
+      case "notifications": renderNotifications(); break;
+      case "billing": renderBilling(); break;
+      case "responsible": renderResponsible(); break;
+      default: break;
+    }
+    renderedViews.add(name);
+  }
+
+  function scheduleSecondaryViews(){
+    const task=()=>{
+      // Pre-render only the lightweight high-use pages. The engine directory and
+      // Banker Board are rendered when opened so the dashboard is never delayed.
+      ["picks","results","profile","pricing","saved","notifications","billing","responsible"].forEach(renderViewData);
+    };
+    if("requestIdleCallback" in window)requestIdleCallback(task,{timeout:1800});
+    else setTimeout(task,120);
+  }
+
   function showView(name,options={}){
     if(!$( `[data-view-panel="${name}"]`))name="dashboard";
     const required=requiredPlanForView(name);if(!hasPlan(required)){const current=$("[data-view-panel].active")?.dataset.viewPanel||"dashboard";activeView=current;if(location.hash!==`#${current}`)history.replaceState(null,"",`#${current}`);closeSidebar(true);openPaywall(required,name==="bankers"?"Banker Board":name==="saved"?"Saved Picks":name==="notifications"?"Notifications":"Account billing");return}
@@ -757,6 +792,7 @@
     activeView=name;
     $$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));
     $$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+    if(!renderedViews.has(name))requestAnimationFrame(()=>renderViewData(name));
     closeSidebar(true);
     closeSelectionDrawer();
 
@@ -839,7 +875,22 @@
     if(!("serviceWorker" in navigator))return;
     let refreshing=false,registration=null;
     const activateWaiting=()=>{if(registration&&registration.waiting)registration.waiting.postMessage({type:"SKIP_WAITING"})};
-    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(refreshing)return;refreshing=true;try{const key="betynz-sw-reload-v591";if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,"1")}catch(_){}location.reload()});
+    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(refreshing)return;refreshing=true;try{const key="betynz-sw-reload-v593";if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,"1")}catch(_){}location.reload()});
+    navigator.serviceWorker.addEventListener("message",event=>{
+      if(!event.data||event.data.type!=="BETYNZ_DATA_READY")return;
+      const needsBoard=!matches.length||isPending;
+      if(needsBoard){
+        try{
+          const key="betynz-data-ready-reload-v593";
+          if(sessionStorage.getItem(key))return;
+          sessionStorage.setItem(key,"1");
+        }catch(_){}
+        location.reload();
+      }else if(event.data.changed){
+        const status=$("#system-status");
+        if(status)status.textContent="Fresh board cached — available on next open";
+      }
+    });
     navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).then(reg=>{
       registration=reg;
       activateWaiting();
@@ -848,6 +899,10 @@
         worker.addEventListener("statechange",()=>{if(worker.state==="installed"&&navigator.serviceWorker.controller)worker.postMessage({type:"SKIP_WAITING"})});
       });
       reg.update().catch(()=>{});
+      if(!matches.length){
+        const worker=reg.active||reg.waiting||reg.installing;
+        if(worker)worker.postMessage({type:"REFRESH_DATA"});
+      }
       setInterval(()=>reg.update().catch(()=>{}),5*60*1000);
       document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")reg.update().catch(()=>{})});
     }).catch(()=>{});
@@ -935,10 +990,26 @@
     const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
     const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
     const liveNow=matches.filter(isLive).length;
-    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale&&matches.length?"Last verified board retained — refresh in progress":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
-    $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
+    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Loading the verified board…":stale&&matches.length?"Last verified board retained — refresh in progress":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
+    $("#data-state").textContent=isDemo?"Demo Data":isPending?"Loading Board":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();showView(activeView,{replaceHistory:true,force:true});initializeSecureBackend();
+
+    // First paint: build only what the dashboard actually needs.
+    renderDashboardSelectors();
+    renderMetrics();
+    renderEngineTabs();
+    renderDashboardList();
+    renderRecentResults();
+    renderSlip();
+    renderPlanChrome();
+    wire();
+    setupPWA();
+    showView(activeView,{replaceHistory:true,force:true});
+
+    // Secondary pages and remote account services are deliberately delayed until
+    // after the first board paint so live fixtures never wait behind hidden views.
+    scheduleSecondaryViews();
+    setTimeout(initializeSecureBackend,50);
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

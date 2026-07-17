@@ -24,7 +24,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5.9.1">
+  <link rel="preload" href="data.js?v=5.9.3" as="script" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=5.9.3">
 </head>
 <body>
   <div class="app-launch-splash" id="app-launch-splash" aria-hidden="true">
@@ -39,8 +40,8 @@
       var splash=document.getElementById('app-launch-splash');
       if(!splash)return;
       try{
-        if(sessionStorage.getItem('betynz-splash-seen-v591')){splash.remove();return;}
-        sessionStorage.setItem('betynz-splash-seen-v591','1');
+        if(sessionStorage.getItem('betynz-splash-seen-v593')){splash.remove();return;}
+        sessionStorage.setItem('betynz-splash-seen-v593','1');
       }catch(_){ }
       var hidden=false;
       var hide=function(){if(hidden)return;hidden=true;splash.classList.add('is-leaving');setTimeout(function(){splash.remove();},280)};
@@ -332,14 +333,12 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="backend-config.js?v=5.9.1"></script>
-  <script src="backend-client.js?v=5.9.1"></script>
-  <script src="monetization-config.js?v=5.9.1"></script>
-  <script src="rebel-engine-core.js?v=5.9.1"></script>
-  <script src="olympian-engine-core.js?v=5.9.1"></script>
-  <script src="data.js?v=5.9.1"></script>
-  <script src="app.js?v=5.9.1"></script>
-  <script src="community-features.js?v=5.9.1"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onload="window.dispatchEvent(new Event('betynz:supabase-ready'))" onerror="window.dispatchEvent(new Event('betynz:supabase-error'))"></script>
+  <script src="backend-config.js?v=5.9.3"></script>
+  <script src="backend-client.js?v=5.9.3"></script>
+  <script src="monetization-config.js?v=5.9.3"></script>
+  <script src="rebel-engine-core.js?v=5.9.3"></script>
+  <script src="olympian-engine-core.js?v=5.9.3"></script>
+  <script src="boot.js?v=5.9.3"></script>
 </body>
 </html>
