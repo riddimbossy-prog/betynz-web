@@ -1,14 +1,14 @@
 window.BETYNZ_DEMO = false;
 window.BETYNZ_READY = false;
-window.DATA_UPDATED = null;
+window.DATA_UPDATED = "2026-07-17T23:12:56.083Z";
 window.BETYNZ_META = {
   "product": "Betynz",
   "version": "5.6.0",
   "engineVersion": "5.6.0",
   "auditVersion": "5.6.0",
   "source": "waiting-for-live-sync",
-  "generatedAt": "2026-07-17T20:16:02.314Z",
-  "dataUpdated": null,
+  "generatedAt": "2026-07-17T23:12:57.990Z",
+  "dataUpdated": "2026-07-17T23:12:56.083Z",
   "isDemo": false,
   "isReady": false,
   "fixtureCount": 0,
@@ -24,7 +24,7 @@ window.BETYNZ_META = {
   "engineCounts": {},
   "reliability": {
     "version": "5.6.0",
-    "generatedAt": "2026-07-17T20:16:02.315Z",
+    "generatedAt": "2026-07-17T23:12:57.991Z",
     "fixtures": 0,
     "evaluations": 0,
     "approved": 0,
