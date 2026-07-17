@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#c8772c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BETYNZ">
+  <meta name="description" content="Betynz.com — smart football predictions powered by disciplined data engines.">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+  <title>Betynz.com — Smart Betting Predictions</title>
+  <link rel="canonical" href="https://betynz.com/">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1170x2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1284x2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1290x2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1125x2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-2048x2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5.9">
+</head>
+<body>
+  <div class="app-launch-splash" id="app-launch-splash" aria-hidden="true">
+    <div class="app-launch-splash__loading" aria-label="Loading Betynz">
+      <span class="app-launch-splash__bolt">ϟ</span>
+      <div class="app-launch-splash__loader"><i></i></div>
+      <small>Preparing the board</small>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var splash=document.getElementById('app-launch-splash');
+      if(!splash)return;
+      try{
+        if(sessionStorage.getItem('betynz-splash-seen-v58')){splash.remove();return;}
+        sessionStorage.setItem('betynz-splash-seen-v58','1');
+      }catch(_){ }
+      var hidden=false;
+      var hide=function(){if(hidden)return;hidden=true;splash.classList.add('is-leaving');setTimeout(function(){splash.remove();},280)};
+      window.addEventListener('load',function(){setTimeout(hide,420)},{once:true});
+      setTimeout(hide,1800);
+    }());
+  </script>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+      <a class="brand brand-new" href="#dashboard" aria-label="Betynz home">
+        <img src="assets/betynz-logo.webp" alt="Betynz.com — Predict Smarter, Let the Gods Decide">
+      </a>
+
+      <nav class="side-nav">
+        <button type="button" class="nav-item active" data-view="dashboard"><span>⌂</span><b>Dashboard</b></button>
+        <button type="button" class="nav-item" data-view="picks"><span>▦</span><b>Match Board</b></button>
+        <button type="button" class="nav-item" data-view="engines"><span>♜</span><b>Olympian Engines</b></button>
+        <button type="button" class="nav-item" data-view="bankers"><span>◆</span><b>Bankers</b></button>
+        <button type="button" class="nav-item" data-view="results"><span>↗</span><b>Results</b></button>
+        <button type="button" class="nav-item" data-view="community"><span>♧</span><b>Community</b></button>
+        <button type="button" class="nav-item" data-view="performance"><span>◫</span><b>Engine Performance</b></button>
+        <button type="button" class="nav-item" data-view="methodology"><span>▤</span><b>Methodology</b></button>
+        <div class="nav-divider"><span>ACCOUNT</span></div>
+        <button type="button" class="nav-item" data-view="profile"><span>○</span><b>My Account</b></button>
+        <button type="button" class="nav-item" data-view="pricing"><span>◎</span><b>Free Access</b></button>
+        <button type="button" class="nav-item" data-view="saved"><span>☆</span><b>Saved Picks</b></button>
+        <button type="button" class="nav-item" data-view="notifications"><span>◌</span><b>Notifications</b></button>
+        <button type="button" class="nav-item" data-view="responsible"><span>◈</span><b>Responsible Play</b></button>
+        <button type="button" class="nav-item" data-view="support"><span>?</span><b>Help & Support</b></button>
+        <button type="button" class="nav-item" data-view="health"><span>●</span><b>System Health</b></button>
+        <button type="button" class="nav-item signout-nav" id="sidebar-signout" hidden><span>↪</span><b>Sign Out</b></button>
+      </nav>
+
+      <section class="premium-card product-card" id="sidebar-plan-card">
+        <span class="crown">♛</span>
+        <div><strong id="sidebar-plan-name">Free Access</strong><small id="sidebar-plan-copy">All 18 engines and advanced evidence are free during launch.</small></div>
+        <button type="button" data-view="pricing" id="sidebar-plan-action">Create Account</button>
+      </section>
+
+      <div class="server-state"><i></i><span><b>System Status</b><small id="system-status">Checking data…</small></span></div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar"><span class="hamburger-lines" aria-hidden="true"><i></i><i></i><i></i></span></button>
+        <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Search matches, teams or leagues…" autocomplete="off"></label>
+        <div class="top-actions">
+          <button class="install-app-btn" id="install-app-btn" type="button" hidden>Install App</button>
+          <span class="live-pill"><i></i><span id="data-state">Live Data</span></span>
+          <button class="top-upgrade-btn" id="top-upgrade-btn" type="button" data-view="pricing" hidden>Free Access</button>
+          <button class="notification-center-btn" id="notification-center-btn" type="button" aria-label="Open notification centre"><span>◌</span><b id="notification-unread">0</b></button>
+          <button class="top-signin-btn" id="top-signin-btn" type="button" data-auth-open="signin">Sign In</button>
+          <button class="profile-chip" id="profile-chip" data-view="profile"><span class="avatar" id="profile-avatar">BZ</span><span><b id="profile-name">Guest</b><small id="profile-plan">Free preview</small></span><em>⌄</em></button>
+        </div>
+      </header>
+
+      <main id="view-root">
+        <section class="view active" data-view-panel="dashboard">
+          <div class="dashboard-grid">
+            <div class="dashboard-main">
+              <section class="hero-panel">
+                <div class="hero-copy">
+                  <span class="eyebrow">SMART BETTING PREDICTIONS</span>
+                  <h1>Predict Smarter.<br><mark>Let the Gods Decide.</mark></h1>
+                  <p>Football analysis shaped by statistics, league context and disciplined risk control—not guesswork.</p>
+                  <div class="hero-points"><span>◉ 16 Olympian + 2 Rebel Engines</span><span>◇ Verified Odds</span><span>▣ Smart Risk Control</span></div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                  <div class="orb"></div><div class="pitch-line"></div><div class="ball">⚽</div><div class="player">10</div>
+                </div>
+              </section>
+
+              <section class="metric-grid" id="metric-grid"></section>
+
+              <section class="board-panel">
+                <div class="engine-tabs" id="engine-tabs"></div>
+                <div class="favorite-shortcuts" id="favorite-shortcuts" aria-label="Favourite shortcuts"></div>
+                <div class="filter-row">
+                  <select id="dashboard-date"></select>
+                  <select id="dashboard-market"><option value="all">All Markets</option></select>
+                  <select id="dashboard-odds"><option value="all">All Odds</option><option value="1.00-1.49">1.00–1.49</option><option value="1.50-1.79">1.50–1.79</option><option value="1.80-99">1.80+</option></select>
+                  <button class="filter-btn" id="clear-filters">☷ Reset</button>
+                </div>
+                <div class="match-list" id="dashboard-list"></div>
+                <button class="view-more" data-view="picks">View Full Board⌄</button>
+              </section>
+
+              <section class="lower-grid">
+                <article class="mini-panel"><div class="panel-title"><h3>How Betynz Decides</h3><button data-view="methodology">View method</button></div><div class="news-card"><div class="news-image">⚡</div><div><b>Specialists first. Zeus last.</b><p>Fifteen Olympian specialists and two Rebel movement engines analyze the match before Zeus applies conflict, quality and consensus gates.</p><small>Transparent methodology</small></div></div></article>
+                <article class="mini-panel"><div class="panel-title"><h3>Record Integrity</h3></div><div class="community-post"><span class="avatar">✓</span><div><b>Predictions lock before kickoff</b><small>Public record rule</small><p>Only locked predictions are included in the verified results record.</p></div><span>18+</span></div></article>
+              </section>
+            </div>
+
+            <aside class="dashboard-rail">
+              <section class="rail-panel slip-panel">
+                <div class="panel-title"><h3>Selection List</h3><span class="count-badge" id="slip-count">0</span></div>
+                <div id="slip-items" class="slip-items"></div>
+                <div class="slip-total"><span>Total Odds</span><b id="slip-odds">1.00</b></div>
+                <button class="primary-btn" id="copy-slip">Copy Analysis List</button>
+                <button class="text-btn" id="clear-slip">Clear Slip</button>
+              </section>
+
+              <section class="rail-panel trend-panel">
+                <div class="panel-title"><h3>Verified Record</h3><span>Locked picks</span></div>
+                <div class="chart" id="trend-chart"><svg viewBox="0 0 320 120" preserveAspectRatio="none"><polyline points="0,82 35,72 67,88 101,52 138,73 175,45 212,69 246,55 282,61 320,34"></polyline><circle cx="320" cy="34" r="5"></circle></svg><b id="trend-rate">—</b></div>
+              </section>
+
+              <section class="rail-panel streak-panel"><span>🔥</span><div><small>Winning Streak</small><b id="streak-value">0 <em>Days</em></b><p>Keep the discipline going.</p></div><div class="streak-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i class="off"></i></div></section>
+
+              <section class="rail-panel"><div class="panel-title"><h3>Recent Results</h3><button data-view="results">View all</button></div><div id="recent-results" class="recent-results"></div></section>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="picks">
+          <div class="page-head"><div><span id="picks-eyebrow">FULL MATCH BOARD</span><h2 id="picks-title">Upcoming Predictions</h2><p id="picks-subtitle">Browse every qualified market across today and the next six days.</p></div><button class="primary-btn compact" id="add-visible">Add Visible Picks</button></div>
+          <section class="engine-picks-hero" id="engine-picks-hero" hidden></section>
+          <div class="date-strip" id="date-strip"></div>
+          <section class="page-panel">
+            <div class="filter-row wide"><select id="picks-engine"></select><select id="picks-market"><option value="all">All Markets</option></select><select id="picks-league"><option value="all">All Leagues</option></select><select id="picks-grade"><option value="all">All Grades</option><option value="A1">A1 Banker</option><option value="A2">A2 Strong</option><option value="WATCH">Watchlist</option></select></div>
+            <div class="match-list expanded" id="picks-list"></div>
+          </section>
+        </section>
+
+        <section class="view" data-view-panel="engines">
+          <div class="page-head"><div><span>OLYMPIAN + REBEL INTELLIGENCE</span><h2>The 18 Betynz Engines</h2><p>Sixteen Olympian systems plus Leonidas and Spartacus examine every supported angle before Zeus ranks the final selections.</p></div><div class="engine-summary"><b>18</b><small>total systems</small></div></div>
+          <div class="engine-grid" id="engine-grid"></div>
+        </section>
+
+        <section class="view" data-view-panel="bankers">
+          <div class="page-head"><div><span>HIGHEST CONVICTION</span><h2>Banker Board</h2><p>Only A1 and A2 selections with no hard engine contradiction appear here.</p></div><span class="risk-note">18+ · Informational analysis only</span></div>
+          <div class="banker-summary" id="banker-summary"></div>
+          <section class="page-panel">
+            <div class="filter-row wide banker-filter-row">
+              <select id="banker-status" aria-label="Filter bankers by status">
+                <option value="all">All Statuses</option>
+                <option value="locked">Locked</option>
+                <option value="provisional">Provisional</option>
+                <option value="live">Live</option>
+                <option value="prematch">Pre-match</option>
+              </select>
+              <select id="banker-grade" aria-label="Filter bankers by grade">
+                <option value="all">All Grades</option>
+                <option value="A1">A1 Bankers</option>
+                <option value="A2">A2 Strong Picks</option>
+              </select>
+              <select id="banker-league" aria-label="Filter bankers by league"><option value="all">All Leagues</option></select>
+              <select id="banker-odds" aria-label="Filter bankers by odds availability">
+                <option value="all">All Odds</option>
+                <option value="priced">Priced Picks</option>
+                <option value="missing">Missing Odds</option>
+              </select>
+              <span class="filter-count" id="banker-filter-count">0 shown</span>
+              <button class="filter-btn" id="banker-reset" type="button">☷ Reset</button>
+            </div>
+            <div class="match-list expanded" id="banker-list"></div>
+          </section>
+        </section>
+
+        <section class="view" data-view-panel="results">
+          <div class="page-head"><div><span>TRANSPARENT RECORD</span><h2>Settled Results</h2><p>Completed picks are marked won, lost or void using final match scores.</p></div></div>
+          <div class="result-metrics" id="result-metrics"></div>
+          <p class="results-rate-note" id="results-rate-note">Finished board picks settle automatically when final scores arrive.</p>
+          <section class="page-panel"><div class="result-table" id="results-list"></div></section>
+        </section>
+
+        <section class="view" data-view-panel="community">
+          <div class="page-head"><div><span>BETYNZ COMMUNITY</span><h2>Follow. React. Discuss.</h2><p>Build a personal football-analysis space around the engines, leagues and teams you follow.</p></div><span class="risk-note">Respectful discussion · 18+</span></div>
+          <div id="community-content"></div>
+        </section>
+
+        <section class="view" data-view-panel="performance">
+          <div class="page-head"><div><span>PUBLIC ENGINE RECORDS</span><h2>Engine Performance</h2><p>Transparent settled records only. Engines with no verified sample are clearly marked.</p></div><button class="secondary-btn compact" type="button" data-view="results">View Settled Picks</button></div>
+          <div id="performance-content"></div>
+        </section>
+
+        <section class="view" data-view-panel="health">
+          <div class="page-head"><div><span>LAUNCH RELIABILITY</span><h2>System Health</h2><p>Current fixture, odds, scoring and deployment status from the public data snapshot.</p></div><button class="secondary-btn compact" id="refresh-health" type="button">Refresh Status</button></div>
+          <div id="health-content"></div>
+        </section>
+
+        <section class="view" data-view-panel="methodology">
+          <div class="page-head"><div><span>TRANSPARENT MODEL</span><h2>How Betynz Works</h2><p>Every selection must pass data-quality, specialist and Zeus consensus controls.</p></div></div>
+          <div class="method-grid">
+            <article class="method-card"><span>01</span><h3>Data Quality Gate</h3><p>Fixture identity, team samples, venue samples, league history and current odds are checked before any engine can publish.</p></article>
+            <article class="method-card"><span>02</span><h3>17 Specialist Engines</h3><p>Fifteen Olympian specialists assess control, trends, goals, form and value. Leonidas and Spartacus independently test opening-to-current bookmaker movement.</p></article>
+            <article class="method-card"><span>03</span><h3>Zeus Consensus</h3><p>Opposite markets, weak leads and low-confidence agreement are rejected. No match is forced onto the board.</p></article>
+            <article class="method-card"><span>04</span><h3>Pre-Kickoff Lock</h3><p>Qualified selections lock inside the 12-hour window. Only those locked records count toward public performance.</p></article>
+          </div>
+          <section class="page-panel prose-panel"><h3>Public grading</h3><p><b>A1</b> requires at least three specialist confirmations, a strong consensus lead and an 88+ model score. <b>A2</b> requires at least two confirmations and an 82+ score. Lower-quality or contradictory matches are not published.</p><p>Model scores are not guarantees or real-world probabilities. Football outcomes remain uncertain.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="pricing">
+          <div class="page-head pricing-head"><div><span>BETYNZ FREE LAUNCH</span><h2>Every engine is unlocked</h2><p>No subscription, checkout or payment method is required during the launch phase.</p></div><span class="risk-note">18+ · Informational analysis · No guaranteed outcomes</span></div>
+          <div class="billing-toggle" role="group" aria-label="Access status" hidden><button type="button" class="active" data-billing-cycle="monthly">Free</button></div>
+          <div class="pricing-grid" id="pricing-grid"></div>
+          <section class="page-panel plan-comparison"><div class="panel-title"><h3>Plan comparison</h3><span>Transparent feature access</span></div><div class="comparison-table" id="comparison-table"></div></section>
+          <section class="checkout-note"><b>Free launch policy</b><p>Monetization is intentionally disabled. Account creation is optional for viewing and is used only to sync preferences, saved picks and notifications.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="saved">
+          <div class="page-head"><div><span>YOUR WATCHLIST</span><h2>Saved Picks</h2><p>Keep selected matches together without changing the official Betynz board.</p></div><button class="primary-btn compact" type="button" data-view="picks">Browse Board</button></div>
+          <section class="page-panel"><div id="saved-picks-content"></div></section>
+        </section>
+
+        <section class="view" data-view-panel="notifications">
+          <div class="page-head"><div><span>PERSONAL ALERTS</span><h2>Notifications</h2><p>Choose which Betynz updates should reach this device.</p></div><span class="plan-pill" id="notification-plan-pill">Free Full Access</span></div>
+          <div class="notification-layout">
+            <section class="settings-card notification-card">
+              <h3>Alert preferences</h3>
+              <label class="toggle-row"><span><b>New qualified picks</b><small>Notify when a selected league receives a new pick.</small></span><input type="checkbox" id="notify-new-picks"></label>
+              <label class="toggle-row"><span><b>Pick changes</b><small>Notify when a provisional pick changes or is removed.</small></span><input type="checkbox" id="notify-pick-changes"></label>
+              <label class="toggle-row"><span><b>Live and final scores</b><small>Follow live status and settlement for saved matches.</small></span><input type="checkbox" id="notify-scores"></label>
+              <label class="toggle-row"><span><b>Rebel movement alerts</b><small>Supreme-only Leonidas and Spartacus price movement.</small></span><input type="checkbox" id="notify-rebels"></label>
+              <label><span>Favourite leagues</span><input type="text" id="notify-leagues" placeholder="Premier League, La Liga, MLS"></label>
+              <div class="settings-actions"><button class="primary-btn compact" id="save-notifications" type="button">Save Alerts</button><button class="secondary-btn compact" id="enable-browser-notifications" type="button">Enable on Device</button></div>
+            </section>
+            <aside class="account-info-card"><span>◌</span><h3>How alerts work</h3><p>Browser permission is requested only after you choose Enable on Device. Server-side push delivery still requires a secure notification backend.</p></aside>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="responsible">
+          <div class="page-head"><div><span>PLAYER PROTECTION</span><h2>Responsible Play</h2><p>Betynz provides football analysis for adults. It does not guarantee results.</p></div><span class="risk-note">18+ only</span></div>
+          <div class="responsible-grid">
+            <article class="method-card"><span>01</span><h3>Set limits</h3><p>Choose a time limit for how long you use prediction tools and take regular breaks.</p></article>
+            <article class="method-card"><span>02</span><h3>Never chase results</h3><p>A losing result does not make the next prediction more likely to win.</p></article>
+            <article class="method-card"><span>03</span><h3>Use transparent records</h3><p>Review both won and lost settled picks rather than focusing only on successful outcomes.</p></article>
+            <article class="method-card"><span>04</span><h3>Pause access</h3><p>Use the account pause below when you need distance from prediction content.</p></article>
+          </div>
+          <section class="page-panel responsible-controls"><h3>Account controls</h3><label><span>Daily viewing reminder</span><select id="responsible-reminder"><option value="30">30 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="off">Off</option></select></label><button class="secondary-btn" id="pause-account" type="button">Pause prediction access for 7 days</button><p class="fine-print">During a pause, the dashboard remains available for scores and settled results, but current prediction details are hidden on this device.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="support">
+          <div class="page-head"><div><span>BETYNZ SUPPORT</span><h2>Help & Support</h2><p>Answers for accounts, plans, predictions, installation and data updates.</p></div></div>
+          <div class="support-grid">
+            <article class="support-card"><span>◎</span><h3>Account help</h3><p>Signup, email verification, age checks and account deletion.</p><button type="button" data-auth-open="signin">Open account access</button></article>
+            <article class="support-card"><span>◎</span><h3>Free access</h3><p>All engines and boards are currently unlocked. No payment is required.</p><button type="button" data-view="pricing">View access</button></article>
+            <article class="support-card"><span>⚡</span><h3>Prediction method</h3><p>Understand grades, engine consensus and settlement.</p><button type="button" data-view="methodology">Read methodology</button></article>
+            <article class="support-card"><span>⇩</span><h3>Install the app</h3><p>Add the Betynz PWA to your phone, Fold or tablet.</p><button type="button" data-install-app>Install Betynz</button></article>
+          <article class="support-card"><span>▤</span><h3>Terms</h3><p>Account rules, permitted use and prediction disclaimers.</p><button type="button" data-view="terms">Read Terms</button></article>
+            <article class="support-card"><span>◇</span><h3>Privacy</h3><p>What Betynz stores and how account data is handled.</p><button type="button" data-view="privacy">Read Privacy Notice</button></article>
+          </div>
+          <section class="page-panel support-contact"><h3>Contact support</h3><p>Connect this button to your verified support email or help-desk system before launch.</p><button class="primary-btn compact" id="support-contact-btn" type="button">Contact Support</button></section>
+        </section>
+
+        <section class="view" data-view-panel="terms">
+          <div class="page-head"><div><span>LEGAL</span><h2>Terms of Use</h2><p>Effective July 2026</p></div></div>
+          <section class="page-panel prose-panel legal-copy"><h3>Adult access</h3><p>Betynz is intended only for adults who are legally permitted to view football prediction content in their location.</p><h3>Informational service</h3><p>Selections, grades, odds and confidence scores are analytical opinions. They are not guarantees, financial advice or instructions to gamble.</p><h3>Fair use</h3><p>Do not scrape, resell, impersonate users, manipulate comments, attack the service or attempt to access private backend credentials.</p><h3>Accounts and community</h3><p>Users are responsible for account security and respectful participation. Spam, harassment and misleading claims may be removed.</p><h3>Availability</h3><p>Fixtures, odds, scores and third-party services may be delayed, incomplete or unavailable. Betynz may change or suspend features to protect reliability.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="privacy">
+          <div class="page-head"><div><span>LEGAL</span><h2>Privacy Notice</h2><p>Effective July 2026</p></div></div>
+          <section class="page-panel prose-panel legal-copy"><h3>Data used</h3><p>When secure accounts are enabled, Betynz stores the account email, display name, country, adult-eligibility date, preferences, saved picks, follows, reactions and comments.</p><h3>Authentication</h3><p>Password and Google sign-in are handled by Supabase Auth. Betynz does not store raw passwords.</p><h3>Local storage</h3><p>Guest preferences, onboarding status, follows and notification history may be stored on the current device.</p><h3>Data control</h3><p>Signed-in users can request account deletion from My Account. Local guest data can be cleared from the same page.</p><h3>Third parties</h3><p>Fixture, odds, score, authentication and hosting providers process only the information needed to deliver their services.</p></section>
+        </section>
+
+        <section class="view" data-view-panel="profile">
+          <div class="page-head"><div><span>YOUR BETYNZ</span><h2>My Account</h2><p id="account-page-subtitle">Create a free account to personalise your Betynz experience.</p></div><span class="plan-pill" id="account-plan-pill">Guest</span></div>
+          <div id="account-content"></div>
+          <div class="profile-layout account-settings-wrap">
+            <section class="settings-card"><h3>Board Preferences</h3><label><span>Favorite engine</span><select id="favorite-engine"></select></label><label><span>Default confidence</span><select id="confidence-pref"><option value="76">Watchlist and above</option><option value="82">A2 and above</option><option value="88">A1 only</option></select></label><label class="toggle-row"><span>Remember my selection list</span><input type="checkbox" id="remember-slip" checked></label><div class="settings-actions"><button type="button" class="primary-btn compact" id="save-prefs">Save Preferences</button><button type="button" class="secondary-btn compact install-settings-btn" data-install-app>Install Betynz App</button></div></section>
+            <section class="account-info-card"><span>🔒</span><h3>Account security</h3><p>Email/password and Google authentication, database row-level security and secure cloud syncing are supported. Private service keys remain in Supabase only.</p><button type="button" class="text-btn" data-view="support">Backend guidance</button></section>
+          </div>
+          <section class="page-panel account-launch-tools" id="account-launch-tools"></section>
+        </section>
+      </main>
+
+      <footer><span>© 2026 Betynz.com · Smart Betting Predictions</span><span>Informational analysis only. No outcome is guaranteed. 18+</span></footer>
+    </div>
+  </div>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation"><button type="button" class="active" data-view="dashboard"><span>⌂</span>Home</button><button type="button" data-view="picks"><span>▦</span>Picks</button><button type="button" data-view="engines"><span>♜</span>Engines</button><button type="button" data-view="results"><span>↗</span>Results</button><button type="button" data-view="profile"><span>○</span>Account</button></nav>
+  <button type="button" class="mobile-slip" id="mobile-slip"><span>Slip</span><b id="mobile-slip-count">0</b><em id="mobile-slip-odds">1.00</em></button>
+
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer"><div class="drawer-head"><h3>Selection List</h3><button type="button" id="drawer-close">×</button></div><div id="drawer-items" class="slip-items"></div><div class="slip-total"><span>Total Odds</span><b id="drawer-odds">1.00</b></div><button class="primary-btn" id="drawer-copy">Copy Analysis List</button></aside>
+
+  <div class="modal-backdrop" id="engine-modal-backdrop"></div>
+  <section class="engine-modal" id="engine-modal" role="dialog" aria-modal="true" aria-labelledby="engine-modal-title"><button type="button" class="modal-close" id="engine-modal-close">×</button><div id="engine-modal-content"></div></section>
+
+  <div class="modal-backdrop account-modal-backdrop" id="account-modal-backdrop"></div>
+  <section class="account-modal" id="account-modal" role="dialog" aria-modal="true" aria-labelledby="account-modal-title" aria-hidden="true"><button type="button" class="modal-close" id="account-modal-close">×</button><div id="account-modal-content"></div></section>
+  <div class="notification-drawer-backdrop" id="notification-drawer-backdrop"></div>
+  <aside class="notification-drawer" id="notification-drawer" aria-label="Notification centre"><div class="drawer-head"><h3>Updates</h3><button type="button" id="notification-drawer-close">×</button></div><div id="notification-feed" class="notification-feed"></div><button class="text-btn" id="mark-notifications-read" type="button">Mark all as read</button></aside>
+
+  <div class="onboarding-backdrop" id="onboarding-backdrop" hidden></div>
+  <section class="onboarding-modal" id="onboarding-modal" hidden role="dialog" aria-modal="true" aria-labelledby="onboarding-title"><div id="onboarding-content"></div></section>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="backend-config.js?v=5.9"></script>
+  <script src="backend-client.js?v=5.9"></script>
+  <script src="monetization-config.js?v=5.9"></script>
+  <script src="rebel-engine-core.js?v=5.9"></script>
+  <script src="olympian-engine-core.js?v=5.9"></script>
+  <script src="data.js?v=5.9"></script>
+  <script src="app.js?v=5.9"></script>
+  <script src="community-features.js?v=5.9"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+{
+  "id": "/",
+  "name": "Betynz.com \u2014 Let the Gods Decide",
+  "short_name": "BETYNZ",
+  "description": "Football intelligence from 16 Olympian and 2 Rebel engines. Predict Smarter. Let the Gods Decide.",
+  "start_url": "/?source=pwa#dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#05070a",
+  "theme_color": "#c8772c",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/maskable-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Match Board",
+      "short_name": "Board",
+      "url": "/#picks",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Bankers",
+      "short_name": "Bankers",
+      "url": "/#bankers",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Results",
+      "short_name": "Results",
+      "url": "/#results",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "launch_handler": {
+    "client_mode": [
+      "navigate-existing",
+      "auto"
+    ]
+  },
+  "screenshots": [
+    {
+      "src": "assets/splash/launch-portrait.webp",
+      "sizes": "1080x1920",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Betynz launch screen"
+    },
+    {
+      "src": "assets/splash/launch-landscape.webp",
+      "sizes": "1920x1080",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Betynz desktop launch screen"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+BETYNZ v5.4 INSTALL
+
+1. Keep the hidden .git folder in your local betynz-web repository.
+2. Replace the repository files with this package.
+3. Commit: Enforce overall and split PPG direction agreement across all engines
+4. Push to GitHub.
+5. Run Actions > Smart Global Coverage and Deep Enrichment > Run workflow.
+6. After the run completes, refresh betynz.com once.
+
+The workflow rebuild is required so current fixtures are re-evaluated with the new PPG gate.

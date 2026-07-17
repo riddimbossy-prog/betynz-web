@@ -1,0 +1,115 @@
+name: Refresh Live & Finished Scores and Deploy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: betynz-pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh live and finished scores
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Recover the last verified board before score refresh
+        run: node scripts/ensure-live-data.js --restore-history
+
+      - name: Create private score configuration
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          if [ -z "$API_FOOTBALL_KEY" ]; then
+            echo "API_FOOTBALL_KEY is missing."
+            exit 1
+          fi
+          cat > scripts/config.txt <<EOF_CONFIG
+          API_KEY=${API_FOOTBALL_KEY}
+          SEASON=$(date -u +%Y)
+          DAYS_BACK=2
+          EOF_CONFIG
+          cp data.js scripts/data.js
+
+      - name: Refresh match scores
+        working-directory: scripts
+        run: node fetch-scores.js
+
+      - name: Rebuild record and snapshot
+        run: node scripts/build-snapshot.js
+
+      - name: Validate generated product
+        run: node scripts/validate-product.js
+
+      - name: Build public website
+        run: node scripts/build-dist.js
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload score website artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: Archive score data in repository
+        continue-on-error: true
+        run: |
+          rm -f scripts/config.txt
+          if git ls-files --error-unmatch scripts/config.txt >/dev/null 2>&1; then
+            git restore --staged --worktree scripts/config.txt || true
+          fi
+
+          git config user.name "Betynz Live Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.js api-status.json prediction-locks.json results-history.json scripts/data.js
+
+          if git diff --cached --quiet; then
+            echo "No score changes to archive."
+            exit 0
+          fi
+
+          git commit -m "Update Betynz live scores"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
+
+      - name: Remove private runtime file
+        if: always()
+        run: rm -f scripts/config.txt
+
+  deploy:
+    name: Deploy refreshed scores
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

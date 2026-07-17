@@ -1,0 +1,7 @@
+BETYNZ v5.5 INSTALL
+1. Replace repository contents, retaining the hidden .git folder.
+2. Commit: Add engine audit reliability and quarantine controls
+3. Push to GitHub.
+4. Run Smart Global Coverage and Deep Enrichment.
+5. Open System Health to review the daily reliability report.
+To quarantine an engine, edit config/engine-quarantine.json and rerun the main workflow.

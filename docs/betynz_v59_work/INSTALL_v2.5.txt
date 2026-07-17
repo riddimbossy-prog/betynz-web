@@ -1,0 +1,11 @@
+BETYNZ v2.5 INSTALL
+
+1. Extract the ZIP.
+2. Upload everything inside the extracted folder to the root of the betynz-web GitHub repository.
+3. Replace matching files and commit directly to main.
+4. Wait for Deploy Betynz Product to finish.
+5. Run Smart Global Coverage and Deep Enrichment manually once.
+6. Confirm the workflow reaches Validate generated product and Deploy adaptive Betynz website.
+7. Open https://betynz.com and refresh once.
+
+The old sample matches (AC Milan vs Atalanta, PSG vs Lille, Benfica vs FC Porto, Arsenal vs Aston Villa, Real Madrid vs Real Sociedad and Bayern Munich vs Bayer Leverkusen) must no longer appear unless they are returned as genuine fixtures by the API with different real fixture IDs and no demo markers.

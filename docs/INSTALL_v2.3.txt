@@ -1,0 +1,13 @@
+BETYNZ v2.3 INSTALL
+
+1. Extract this package.
+2. Upload the contents to the root of the betynz-web repository.
+3. Replace matching files and commit to main.
+4. Open GitHub Actions.
+5. Run: Fetch Every League Today and Deploy.
+6. Wait for both green jobs:
+   - Fetch today's global board
+   - Deploy live Betynz website
+7. Open https://betynz.com and hard-refresh once.
+
+Do not add API keys to files. Existing repository secrets are used.
