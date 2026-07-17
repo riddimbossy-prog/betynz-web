@@ -1,6 +1,18 @@
 name: Smart Global Coverage and Deep Enrichment
 
 on:
+  workflow_call:
+    secrets:
+      API_FOOTBALL_KEY:
+        required: true
+      STATS_API_KEY:
+        required: false
+      ODDS_API_KEY:
+        required: false
+      DAYS_FWD:
+        required: false
+      DAYS_BACK:
+        required: false
   workflow_dispatch:
   schedule:
     - cron: "17 */4 * * *"
@@ -43,7 +55,7 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Recover the last verified board before refreshing
+      - name: Reject demo data and recover the last verified board before refreshing
         run: node scripts/ensure-live-data.js --restore-history
 
       - name: Validate API secrets
@@ -167,6 +179,9 @@ jobs:
 
       - name: Promote final enriched board
         run: cp scripts/data.js data.js
+
+      - name: Require a verified non-empty live board
+        run: node scripts/ensure-live-data.js --require-live
 
       - name: Build Olympian prediction snapshot
         run: node scripts/build-snapshot.js

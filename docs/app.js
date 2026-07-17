@@ -25,7 +25,7 @@
   const ENGINE_ART={zeus:"assets/gods/zeus.webp",athena:"assets/gods/athena.webp",apollo:"assets/gods/apollo.webp",ares:"assets/gods/ares.webp",poseidon:"assets/gods/poseidon.webp",hermes:"assets/gods/hermes.webp",hera:"assets/gods/hera.webp",artemis:"assets/gods/artemis.webp",hephaestus:"assets/gods/hephaestus.webp",atlas:"assets/gods/atlas.webp",demeter:"assets/gods/demeter.webp",dionysus:"assets/gods/dionysus.webp",hades:"assets/gods/hades.webp",orion:"assets/gods/orion.webp",nike:"assets/gods/nike.webp",prometheus:"assets/gods/prometheus.webp",spartacus:"assets/gods/spartacus.webp",leonidas:"assets/gods/leonidas.webp"};
   const matches=Array.isArray(window.MATCHES)?window.MATCHES:[];
   const meta=window.BETYNZ_META&&typeof window.BETYNZ_META==="object"?window.BETYNZ_META:{};
-  const history=Array.isArray(window.BETYNZ_HISTORY)?window.BETYNZ_HISTORY:[];
+  const settledHistory=Array.isArray(window.BETYNZ_HISTORY)?window.BETYNZ_HISTORY:[];
   const isDemo=!!window.BETYNZ_DEMO||!!meta.isDemo;
   const isPending=window.BETYNZ_READY===false||String(meta.source||"").toLowerCase()==="waiting-for-live-sync";
   const $=(s,root=document)=>root.querySelector(s);
@@ -37,7 +37,10 @@
   const cache=new Map();
   const pickCache=new Map();
   const enginePickCache=new Map();
+  let allPicksMemo=null;
+  const CORE_VIEWS=new Set(["dashboard","picks","engines","bankers","results","methodology","responsible"]);
   let activeView=(location.hash||"#dashboard").slice(1);
+  if(!CORE_VIEWS.has(activeView))activeView="dashboard";
   let activeDate=null;
   let activeDashboardEngine="all";
   let picksFilter={engine:"all",market:"all",league:"all",grade:"all"};
@@ -48,7 +51,7 @@
   let installPromptAttempted=false;
   let slip=loadJSON("betynz-slip",[]);
   let preferences=loadJSON("betynz-preferences",{favoriteEngine:"zeus",confidence:76,rememberSlip:true});
-  const MONETIZATION=window.BETYNZ_MONETIZATION&&typeof window.BETYNZ_MONETIZATION==="object"?window.BETYNZ_MONETIZATION:{mode:"preview",currency:"USD",plans:{},checkoutUrls:{}};
+  const MONETIZATION=window.BETYNZ_MONETIZATION&&typeof window.BETYNZ_MONETIZATION==="object"?window.BETYNZ_MONETIZATION:{mode:"free",freeLaunch:true,subscriptionsEnabled:false,currency:"USD",plans:{},checkoutUrls:{}};
   const BACKEND=window.BetynzBackend||null;
   const secureBackendConfigured=()=>!!(BACKEND&&typeof BACKEND.configured==="function"&&BACKEND.configured());
   const FREE_LAUNCH=MONETIZATION.freeLaunch===true;
@@ -61,6 +64,8 @@
   let paymentHistory=loadJSON("betynz-payment-history",[]);
   let backendHydrating=false;
   let backendHydrated=false;
+  let backendInitStarted=false;
+  const renderedViews=new Set(["dashboard"]);
   let slipSyncTimer=null;
 
   function loadJSON(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v==null?fallback:v}catch(_){return fallback}}
@@ -195,11 +200,16 @@
     finally{backendHydrating=false}
   }
   async function initializeSecureBackend(){
-    if(!usingSecureBackend())return;
+    if(!usingSecureBackend()||backendInitStarted)return;
+    if(!window.supabase||typeof window.supabase.createClient!=="function"){
+      window.addEventListener("betynz:supabase-ready",initializeSecureBackend,{once:true});
+      return;
+    }
+    backendInitStarted=true;
     try{
       await BACKEND.init((event)=>{if(event==="PASSWORD_RECOVERY")openNewPassword();else hydrateSecureAccount()});
       await hydrateSecureAccount();
-    }catch(err){console.error("Betynz backend init failed",err);toast("Secure backend connection failed.")}
+    }catch(err){backendInitStarted=false;console.error("Betynz backend init failed",err)}
   }
   function openPaywall(required="pro",feature="this feature"){
     if(FREE_LAUNCH){toast(`${feature} is included in Free Full Access.`);return}
@@ -303,7 +313,11 @@
     pickCache.set(mk,pick);return pick;
   }
 
-  function allPicks(){return matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")))}
+  function allPicks(){
+    if(allPicksMemo)return allPicksMemo;
+    allPicksMemo=matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")));
+    return allPicksMemo;
+  }
   function rebelCoverage(id){
     const threshold=id==="leonidas"?5:3;
     const rows=matches.map(m=>m&&m.rebelOddsCoverage||{});
@@ -364,7 +378,7 @@
 
 
   function boardSettlements(){
-    const verifiedMap=new Map(history.filter(x=>x&&["Won","Lost","Void"].includes(x.result)).map(x=>[`${x.fixtureId}|${normalizeMarket(x.market)}`,x]));
+    const verifiedMap=new Map(settledHistory.filter(x=>x&&["Won","Lost","Void"].includes(x.result)).map(x=>[`${x.fixtureId}|${normalizeMarket(x.market)}`,x]));
     return allPicks().filter(p=>isFinished(p.m)&&hasScore(p.m)).map(p=>{
       const fixtureId=keyOf(p.m),market=normalizeMarket(p.market),verified=verifiedMap.get(`${fixtureId}|${market}`);
       return verified?{...verified,verified:true,locked:true}:{fixtureId,home:p.m.home,away:p.m.away,league:p.m.league,kickoff:p.m.kickoff,market,confidence:p.confidence,grade:p.grade,odds:p.odds||null,engineIds:(p.engines||[]).map(e=>e.id),score:`${p.m.homeGoals}-${p.m.awayGoals}`,result:settlePick(p),verified:false,locked:!!p.locked};
@@ -373,10 +387,11 @@
 
   function renderMetrics(){
     const picks=allPicks(),up=picks.filter(p=>isUpcoming(p.m));
-    const settled=history.filter(x=>x&&["Won","Lost","Void"].includes(x.result));
+    const settled=settledHistory.filter(x=>x&&["Won","Lost","Void"].includes(x.result));
     const wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
     const hit=wins+losses?Math.round(wins/(wins+losses)*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
-    const active=ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
+    const publishedCounts=meta.engineCounts&&typeof meta.engineCounts==="object"?meta.engineCounts:null;
+    const active=publishedCounts?ENGINES.filter(e=>Number(publishedCounts[e.id]??publishedCounts[e.name]??0)>0).length:ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
     const liveCount=matches.filter(isLive).length;
     $("#metric-grid").innerHTML=[
       ["♜",active,"Active Engines",isDemo?"Demo snapshot":isPending?"Waiting for verified data":"Qualified systems"],
@@ -386,7 +401,7 @@
     ].map(x=>`<article class="metric-card"><span class="metric-icon">${x[0]}</span><div><b>${esc(x[1])}</b><small>${esc(x[2])}</small><em>${esc(x[3])}</em></div></article>`).join("");
     $("#trend-rate").textContent=settled.length?`${hit}%`:"—";$("#streak-value").innerHTML=`${winningStreakHistory()} <em>Days</em>`;
   }
-  function winningStreakHistory(){const by={};history.forEach(x=>{const d=String(x.kickoff||"").slice(0,10);if(d)(by[d]=by[d]||[]).push(x.result)});let n=0;for(const d of Object.keys(by).sort().reverse()){if(by[d].some(x=>x==="Won"))n++;else break}return n}
+  function winningStreakHistory(){const by={};settledHistory.forEach(x=>{const d=String(x.kickoff||"").slice(0,10);if(d)(by[d]=by[d]||[]).push(x.result)});let n=0;for(const d of Object.keys(by).sort().reverse()){if(by[d].some(x=>x==="Won"))n++;else break}return n}
   function winningStreak(picks){const by={};picks.forEach(p=>{const r=settlePick(p);if(r!=="Pending")(by[dateOf(p.m)]=by[dateOf(p.m)]||[]).push(r)});let n=0;Object.keys(by).sort().reverse().some(d=>{if(by[d].some(x=>x==="Won")){n++;return false}return true});return n}
 
   function renderEngineTabs(){
@@ -520,7 +535,8 @@
 
   function renderEngines(){
     $("#engine-grid").innerHTML=ENGINES.map(e=>{
-      const count=enginePicks(e.id).length;
+      const publishedCount=meta.engineCounts&&typeof meta.engineCounts==="object"?Number(meta.engineCounts[e.id]??meta.engineCounts[e.name]):NaN;
+      const count=Number.isFinite(publishedCount)?publishedCount:enginePicks(e.id).length;
       const art=ENGINE_ART[e.id]||ENGINE_ART.zeus;
       const rebel=e.family==="rebel";
       const coverage=rebel?rebelCoverage(e.id):null;
@@ -618,7 +634,6 @@
       </div>
       ${advancedHtml}
       ${rebelAudit}
-      <section class="match-community-shell" id="match-community-shell" data-community-match="${esc(keyOf(m))}"><div class="community-loading">Loading reactions and discussion…</div></section>
       <div class="summary-disclaimer">Model confidence is not a guarantee. Football outcomes remain uncertain.</div>`;
     $("#engine-modal-backdrop").classList.add("open");
     $("#engine-modal").classList.add("open");
@@ -735,21 +750,50 @@
     if(hero) hero.dataset.heroArt=activeView==="dashboard"?"zeus":"none";
   }
 
+  function renderViewData(name){
+    if(renderedViews.has(name))return;
+    switch(name){
+      case "picks": renderPicksView(); break;
+      case "engines": renderEngines(); break;
+      case "bankers": renderBankers(); break;
+      case "results": renderResults(); break;
+      case "profile": renderAccount(); renderPreferences(); break;
+      case "pricing": renderPricing(); break;
+      case "saved": renderSavedPicks(); break;
+      case "notifications": renderNotifications(); break;
+      case "billing": renderBilling(); break;
+      case "responsible": renderResponsible(); break;
+      default: break;
+    }
+    renderedViews.add(name);
+  }
+
+  function scheduleSecondaryViews(){
+    const task=()=>{
+      // Pre-render only the lightweight high-use pages. The engine directory and
+      // Banker Board are rendered when opened so the dashboard is never delayed.
+      ["picks","results"].forEach(renderViewData);
+    };
+    if("requestIdleCallback" in window)requestIdleCallback(task,{timeout:1800});
+    else setTimeout(task,120);
+  }
+
   function showView(name,options={}){
-    if(!$( `[data-view-panel="${name}"]`))name="dashboard";
-    const required=requiredPlanForView(name);if(!hasPlan(required)){const current=$("[data-view-panel].active")?.dataset.viewPanel||"dashboard";activeView=current;if(location.hash!==`#${current}`)history.replaceState(null,"",`#${current}`);closeSidebar(true);openPaywall(required,name==="bankers"?"Banker Board":name==="saved"?"Saved Picks":name==="notifications"?"Notifications":"Account billing");return}
+    if(!CORE_VIEWS.has(name)||!$( `[data-view-panel="${name}"]`))name="dashboard";
+    const required=requiredPlanForView(name);if(!hasPlan(required)){const current=$("[data-view-panel].active")?.dataset.viewPanel||"dashboard";activeView=current;if(location.hash!==`#${current}`)window.history.replaceState(null,"",`#${current}`);closeSidebar(true);openPaywall(required,name==="bankers"?"Banker Board":name==="saved"?"Saved Picks":name==="notifications"?"Notifications":"Account billing");return}
     if(isPaused()&&["picks","engines","bankers"].includes(name)){closeSidebar(true);showAccountModal(`<div class="paywall-modal"><span class="paywall-icon">◈</span><small>ACCESS PAUSED</small><h2 id="account-modal-title">Prediction access is paused</h2><p>This device is paused until ${esc(new Date(account.pausedUntil).toLocaleString())}. Live scores and settled results remain available.</p><button class="secondary-btn" type="button" data-view="results">View Settled Results</button></div>`);return}
 
     const route=`#${name}`;
     if(options.updateHistory!==false&&location.hash!==route){
       const method=options.replaceHistory?"replaceState":"pushState";
-      history[method](null,"",route);
+      window.history[method](null,"",route);
     }
 
     const changed=activeView!==name||!$(`[data-view-panel="${name}"]`)?.classList.contains("active");
     activeView=name;
     $$('[data-view-panel]').forEach(v=>v.classList.toggle("active",v.dataset.viewPanel===name));
     $$('[data-view]').forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+    if(!renderedViews.has(name))requestAnimationFrame(()=>renderViewData(name));
     closeSidebar(true);
     closeSelectionDrawer();
 
@@ -826,23 +870,24 @@
       event.preventDefault();
       deferredInstallPrompt=event;
       if(installBtn){installBtn.hidden=false;installBtn.classList.add("ready")}
-      $$('[data-install-app]').forEach(button=>button.hidden=false);
     });
-    window.addEventListener("appinstalled",()=>{deferredInstallPrompt=null;if(installBtn)installBtn.hidden=true;$$('[data-install-app]').forEach(button=>button.hidden=true);toast("Betynz installed.")});
+    window.addEventListener("appinstalled",()=>{deferredInstallPrompt=null;if(installBtn)installBtn.hidden=true;toast("Betynz installed.")});
     if(!("serviceWorker" in navigator))return;
-    let refreshing=false,registration=null;
-    const activateWaiting=()=>{if(registration&&registration.waiting)registration.waiting.postMessage({type:"SKIP_WAITING"})};
-    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){refreshing=true;location.reload()}});
     navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).then(reg=>{
-      registration=reg;
-      activateWaiting();
-      reg.addEventListener("updatefound",()=>{
-        const worker=reg.installing;if(!worker)return;
-        worker.addEventListener("statechange",()=>{if(worker.state==="installed"&&navigator.serviceWorker.controller)worker.postMessage({type:"SKIP_WAITING"})});
-      });
+      // Check once on open. The new app shell is used on the next normal launch,
+      // avoiding update/reload loops that previously froze navigation.
       reg.update().catch(()=>{});
-      setInterval(()=>reg.update().catch(()=>{}),5*60*1000);
-      document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")reg.update().catch(()=>{})});
+      navigator.serviceWorker.addEventListener("message",event=>{
+        if(!event.data||event.data.type!=="BETYNZ_DATA_READY")return;
+        if(!matches.length||isPending){
+          try{
+            const key="betynz-core-data-reload-v610";
+            if(sessionStorage.getItem(key))return;
+            sessionStorage.setItem(key,"1");
+          }catch(_){}
+          location.reload();
+        }
+      });
     }).catch(()=>{});
   }
 
@@ -928,10 +973,27 @@
     const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
     const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
     const liveNow=matches.filter(isLive).length;
-    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale&&matches.length?"Last verified board retained — refresh in progress":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
-    $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
+    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Loading the verified board…":stale&&matches.length?"Last verified board retained — refresh in progress":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
+    $("#data-state").textContent=isDemo?"Demo Data":isPending?"Loading Board":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
-    renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();showView(activeView,{replaceHistory:true,force:true});initializeSecureBackend();
+
+    // First paint: build only what the dashboard actually needs.
+    renderDashboardSelectors();
+    renderMetrics();
+    renderEngineTabs();
+    renderDashboardList();
+    renderRecentResults();
+    renderSlip();
+    renderPlanChrome();
+    wire();
+    setupPWA();
+    showView(activeView,{replaceHistory:true,force:true});
+
+    // Secondary pages and remote account services are deliberately delayed until
+    // after the first board paint so live fixtures never wait behind hidden views.
+    scheduleSecondaryViews();
+    window.BETYNZ_APP_READY=true;
+    window.dispatchEvent(new Event("betynz:app-ready"));
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

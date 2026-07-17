@@ -1514,3 +1514,63 @@ body.sidebar-open{overflow:hidden;touch-action:none}
 .sidebar.nav-instant,.sidebar-backdrop.nav-instant{transition:none!important}
 .nav-item:active,.mobile-nav button:active{transform:scale(.98)}
 @media(max-width:980px){.sidebar{will-change:transform}}
+
+/* ==============================================================
+   BETYNZ CORE RESET v6.0 — reliable navigation and lean startup
+   ============================================================== */
+.app-launch-splash,.onboarding-backdrop,.onboarding-modal,.notification-drawer,.notification-drawer-backdrop,.account-modal,.account-modal-backdrop{display:none!important}
+html.menu-open,html.menu-open body{overflow:hidden}
+.menu-btn{align-items:center;justify-content:center;padding:0;line-height:1}
+.hamburger-lines{display:grid!important;gap:4px;width:20px;height:auto;place-items:center}
+.hamburger-lines i{display:block;width:20px;height:2px;border-radius:3px;background:#f3f5f7;margin:0!important;transform:none!important}
+.topbar{background:rgba(7,9,13,.96);backdrop-filter:blur(12px)}
+.top-actions{min-width:0}.install-app-btn{white-space:nowrap}
+.add-btn{display:grid!important;place-items:center!important;line-height:1!important;padding:0!important;touch-action:manipulation}
+[data-view],.menu-btn,.add-btn,.mobile-slip{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+@media(max-width:1180px){
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  .app-shell{grid-template-columns:1fr!important}
+  .sidebar{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:min(286px,84vw)!important;transform:translateX(-105%)!important;z-index:131!important;overflow-y:auto!important;transition:transform .18s ease!important}
+  .sidebar.open{transform:translateX(0)!important}
+  .sidebar-backdrop{display:block!important;z-index:130!important;background:rgba(0,0,0,.66)!important;pointer-events:none!important}
+  .sidebar-backdrop.open{pointer-events:auto!important;opacity:1!important}
+  .menu-btn{display:grid!important;width:42px!important;height:42px!important;min-width:42px!important;border:1px solid var(--line)!important;border-radius:11px!important;background:#11151a!important;z-index:3!important}
+  .mobile-nav{display:grid!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:120!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;height:calc(72px + env(safe-area-inset-bottom))!important;padding:4px 4px env(safe-area-inset-bottom)!important;background:rgba(7,9,13,.98)!important;border-top:1px solid var(--line)!important;backdrop-filter:blur(14px)!important}
+  .mobile-nav button{min-width:0!important;border:0!important;background:transparent!important;color:#858e99!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;font-size:10px!important;font-weight:750!important;padding:3px 1px!important;cursor:pointer!important}
+  .mobile-nav button span{display:grid!important;place-items:center!important;width:32px!important;height:30px!important;border-radius:10px!important;font-size:21px!important;line-height:1!important}
+  .mobile-nav button.active{color:var(--orange)!important}
+  .mobile-nav button.active span{background:rgba(200,119,44,.12)!important;box-shadow:inset 0 0 0 1px rgba(200,119,44,.16)!important}
+  .mobile-slip{bottom:calc(80px + env(safe-area-inset-bottom))!important}
+  footer{padding-bottom:18px}
+}
+
+@media(max-width:700px){
+  .topbar{height:62px!important;padding:0 10px!important;gap:8px!important}
+  .search-box{display:none!important}
+  .live-pill{margin-left:auto!important;max-width:150px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+  main{padding:10px 10px 28px!important}
+  .mobile-nav button{font-size:9px!important}
+  .mobile-nav button span{font-size:20px!important}
+}
+
+@media(max-width:380px){
+  .mobile-nav button{font-size:8px!important}
+  .mobile-nav button span{width:28px!important;font-size:18px!important}
+}
+
+/* Betynz v6.1 — lightweight Zeus launch and first-run guided tour */
+.betynz-tour[hidden]{display:none!important}
+.betynz-tour{position:fixed;inset:0;z-index:4100;pointer-events:none}
+.betynz-tour__shade{position:absolute;inset:0;background:rgba(2,4,7,.74);backdrop-filter:blur(2px);pointer-events:auto}
+.betynz-tour__spotlight{position:fixed;border:2px solid rgba(244,151,62,.96);border-radius:18px;box-shadow:0 0 0 9999px rgba(2,4,7,.34),0 0 34px rgba(232,132,45,.34);transition:left .18s ease,top .18s ease,width .18s ease,height .18s ease;pointer-events:none;z-index:1}
+.betynz-tour__spotlight.is-hidden{opacity:0}
+.betynz-tour__card{position:fixed;right:clamp(14px,3vw,42px);bottom:clamp(14px,3vw,38px);width:min(430px,calc(100vw - 28px));max-height:calc(100dvh - 28px);overflow:auto;z-index:2;pointer-events:auto;border:1px solid rgba(231,139,52,.48);border-radius:22px;background:linear-gradient(155deg,rgba(22,26,32,.98),rgba(8,11,15,.99));box-shadow:0 26px 90px rgba(0,0,0,.72);padding:22px}
+.betynz-tour__brand{display:flex;align-items:center;gap:11px;margin-bottom:18px}.betynz-tour__brand img{width:45px;height:45px;object-fit:contain}.betynz-tour__brand span{display:grid}.betynz-tour__brand b{font:900 18px/1 system-ui,sans-serif;letter-spacing:-.04em}.betynz-tour__brand b em{font-style:normal;color:#e88c34;font-size:.6em;margin-left:2px}.betynz-tour__brand small{margin-top:5px;color:#df934d;font:800 8px/1 system-ui,sans-serif;letter-spacing:.13em}
+.betynz-tour__progress{display:flex;gap:6px;margin-bottom:18px}.betynz-tour__progress i{height:4px;flex:1;border-radius:999px;background:#303741}.betynz-tour__progress i.active{background:linear-gradient(90deg,#c66f24,#f4a257)}
+.betynz-tour__eyebrow{display:block;color:#ed9849;font:900 9px/1.2 system-ui,sans-serif;letter-spacing:.14em}.betynz-tour__icon{display:grid;place-items:center;width:48px;height:48px;margin:14px 0 12px;border:1px solid rgba(238,145,63,.32);border-radius:14px;background:rgba(231,132,45,.11);color:#ffaf61;font-style:normal;font-size:22px}.betynz-tour__copy h2{margin:0 0 10px;color:#fff;font:850 25px/1.1 system-ui,sans-serif;letter-spacing:-.035em}.betynz-tour__copy p{margin:0;color:#bdc5ce;font:500 13px/1.65 system-ui,sans-serif}
+.betynz-tour__actions{display:flex;gap:8px;margin-top:22px}.betynz-tour__actions button{min-height:44px;border-radius:11px;padding:0 15px;font:850 11px/1 system-ui,sans-serif;cursor:pointer}.tour-secondary{border:1px solid #343b45;background:#11151a;color:#c7ced6}.tour-primary{margin-left:auto;border:1px solid #df8734;background:linear-gradient(135deg,#e59648,#c87327);color:#120d08;min-width:130px}
+.betynz-tour-open{overflow:hidden}
+#replay-tour{white-space:nowrap}
+@media(max-width:700px){.betynz-tour__shade{backdrop-filter:none;background:rgba(2,4,7,.67)}.betynz-tour__spotlight{border-radius:14px}.betynz-tour__card{left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));width:auto;padding:18px;border-radius:18px}.betynz-tour__copy h2{font-size:22px}.betynz-tour__copy p{font-size:12px}.betynz-tour__brand{margin-bottom:14px}.betynz-tour__brand img{width:38px;height:38px}.betynz-tour__actions button{min-height:42px;padding:0 12px}}
+@media(prefers-reduced-motion:reduce){.betynz-tour__spotlight{transition:none}}

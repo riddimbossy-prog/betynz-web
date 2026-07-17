@@ -1,0 +1,13 @@
+BETYNZ CORE v6.0 INSTALL
+
+Recommended:
+1. Extract the patch over the repository root.
+2. Do not delete data.js.
+3. Run CLEANUP_OLD_FEATURES.bat on Windows, or CLEANUP_OLD_FEATURES.sh on macOS/Linux.
+4. Commit: Reset Betynz to fast reliable core
+5. Push to GitHub.
+6. Run: Deploy Betynz Product
+7. Close every open Betynz browser tab and installed PWA window.
+8. Reopen betynz.com once.
+
+When the repository has no verified data.js, Deploy Betynz Product will call Smart Global Coverage automatically.

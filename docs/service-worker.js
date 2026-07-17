@@ -1,73 +1,93 @@
-const CACHE='betynz-v5.9.0';
-const DATA_FALLBACK_KEY='/data.js';
+const CACHE='betynz-core-v6.1.0';
+const DATA_KEY='/data.js';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=5.9',
-  '/app.js?v=5.9',
-  '/community-features.js?v=5.9',
-  '/backend-config.js?v=5.9',
-  '/backend-client.js?v=5.9',
-  '/monetization-config.js?v=5.9',
-  '/rebel-engine-core.js?v=5.9',
-  '/olympian-engine-core.js?v=5.9',
+  '/styles.css?v=6.1.0',
+  '/experience.js?v=6.1.0',
+  '/nav-core.js?v=6.1.0',
+  '/boot.js?v=6.1.0',
+  '/app.js?v=6.1.0',
+  '/rebel-engine-core.js?v=6.1.0',
+  '/olympian-engine-core.js?v=6.1.0',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',
   '/assets/icon-192.png',
   '/assets/icon-512.png',
   '/assets/maskable-icon.png',
-  '/assets/gods/zeus.webp',
-  '/assets/gods/spartacus.webp',
-  '/assets/gods/leonidas.webp',
-  '/assets/splash/launch-portrait.webp',
-  '/assets/splash/launch-landscape.webp'
+  '/assets/gods/zeus.webp'
 ];
 
-function containsFixtures(text){
-  return /window\.MATCHES\s*=\s*\[\s*\{/.test(String(text||''));
+const DEMO_MARKERS=[
+  /"id"\s*:\s*9000(?:0[1-9]|1\d|20)\b/,
+  /Manchester City\s+vs\s+Brighton/i,
+  /Inter Milan\s+vs\s+Torino/i,
+  /Flamengo\s+vs\s+Palmeiras/i
+];
+
+function isVerifiedDataText(text){
+  const value=String(text||'');
+  if(!/window\.MATCHES\s*=\s*\[\s*\{/.test(value))return false;
+  return !DEMO_MARKERS.some(pattern=>pattern.test(value));
 }
 
-async function cachedLiveBoard(request){
+async function isVerifiedResponse(response){
+  if(!response||!response.ok)return false;
+  try{return isVerifiedDataText(await response.clone().text())}catch(_){return false}
+}
+
+async function cachedBoard(request){
   const exact=await caches.match(request);
-  if(exact){
-    try{if(containsFixtures(await exact.clone().text()))return exact}catch(_){ }
-  }
-  const canonical=await caches.match(DATA_FALLBACK_KEY);
-  if(canonical){
-    try{if(containsFixtures(await canonical.clone().text()))return canonical}catch(_){ }
-  }
+  if(await isVerifiedResponse(exact))return exact;
+  const canonical=await caches.match(DATA_KEY);
+  if(await isVerifiedResponse(canonical))return canonical;
   return null;
 }
 
-self.addEventListener('install',event=>{
-  event.waitUntil(
-    caches.open(CACHE)
-      .then(cache=>cache.addAll(CORE))
-      .then(()=>self.skipWaiting())
+async function refreshBoard(request){
+  const response=await fetch(request,{cache:'no-store'});
+  if(!await isVerifiedResponse(response))throw new Error('Invalid or empty live board');
+  const cache=await caches.open(CACHE);
+  await cache.put(request,response.clone());
+  await cache.put(DATA_KEY,response.clone());
+  const clients=await self.clients.matchAll({type:'window',includeUncontrolled:true});
+  clients.forEach(client=>client.postMessage({type:'BETYNZ_DATA_READY'}));
+  return response;
+}
+
+function timeout(ms){return new Promise(resolve=>setTimeout(()=>resolve(null),ms))}
+
+function emptyBoard(){
+  return new Response(
+    'window.BETYNZ_DEMO=false;window.BETYNZ_READY=false;window.BETYNZ_META={source:"waiting-for-live-sync",isReady:false,fixtureCount:0,qualifiedCount:0};window.BETYNZ_HISTORY=[];window.MATCHES=[];',
+    {headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'no-store'}}
   );
+}
+
+self.addEventListener('install',event=>{
+  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
 });
 
 self.addEventListener('activate',event=>{
-  event.waitUntil(
-    caches.keys()
-      .then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(async key=>{
-        const old=await caches.open(key);
-        const oldData=await old.match(DATA_FALLBACK_KEY);
-        if(oldData){
-          try{
-            const text=await oldData.clone().text();
-            if(containsFixtures(text))await (await caches.open(CACHE)).put(DATA_FALLBACK_KEY,oldData.clone());
-          }catch(_){ }
-        }
-        return caches.delete(key);
-      })))
-      .then(()=>self.clients.claim())
-  );
+  event.waitUntil((async()=>{
+    const current=await caches.open(CACHE);
+    const keys=await caches.keys();
+    for(const key of keys){
+      if(key===CACHE)continue;
+      const old=await caches.open(key);
+      const oldData=await old.match(DATA_KEY);
+      if(await isVerifiedResponse(oldData))await current.put(DATA_KEY,oldData.clone());
+      await caches.delete(key);
+    }
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('message',event=>{
-  if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();
+  if(event.data&&event.data.type==='REFRESH_DATA'){
+    event.waitUntil(refreshBoard(new Request(DATA_KEY,{cache:'no-store'})).catch(()=>{}));
+  }
 });
 
 self.addEventListener('fetch',event=>{
@@ -76,68 +96,33 @@ self.addEventListener('fetch',event=>{
 
   if(url.pathname.endsWith('/data.js')){
     event.respondWith((async()=>{
-      try{
-        const response=await fetch(event.request,{cache:'no-store'});
-        if(!response.ok)throw new Error(`data.js ${response.status}`);
-        const text=await response.clone().text();
-        if(containsFixtures(text)){
-          const cache=await caches.open(CACHE);
-          await cache.put(event.request,response.clone());
-          await cache.put(DATA_FALLBACK_KEY,response.clone());
-          return response;
-        }
-        const fallback=await cachedLiveBoard(event.request);
-        return fallback||response;
-      }catch(_){
-        return (await cachedLiveBoard(event.request))||new Response(
-          'window.BETYNZ_DEMO=false;window.BETYNZ_READY=false;window.MATCHES=[];',
-          {headers:{'Content-Type':'application/javascript; charset=utf-8'}}
-        );
-      }
+      const cached=await cachedBoard(event.request);
+      const refresh=refreshBoard(event.request).catch(()=>null);
+      event.waitUntil(refresh);
+      if(cached)return cached;
+      return (await Promise.race([refresh,timeout(3500)]))||emptyBoard();
     })());
     return;
   }
 
-  if(url.pathname.endsWith('/api-status.json')){
-    event.respondWith(
-      fetch(event.request,{cache:'no-store'})
-        .then(response=>{
-          if(response.ok)caches.open(CACHE).then(cache=>cache.put(event.request,response.clone()));
-          return response;
-        })
-        .catch(()=>caches.match(event.request))
-    );
-    return;
-  }
-
   if(event.request.mode==='navigate'){
-    event.respondWith(
-      fetch(event.request,{cache:'no-store'})
-        .then(response=>{
-          if(response.ok)caches.open(CACHE).then(cache=>cache.put('/index.html',response.clone()));
-          return response;
-        })
-        .catch(()=>caches.match('/index.html'))
-    );
+    event.respondWith((async()=>{
+      const cached=await caches.match('/index.html');
+      const network=fetch(event.request,{cache:'no-store'}).then(response=>{
+        if(response.ok)caches.open(CACHE).then(cache=>cache.put('/index.html',response.clone()));
+        return response;
+      }).catch(()=>null);
+      event.waitUntil(network);
+      return cached||(await network)||new Response('Betynz is temporarily offline.',{status:503,headers:{'Content-Type':'text/plain'}});
+    })());
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then(hit=>{
-      const network=fetch(event.request).then(response=>{
-        if(response.ok&&url.origin===self.location.origin)caches.open(CACHE).then(cache=>cache.put(event.request,response.clone()));
-        return response;
-      });
-      return hit||network;
-    })
-  );
-});
-
-self.addEventListener('notificationclick',event=>{
-  event.notification.close();
-  event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{
-    const target=list.find(c=>'focus' in c);
-    if(target){target.focus();target.navigate('/#notifications');return}
-    if(self.clients.openWindow)return self.clients.openWindow('/#notifications');
+  event.respondWith(caches.match(event.request).then(hit=>{
+    const fresh=fetch(event.request).then(response=>{
+      if(response.ok&&url.origin===self.location.origin)caches.open(CACHE).then(cache=>cache.put(event.request,response.clone()));
+      return response;
+    }).catch(()=>null);
+    return hit||fresh;
   }));
 });
