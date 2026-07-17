@@ -570,6 +570,11 @@
     if(Number.isFinite(Number(m.homeVenuePPG))||Number.isFinite(Number(m.awayVenuePPG)))cards.push(["Venue PPG",`${Number.isFinite(Number(m.homeVenuePPG))?Number(m.homeVenuePPG).toFixed(2):"—"} vs ${Number.isFinite(Number(m.awayVenuePPG))?Number(m.awayVenuePPG).toFixed(2):"—"}`]);
     const ppg=p.ppgAgreement||(p.signal&&p.signal.ppgAgreement)||null;
     if(ppg&&ppg.pass)cards.push(["PPG agreement",`Both favour ${ppg.direction==="home"?"Home":"Away"}`]);
+    const homeDef=Number(m.homeConcededAtHome),awayDef=Number(m.awayConcededAway);
+    if(Number.isFinite(homeDef)||Number.isFinite(awayDef)){
+      const band=v=>!Number.isFinite(v)?"unknown":v<1?"tight":v<1.5?"medium":"leaky";
+      cards.push(["Venue defence",`${Number.isFinite(homeDef)?homeDef.toFixed(2)+" "+band(homeDef):"—"} vs ${Number.isFinite(awayDef)?awayDef.toFixed(2)+" "+band(awayDef):"—"}`]);
+    }
     if(m.xgReal&&(Number.isFinite(Number(m.xgHomeReal))||Number.isFinite(Number(m.xgAwayReal))))cards.push(["Trusted xG",`${Number.isFinite(Number(m.xgHomeReal))?Number(m.xgHomeReal).toFixed(2):"—"} vs ${Number.isFinite(Number(m.xgAwayReal))?Number(m.xgAwayReal).toFixed(2):"—"}`]);
     if(p.odds)cards.push(["Current odds",Number(p.odds).toFixed(2)]);
     if(p.dataQuality!=null)cards.push(["Data quality",`${Math.round(Number(p.dataQuality))}/100`]);

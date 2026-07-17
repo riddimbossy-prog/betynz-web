@@ -114,3 +114,8 @@ See `MONETIZATION_SETUP.md` before connecting a production authentication or pay
 ## v4.9 secure backend
 
 The account interface can now use Supabase passwordless authentication, Postgres Row Level Security, server-derived plan entitlements, cloud preferences, saved picks, receipts and account-pause controls. Follow `SECURE_BACKEND_SETUP.md` before enabling production access.
+
+
+## v5.6 PPG and defence decision rules
+
+Straight wins now require a full 2.00+ versus sub-1.00 overall-and-split PPG mismatch plus a medium/leaky opponent defence. Other straight-win signals are protected by DNB. Automatic GG requires both teams at 1.50+ overall and split PPG, a 2.80+ GPG league, draw odds of at least 3.70 and two medium/leaky venue defences. Low-PPG teams in medium/low leagues route to Under 2.5 or Under 3.5 according to defensive leakiness, with draw odds capped at 3.00.

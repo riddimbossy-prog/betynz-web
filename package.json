@@ -1,16 +1,18 @@
 {
   "name": "betynz-web",
-  "version": "5.4.0",
+  "version": "5.6.0",
   "private": true,
-  "description": "Betynz v5.4 free launch and community build with a mandatory overall-versus-home/away split PPG direction agreement gate across every prediction engine.",
+  "description": "Betynz v5.6 PPG and defence decision rules with automatic strong-favourite wins, protected DNB downgrades, GG qualification and low-PPG under routing.",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",
     "validate": "node scripts/validate-product.js",
     "build": "node scripts/build-dist.js",
-    "check": "node --check app.js && node --check backend-client.js && node --check community-features.js && node --check rebel-engine-core.js && node --check olympian-engine-core.js && node --check scripts/seed-guard.js && node --check scripts/fetch-data.js && node --check scripts/select-enrichment-plan.js && node --check scripts/merge-enriched-data.js && node --check scripts/enrich-xg.js && node --check scripts/enrich-rebel-odds.js && node --check scripts/build-snapshot.js && node --check scripts/build-dist.js && npm run test:rebels && npm run test:ppg && npm run validate",
+    "check": "node --check app.js && node --check backend-client.js && node --check community-features.js && node --check engine-audit.js && node --check rebel-engine-core.js && node --check olympian-engine-core.js && node --check scripts/seed-guard.js && node --check scripts/fetch-data.js && node --check scripts/select-enrichment-plan.js && node --check scripts/merge-enriched-data.js && node --check scripts/enrich-xg.js && node --check scripts/enrich-rebel-odds.js && node --check scripts/build-snapshot.js && node --check scripts/build-dist.js && npm run test:rebels && npm run test:ppg && npm run test:audit && npm run test:rules && npm run validate",
     "test:rebels": "node tests/rebel-engine-tests.js && node tests/rebel-goal-correction-tests.js && node tests/universal-gg-rule-tests.js",
-    "test:ppg": "node tests/ppg-direction-agreement-tests.js"
+    "test:ppg": "node tests/ppg-direction-agreement-tests.js",
+    "test:audit": "node tests/engine-audit-tests.js",
+    "test:rules": "node tests/universal-ppg-defence-rules-tests.js"
   },
   "engines": {
     "node": ">=20"

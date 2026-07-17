@@ -24,3 +24,11 @@
 ## Rebel governance
 
 Leonidas and Spartacus may confirm or challenge an Olympian market, but they cannot publish a Zeus selection by themselves. A public Zeus decision must retain at least one Olympian confirmation; A1 requires at least two Olympian confirmations.
+
+
+## v5.6 universal publication rules
+
+- Strong mismatch: 2.00+ PPG (overall + split) vs below 1.00 (overall + split) + medium/leaky opponent defence → Straight Win.
+- Any other Straight Win signal → DNB protection.
+- GG: both teams 1.50+ PPG overall + split, high-scoring league, draw 3.70+, both defences medium/leaky.
+- Low PPG Under: both teams below 1.00 overall + split, league GPG <= 2.79, draw <= 3.00; no leaky defence → U2.5, any leaky defence → U3.5.
