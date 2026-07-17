@@ -7,7 +7,7 @@ window.BETYNZ_META = {
   "engineVersion": "5.6.0",
   "auditVersion": "5.6.0",
   "source": "waiting-for-live-sync",
-  "generatedAt": "2026-07-17T16:38:24.205Z",
+  "generatedAt": "2026-07-17T17:37:10.715Z",
   "dataUpdated": null,
   "isDemo": false,
   "isReady": false,
@@ -24,7 +24,7 @@ window.BETYNZ_META = {
   "engineCounts": {},
   "reliability": {
     "version": "5.6.0",
-    "generatedAt": "2026-07-17T16:38:24.205Z",
+    "generatedAt": "2026-07-17T17:37:10.716Z",
     "fixtures": 0,
     "evaluations": 0,
     "approved": 0,
