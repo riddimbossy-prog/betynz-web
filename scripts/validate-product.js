@@ -3,9 +3,9 @@
 const fs=require("fs"),path=require("path"),vm=require("vm");
 const ROOT=path.resolve(__dirname,"..");
 const {assertNoPackagedDemoFixtures}=require("./seed-guard");
-const required=["index.html","styles.css","app.js","community-features.js","rebel-engine-core.js","olympian-engine-core.js","data.js","manifest.webmanifest","service-worker.js","backend-config.js","backend-client.js","monetization-config.js","CNAME"];
+const required=["index.html","styles.css","app.js","community-features.js","engine-audit.js","rebel-engine-core.js","olympian-engine-core.js","data.js","manifest.webmanifest","service-worker.js","backend-config.js","backend-client.js","monetization-config.js","CNAME"];
 for(const f of required){if(!fs.existsSync(path.join(ROOT,f)))throw new Error(`Missing ${f}`)}
-for(const f of ["app.js","community-features.js","backend-client.js","rebel-engine-core.js","olympian-engine-core.js","scripts/build-snapshot.js","scripts/fetch-data.js","scripts/fetch-scores.js","scripts/enrich-rebel-odds.js"]){new vm.Script(fs.readFileSync(path.join(ROOT,f),"utf8"),{filename:f})}
+for(const f of ["app.js","community-features.js","engine-audit.js","backend-client.js","rebel-engine-core.js","olympian-engine-core.js","scripts/build-snapshot.js","scripts/fetch-data.js","scripts/fetch-scores.js","scripts/enrich-rebel-odds.js"]){new vm.Script(fs.readFileSync(path.join(ROOT,f),"utf8"),{filename:f})}
 const ctx={window:{}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(path.join(ROOT,"data.js"),"utf8"),ctx);
 if(!Array.isArray(ctx.window.MATCHES))throw new Error("window.MATCHES is missing");
 assertNoPackagedDemoFixtures(ctx.window.MATCHES,"validated public data");

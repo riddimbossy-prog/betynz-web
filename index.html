@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#08090c">
+  <meta name="theme-color" content="#c8772c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BETYNZ">
   <meta name="description" content="Betynz.com — smart football predictions powered by disciplined data engines.">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -13,12 +16,34 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1170x2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1284x2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1290x2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-1125x2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)">
+  <link rel="apple-touch-startup-image" href="assets/splash/apple-splash-2048x2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5.6">
+  <link rel="stylesheet" href="styles.css?v=5.7">
 </head>
 <body>
+  <div class="app-launch-splash" id="app-launch-splash" aria-hidden="true">
+    <div class="app-launch-splash__brand">
+      <img src="assets/betynz-mark.png" alt="">
+      <strong>BETYNZ<span>.com</span></strong>
+      <p>Let the Gods Decide.</p>
+      <div class="app-launch-splash__loader"><i></i></div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var splash=document.getElementById('app-launch-splash');
+      if(!splash)return;
+      var hide=function(){splash.classList.add('is-leaving');setTimeout(function(){splash.remove();},520)};
+      window.addEventListener('load',function(){setTimeout(hide,1050)},{once:true});
+      setTimeout(hide,3200);
+    }());
+  </script>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
       <a class="brand brand-new" href="#dashboard" aria-label="Betynz home">
@@ -304,13 +329,13 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="backend-config.js?v=5.6"></script>
-  <script src="backend-client.js?v=5.6"></script>
-  <script src="monetization-config.js?v=5.6"></script>
-  <script src="rebel-engine-core.js?v=5.6"></script>
-  <script src="olympian-engine-core.js?v=5.6"></script>
-  <script src="data.js?v=5.6"></script>
-  <script src="app.js?v=5.6"></script>
-  <script src="community-features.js?v=5.6"></script>
+  <script src="backend-config.js?v=5.7"></script>
+  <script src="backend-client.js?v=5.7"></script>
+  <script src="monetization-config.js?v=5.7"></script>
+  <script src="rebel-engine-core.js?v=5.7"></script>
+  <script src="olympian-engine-core.js?v=5.7"></script>
+  <script src="data.js?v=5.7"></script>
+  <script src="app.js?v=5.7"></script>
+  <script src="community-features.js?v=5.7"></script>
 </body>
 </html>

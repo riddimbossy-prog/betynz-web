@@ -1,15 +1,15 @@
-const CACHE='betynz-v5.6.0';
+const CACHE='betynz-v5.7.0';
 const CORE=[
   '/',
   '/index.html',
-  '/styles.css?v=5.6',
-  '/app.js?v=5.6',
-  '/community-features.js?v=5.6',
-  '/backend-config.js?v=5.6',
-  '/backend-client.js?v=5.6',
-  '/monetization-config.js?v=5.6',
-  '/rebel-engine-core.js?v=5.6',
-  '/olympian-engine-core.js?v=5.6',
+  '/styles.css?v=5.7',
+  '/app.js?v=5.7',
+  '/community-features.js?v=5.7',
+  '/backend-config.js?v=5.7',
+  '/backend-client.js?v=5.7',
+  '/monetization-config.js?v=5.7',
+  '/rebel-engine-core.js?v=5.7',
+  '/olympian-engine-core.js?v=5.7',
   '/manifest.webmanifest',
   '/assets/betynz-logo.webp',
   '/assets/betynz-mark.png',
@@ -18,7 +18,9 @@ const CORE=[
   '/assets/maskable-icon.png',
   '/assets/gods/zeus.webp',
   '/assets/gods/spartacus.webp',
-  '/assets/gods/leonidas.webp'
+  '/assets/gods/leonidas.webp',
+  '/assets/splash/launch-portrait.webp',
+  '/assets/splash/launch-landscape.webp'
 ];
 
 self.addEventListener('install',event=>{
