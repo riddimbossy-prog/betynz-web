@@ -1,5 +1,52 @@
 [
   {
+    "fixtureId": "1517903",
+    "home": "Hurstville FC",
+    "away": "Dulwich Hill",
+    "league": "New South Wales NPL 2",
+    "kickoff": "2026-07-17T10:00:00.000Z",
+    "market": "Home DNB",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": null,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "ares",
+      "hera",
+      "hephaestus",
+      "demeter",
+      "atlas",
+      "nike"
+    ],
+    "publishedAt": "2026-07-17T07:43:03.424Z",
+    "settledAt": "2026-07-17T12:00:40.786Z",
+    "score": "3-1",
+    "result": "Won"
+  },
+  {
+    "fixtureId": "1527102",
+    "home": "Campbelltown City",
+    "away": "Adelaide Comets",
+    "league": "South Australia NPL",
+    "kickoff": "2026-07-17T09:30:00.000Z",
+    "market": "Home Win",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": 1.68,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "ares",
+      "hades",
+      "nike"
+    ],
+    "publishedAt": "2026-07-17T07:43:03.424Z",
+    "settledAt": "2026-07-17T12:00:40.786Z",
+    "score": "1-0",
+    "result": "Won"
+  },
+  {
     "fixtureId": "1490328",
     "home": "Seattle Sounders",
     "away": "Portland Timbers",

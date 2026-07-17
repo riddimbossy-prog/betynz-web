@@ -101,6 +101,57 @@
       }
     }
   },
+  "1492140": {
+    "fixtureId": "1492140",
+    "home": "Bahia",
+    "away": "Chapecoense-sc",
+    "league": "Serie A",
+    "kickoff": "2026-07-17T22:30:00.000Z",
+    "publishedAt": "2026-07-17T12:00:40.786Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.53-0.53 overall; 1.44-0.25 split).",
+        "10 specialist engines agree on Home Win.",
+        "Weighted support 14.29 leads the next market by 12.93.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.44,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.53-0.53 overall; 1.44-0.25 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.53,
+          "awayOverallPPG": 0.53,
+          "homeSplitPPG": 1.44,
+          "awaySplitPPG": 0.25,
+          "overallGap": 1,
+          "splitGap": 1.19
+        }
+      }
+    }
+  },
   "1492291": {
     "fixtureId": "1492291",
     "home": "Botafogo",
@@ -143,6 +194,51 @@
           "awaySplitPPG": 0.5,
           "overallGap": 0.12,
           "splitGap": 1.07
+        }
+      }
+    }
+  },
+  "1492295": {
+    "fixtureId": "1492295",
+    "home": "Fluminense",
+    "away": "RB Bragantino",
+    "league": "Serie A",
+    "kickoff": "2026-07-17T23:00:00.000Z",
+    "publishedAt": "2026-07-17T12:00:40.786Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.72-1.61 overall; 2.44-1.44 split).",
+        "4 specialist engines agree on Home DNB.",
+        "Weighted support 3.54 leads the next market by 2.55.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.47,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.72-1.61 overall; 2.44-1.44 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.72,
+          "awayOverallPPG": 1.61,
+          "homeSplitPPG": 2.44,
+          "awaySplitPPG": 1.44,
+          "overallGap": 0.11,
+          "splitGap": 1
         }
       }
     }
