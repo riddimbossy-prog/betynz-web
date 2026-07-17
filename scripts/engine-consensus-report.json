@@ -1,10 +1,10 @@
 {
   "version": "v195",
-  "updated": "2026-07-17T07:42:53.962Z",
+  "updated": "2026-07-17T12:28:50.429Z",
   "summary": {
-    "fixtures": 64,
-    "qualified": 0,
-    "rejected": 64,
+    "fixtures": 56,
+    "qualified": 1,
+    "rejected": 55,
     "highConflict": 0
   },
   "fixtures": [
@@ -104,6 +104,27 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
+      "id": 1514240,
+      "date": "2026-07-23",
+      "home": "Leiknir R.",
+      "away": "Throttur Reykjavik",
+      "league": "1. Deild",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.5,
+      "support": 0.74,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
       "id": 1492141,
       "date": "2026-07-23",
       "home": "Botafogo",
@@ -168,6 +189,93 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
+      "id": 1507007,
+      "date": "2026-07-22",
+      "home": "Bucheon FC 1995",
+      "away": "FC Anyang",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.4,
+      "support": 0.69,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance X2",
+          "support": 0.66,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507008,
+      "date": "2026-07-22",
+      "home": "Gwangju FC",
+      "away": "Gimcheon Sangmu FC",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.5,
+      "support": 0.73,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.51,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507009,
+      "date": "2026-07-22",
+      "home": "FC Seoul",
+      "away": "Pohang Steelers",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.2,
+      "support": 0.66,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "First Half Under 1.5",
+          "support": 0.45,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
       "id": 1492294,
       "date": "2026-07-22",
       "home": "Coritiba",
@@ -194,6 +302,103 @@
           ]
         }
       ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507004,
+      "date": "2026-07-21",
+      "home": "Jeju United FC",
+      "away": "Gangwon FC",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": true,
+      "market": "Under 3.5 Goals",
+      "candidate": "Under 3.5 Goals",
+      "score": 84.8,
+      "support": 2,
+      "supporters": [
+        "Trend",
+        "Streaks",
+        "League Bias"
+      ],
+      "independence": 3,
+      "exactSupport": 3,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance X2",
+          "support": 0.59,
+          "engines": [
+            "PurePPG Ultra"
+          ]
+        },
+        {
+          "market": "Away DNB",
+          "support": 0.45,
+          "engines": [
+            "PurePPG Normal"
+          ]
+        }
+      ],
+      "reason": "3 engines across 3 independent evidence groups support the exact market."
+    },
+    {
+      "id": 1507005,
+      "date": "2026-07-21",
+      "home": "Jeonbuk Motors",
+      "away": "Daejeon Citizen",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.1,
+      "support": 0.63,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance 1X",
+          "support": 0.59,
+          "engines": [
+            "PurePPG Normal",
+            "PurePPG Strict",
+            "PurePPG Ultra"
+          ]
+        },
+        {
+          "market": "First Half Under 1.5",
+          "support": 0.4,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507006,
+      "date": "2026-07-21",
+      "home": "Ulsan Hyundai FC",
+      "away": "Incheon United",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.3,
+      "support": 0.66,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
@@ -247,245 +452,11 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1522147,
-      "date": "2026-07-19",
-      "home": "Western United II",
-      "away": "Bulleen Lions",
-      "league": "Victoria NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.9,
-      "support": 0.82,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Away Team Over 0.5 Goals",
-          "support": 0.65,
-          "engines": [
-            "Trend"
-          ]
-        },
-        {
-          "market": "Home Team Over 0.5 Goals",
-          "support": 0.45,
-          "engines": [
-            "League Bias"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1517820,
-      "date": "2026-07-19",
-      "home": "Central Coast II",
-      "away": "Northern Tigers",
-      "league": "New South Wales NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.3,
-      "support": 0.67,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Double Chance X2",
-          "support": 0.6,
-          "engines": [
-            "PurePPG Ultra"
-          ]
-        },
-        {
-          "market": "Away Team Over 0.5 Goals",
-          "support": 0.44,
-          "engines": [
-            "League Bias"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1527107,
-      "date": "2026-07-19",
-      "home": "FK Beograd",
-      "away": "Adelaide United II",
-      "league": "South Australia NPL",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Home Team Over 0.5 Goals",
-      "score": 79.3,
-      "support": 1.02,
-      "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Double Chance 1X",
-          "support": 0.79,
-          "engines": [
-            "PurePPG Ultra"
-          ]
-        },
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.44,
-          "engines": [
-            "Halves"
-          ]
-        },
-        {
-          "market": "Home DNB",
-          "support": 0.41,
-          "engines": [
-            "PurePPG Strict"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1527104,
-      "date": "2026-07-18",
-      "home": "Adelaide City",
-      "away": "Croydon Kings",
-      "league": "South Australia NPL",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.4,
-      "support": 0.69,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Home Team Over 0.5 Goals",
-          "support": 0.48,
-          "engines": [
-            "League Bias"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1522212,
-      "date": "2026-07-18",
-      "home": "Langwarrin",
-      "away": "Brunswick Juventus FC",
-      "league": "Victoria NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.9,
-      "support": 0.82,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Double Chance X2",
-          "support": 0.64,
-          "engines": [
-            "PurePPG Normal",
-            "PurePPG Strict"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1522213,
-      "date": "2026-07-18",
-      "home": "North Sunshine Eagles",
-      "away": "Eltham Redbacks FC",
-      "league": "Victoria NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Away Team Over 0.5 Goals",
-      "score": 79.4,
-      "support": 1.05,
-      "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.82,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1527106,
-      "date": "2026-07-18",
-      "home": "West Adelaide",
-      "away": "Sturt Lions",
-      "league": "South Australia NPL",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.6,
-      "support": 0.74,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Home Team Over 0.5 Goals",
-          "support": 0.42,
-          "engines": [
-            "League Bias"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1527105,
-      "date": "2026-07-18",
-      "home": "Playford City Patriots",
-      "away": "MetroStars",
-      "league": "South Australia NPL",
+      "id": 1514236,
+      "date": "2026-07-20",
+      "home": "HK Kopavogur",
+      "away": "Vestri",
+      "league": "1. Deild",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
@@ -502,205 +473,138 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1522145,
-      "date": "2026-07-18",
-      "home": "North Geelong Warriors",
-      "away": "Melbourne Victory II",
-      "league": "Victoria NPL 2",
+      "id": 1507003,
+      "date": "2026-07-19",
+      "home": "Bucheon FC 1995",
+      "away": "FC Seoul",
+      "league": "K League 1",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
-      "candidate": "Home Team Over 0.5 Goals",
+      "candidate": "Double Chance X2",
       "score": 81.2,
       "support": 1.51,
       "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.77,
-          "engines": [
-            "Halves"
-          ]
-        },
-        {
-          "market": "Double Chance 1X",
-          "support": 0.26,
-          "engines": [
-            "PurePPG Normal"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1517815,
-      "date": "2026-07-18",
-      "home": "Hills Brumbies",
-      "away": "Hakoah Sydney City",
-      "league": "New South Wales NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.8,
-      "support": 0.79,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Away Team Over 0.5 Goals",
-          "support": 0.63,
-          "engines": [
-            "Trend"
-          ]
-        },
-        {
-          "market": "Home Team Over 0.5 Goals",
-          "support": 0.5,
-          "engines": [
-            "League Bias"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1517816,
-      "date": "2026-07-18",
-      "home": "Canterbury Bankstown",
-      "away": "Blacktown Spartans",
-      "league": "New South Wales NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Away Team Over 0.5 Goals",
-      "score": 80.1,
-      "support": 1.23,
-      "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.79,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1517818,
-      "date": "2026-07-18",
-      "home": "Inter Lions",
-      "away": "Rydalmere Lions",
-      "league": "New South Wales NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Away Team Over 0.5 Goals",
-      "score": 79.1,
-      "support": 0.96,
-      "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.67,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1517817,
-      "date": "2026-07-18",
-      "home": "Mt Druitt Town",
-      "away": "Newcastle Jets II",
-      "league": "New South Wales NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.3,
-      "support": 0.67,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Away Team Over 0.5 Goals",
-          "support": 0.45,
-          "engines": [
-            "League Bias"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1522146,
-      "date": "2026-07-18",
-      "home": "Melbourne Srbija",
-      "away": "Port Melbourne",
-      "league": "Victoria NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Double Chance 1X",
-      "score": 77,
-      "support": 0.85,
-      "supporters": [
         "PurePPG Ultra",
-        "PurePPG Elite",
-        "PurePPG Apex"
+        "Trend"
       ],
-      "independence": 1,
-      "exactSupport": 3,
+      "independence": 2,
+      "exactSupport": 2,
       "conflictIndex": 0,
       "alternatives": [
         {
-          "market": "Second Half Over 0.5",
-          "support": 0.62,
+          "market": "Away Win",
+          "support": 0.85,
           "engines": [
-            "Halves"
-          ]
-        },
-        {
-          "market": "Home Team Over 0.5 Goals",
-          "support": 0.45,
-          "engines": [
-            "League Bias"
+            "PurePPG Normal",
+            "PurePPG Strict"
           ]
         },
         {
           "market": "Under 3.5 Goals",
-          "support": 0.32,
+          "support": 0.66,
+          "engines": [
+            "League Bias"
+          ]
+        },
+        {
+          "market": "Away DNB",
+          "support": 0.62,
+          "engines": [
+            "PurePPG Elite",
+            "PurePPG Apex"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507002,
+      "date": "2026-07-19",
+      "home": "FC Anyang",
+      "away": "Gwangju FC",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.4,
+      "support": 0.69,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.64,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1520546,
+      "date": "2026-07-18",
+      "home": "Dangjin Citizen",
+      "away": "Jeonbuk Motors II",
+      "league": "K3 League",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.2,
+      "support": 0.64,
+      "supporters": [
+        "Halves"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Home Team Over 0.5 Goals",
+          "support": 0.56,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1506999,
+      "date": "2026-07-18",
+      "home": "Gangwon FC",
+      "away": "Gimcheon Sangmu FC",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Double Chance 1X",
+      "score": 76.9,
+      "support": 0.82,
+      "supporters": [
+        "PurePPG Ultra"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Under 3.5 Goals",
+          "support": 0.73,
+          "engines": [
+            "League Bias"
+          ]
+        },
+        {
+          "market": "Home DNB",
+          "support": 0.46,
           "engines": [
             "PurePPG Normal"
           ]
@@ -709,30 +613,94 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1517819,
+      "id": 1506998,
       "date": "2026-07-18",
-      "home": "Bulls Academy",
-      "away": "Bankstown City Lions",
-      "league": "New South Wales NPL 2",
+      "home": "Daejeon Citizen",
+      "away": "Ulsan Hyundai FC",
+      "league": "K League 1",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
-      "candidate": "Home Team Over 0.5 Goals",
-      "score": 79.1,
-      "support": 0.97,
+      "candidate": "Under 3.5 Goals",
+      "score": 76.1,
+      "support": 0.63,
       "supporters": [
-        "Trend",
         "League Bias"
       ],
-      "independence": 2,
-      "exactSupport": 2,
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507001,
+      "date": "2026-07-18",
+      "home": "Jeju United FC",
+      "away": "Pohang Steelers",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.5,
+      "support": 0.73,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
       "conflictIndex": 0,
       "alternatives": [
         {
-          "market": "Second Half Over 0.5",
-          "support": 0.76,
+          "market": "Away DNB",
+          "support": 0.69,
+          "engines": [
+            "PurePPG Strict",
+            "PurePPG Ultra"
+          ]
+        },
+        {
+          "market": "First Half Under 1.5",
+          "support": 0.5,
           "engines": [
             "Halves"
+          ]
+        },
+        {
+          "market": "Double Chance X2",
+          "support": 0.4,
+          "engines": [
+            "Trend"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1507000,
+      "date": "2026-07-18",
+      "home": "Incheon United",
+      "away": "Jeonbuk Motors",
+      "league": "K League 1",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Under 3.5 Goals",
+      "score": 76.3,
+      "support": 0.66,
+      "supporters": [
+        "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Double Chance X2",
+          "support": 0.35,
+          "engines": [
+            "Trend"
           ]
         }
       ],
@@ -881,17 +849,32 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1519598,
+      "id": 1514232,
       "date": "2026-07-18",
-      "home": "Flora II",
-      "away": "Maardu",
-      "league": "Esiliiga A",
+      "home": "Grindavik",
+      "away": "IR Reykjavik",
+      "league": "1. Deild",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "score": 0,
+      "reason": "No engine produced a qualified candidate.",
+      "supporters": [],
+      "conflictIndex": 0,
+      "independence": 0
+    },
+    {
+      "id": 1514233,
+      "date": "2026-07-18",
+      "home": "Grotta",
+      "away": "Ægir",
+      "league": "1. Deild",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
       "candidate": "Second Half Over 0.5",
-      "score": 77,
-      "support": 0.85,
+      "score": 76.8,
+      "support": 0.8,
       "supporters": [
         "Halves"
       ],
@@ -902,125 +885,17 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1519601,
+      "id": 1514235,
       "date": "2026-07-18",
-      "home": "Tartu Welco",
-      "away": "FC Tallinn",
-      "league": "Esiliiga A",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Home Team Over 0.5 Goals",
-      "score": 83.7,
-      "support": 1.73,
-      "supporters": [
-        "Trend",
-        "Streaks",
-        "League Bias"
-      ],
-      "independence": 3,
-      "exactSupport": 3,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Home Win",
-          "support": 0.85,
-          "engines": [
-            "PurePPG Normal",
-            "PurePPG Strict"
-          ]
-        },
-        {
-          "market": "Double Chance 1X",
-          "support": 0.85,
-          "engines": [
-            "PurePPG Ultra",
-            "PurePPG Apex"
-          ]
-        },
-        {
-          "market": "Home DNB",
-          "support": 0.85,
-          "engines": [
-            "PurePPG Elite"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1519600,
-      "date": "2026-07-18",
-      "home": "Tallinna Kalev",
-      "away": "Nõmme United II",
-      "league": "Esiliiga A",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Away Team Over 0.5 Goals",
-      "score": 83.7,
-      "support": 1.72,
-      "supporters": [
-        "Trend",
-        "Streaks",
-        "League Bias"
-      ],
-      "independence": 3,
-      "exactSupport": 3,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.85,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1519599,
-      "date": "2026-07-18",
-      "home": "Nõmme Kalju II",
-      "away": "FCI Levadia II",
-      "league": "Esiliiga A",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Away Team Over 0.5 Goals",
-      "score": 79.1,
-      "support": 0.98,
-      "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.85,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1527102,
-      "date": "2026-07-17",
-      "home": "Campbelltown City",
-      "away": "Adelaide Comets",
-      "league": "South Australia NPL",
+      "home": "Throttur Reykjavik",
+      "away": "Völsungur",
+      "league": "1. Deild",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
       "candidate": "Second Half Over 0.5",
-      "score": 76.4,
-      "support": 0.69,
+      "score": 76.8,
+      "support": 0.8,
       "supporters": [
         "Halves"
       ],
@@ -1030,7 +905,7 @@
       "alternatives": [
         {
           "market": "Home Team Over 0.5 Goals",
-          "support": 0.42,
+          "support": 0.47,
           "engines": [
             "League Bias"
           ]
@@ -1039,17 +914,17 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1517903,
+      "id": 1519094,
       "date": "2026-07-17",
-      "home": "Hurstville FC",
-      "away": "Dulwich Hill",
-      "league": "New South Wales NPL 2",
+      "home": "Rostov U19",
+      "away": "Chertanovo U20",
+      "league": "Youth Championship",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
       "candidate": "Second Half Over 0.5",
-      "score": 76.8,
-      "support": 0.79,
+      "score": 76.9,
+      "support": 0.83,
       "supporters": [
         "Halves"
       ],
@@ -1060,138 +935,17 @@
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
-      "id": 1517904,
+      "id": 1519093,
       "date": "2026-07-17",
-      "home": "Prospect United",
-      "away": "Macarthur Rams",
-      "league": "New South Wales NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Double Chance X2",
-      "score": 77,
-      "support": 0.85,
-      "supporters": [
-        "PurePPG Ultra",
-        "PurePPG Elite",
-        "PurePPG Apex"
-      ],
-      "independence": 1,
-      "exactSupport": 3,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.46,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1527103,
-      "date": "2026-07-17",
-      "home": "West Torrens Birkalla",
-      "away": "Para Hills Knights",
-      "league": "South Australia NPL",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Home Win",
-      "score": 77,
-      "support": 0.85,
-      "supporters": [
-        "PurePPG Normal",
-        "PurePPG Strict"
-      ],
-      "independence": 1,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Double Chance 1X",
-          "support": 0.85,
-          "engines": [
-            "PurePPG Ultra",
-            "PurePPG Apex"
-          ]
-        },
-        {
-          "market": "Home DNB",
-          "support": 0.85,
-          "engines": [
-            "PurePPG Elite"
-          ]
-        },
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.8,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1522148,
-      "date": "2026-07-17",
-      "home": "Melbourne Knights",
-      "away": "Brunswick City",
-      "league": "Victoria NPL 2",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Double Chance 1X",
-      "score": 77,
-      "support": 0.85,
-      "supporters": [
-        "PurePPG Ultra",
-        "PurePPG Apex"
-      ],
-      "independence": 1,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "Home Win",
-          "support": 0.85,
-          "engines": [
-            "PurePPG Normal",
-            "PurePPG Strict"
-          ]
-        },
-        {
-          "market": "Home DNB",
-          "support": 0.84,
-          "engines": [
-            "PurePPG Elite"
-          ]
-        },
-        {
-          "market": "Second Half Over 0.5",
-          "support": 0.82,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1522144,
-      "date": "2026-07-17",
-      "home": "Northcote City",
-      "away": "Manningham United Blues",
-      "league": "Victoria NPL 2",
+      "home": "Fakel U19",
+      "away": "Zenit U19",
+      "league": "Youth Championship",
       "version": "v195",
       "bet": false,
       "market": "No Bet",
       "candidate": "Second Half Over 0.5",
       "score": 76.9,
-      "support": 0.82,
+      "support": 0.83,
       "supporters": [
         "Halves"
       ],
@@ -1199,21 +953,6 @@
       "exactSupport": 1,
       "conflictIndex": 0,
       "alternatives": [
-        {
-          "market": "Double Chance 1X",
-          "support": 0.8,
-          "engines": [
-            "PurePPG Ultra"
-          ]
-        },
-        {
-          "market": "Home DNB",
-          "support": 0.75,
-          "engines": [
-            "PurePPG Normal",
-            "PurePPG Strict"
-          ]
-        },
         {
           "market": "Home Team Over 0.5 Goals",
           "support": 0.45,
@@ -1222,99 +961,6 @@
           ]
         }
       ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1528651,
-      "date": "2026-07-17",
-      "home": "Changchun Yatai",
-      "away": "Wuxi Wugou",
-      "league": "League One",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Home Team Over 0.5 Goals",
-      "score": 79.9,
-      "support": 1.17,
-      "supporters": [
-        "Trend",
-        "League Bias"
-      ],
-      "independence": 2,
-      "exactSupport": 2,
-      "conflictIndex": 0,
-      "alternatives": [
-        {
-          "market": "First Half Over 0.5",
-          "support": 0.42,
-          "engines": [
-            "Halves"
-          ]
-        }
-      ],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1528652,
-      "date": "2026-07-17",
-      "home": "Suzhou Dongwu",
-      "away": "Shenzhen Juniors",
-      "league": "League One",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 76.3,
-      "support": 0.67,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1528653,
-      "date": "2026-07-17",
-      "home": "Dongguan United",
-      "away": "Nantong Zhiyun",
-      "league": "League One",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Double Chance X2",
-      "score": 76.1,
-      "support": 0.62,
-      "supporters": [
-        "Trend"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [],
-      "reason": "Consensus rejected: support, independence or conflict threshold failed."
-    },
-    {
-      "id": 1528654,
-      "date": "2026-07-17",
-      "home": "Hebei Kungfu",
-      "away": "Yanbian Longding",
-      "league": "League One",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "candidate": "Second Half Over 0.5",
-      "score": 75.5,
-      "support": 0.48,
-      "supporters": [
-        "Halves"
-      ],
-      "independence": 1,
-      "exactSupport": 1,
-      "conflictIndex": 0,
-      "alternatives": [],
       "reason": "Consensus rejected: support, independence or conflict threshold failed."
     },
     {
@@ -1352,6 +998,57 @@
       "support": 0.4,
       "supporters": [
         "League Bias"
+      ],
+      "independence": 1,
+      "exactSupport": 1,
+      "conflictIndex": 0,
+      "alternatives": [],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1519096,
+      "date": "2026-07-17",
+      "home": "Krasnodar U19",
+      "away": "CSKA Moskva U19",
+      "league": "Youth Championship",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Over 1.5 Goals",
+      "score": 80.3,
+      "support": 1.28,
+      "supporters": [
+        "Trend",
+        "League Bias"
+      ],
+      "independence": 2,
+      "exactSupport": 2,
+      "conflictIndex": 0,
+      "alternatives": [
+        {
+          "market": "Second Half Over 0.5",
+          "support": 0.83,
+          "engines": [
+            "Halves"
+          ]
+        }
+      ],
+      "reason": "Consensus rejected: support, independence or conflict threshold failed."
+    },
+    {
+      "id": 1514234,
+      "date": "2026-07-17",
+      "home": "Fylkir",
+      "away": "Njardvik",
+      "league": "1. Deild",
+      "version": "v195",
+      "bet": false,
+      "market": "No Bet",
+      "candidate": "Second Half Over 0.5",
+      "score": 76.2,
+      "support": 0.66,
+      "supporters": [
+        "Halves"
       ],
       "independence": 1,
       "exactSupport": 1,
@@ -1676,21 +1373,6 @@
       "home": "Austin",
       "away": "Charlotte",
       "league": "Friendlies Clubs",
-      "version": "v195",
-      "bet": false,
-      "market": "No Bet",
-      "score": 0,
-      "reason": "No engine produced a qualified candidate.",
-      "supporters": [],
-      "conflictIndex": 0,
-      "independence": 0
-    },
-    {
-      "id": 1582696,
-      "date": "2026-07-15",
-      "home": "Lago Verde",
-      "away": "Expressinho",
-      "league": "Maranhense - 2",
       "version": "v195",
       "bet": false,
       "market": "No Bet",

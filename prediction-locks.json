@@ -436,6 +436,55 @@
       }
     }
   },
+  "1514234": {
+    "fixtureId": "1514234",
+    "home": "Fylkir",
+    "away": "Njardvik",
+    "league": "1. Deild",
+    "kickoff": "2026-07-17T19:15:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (2.08-1.54 overall; 2-0.67 split).",
+        "8 specialist engines agree on Home Win.",
+        "Weighted support 12.32 leads the next market by 11.72.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.83,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.08-1.54 overall; 2-0.67 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.08,
+          "awayOverallPPG": 1.54,
+          "homeSplitPPG": 2,
+          "awaySplitPPG": 0.67,
+          "overallGap": 0.54,
+          "splitGap": 1.33
+        }
+      }
+    }
+  },
   "1517309": {
     "fixtureId": "1517309",
     "home": "Forge",
@@ -579,6 +628,290 @@
           "awaySplitPPG": 1.9,
           "overallGap": -0.92,
           "splitGap": -1.17
+        }
+      }
+    }
+  },
+  "1519093": {
+    "fixtureId": "1519093",
+    "home": "Fakel U19",
+    "away": "Zenit U19",
+    "league": "Youth Championship",
+    "kickoff": "2026-07-17T14:00:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (0.64-2.07 overall; 0.5-1.67 split).",
+        "9 specialist engines agree on Away Win.",
+        "Weighted support 13.25 leads the next market by 12.65.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.08,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (0.64-2.07 overall; 0.5-1.67 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 0.64,
+          "awayOverallPPG": 2.07,
+          "homeSplitPPG": 0.5,
+          "awaySplitPPG": 1.67,
+          "overallGap": -1.43,
+          "splitGap": -1.17
+        }
+      }
+    }
+  },
+  "1519094": {
+    "fixtureId": "1519094",
+    "home": "Rostov U19",
+    "away": "Chertanovo U20",
+    "league": "Youth Championship",
+    "kickoff": "2026-07-17T14:00:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.43-1.14 overall; 1.75-0.71 split).",
+        "10 specialist engines agree on Home Win.",
+        "Weighted support 14.29 leads the next market by 13.69.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.46,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.43-1.14 overall; 1.75-0.71 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.43,
+          "awayOverallPPG": 1.14,
+          "homeSplitPPG": 1.75,
+          "awaySplitPPG": 0.71,
+          "overallGap": 0.29,
+          "splitGap": 1.04
+        }
+      }
+    }
+  },
+  "1519095": {
+    "fixtureId": "1519095",
+    "home": "Akademiya Konoplev U20",
+    "away": "Rodina Moscow U19",
+    "league": "Youth Championship",
+    "kickoff": "2026-07-17T12:00:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 88,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "hera",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (1.57-1.86 overall; 1.8-1.86 split).",
+        "3 specialist engines agree on Away DNB.",
+        "Weighted support 2.15 leads the next market by 1.55.",
+        "Data quality: 72/100; deep evidence: 3/7."
+      ],
+      "warnings": [],
+      "dataQuality": 72,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (1.57-1.86 overall; 1.8-1.86 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.57,
+          "awayOverallPPG": 1.86,
+          "homeSplitPPG": 1.8,
+          "awaySplitPPG": 1.86,
+          "overallGap": -0.29,
+          "splitGap": -0.06
+        }
+      }
+    }
+  },
+  "1519096": {
+    "fixtureId": "1519096",
+    "home": "Krasnodar U19",
+    "away": "CSKA Moskva U19",
+    "league": "Youth Championship",
+    "kickoff": "2026-07-17T16:00:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "hera",
+        "hephaestus",
+        "demeter",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (2.43-2.29 overall; 2.57-2.5 split).",
+        "4 specialist engines agree on Home DNB.",
+        "Weighted support 3.86 leads the next market by 2.03.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.43-2.29 overall; 2.57-2.5 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.43,
+          "awayOverallPPG": 2.29,
+          "homeSplitPPG": 2.57,
+          "awaySplitPPG": 2.5,
+          "overallGap": 0.14,
+          "splitGap": 0.07
+        }
+      }
+    }
+  },
+  "1519097": {
+    "fixtureId": "1519097",
+    "home": "Rubin Kazan U20",
+    "away": "Nizhny Novgorod U19",
+    "league": "Youth Championship",
+    "kickoff": "2026-07-17T12:00:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (0.43-0.86 overall; 0.44-0.83 split).",
+        "5 specialist engines agree on Away DNB.",
+        "Weighted support 6.71 leads the next market by 6.11.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (0.43-0.86 overall; 0.44-0.83 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 0.43,
+          "awayOverallPPG": 0.86,
+          "homeSplitPPG": 0.44,
+          "awaySplitPPG": 0.83,
+          "overallGap": -0.43,
+          "splitGap": -0.39
+        }
+      }
+    }
+  },
+  "1519098": {
+    "fixtureId": "1519098",
+    "home": "Spartak Moskva U19",
+    "away": "Lokomotiv Moskva U19",
+    "league": "Youth Championship",
+    "kickoff": "2026-07-17T12:00:00.000Z",
+    "publishedAt": "2026-07-17T12:29:02.043Z",
+    "engineVersion": "5.4.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (1.36-2.07 overall; 2-2.17 split).",
+        "7 specialist engines agree on Away Win.",
+        "Weighted support 10.04 leads the next market by 8.21.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 2.64,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (1.36-2.07 overall; 2-2.17 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.36,
+          "awayOverallPPG": 2.07,
+          "homeSplitPPG": 2,
+          "awaySplitPPG": 2.17,
+          "overallGap": -0.71,
+          "splitGap": -0.17
         }
       }
     }

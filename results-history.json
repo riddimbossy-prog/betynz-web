@@ -25,6 +25,31 @@
     "result": "Won"
   },
   {
+    "fixtureId": "1517904",
+    "home": "Prospect United",
+    "away": "Macarthur Rams",
+    "league": "New South Wales NPL 2",
+    "kickoff": "2026-07-17T10:00:00.000Z",
+    "market": "Away DNB",
+    "confidence": 93,
+    "grade": "A1",
+    "odds": null,
+    "engineIds": [
+      "prometheus",
+      "athena",
+      "ares",
+      "hera",
+      "hephaestus",
+      "demeter",
+      "atlas",
+      "nike"
+    ],
+    "publishedAt": "2026-07-17T07:43:03.424Z",
+    "settledAt": "2026-07-17T12:29:02.043Z",
+    "score": "1-2",
+    "result": "Won"
+  },
+  {
     "fixtureId": "1527102",
     "home": "Campbelltown City",
     "away": "Adelaide Comets",

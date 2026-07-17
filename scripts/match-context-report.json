@@ -1,28 +1,20 @@
 {
   "version": "v196",
-  "updated": "2026-07-17T07:42:53.999Z",
+  "updated": "2026-07-17T12:28:50.462Z",
   "summary": {
-    "fixtures": 64,
+    "fixtures": 56,
     "extreme": 0,
     "high": 0,
-    "low": 62,
+    "low": 55,
     "averageRisk": 9
   },
   "commonFlags": [
     {
       "flag": "REST_IMBALANCE",
-      "count": 3
+      "count": 4
     },
     {
       "flag": "FRIENDLY_VARIANCE",
-      "count": 1
-    },
-    {
-      "flag": "KNOCKOUT_CONTEXT",
-      "count": 1
-    },
-    {
-      "flag": "FINAL_PRESSURE",
       "count": 1
     }
   ],
@@ -47,7 +39,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492298,
@@ -69,7 +61,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492292,
@@ -91,7 +83,33 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1514240,
+      "date": "2026-07-23",
+      "home": "Leiknir R.",
+      "away": "Throttur Reykjavik",
+      "league": "1. Deild",
+      "version": "v196",
+      "riskScore": 18,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Throttur Reykjavik has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492141,
@@ -113,7 +131,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492293,
@@ -135,7 +153,73 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507007,
+      "date": "2026-07-22",
+      "home": "Bucheon FC 1995",
+      "away": "FC Anyang",
+      "league": "K League 1",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507008,
+      "date": "2026-07-22",
+      "home": "Gwangju FC",
+      "away": "Gimcheon Sangmu FC",
+      "league": "K League 1",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507009,
+      "date": "2026-07-22",
+      "home": "FC Seoul",
+      "away": "Pohang Steelers",
+      "league": "K League 1",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492294,
@@ -157,7 +241,73 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507004,
+      "date": "2026-07-21",
+      "home": "Jeju United FC",
+      "away": "Gangwon FC",
+      "league": "K League 1",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507005,
+      "date": "2026-07-21",
+      "home": "Jeonbuk Motors",
+      "away": "Daejeon Citizen",
+      "league": "K League 1",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507006,
+      "date": "2026-07-21",
+      "home": "Ulsan Hyundai FC",
+      "away": "Incheon United",
+      "league": "K League 1",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1504266,
@@ -179,7 +329,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492290,
@@ -201,14 +351,36 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1522147,
+      "id": 1514236,
+      "date": "2026-07-20",
+      "home": "HK Kopavogur",
+      "away": "Vestri",
+      "league": "1. Deild",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1507003,
       "date": "2026-07-19",
-      "home": "Western United II",
-      "away": "Bulleen Lions",
-      "league": "Victoria NPL 2",
+      "home": "Bucheon FC 1995",
+      "away": "FC Seoul",
+      "league": "K League 1",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -223,14 +395,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1517820,
+      "id": 1507002,
       "date": "2026-07-19",
-      "home": "Central Coast II",
-      "away": "Northern Tigers",
-      "league": "New South Wales NPL 2",
+      "home": "FC Anyang",
+      "away": "Gwangju FC",
+      "league": "K League 1",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -245,36 +417,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1527107,
-      "date": "2026-07-19",
-      "home": "FK Beograd",
-      "away": "Adelaide United II",
-      "league": "South Australia NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1527104,
+      "id": 1520546,
       "date": "2026-07-18",
-      "home": "Adelaide City",
-      "away": "Croydon Kings",
-      "league": "South Australia NPL",
+      "home": "Dangjin Citizen",
+      "away": "Jeonbuk Motors II",
+      "league": "K3 League",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -289,14 +439,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1522212,
+      "id": 1506999,
       "date": "2026-07-18",
-      "home": "Langwarrin",
-      "away": "Brunswick Juventus FC",
-      "league": "Victoria NPL 2",
+      "home": "Gangwon FC",
+      "away": "Gimcheon Sangmu FC",
+      "league": "K League 1",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -311,14 +461,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1522213,
+      "id": 1506998,
       "date": "2026-07-18",
-      "home": "North Sunshine Eagles",
-      "away": "Eltham Redbacks FC",
-      "league": "Victoria NPL 2",
+      "home": "Daejeon Citizen",
+      "away": "Ulsan Hyundai FC",
+      "league": "K League 1",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -333,14 +483,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1527106,
+      "id": 1507001,
       "date": "2026-07-18",
-      "home": "West Adelaide",
-      "away": "Sturt Lions",
-      "league": "South Australia NPL",
+      "home": "Jeju United FC",
+      "away": "Pohang Steelers",
+      "league": "K League 1",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -355,14 +505,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1527105,
+      "id": 1507000,
       "date": "2026-07-18",
-      "home": "Playford City Patriots",
-      "away": "MetroStars",
-      "league": "South Australia NPL",
+      "home": "Incheon United",
+      "away": "Jeonbuk Motors",
+      "league": "K League 1",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -377,161 +527,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1522145,
-      "date": "2026-07-18",
-      "home": "North Geelong Warriors",
-      "away": "Melbourne Victory II",
-      "league": "Victoria NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517815,
-      "date": "2026-07-18",
-      "home": "Hills Brumbies",
-      "away": "Hakoah Sydney City",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517816,
-      "date": "2026-07-18",
-      "home": "Canterbury Bankstown",
-      "away": "Blacktown Spartans",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517818,
-      "date": "2026-07-18",
-      "home": "Inter Lions",
-      "away": "Rydalmere Lions",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517817,
-      "date": "2026-07-18",
-      "home": "Mt Druitt Town",
-      "away": "Newcastle Jets II",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1522146,
-      "date": "2026-07-18",
-      "home": "Melbourne Srbija",
-      "away": "Port Melbourne",
-      "league": "Victoria NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517819,
-      "date": "2026-07-18",
-      "home": "Bulls Academy",
-      "away": "Bankstown City Lions",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1528656,
@@ -553,7 +549,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1528657,
@@ -575,7 +571,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1528655,
@@ -601,7 +597,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1528777,
@@ -623,7 +619,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1504264,
@@ -645,7 +641,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1504265,
@@ -667,14 +663,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1519598,
+      "id": 1514232,
       "date": "2026-07-18",
-      "home": "Flora II",
-      "away": "Maardu",
-      "league": "Esiliiga A",
+      "home": "Grindavik",
+      "away": "IR Reykjavik",
+      "league": "1. Deild",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -689,168 +685,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1519601,
+      "id": 1514233,
       "date": "2026-07-18",
-      "home": "Tartu Welco",
-      "away": "FC Tallinn",
-      "league": "Esiliiga A",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1519600,
-      "date": "2026-07-18",
-      "home": "Tallinna Kalev",
-      "away": "Nõmme United II",
-      "league": "Esiliiga A",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1519599,
-      "date": "2026-07-18",
-      "home": "Nõmme Kalju II",
-      "away": "FCI Levadia II",
-      "league": "Esiliiga A",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1527102,
-      "date": "2026-07-17",
-      "home": "Campbelltown City",
-      "away": "Adelaide Comets",
-      "league": "South Australia NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517903,
-      "date": "2026-07-17",
-      "home": "Hurstville FC",
-      "away": "Dulwich Hill",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1517904,
-      "date": "2026-07-17",
-      "home": "Prospect United",
-      "away": "Macarthur Rams",
-      "league": "New South Wales NPL 2",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1527103,
-      "date": "2026-07-17",
-      "home": "West Torrens Birkalla",
-      "away": "Para Hills Knights",
-      "league": "South Australia NPL",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1522148,
-      "date": "2026-07-17",
-      "home": "Melbourne Knights",
-      "away": "Brunswick City",
-      "league": "Victoria NPL 2",
+      "home": "Grotta",
+      "away": "Ægir",
+      "league": "1. Deild",
       "version": "v196",
       "riskScore": 14,
       "stabilityScore": 48,
@@ -859,7 +701,7 @@
         "REST_IMBALANCE"
       ],
       "reasons": [
-        "Melbourne Knights has a material rest advantage."
+        "Ægir has a material rest advantage."
       ],
       "missingEvidence": [
         "AVAILABILITY"
@@ -869,14 +711,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1522144,
-      "date": "2026-07-17",
-      "home": "Northcote City",
-      "away": "Manningham United Blues",
-      "league": "Victoria NPL 2",
+      "id": 1514235,
+      "date": "2026-07-18",
+      "home": "Throttur Reykjavik",
+      "away": "Völsungur",
+      "league": "1. Deild",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -891,14 +733,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1528651,
+      "id": 1519094,
       "date": "2026-07-17",
-      "home": "Changchun Yatai",
-      "away": "Wuxi Wugou",
-      "league": "League One",
+      "home": "Rostov U19",
+      "away": "Chertanovo U20",
+      "league": "Youth Championship",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -913,14 +755,14 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
-      "id": 1528652,
+      "id": 1519093,
       "date": "2026-07-17",
-      "home": "Suzhou Dongwu",
-      "away": "Shenzhen Juniors",
-      "league": "League One",
+      "home": "Fakel U19",
+      "away": "Zenit U19",
+      "league": "Youth Championship",
       "version": "v196",
       "riskScore": 8,
       "stabilityScore": 47,
@@ -935,55 +777,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1528653,
-      "date": "2026-07-17",
-      "home": "Dongguan United",
-      "away": "Nantong Zhiyun",
-      "league": "League One",
-      "version": "v196",
-      "riskScore": 18,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [
-        "REST_IMBALANCE"
-      ],
-      "reasons": [
-        "Nantong Zhiyun has a material rest advantage."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1528654,
-      "date": "2026-07-17",
-      "home": "Hebei Kungfu",
-      "away": "Yanbian Longding",
-      "league": "League One",
-      "version": "v196",
-      "riskScore": 8,
-      "stabilityScore": 47,
-      "riskLevel": "LOW",
-      "flags": [],
-      "reasons": [],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": 0
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1504263,
@@ -1005,7 +799,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1504262,
@@ -1027,7 +821,55 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1519096,
+      "date": "2026-07-17",
+      "home": "Krasnodar U19",
+      "away": "CSKA Moskva U19",
+      "league": "Youth Championship",
+      "version": "v196",
+      "riskScore": 8,
+      "stabilityScore": 47,
+      "riskLevel": "LOW",
+      "flags": [],
+      "reasons": [],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
+    },
+    {
+      "id": 1514234,
+      "date": "2026-07-17",
+      "home": "Fylkir",
+      "away": "Njardvik",
+      "league": "1. Deild",
+      "version": "v196",
+      "riskScore": 14,
+      "stabilityScore": 48,
+      "riskLevel": "LOW",
+      "flags": [
+        "REST_IMBALANCE"
+      ],
+      "reasons": [
+        "Njardvik has a material rest advantage."
+      ],
+      "missingEvidence": [
+        "AVAILABILITY"
+      ],
+      "coverage": 4,
+      "decision": {
+        "hardVeto": false,
+        "adjustment": 0
+      },
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492140,
@@ -1049,7 +891,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492295,
@@ -1071,7 +913,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1492297,
@@ -1093,7 +935,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1523779,
@@ -1115,7 +957,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1554956,
@@ -1137,7 +979,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1554960,
@@ -1159,7 +1001,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1554961,
@@ -1181,7 +1023,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1560612,
@@ -1203,7 +1045,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1583315,
@@ -1225,7 +1067,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1554958,
@@ -1247,7 +1089,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1589267,
@@ -1269,7 +1111,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1554800,
@@ -1291,7 +1133,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1583314,
@@ -1313,7 +1155,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1583663,
@@ -1339,7 +1181,7 @@
         "hardVeto": false,
         "adjustment": -3
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1583325,
@@ -1361,7 +1203,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1584785,
@@ -1383,7 +1225,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1548852,
@@ -1405,7 +1247,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     },
     {
       "id": 1567636,
@@ -1427,35 +1269,7 @@
         "hardVeto": false,
         "adjustment": 0
       },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
-    },
-    {
-      "id": 1582696,
-      "date": "2026-07-15",
-      "home": "Lago Verde",
-      "away": "Expressinho",
-      "league": "Maranhense - 2",
-      "version": "v196",
-      "riskScore": 24,
-      "stabilityScore": 42,
-      "riskLevel": "WATCH",
-      "flags": [
-        "KNOCKOUT_CONTEXT",
-        "FINAL_PRESSURE"
-      ],
-      "reasons": [
-        "Knockout incentives can override ordinary league patterns.",
-        "Final-round pressure can change normal tempo and risk."
-      ],
-      "missingEvidence": [
-        "AVAILABILITY"
-      ],
-      "coverage": 4,
-      "decision": {
-        "hardVeto": false,
-        "adjustment": -3
-      },
-      "generatedAt": "2026-07-17T07:42:53.999Z"
+      "generatedAt": "2026-07-17T12:28:50.462Z"
     }
   ]
 }
