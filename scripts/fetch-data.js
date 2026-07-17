@@ -1168,7 +1168,28 @@ const FINISHED = new Set(["FT","AET","PEN"]);
       process.exitCode = 1;
       return;
     }
-    console.log("\nAPI-Football returned no fixtures for the requested window. Publishing an honest empty live board.\n");
+
+    // Never erase a healthy public board merely because one API run returns
+    // zero fixtures. UI-only releases used to replace live data.js with the
+    // packaged empty bootstrap; a later empty API response then made every
+    // game disappear. Preserve the last verified live board and let the UI
+    // mark it stale until a successful refresh replaces it.
+    let previousCount = 0;
+    try {
+      const previousSource = fs.readFileSync(path.join(HERE, "data.js"), "utf8");
+      const previousMatch = previousSource.match(/window\.MATCHES\s*=\s*(\[[\s\S]*\]);?\s*$/);
+      if (previousMatch && !/window\.BETYNZ_DEMO\s*=\s*true/.test(previousSource)) {
+        const previousRows = JSON.parse(previousMatch[1]);
+        previousCount = Array.isArray(previousRows) ? previousRows.length : 0;
+      }
+    } catch (_) {}
+
+    if (previousCount > 0) {
+      console.log(`\nAPI-Football returned no fixtures for the requested window. Retaining the last verified board (${previousCount} fixtures) instead of publishing an empty site.\n`);
+      return;
+    }
+
+    console.log("\nAPI-Football returned no fixtures and no prior verified board exists. Publishing an honest empty live board.\n");
     fs.writeFileSync(path.join(HERE, "data.js"),
       "/* AUTO-GENERATED empty live board — do not edit by hand. */\n\n" +
       "window.BETYNZ_DEMO = false;\n" +
