@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Preserve the latest verified live board
+      - name: Reject demo data and recover the latest verified live board
         run: node scripts/ensure-live-data.js --restore-history --require-live
       - name: Validate product
         run: node scripts/validate-product.js
