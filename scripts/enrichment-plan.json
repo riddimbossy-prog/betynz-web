@@ -1,26 +1,23 @@
 {
-  "generatedAt": "2026-07-17T12:26:19.229Z",
+  "generatedAt": "2026-07-17T12:46:17.344Z",
   "mode": "adaptive-two-pass",
   "today": "2026-07-17",
   "limits": {
-    "maxLeagues": 18,
-    "maxMatches": 48,
-    "tsaMax": 24
+    "maxLeagues": 12,
+    "maxMatches": 24,
+    "tsaMax": 12
   },
   "coverage": {
     "fixtures": 1655,
     "leagues": 143
   },
   "selected": {
-    "leagues": 7,
-    "fixtures": 48,
+    "leagues": 4,
+    "fixtures": 24,
     "leagueIds": [
       1087,
-      170,
       238,
       292,
-      71,
-      165,
       295
     ],
     "leagueSeasons": [
@@ -30,15 +27,7 @@
         "league": "Ykkösliiga",
         "country": "Finland",
         "fixtureCount": 5,
-        "priority": 131.62
-      },
-      {
-        "leagueId": 170,
-        "season": "2026",
-        "league": "League One",
-        "country": "China",
-        "fixtureCount": 8,
-        "priority": 130.22
+        "priority": 137.62
       },
       {
         "leagueId": 238,
@@ -46,7 +35,7 @@
         "league": "Youth Championship",
         "country": "Russia",
         "fixtureCount": 6,
-        "priority": 126.76
+        "priority": 132.76
       },
       {
         "leagueId": 292,
@@ -54,23 +43,7 @@
         "league": "K League 1",
         "country": "South-Korea",
         "fixtureCount": 12,
-        "priority": 126.46
-      },
-      {
-        "leagueId": 71,
-        "season": "2026",
-        "league": "Serie A",
-        "country": "Brazil",
-        "fixtureCount": 10,
-        "priority": 125.1
-      },
-      {
-        "leagueId": 165,
-        "season": "2026",
-        "league": "1. Deild",
-        "country": "Iceland",
-        "fixtureCount": 6,
-        "priority": 124.4
+        "priority": 132.46
       },
       {
         "leagueId": 295,
@@ -78,23 +51,15 @@
         "league": "K3 League",
         "country": "South-Korea",
         "fixtureCount": 1,
-        "priority": 122.72
+        "priority": 128.72
       }
     ],
     "fixtureIds": [
       "1504263",
       "1504262",
-      "1504264",
       "1504266",
+      "1504264",
       "1504265",
-      "1528654",
-      "1528653",
-      "1528655",
-      "1528656",
-      "1528652",
-      "1528777",
-      "1528657",
-      "1528651",
       "1519093",
       "1519094",
       "1519097",
@@ -113,49 +78,21 @@
       "1507005",
       "1507009",
       "1507006",
-      "1492140",
-      "1492295",
-      "1492292",
-      "1492294",
-      "1492297",
-      "1492293",
-      "1492298",
-      "1492141",
-      "1492296",
-      "1492290",
-      "1514234",
-      "1514235",
-      "1514236",
-      "1514233",
-      "1514232",
-      "1514240",
       "1520546"
     ],
     "tsaFixtureIds": [
       "1504263",
-      "1528654",
       "1519093",
       "1504262",
-      "1492140",
-      "1528653",
       "1506998",
       "1507003",
-      "1514234",
-      "1528655",
-      "1514235",
       "1507001",
       "1520546",
       "1519094",
       "1506999",
-      "1492295",
       "1507000",
-      "1528656",
-      "1492292",
-      "1528652",
-      "1528777",
-      "1507002",
       "1519097",
-      "1519098"
+      "1507002"
     ]
   },
   "topCandidates": [
@@ -166,8 +103,48 @@
       "league": "Ykkösliiga",
       "leagueId": 1087,
       "kickoff": "2026-07-17T16:00:00+00:00",
-      "priority": 133.62,
-      "dataQuality": 88
+      "priority": 139.62,
+      "dataQuality": 100
+    },
+    {
+      "id": 1519093,
+      "home": "Fakel U19",
+      "away": "Zenit U19",
+      "league": "Youth Championship",
+      "leagueId": 238,
+      "kickoff": "2026-07-17T14:00:00+00:00",
+      "priority": 137.04,
+      "dataQuality": 100
+    },
+    {
+      "id": 1504262,
+      "home": "KäPa",
+      "away": "SJK Akatemia",
+      "league": "Ykkösliiga",
+      "leagueId": 1087,
+      "kickoff": "2026-07-17T16:00:00+00:00",
+      "priority": 135.62,
+      "dataQuality": 100
+    },
+    {
+      "id": 1492140,
+      "home": "Bahia",
+      "away": "Chapecoense-sc",
+      "league": "Serie A",
+      "leagueId": 71,
+      "kickoff": "2026-07-17T22:30:00+00:00",
+      "priority": 135.62,
+      "dataQuality": 100
+    },
+    {
+      "id": 1506998,
+      "home": "Daejeon Citizen",
+      "away": "Ulsan Hyundai FC",
+      "league": "K League 1",
+      "leagueId": 292,
+      "kickoff": "2026-07-18T10:30:00+00:00",
+      "priority": 132.82,
+      "dataQuality": 100
     },
     {
       "id": 1490329,
@@ -180,24 +157,24 @@
       "dataQuality": 88
     },
     {
-      "id": 1528654,
-      "home": "Hebei Kungfu",
-      "away": "Yanbian Longding",
-      "league": "League One",
-      "leagueId": 170,
-      "kickoff": "2026-07-17T11:30:00+00:00",
-      "priority": 131.54,
-      "dataQuality": 88
+      "id": 1507003,
+      "home": "Bucheon FC 1995",
+      "away": "FC Seoul",
+      "league": "K League 1",
+      "leagueId": 292,
+      "kickoff": "2026-07-19T10:30:00+00:00",
+      "priority": 132.1,
+      "dataQuality": 100
     },
     {
-      "id": 1519093,
-      "home": "Fakel U19",
-      "away": "Zenit U19",
-      "league": "Youth Championship",
-      "leagueId": 238,
-      "kickoff": "2026-07-17T14:00:00+00:00",
-      "priority": 131.04,
-      "dataQuality": 88
+      "id": 1514234,
+      "home": "Fylkir",
+      "away": "Njardvik",
+      "league": "1. Deild",
+      "leagueId": 165,
+      "kickoff": "2026-07-17T19:15:00+00:00",
+      "priority": 131.72,
+      "dataQuality": 100
     },
     {
       "id": 1522146,
@@ -210,34 +187,54 @@
       "dataQuality": 88
     },
     {
-      "id": 1504262,
-      "home": "KäPa",
-      "away": "SJK Akatemia",
-      "league": "Ykkösliiga",
-      "leagueId": 1087,
-      "kickoff": "2026-07-17T16:00:00+00:00",
-      "priority": 129.62,
-      "dataQuality": 88
-    },
-    {
-      "id": 1492140,
-      "home": "Bahia",
-      "away": "Chapecoense-sc",
-      "league": "Serie A",
-      "leagueId": 71,
-      "kickoff": "2026-07-17T22:30:00+00:00",
-      "priority": 129.62,
-      "dataQuality": 88
-    },
-    {
-      "id": 1528653,
-      "home": "Dongguan United",
-      "away": "Nantong Zhiyun",
+      "id": 1528655,
+      "home": "Guangxi Hengchen",
+      "away": "Shaanxi Union",
       "league": "League One",
       "leagueId": 170,
-      "kickoff": "2026-07-17T11:30:00+00:00",
-      "priority": 128.9,
-      "dataQuality": 88
+      "kickoff": "2026-07-18T11:30:00+00:00",
+      "priority": 129.28,
+      "dataQuality": 100
+    },
+    {
+      "id": 1514235,
+      "home": "Throttur Reykjavik",
+      "away": "Völsungur",
+      "league": "1. Deild",
+      "leagueId": 165,
+      "kickoff": "2026-07-18T16:00:00+00:00",
+      "priority": 129.08,
+      "dataQuality": 100
+    },
+    {
+      "id": 1507001,
+      "home": "Jeju United FC",
+      "away": "Pohang Steelers",
+      "league": "K League 1",
+      "leagueId": 292,
+      "kickoff": "2026-07-18T10:30:00+00:00",
+      "priority": 128.98,
+      "dataQuality": 100
+    },
+    {
+      "id": 1520546,
+      "home": "Dangjin Citizen",
+      "away": "Jeonbuk Motors II",
+      "league": "K3 League",
+      "leagueId": 295,
+      "kickoff": "2026-07-18T10:00:00+00:00",
+      "priority": 128.72,
+      "dataQuality": 100
+    },
+    {
+      "id": 1519094,
+      "home": "Rostov U19",
+      "away": "Chertanovo U20",
+      "league": "Youth Championship",
+      "leagueId": 238,
+      "kickoff": "2026-07-17T14:00:00+00:00",
+      "priority": 128.48,
+      "dataQuality": 100
     },
     {
       "id": 1524176,
@@ -297,66 +294,6 @@
       "leagueId": 268,
       "kickoff": "2026-07-17T18:00:00+00:00",
       "priority": 127.22,
-      "dataQuality": 88
-    },
-    {
-      "id": 1506998,
-      "home": "Daejeon Citizen",
-      "away": "Ulsan Hyundai FC",
-      "league": "K League 1",
-      "leagueId": 292,
-      "kickoff": "2026-07-18T10:30:00+00:00",
-      "priority": 126.82,
-      "dataQuality": 88
-    },
-    {
-      "id": 1527387,
-      "home": "Adelaide Raiders",
-      "away": "Eastern United",
-      "league": "South Australia State League 1",
-      "leagueId": 834,
-      "kickoff": "2026-07-18T05:30:00+00:00",
-      "priority": 126.13,
-      "dataQuality": 88
-    },
-    {
-      "id": 1507003,
-      "home": "Bucheon FC 1995",
-      "away": "FC Seoul",
-      "league": "K League 1",
-      "leagueId": 292,
-      "kickoff": "2026-07-19T10:30:00+00:00",
-      "priority": 126.1,
-      "dataQuality": 88
-    },
-    {
-      "id": 1514234,
-      "home": "Fylkir",
-      "away": "Njardvik",
-      "league": "1. Deild",
-      "leagueId": 165,
-      "kickoff": "2026-07-17T19:15:00+00:00",
-      "priority": 125.72,
-      "dataQuality": 88
-    },
-    {
-      "id": 1515884,
-      "home": "Riga",
-      "away": "Tukums",
-      "league": "Virsliga",
-      "leagueId": 365,
-      "kickoff": "2026-07-18T16:00:00+00:00",
-      "priority": 125.16,
-      "dataQuality": 88
-    },
-    {
-      "id": 1516062,
-      "home": "Pakhtakor",
-      "away": "Lokomotiv",
-      "league": "Super League",
-      "leagueId": 369,
-      "kickoff": "2026-07-17T15:00:00+00:00",
-      "priority": 125.14,
       "dataQuality": 88
     }
   ]
