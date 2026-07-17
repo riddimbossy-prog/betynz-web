@@ -1,0 +1,14 @@
+BETYNZ v5.9.4 — SELF-HEALING LIVE DEPLOYMENT
+
+1. Extract the patch into the root of your betynz-web repository.
+2. Replace the existing files when prompted.
+3. Commit and push with:
+   Fix self-healing live-data deployment
+4. Open GitHub Actions.
+5. Run "Deploy Betynz Product".
+
+The workflow now behaves as follows:
+- If a verified live board exists, it performs a fast code-only deployment.
+- If no verified live board exists, it automatically runs Smart Global Coverage and Deep Enrichment using the repository secrets, generates data.js, validates it, and deploys.
+
+Do not add a demo data.js manually. The refresh workflow creates a clean temporary board when no live board is available.

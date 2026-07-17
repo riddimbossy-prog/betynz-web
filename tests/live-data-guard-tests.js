@@ -60,4 +60,22 @@ const mixedClean = fs.readFileSync(path.join(root, "data.js"), "utf8");
 if (!mixedOutput.includes("preserved 1 live fixture")) throw new Error(`Expected mixed-board cleanup. Output:\n${mixedOutput}`);
 if (mixedClean.includes("Demo Home") || !mixedClean.includes("API Home")) throw new Error("Mixed-board cleanup removed the wrong fixtures.");
 
+// With no verified history, refresh mode must create a clean empty board rather
+// than leave demo data behind or fail before the API fetch starts.
+const emptyRoot = fs.mkdtempSync(path.join(os.tmpdir(), "betynz-live-empty-"));
+fs.mkdirSync(path.join(emptyRoot, "scripts"), { recursive: true });
+fs.copyFileSync(path.join(SOURCE_ROOT, "scripts", "ensure-live-data.js"), path.join(emptyRoot, "scripts", "ensure-live-data.js"));
+fs.copyFileSync(path.join(SOURCE_ROOT, "scripts", "seed-guard.js"), path.join(emptyRoot, "scripts", "seed-guard.js"));
+run("git", ["init"], emptyRoot);
+run("git", ["config", "user.email", "tests@betynz.local"], emptyRoot);
+run("git", ["config", "user.name", "Betynz Tests"], emptyRoot);
+writeBoard(emptyRoot, [{ id: 900001, home: "Manchester City", away: "Brighton", dataSource: "demo" }], true);
+run("git", ["add", "."], emptyRoot);
+run("git", ["commit", "-m", "demo only"], emptyRoot);
+const pendingOutput = run("node", ["scripts/ensure-live-data.js", "--restore-history"], emptyRoot);
+const pendingSource = fs.readFileSync(path.join(emptyRoot, "data.js"), "utf8");
+if (!pendingOutput.includes("Initialized a clean empty refresh board")) throw new Error(`Expected clean refresh initialization. Output:\n${pendingOutput}`);
+if (!pendingSource.includes('window.MATCHES = [];') || !pendingSource.includes('waiting-for-live-sync')) throw new Error("Refresh placeholder was not created correctly.");
+if (pendingSource.includes("Manchester City")) throw new Error("Demo data survived refresh initialization.");
+
 console.log("Live-data guard tests passed.");

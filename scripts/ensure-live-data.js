@@ -121,6 +121,29 @@ function findHistoricalBoard() {
   return null;
 }
 
+function buildPendingSource(reason) {
+  const now = new Date().toISOString();
+  const meta = {
+    source: "waiting-for-live-sync",
+    recoveryReason: reason,
+    isDemo: false,
+    isReady: false,
+    fixtureCount: 0,
+    dataUpdated: now
+  };
+
+  return [
+    "/* TEMPORARY refresh board — replaced by API data during the workflow. */",
+    "window.BETYNZ_DEMO = false;",
+    "window.BETYNZ_READY = false;",
+    `window.DATA_UPDATED = ${JSON.stringify(now)};`,
+    `window.BETYNZ_META = ${JSON.stringify(meta, null, 2)};`,
+    "window.BETYNZ_HISTORY = [];",
+    "window.MATCHES = [];",
+    ""
+  ].join("\n");
+}
+
 function buildCleanSource(board, reason) {
   const cleanMatches = Array.isArray(board.cleanMatches) ? board.cleanMatches : [];
   const meta = {
@@ -191,4 +214,6 @@ if (requireLive) {
   console.error(`${message} Refusing to deploy demo or empty data. Run Smart Global Coverage and Deep Enrichment first.`);
   process.exit(1);
 }
-console.log(`${message} The data refresh workflow may continue and replace it from the APIs.`);
+
+sync(buildPendingSource("awaiting-api-refresh"));
+console.log(`${message} Initialized a clean empty refresh board so the API workflow can continue safely.`);

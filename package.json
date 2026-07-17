@@ -1,8 +1,8 @@
 {
   "name": "betynz-web",
-  "version": "5.9.3",
+  "version": "5.9.4",
   "private": true,
-  "description": "Betynz v5.9.3 instant verified-board boot and background data refresh.",
+  "description": "Betynz v5.9.4 self-healing deployment with automatic live-board refresh.",
   "scripts": {
     "serve": "npx http-server . -p 8080 -c-1",
     "snapshot": "node scripts/build-snapshot.js",
