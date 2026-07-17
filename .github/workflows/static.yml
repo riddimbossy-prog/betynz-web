@@ -26,9 +26,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Preserve the latest verified live board
+        run: node scripts/ensure-live-data.js --restore-history --require-live
       - name: Validate product
         run: node scripts/validate-product.js
       - name: Build public release

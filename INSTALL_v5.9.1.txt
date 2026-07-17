@@ -1,0 +1,10 @@
+Betynz v5.9.1
+
+1. Replace the repository files with this build while keeping the hidden .git folder.
+2. Commit: Fix navigation freeze and refresh PWA assets
+3. Push to main.
+4. Wait for Deploy Betynz Product to finish.
+5. Close every open Betynz tab, reopen the site, and refresh once.
+6. Installed PWA users should fully close and reopen the app. If an old frozen copy remains, clear the site cache once or reinstall the PWA.
+
+No prediction workflow is required for this frontend repair. Run the main data workflow only when the board itself needs refreshing.

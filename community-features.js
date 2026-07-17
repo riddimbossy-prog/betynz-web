@@ -83,7 +83,25 @@
     root.innerHTML=items.length?`<small>FAVOURITES</small>${items.map(x=>`<button type="button" data-favorite-search="${esc(x.label)}">${x.itemType==="team"?"☆":"▦"} ${esc(x.label)}</button>`).join("")}`:`<small>FAVOURITES</small><button type="button" data-view="community">Add teams or leagues</button>`;
   }
   function decorateEngineCards(){
-    $$('.engine-card[data-engine-picks]').forEach(card=>{const id=card.dataset.enginePicks,name=engines.find(x=>x[0]===id)?.[1]||id;let btn=card.querySelector('.engine-follow-btn');if(!btn){btn=document.createElement('button');btn.type='button';btn.className='engine-follow-btn';btn.dataset.followType='engine';btn.dataset.followKey=id;btn.dataset.followLabel=name;card.appendChild(btn)}btn.classList.toggle('followed',followed('engine',id));btn.textContent=followed('engine',id)?'★ Following':'☆ Follow';});
+    $$('.engine-card[data-engine-picks]').forEach(card=>{
+      const id=card.dataset.enginePicks,name=engines.find(x=>x[0]===id)?.[1]||id,isFollowing=followed('engine',id);
+      let btn=card.querySelector('.engine-follow-btn');
+      if(!btn){
+        btn=document.createElement('button');
+        btn.type='button';
+        btn.className=`engine-follow-btn${isFollowing?' followed':''}`;
+        btn.dataset.followType='engine';
+        btn.dataset.followKey=id;
+        btn.dataset.followLabel=name;
+        btn.textContent=isFollowing?'★ Following':'☆ Follow';
+        btn.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();upsertFollow('engine',id,name)});
+        card.appendChild(btn);
+        return;
+      }
+      if(btn.classList.contains('followed')!==isFollowing)btn.classList.toggle('followed',isFollowing);
+      const label=isFollowing?'★ Following':'☆ Follow';
+      if(btn.textContent!==label)btn.textContent=label;
+    });
   }
 
   function normalizeResult(v){const s=String(v||"").toLowerCase();if(["won","win","w"].includes(s))return"won";if(["lost","loss","l"].includes(s))return"lost";if(["void","push","v"].includes(s))return"void";return""}
@@ -172,7 +190,19 @@
     window.addEventListener("betynz:viewchange",event=>renderForView(event.detail&&event.detail.view||"dashboard"));
     $("#refresh-health")?.addEventListener("click",renderHealth);
   }
-  function observe(){new MutationObserver(()=>decorateEngineCards()).observe(document.body,{childList:true,subtree:true})}
+  function observe(){
+    const grid=$('#engine-grid');if(!grid||typeof MutationObserver==='undefined')return;
+    let queued=false;
+    const observer=new MutationObserver(mutations=>{
+      const changed=mutations.some(m=>Array.from(m.addedNodes||[]).some(node=>node.nodeType===1&&(node.matches?.('.engine-card[data-engine-picks]')||node.querySelector?.('.engine-card[data-engine-picks]'))));
+      if(!changed||queued)return;
+      queued=true;
+      requestAnimationFrame(()=>{queued=false;decorateEngineCards()});
+    });
+    // Observe only direct replacements inside the engine grid. Observing the full body
+    // caused a self-triggering loop when follow-button text was updated.
+    observer.observe(grid,{childList:true,subtree:false});
+  }
   async function init(){await recordActivity();seedNotices();renderNotificationCenter();renderCommunity();renderPerformance();renderHealth();renderFavoriteShortcuts();renderAccountTools();decorateEngineCards();wire();observe();hydrateRemoteFollows();setTimeout(hydrateRemoteFollows,2500);setTimeout(recordActivity,3000);setTimeout(()=>openOnboarding(false),1750)}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

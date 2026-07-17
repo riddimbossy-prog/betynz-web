@@ -37,6 +37,7 @@
   const cache=new Map();
   const pickCache=new Map();
   const enginePickCache=new Map();
+  let allPicksMemo=null;
   let activeView=(location.hash||"#dashboard").slice(1);
   let activeDate=null;
   let activeDashboardEngine="all";
@@ -303,7 +304,11 @@
     pickCache.set(mk,pick);return pick;
   }
 
-  function allPicks(){return matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")))}
+  function allPicks(){
+    if(allPicksMemo)return allPicksMemo;
+    allPicksMemo=matches.map(finalPick).filter(Boolean).sort((a,b)=>gradeRank(b.grade)-gradeRank(a.grade)||b.confidence-a.confidence||String(a.m.kickoff||"").localeCompare(String(b.m.kickoff||"")));
+    return allPicksMemo;
+  }
   function rebelCoverage(id){
     const threshold=id==="leonidas"?5:3;
     const rows=matches.map(m=>m&&m.rebelOddsCoverage||{});
@@ -376,7 +381,8 @@
     const settled=history.filter(x=>x&&["Won","Lost","Void"].includes(x.result));
     const wins=settled.filter(x=>x.result==="Won").length,losses=settled.filter(x=>x.result==="Lost").length;
     const hit=wins+losses?Math.round(wins/(wins+losses)*100):0;const priced=up.filter(p=>p.odds);const avg=priced.length?(priced.reduce((s,p)=>s+p.odds,0)/priced.length).toFixed(2):"—";
-    const active=ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
+    const publishedCounts=meta.engineCounts&&typeof meta.engineCounts==="object"?meta.engineCounts:null;
+    const active=publishedCounts?ENGINES.filter(e=>Number(publishedCounts[e.id]??publishedCounts[e.name]??0)>0).length:ENGINES.filter(e=>matches.some(m=>runEngine(m,e))).length;
     const liveCount=matches.filter(isLive).length;
     $("#metric-grid").innerHTML=[
       ["♜",active,"Active Engines",isDemo?"Demo snapshot":isPending?"Waiting for verified data":"Qualified systems"],
@@ -520,7 +526,8 @@
 
   function renderEngines(){
     $("#engine-grid").innerHTML=ENGINES.map(e=>{
-      const count=enginePicks(e.id).length;
+      const publishedCount=meta.engineCounts&&typeof meta.engineCounts==="object"?Number(meta.engineCounts[e.id]??meta.engineCounts[e.name]):NaN;
+      const count=Number.isFinite(publishedCount)?publishedCount:enginePicks(e.id).length;
       const art=ENGINE_ART[e.id]||ENGINE_ART.zeus;
       const rebel=e.family==="rebel";
       const coverage=rebel?rebelCoverage(e.id):null;
@@ -832,7 +839,7 @@
     if(!("serviceWorker" in navigator))return;
     let refreshing=false,registration=null;
     const activateWaiting=()=>{if(registration&&registration.waiting)registration.waiting.postMessage({type:"SKIP_WAITING"})};
-    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){refreshing=true;location.reload()}});
+    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(refreshing)return;refreshing=true;try{const key="betynz-sw-reload-v591";if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,"1")}catch(_){}location.reload()});
     navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).then(reg=>{
       registration=reg;
       activateWaiting();
@@ -928,7 +935,7 @@
     const ds=dates();activeDate=ds.includes(todayISO)?todayISO:(ds.find(d=>d>=todayISO)||ds[0]||todayISO);
     const generated=meta.generatedAt?new Date(meta.generatedAt):null;const age=generated&&Number.isFinite(generated.getTime())?(Date.now()-generated.getTime())/36e5:null;const stale=age!=null&&age>12;
     const liveNow=matches.filter(isLive).length;
-    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
+    $("#system-status").textContent=isDemo?"Demo snapshot — run Update Betynz Data":isPending?"Waiting for first verified live sync":stale&&matches.length?"Last verified board retained — refresh in progress":stale?"Data snapshot is stale":liveNow?`${liveNow} live game${liveNow===1?"":"s"} updating`:matches.length?"Data pipeline healthy":"Live feed checked — no fixtures returned";
     $("#data-state").textContent=isDemo?"Demo Data":isPending?"Sync Pending":stale?"Stale Data":liveNow?`Live Data · ${liveNow} Live`:matches.length?"Live Data":"Live · No Fixtures";
     const statusBox=$("#data-status-content");if(statusBox)statusBox.innerHTML=`<article><small>Source</small><b>${esc(meta.source||"Unknown")}</b></article><article><small>Generated</small><b>${esc(meta.generatedAt?new Date(meta.generatedAt).toLocaleString():"Unknown")}</b></article><article><small>Fixtures</small><b>${esc(meta.fixtureCount??matches.length)}</b></article><article><small>Qualified</small><b>${esc(meta.qualifiedCount??allPicks().length)}</b></article>`;
     renderDashboardSelectors();renderMetrics();renderEngineTabs();renderDashboardList();renderRecentResults();renderPicksView();renderEngines();renderBankers();renderResults();renderSlip();renderPreferences();renderPlanChrome();renderPricing();renderAccount();renderSavedPicks();renderNotifications();renderBilling();renderResponsible();wire();setupPWA();showView(activeView,{replaceHistory:true,force:true});initializeSecureBackend();

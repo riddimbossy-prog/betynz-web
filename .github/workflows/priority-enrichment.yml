@@ -32,6 +32,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Recover the last verified board before enrichment
+        run: node scripts/ensure-live-data.js --restore-history
+
       - name: Build current priority plan
         run: node scripts/select-enrichment-plan.js
 

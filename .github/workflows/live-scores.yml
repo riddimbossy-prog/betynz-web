@@ -31,6 +31,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Recover the last verified board before score refresh
+        run: node scripts/ensure-live-data.js --restore-history
+
       - name: Create private score configuration
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}

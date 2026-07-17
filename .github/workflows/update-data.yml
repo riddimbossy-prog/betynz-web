@@ -43,6 +43,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Recover the last verified board before refreshing
+        run: node scripts/ensure-live-data.js --restore-history
+
       - name: Validate API secrets
         run: |
           if [ -z "$API_FOOTBALL_KEY" ]; then
