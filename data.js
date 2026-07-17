@@ -3,11 +3,11 @@ window.BETYNZ_READY = false;
 window.DATA_UPDATED = null;
 window.BETYNZ_META = {
   "product": "Betynz",
-  "version": "5.5.0",
-  "engineVersion": "5.5.0",
-  "auditVersion": "5.5.0",
+  "version": "5.6.0",
+  "engineVersion": "5.6.0",
+  "auditVersion": "5.6.0",
   "source": "waiting-for-live-sync",
-  "generatedAt": "2026-07-17T02:27:58.930Z",
+  "generatedAt": "2026-07-17T16:38:24.205Z",
   "dataUpdated": null,
   "isDemo": false,
   "isReady": false,
@@ -23,8 +23,8 @@ window.BETYNZ_META = {
   },
   "engineCounts": {},
   "reliability": {
-    "version": "5.5.0",
-    "generatedAt": "2026-07-17T02:27:58.931Z",
+    "version": "5.6.0",
+    "generatedAt": "2026-07-17T16:38:24.205Z",
     "fixtures": 0,
     "evaluations": 0,
     "approved": 0,
