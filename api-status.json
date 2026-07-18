@@ -3,14 +3,14 @@
   "version": "5.6.0",
   "engineVersion": "5.6.0",
   "auditVersion": "5.6.0",
-  "source": "waiting-for-live-sync",
-  "generatedAt": "2026-07-17T23:12:57.990Z",
-  "dataUpdated": "2026-07-17T23:12:56.083Z",
+  "source": "API-Football + TheStatsAPI",
+  "generatedAt": "2026-07-18T02:57:58.176Z",
+  "dataUpdated": "2026-07-18T02:57:50.625Z",
   "isDemo": false,
-  "isReady": false,
-  "fixtureCount": 0,
-  "qualifiedCount": 0,
-  "lockedCount": 0,
+  "isReady": true,
+  "fixtureCount": 1940,
+  "qualifiedCount": 52,
+  "lockedCount": 14,
   "historyCount": 0,
   "record": {
     "wins": 0,
@@ -18,17 +18,153 @@
     "voids": 0,
     "hitRate": null
   },
-  "engineCounts": {},
+  "engineCounts": {
+    "prometheus": 482,
+    "athena": 320,
+    "ares": 300,
+    "hermes": 266,
+    "hera": 303,
+    "atlas": 272,
+    "zeus": 386,
+    "hades": 193,
+    "nike": 356,
+    "spartacus": 96,
+    "poseidon": 151,
+    "leonidas": 12,
+    "apollo": 3,
+    "artemis": 36,
+    "hephaestus": 28,
+    "demeter": 25,
+    "dionysus": 9
+  },
   "reliability": {
     "version": "5.6.0",
-    "generatedAt": "2026-07-17T23:12:57.991Z",
-    "fixtures": 0,
-    "evaluations": 0,
-    "approved": 0,
-    "rejected": 0,
-    "noBet": 0,
-    "topFailures": [],
-    "engines": {}
+    "generatedAt": "2026-07-18T02:57:59.173Z",
+    "fixtures": 1940,
+    "evaluations": 34920,
+    "approved": 3204,
+    "rejected": 31706,
+    "noBet": 10,
+    "topFailures": [
+      {
+        "rule": "Overall/split PPG agreement",
+        "count": 31672
+      },
+      {
+        "rule": "Data quality",
+        "count": 23216
+      }
+    ],
+    "engines": {
+      "prometheus": {
+        "approved": 465,
+        "rejected": 1474,
+        "noBet": 1,
+        "total": 1940
+      },
+      "athena": {
+        "approved": 320,
+        "rejected": 1620,
+        "noBet": 0,
+        "total": 1940
+      },
+      "apollo": {
+        "approved": 3,
+        "rejected": 1936,
+        "noBet": 1,
+        "total": 1940
+      },
+      "ares": {
+        "approved": 300,
+        "rejected": 1639,
+        "noBet": 1,
+        "total": 1940
+      },
+      "poseidon": {
+        "approved": 151,
+        "rejected": 1789,
+        "noBet": 0,
+        "total": 1940
+      },
+      "hermes": {
+        "approved": 249,
+        "rejected": 1691,
+        "noBet": 0,
+        "total": 1940
+      },
+      "hera": {
+        "approved": 303,
+        "rejected": 1637,
+        "noBet": 0,
+        "total": 1940
+      },
+      "artemis": {
+        "approved": 36,
+        "rejected": 1904,
+        "noBet": 0,
+        "total": 1940
+      },
+      "hephaestus": {
+        "approved": 28,
+        "rejected": 1912,
+        "noBet": 0,
+        "total": 1940
+      },
+      "demeter": {
+        "approved": 25,
+        "rejected": 1915,
+        "noBet": 0,
+        "total": 1940
+      },
+      "dionysus": {
+        "approved": 9,
+        "rejected": 1925,
+        "noBet": 6,
+        "total": 1940
+      },
+      "hades": {
+        "approved": 193,
+        "rejected": 1746,
+        "noBet": 1,
+        "total": 1940
+      },
+      "atlas": {
+        "approved": 272,
+        "rejected": 1668,
+        "noBet": 0,
+        "total": 1940
+      },
+      "orion": {
+        "approved": 0,
+        "rejected": 1940,
+        "noBet": 0,
+        "total": 1940
+      },
+      "nike": {
+        "approved": 356,
+        "rejected": 1584,
+        "noBet": 0,
+        "total": 1940
+      },
+      "spartacus": {
+        "approved": 96,
+        "rejected": 1844,
+        "noBet": 0,
+        "total": 1940
+      },
+      "leonidas": {
+        "approved": 12,
+        "rejected": 1928,
+        "noBet": 0,
+        "total": 1940
+      },
+      "zeus": {
+        "approved": 386,
+        "rejected": 1554,
+        "noBet": 0,
+        "total": 1940
+      }
+    }
   },
   "quarantinedEngines": []
 }

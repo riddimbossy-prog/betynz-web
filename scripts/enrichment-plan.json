@@ -1,19 +1,363 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-07-18T02:55:26.084Z",
   "mode": "adaptive-two-pass",
-  "today": null,
-  "limits": {},
+  "today": "2026-07-18",
+  "limits": {
+    "maxLeagues": 18,
+    "maxMatches": 48,
+    "tsaMax": 24
+  },
   "coverage": {
-    "fixtures": 0,
-    "leagues": 0
+    "fixtures": 1656,
+    "leagues": 169
   },
   "selected": {
-    "leagues": 0,
-    "fixtures": 0,
-    "leagueIds": [],
-    "leagueSeasons": [],
-    "fixtureIds": [],
-    "tsaFixtureIds": []
+    "leagues": 7,
+    "fixtures": 48,
+    "leagueIds": [
+      361,
+      255,
+      909,
+      482,
+      834,
+      295,
+      265
+    ],
+    "leagueSeasons": [
+      {
+        "leagueId": 361,
+        "season": "2026",
+        "league": "1 Lyga",
+        "country": "Lithuania",
+        "fixtureCount": 7,
+        "priority": 138.18
+      },
+      {
+        "leagueId": 255,
+        "season": "2026",
+        "league": "USL Championship",
+        "country": "USA",
+        "fixtureCount": 11,
+        "priority": 135.97
+      },
+      {
+        "leagueId": 909,
+        "season": "2026",
+        "league": "MLS Next Pro",
+        "country": "USA",
+        "fixtureCount": 15,
+        "priority": 134.37
+      },
+      {
+        "leagueId": 482,
+        "season": "2026",
+        "league": "Queensland NPL",
+        "country": "Australia",
+        "fixtureCount": 6,
+        "priority": 132.95
+      },
+      {
+        "leagueId": 834,
+        "season": "2026",
+        "league": "South Australia State League 1",
+        "country": "Australia",
+        "fixtureCount": 7,
+        "priority": 132.76
+      },
+      {
+        "leagueId": 295,
+        "season": "2026",
+        "league": "K3 League",
+        "country": "South-Korea",
+        "fixtureCount": 1,
+        "priority": 122.72
+      },
+      {
+        "leagueId": 265,
+        "season": "2026",
+        "league": "Primera División",
+        "country": "Chile",
+        "fixtureCount": 1,
+        "priority": 107.65
+      }
+    ],
+    "fixtureIds": [
+      "1556383",
+      "1556381",
+      "1556382",
+      "1556384",
+      "1556385",
+      "1556389",
+      "1556386",
+      "1493579",
+      "1493583",
+      "1493577",
+      "1493576",
+      "1493580",
+      "1493584",
+      "1493585",
+      "1493581",
+      "1493582",
+      "1493578",
+      "1493586",
+      "1513228",
+      "1513224",
+      "1513225",
+      "1513229",
+      "1513230",
+      "1513223",
+      "1513226",
+      "1513231",
+      "1513235",
+      "1513233",
+      "1513232",
+      "1513234",
+      "1513227",
+      "1513236",
+      "1513237",
+      "1524078",
+      "1524081",
+      "1524079",
+      "1524080",
+      "1524082",
+      "1524077",
+      "1527387",
+      "1527335",
+      "1527333",
+      "1527388",
+      "1527338",
+      "1527334",
+      "1527389",
+      "1520546",
+      "1505474"
+    ],
+    "tsaFixtureIds": [
+      "1493579",
+      "1513228",
+      "1524078",
+      "1556383",
+      "1527387",
+      "1556381",
+      "1493583",
+      "1556382",
+      "1493577",
+      "1493576",
+      "1513224",
+      "1527335",
+      "1513225",
+      "1527333",
+      "1520546",
+      "1524081",
+      "1524079",
+      "1524080",
+      "1493580",
+      "1556384",
+      "1524082",
+      "1513229",
+      "1493584",
+      "1505474"
+    ]
   },
-  "topCandidates": []
+  "topCandidates": [
+    {
+      "id": 1493579,
+      "home": "Loudoun United",
+      "away": "Tampa Bay Rowdies",
+      "league": "USL Championship",
+      "leagueId": 255,
+      "kickoff": "2026-07-18T23:00:00+00:00",
+      "priority": 145.75,
+      "dataQuality": 88
+    },
+    {
+      "id": 1513228,
+      "home": "Houston Dynamo FC II",
+      "away": "Colorado Rapids II",
+      "league": "MLS Next Pro",
+      "leagueId": 909,
+      "kickoff": "2026-07-18T23:00:00+00:00",
+      "priority": 145.34,
+      "dataQuality": 88
+    },
+    {
+      "id": 1524078,
+      "home": "Gold Coast United",
+      "away": "Lions",
+      "league": "Queensland NPL",
+      "leagueId": 482,
+      "kickoff": "2026-07-18T05:00:00+00:00",
+      "priority": 143.73,
+      "dataQuality": 88
+    },
+    {
+      "id": 1515884,
+      "home": "Riga",
+      "away": "Tukums",
+      "league": "Virsliga",
+      "leagueId": 365,
+      "kickoff": "2026-07-18T16:00:00+00:00",
+      "priority": 143.66,
+      "dataQuality": 88
+    },
+    {
+      "id": 1556383,
+      "home": "Kauno Žalgiris II",
+      "away": "Babrungas",
+      "league": "1 Lyga",
+      "leagueId": 361,
+      "kickoff": "2026-07-19T15:00:00+00:00",
+      "priority": 142.6,
+      "dataQuality": 88
+    },
+    {
+      "id": 1527387,
+      "home": "Adelaide Raiders",
+      "away": "Eastern United",
+      "league": "South Australia State League 1",
+      "leagueId": 834,
+      "kickoff": "2026-07-18T05:30:00+00:00",
+      "priority": 142.18,
+      "dataQuality": 88
+    },
+    {
+      "id": 1508808,
+      "home": "Thor Akureyri",
+      "away": "Vikingur Reykjavik",
+      "league": "Úrvalsdeild",
+      "leagueId": 164,
+      "kickoff": "2026-07-18T16:00:00+00:00",
+      "priority": 141.8,
+      "dataQuality": 88
+    },
+    {
+      "id": 1519601,
+      "home": "Tartu Welco",
+      "away": "FC Tallinn",
+      "league": "Esiliiga A",
+      "leagueId": 328,
+      "kickoff": "2026-07-18T16:00:00+00:00",
+      "priority": 141.7,
+      "dataQuality": 88
+    },
+    {
+      "id": 1522146,
+      "home": "Melbourne Srbija",
+      "away": "Port Melbourne",
+      "league": "Victoria NPL 2",
+      "leagueId": 836,
+      "kickoff": "2026-07-18T08:15:00+00:00",
+      "priority": 134.63,
+      "dataQuality": 88
+    },
+    {
+      "id": 1556381,
+      "home": "Minija",
+      "away": "Jonava",
+      "league": "1 Lyga",
+      "leagueId": 361,
+      "kickoff": "2026-07-18T15:00:00+00:00",
+      "priority": 133.75,
+      "dataQuality": 88
+    },
+    {
+      "id": 1524176,
+      "home": "St George Willawong",
+      "away": "Caboolture",
+      "league": "Queensland Premier League",
+      "leagueId": 833,
+      "kickoff": "2026-07-18T08:00:00+00:00",
+      "priority": 132.36,
+      "dataQuality": 88
+    },
+    {
+      "id": 1493906,
+      "home": "Union Omaha",
+      "away": "Westchester SC",
+      "league": "USL League One",
+      "leagueId": 489,
+      "kickoff": "2026-07-18T23:00:00+00:00",
+      "priority": 130.85,
+      "dataQuality": 88
+    },
+    {
+      "id": 1517219,
+      "home": "KPV-j",
+      "away": "Rops",
+      "league": "Ykkönen",
+      "leagueId": 245,
+      "kickoff": "2026-07-20T15:30:00+00:00",
+      "priority": 130.71,
+      "dataQuality": 88
+    },
+    {
+      "id": 1526573,
+      "home": "Gualaceo SC",
+      "away": "22 de Julio",
+      "league": "Liga Pro Serie B",
+      "leagueId": 243,
+      "kickoff": "2026-07-18T20:30:00+00:00",
+      "priority": 130.1,
+      "dataQuality": 88
+    },
+    {
+      "id": 1514235,
+      "home": "Throttur Reykjavik",
+      "away": "Völsungur",
+      "league": "1. Deild",
+      "leagueId": 165,
+      "kickoff": "2026-07-18T16:00:00+00:00",
+      "priority": 129.04,
+      "dataQuality": 88
+    },
+    {
+      "id": 1529571,
+      "home": "Skanste",
+      "away": "Valmiera / BSS",
+      "league": "1. Liga",
+      "leagueId": 364,
+      "kickoff": "2026-07-18T16:00:00+00:00",
+      "priority": 129.01,
+      "dataQuality": 88
+    },
+    {
+      "id": 1517598,
+      "home": "Western Sydney Wanderers U23",
+      "away": "APIA Leichhardt Tigers",
+      "league": "New South Wales NPL",
+      "leagueId": 192,
+      "kickoff": "2026-07-18T05:00:00+00:00",
+      "priority": 128.96,
+      "dataQuality": 88
+    },
+    {
+      "id": 1529972,
+      "home": "Spartak Moskva W",
+      "away": "Yenisey W",
+      "league": "Supreme Division Women",
+      "leagueId": 649,
+      "kickoff": "2026-07-18T14:00:00+00:00",
+      "priority": 128.54,
+      "dataQuality": 78
+    },
+    {
+      "id": 1521985,
+      "home": "South Melbourne",
+      "away": "Preston Lions",
+      "league": "Victoria NPL",
+      "leagueId": 195,
+      "kickoff": "2026-07-18T05:15:00+00:00",
+      "priority": 128.36,
+      "dataQuality": 88
+    },
+    {
+      "id": 1519408,
+      "home": "Barcelona SC",
+      "away": "Libertad",
+      "league": "Liga Pro",
+      "leagueId": 242,
+      "kickoff": "2026-07-19T00:00:00+00:00",
+      "priority": 128.26,
+      "dataQuality": 88
+    }
+  ]
 }

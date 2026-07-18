@@ -1,1 +1,949 @@
-{}
+{
+  "1517309": {
+    "fixtureId": "1517309",
+    "home": "Forge",
+    "away": "Pacific FC",
+    "league": "Canadian Premier League",
+    "kickoff": "2026-07-17T00:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 91,
+      "grade": "A2",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "atlas"
+      ],
+      "reasons": [
+        "Home averages 2.58 overall PPG and 2.67 split PPG.",
+        "The opponent averages 0.25 overall and 0.4 split PPG, both below 1.00.",
+        "Overall and split PPG agree on Home; opponent defence is leaky at 2.6 conceded per venue match."
+      ],
+      "warnings": [],
+      "dataQuality": 70,
+      "odds": 1.22,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.58-0.25 overall; 2.67-0.4 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.58,
+          "awayOverallPPG": 0.25,
+          "homeSplitPPG": 2.67,
+          "awaySplitPPG": 0.4,
+          "overallGap": 2.33,
+          "splitGap": 2.27
+        }
+      },
+      "universalRule": "PPG_2_VS_SUB1_WIN_V1",
+      "universalRuleEvidence": {
+        "pass": true,
+        "side": "home",
+        "checks": {
+          "ppgDirectionAgreement": true,
+          "selectedOverallPPG": true,
+          "selectedSplitPPG": true,
+          "opponentOverallPPG": true,
+          "opponentSplitPPG": true,
+          "opponentDefence": true
+        },
+        "gate": {
+          "pass": true,
+          "direction": "home",
+          "overallDirection": "home",
+          "splitDirection": "home",
+          "reason": "PPG agreement passed: overall and home/away split both favour Home (2.58-0.25 overall; 2.67-0.4 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 2.58,
+            "awayOverallPPG": 0.25,
+            "homeSplitPPG": 2.67,
+            "awaySplitPPG": 0.4,
+            "overallGap": 2.33,
+            "splitGap": 2.27
+          }
+        },
+        "selectedOverall": 2.58,
+        "selectedSplit": 2.67,
+        "opponentOverall": 0.25,
+        "opponentSplit": 0.4,
+        "opponentDefenceRate": 2.6,
+        "opponentDefenceBand": "leaky"
+      }
+    }
+  },
+  "1520546": {
+    "fixtureId": "1520546",
+    "home": "Dangjin Citizen",
+    "away": "Jeonbuk Motors II",
+    "league": "K3 League",
+    "kickoff": "2026-07-18T10:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.29-0.53 overall; 1.33-0.38 split).",
+        "10 specialist engines agree on Home DNB.",
+        "Weighted support 13.29 leads the next market by 12.69.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.37,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.29-0.53 overall; 1.33-0.38 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.29,
+          "awayOverallPPG": 0.53,
+          "homeSplitPPG": 1.33,
+          "awaySplitPPG": 0.38,
+          "overallGap": 0.76,
+          "splitGap": 0.95
+        }
+      },
+      "universalRule": null,
+      "universalRuleEvidence": null
+    }
+  },
+  "1524078": {
+    "fixtureId": "1524078",
+    "home": "Gold Coast United",
+    "away": "Lions",
+    "league": "Queensland NPL",
+    "kickoff": "2026-07-18T05:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Away Win",
+      "confidence": 90,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "Away averages 2.28 overall PPG and 2 split PPG.",
+        "The opponent averages 0.76 overall and 0.75 split PPG, both below 1.00.",
+        "Overall and split PPG agree on Away; opponent defence is leaky at 2 conceded per venue match."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.26,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (0.76-2.28 overall; 0.75-2 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 0.76,
+          "awayOverallPPG": 2.28,
+          "homeSplitPPG": 0.75,
+          "awaySplitPPG": 2,
+          "overallGap": -1.52,
+          "splitGap": -1.25
+        }
+      },
+      "universalRule": "PPG_2_VS_SUB1_WIN_V1",
+      "universalRuleEvidence": {
+        "pass": true,
+        "side": "away",
+        "checks": {
+          "ppgDirectionAgreement": true,
+          "selectedOverallPPG": true,
+          "selectedSplitPPG": true,
+          "opponentOverallPPG": true,
+          "opponentSplitPPG": true,
+          "opponentDefence": true
+        },
+        "gate": {
+          "pass": true,
+          "direction": "away",
+          "overallDirection": "away",
+          "splitDirection": "away",
+          "reason": "PPG agreement passed: overall and home/away split both favour Away (0.76-2.28 overall; 0.75-2 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 0.76,
+            "awayOverallPPG": 2.28,
+            "homeSplitPPG": 0.75,
+            "awaySplitPPG": 2,
+            "overallGap": -1.52,
+            "splitGap": -1.25
+          }
+        },
+        "selectedOverall": 2.28,
+        "selectedSplit": 2,
+        "opponentOverall": 0.76,
+        "opponentSplit": 0.75,
+        "opponentDefenceRate": 2,
+        "opponentDefenceBand": "leaky"
+      }
+    }
+  },
+  "1524079": {
+    "fixtureId": "1524079",
+    "home": "Gold Coast Knights",
+    "away": "WDSC Wolves",
+    "league": "Queensland NPL",
+    "kickoff": "2026-07-18T06:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.94-1.44 overall; 2.5-1.56 split).",
+        "9 specialist engines agree on Home DNB.",
+        "Weighted support 13.08 leads the next market by 12.48.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.94-1.44 overall; 2.5-1.56 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.94,
+          "awayOverallPPG": 1.44,
+          "homeSplitPPG": 2.5,
+          "awaySplitPPG": 1.56,
+          "overallGap": 0.5,
+          "splitGap": 0.94
+        }
+      },
+      "universalRule": null,
+      "universalRuleEvidence": null
+    }
+  },
+  "1524080": {
+    "fixtureId": "1524080",
+    "home": "Rochedale Rovers",
+    "away": "Brisbane City",
+    "league": "Queensland NPL",
+    "kickoff": "2026-07-18T07:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (0.83-1.5 overall; 1.33-2.13 split).",
+        "9 specialist engines agree on Away DNB.",
+        "Weighted support 13.08 leads the next market by 10.85.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (0.83-1.5 overall; 1.33-2.13 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 0.83,
+          "awayOverallPPG": 1.5,
+          "homeSplitPPG": 1.33,
+          "awaySplitPPG": 2.13,
+          "overallGap": -0.67,
+          "splitGap": -0.8
+        }
+      },
+      "universalRule": null,
+      "universalRuleEvidence": null
+    }
+  },
+  "1524081": {
+    "fixtureId": "1524081",
+    "home": "Eastern Suburbs",
+    "away": "Magic United",
+    "league": "Queensland NPL",
+    "kickoff": "2026-07-18T08:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.56-0.72 overall; 1.44-0.78 split).",
+        "9 specialist engines agree on Home DNB.",
+        "Weighted support 11.64 leads the next market by 11.04.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.56-0.72 overall; 1.44-0.78 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.56,
+          "awayOverallPPG": 0.72,
+          "homeSplitPPG": 1.44,
+          "awaySplitPPG": 0.78,
+          "overallGap": 0.84,
+          "splitGap": 0.66
+        }
+      },
+      "universalRule": null,
+      "universalRuleEvidence": null
+    }
+  },
+  "1527105": {
+    "fixtureId": "1527105",
+    "home": "Playford City Patriots",
+    "away": "MetroStars",
+    "league": "South Australia NPL",
+    "kickoff": "2026-07-18T05:30:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "BTTS Yes",
+      "confidence": 87,
+      "grade": "A2",
+      "engineIds": [],
+      "reasons": [
+        "Both teams meet 1.50 PPG in overall and venue splits (overall 1.53 / 2.18; split 1.89 / 2.22).",
+        "PPG agreement passed: overall and home/away split both favour Away (1.53-2.18 overall; 1.89-2.22 split).",
+        "The league is high-scoring at 3.57 goals per match and the draw price is 4.03.",
+        "Both defences are medium-to-leaky: Home 1.3 (medium), Away 1.3 (medium)."
+      ],
+      "warnings": [],
+      "dataQuality": 88,
+      "odds": 1.43,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (1.53-2.18 overall; 1.89-2.22 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.53,
+          "awayOverallPPG": 2.18,
+          "homeSplitPPG": 1.89,
+          "awaySplitPPG": 2.22,
+          "overallGap": -0.65,
+          "splitGap": -0.33
+        }
+      },
+      "universalRule": "GG_PPG_HIGH_SCORING_DEFENCE_V3",
+      "universalRuleEvidence": {
+        "homePPG": 1.53,
+        "awayPPG": 2.18,
+        "homeSplitPPG": 1.89,
+        "awaySplitPPG": 2.22,
+        "ppgAgreement": {
+          "pass": true,
+          "direction": "away",
+          "overallDirection": "away",
+          "splitDirection": "away",
+          "reason": "PPG agreement passed: overall and home/away split both favour Away (1.53-2.18 overall; 1.89-2.22 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 1.53,
+            "awayOverallPPG": 2.18,
+            "homeSplitPPG": 1.89,
+            "awaySplitPPG": 2.22,
+            "overallGap": -0.65,
+            "splitGap": -0.33
+          }
+        },
+        "leagueGPG": 3.57,
+        "draw": 4.03,
+        "gg": 1.43,
+        "defence": {
+          "homeRate": 1.3,
+          "awayRate": 1.3,
+          "homeBand": "medium",
+          "awayBand": "medium",
+          "homeMediumOrLeaky": true,
+          "awayMediumOrLeaky": true,
+          "homeLeaky": false,
+          "awayLeaky": false
+        }
+      }
+    }
+  },
+  "1527333": {
+    "fixtureId": "1527333",
+    "home": "Salisbury United",
+    "away": "Modbury Jets",
+    "league": "South Australia State League 1",
+    "kickoff": "2026-07-18T05:30:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Away DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "ares",
+        "hermes",
+        "hera",
+        "demeter",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Away (0.65-1.71 overall; 1.11-1.25 split).",
+        "6 specialist engines agree on Away DNB.",
+        "Weighted support 7.84 leads the next market by 7.24.",
+        "Data quality: 100/100; deep evidence: 4/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (0.65-1.71 overall; 1.11-1.25 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 0.65,
+          "awayOverallPPG": 1.71,
+          "homeSplitPPG": 1.11,
+          "awaySplitPPG": 1.25,
+          "overallGap": -1.06,
+          "splitGap": -0.14
+        }
+      },
+      "universalRule": null,
+      "universalRuleEvidence": null
+    }
+  },
+  "1527335": {
+    "fixtureId": "1527335",
+    "home": "Adelaide Blue Eagles",
+    "away": "Adelaide Cobras",
+    "league": "South Australia State League 1",
+    "kickoff": "2026-07-18T05:30:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home DNB",
+      "confidence": 93,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "PPG agreement passed: overall and home/away split both favour Home (1.76-0.94 overall; 2.13-1.5 split).",
+        "10 specialist engines agree on Home DNB.",
+        "Weighted support 13.29 leads the next market by 12.69.",
+        "Data quality: 100/100; deep evidence: 5/7."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.76-0.94 overall; 2.13-1.5 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.76,
+          "awayOverallPPG": 0.94,
+          "homeSplitPPG": 2.13,
+          "awaySplitPPG": 1.5,
+          "overallGap": 0.82,
+          "splitGap": 0.63
+        }
+      },
+      "universalRule": null,
+      "universalRuleEvidence": null
+    }
+  },
+  "1527387": {
+    "fixtureId": "1527387",
+    "home": "Adelaide Raiders",
+    "away": "Eastern United",
+    "league": "South Australia State League 1",
+    "kickoff": "2026-07-18T05:30:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 90,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hermes",
+        "hera",
+        "hephaestus",
+        "demeter",
+        "hades",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "Home averages 2 overall PPG and 2.25 split PPG.",
+        "The opponent averages 0.94 overall and 0.63 split PPG, both below 1.00.",
+        "Overall and split PPG agree on Home; opponent defence is leaky at 2.8 conceded per venue match."
+      ],
+      "warnings": [],
+      "dataQuality": 100,
+      "odds": 1.36,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2-0.94 overall; 2.25-0.63 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2,
+          "awayOverallPPG": 0.94,
+          "homeSplitPPG": 2.25,
+          "awaySplitPPG": 0.63,
+          "overallGap": 1.06,
+          "splitGap": 1.62
+        }
+      },
+      "universalRule": "PPG_2_VS_SUB1_WIN_V1",
+      "universalRuleEvidence": {
+        "pass": true,
+        "side": "home",
+        "checks": {
+          "ppgDirectionAgreement": true,
+          "selectedOverallPPG": true,
+          "selectedSplitPPG": true,
+          "opponentOverallPPG": true,
+          "opponentSplitPPG": true,
+          "opponentDefence": true
+        },
+        "gate": {
+          "pass": true,
+          "direction": "home",
+          "overallDirection": "home",
+          "splitDirection": "home",
+          "reason": "PPG agreement passed: overall and home/away split both favour Home (2-0.94 overall; 2.25-0.63 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 2,
+            "awayOverallPPG": 0.94,
+            "homeSplitPPG": 2.25,
+            "awaySplitPPG": 0.63,
+            "overallGap": 1.06,
+            "splitGap": 1.62
+          }
+        },
+        "selectedOverall": 2,
+        "selectedSplit": 2.25,
+        "opponentOverall": 0.94,
+        "opponentSplit": 0.63,
+        "opponentDefenceRate": 2.8,
+        "opponentDefenceBand": "leaky"
+      }
+    }
+  },
+  "1529276": {
+    "fixtureId": "1529276",
+    "home": "Launceston City",
+    "away": "Kingborough Lions",
+    "league": "Tasmania NPL",
+    "kickoff": "2026-07-18T06:45:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "BTTS Yes",
+      "confidence": 87,
+      "grade": "A2",
+      "engineIds": [],
+      "reasons": [
+        "Both teams meet 1.50 PPG in overall and venue splits (overall 2.08 / 2.27; split 1.71 / 1.88).",
+        "PPG agreement passed: overall and home/away split both favour Away (2.08-2.27 overall; 1.71-1.88 split).",
+        "The league is high-scoring at 3.89 goals per match and the draw price is 3.99.",
+        "Both defences are medium-to-leaky: Home 2.1 (leaky), Away 1.1 (medium)."
+      ],
+      "warnings": [],
+      "dataQuality": 88,
+      "odds": 1.32,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (2.08-2.27 overall; 1.71-1.88 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.08,
+          "awayOverallPPG": 2.27,
+          "homeSplitPPG": 1.71,
+          "awaySplitPPG": 1.88,
+          "overallGap": -0.19,
+          "splitGap": -0.17
+        }
+      },
+      "universalRule": "GG_PPG_HIGH_SCORING_DEFENCE_V3",
+      "universalRuleEvidence": {
+        "homePPG": 2.08,
+        "awayPPG": 2.27,
+        "homeSplitPPG": 1.71,
+        "awaySplitPPG": 1.88,
+        "ppgAgreement": {
+          "pass": true,
+          "direction": "away",
+          "overallDirection": "away",
+          "splitDirection": "away",
+          "reason": "PPG agreement passed: overall and home/away split both favour Away (2.08-2.27 overall; 1.71-1.88 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 2.08,
+            "awayOverallPPG": 2.27,
+            "homeSplitPPG": 1.71,
+            "awaySplitPPG": 1.88,
+            "overallGap": -0.19,
+            "splitGap": -0.17
+          }
+        },
+        "leagueGPG": 3.89,
+        "draw": 3.99,
+        "gg": 1.32,
+        "defence": {
+          "homeRate": 2.1,
+          "awayRate": 1.1,
+          "homeBand": "leaky",
+          "awayBand": "medium",
+          "homeMediumOrLeaky": true,
+          "awayMediumOrLeaky": true,
+          "homeLeaky": true,
+          "awayLeaky": false
+        }
+      }
+    }
+  },
+  "1529972": {
+    "fixtureId": "1529972",
+    "home": "Spartak Moskva W",
+    "away": "Yenisey W",
+    "league": "Supreme Division Women",
+    "kickoff": "2026-07-18T14:00:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "Home Win",
+      "confidence": 90,
+      "grade": "A1",
+      "engineIds": [
+        "prometheus",
+        "athena",
+        "ares",
+        "hera",
+        "atlas",
+        "nike"
+      ],
+      "reasons": [
+        "Home averages 2.08 overall PPG and 2 split PPG.",
+        "The opponent averages 0.25 overall and 0.17 split PPG, both below 1.00.",
+        "Overall and split PPG agree on Home; opponent defence is leaky at 2.3 conceded per venue match."
+      ],
+      "warnings": [],
+      "dataQuality": 78,
+      "odds": null,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (2.08-0.25 overall; 2-0.17 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 2.08,
+          "awayOverallPPG": 0.25,
+          "homeSplitPPG": 2,
+          "awaySplitPPG": 0.17,
+          "overallGap": 1.83,
+          "splitGap": 1.83
+        }
+      },
+      "universalRule": "PPG_2_VS_SUB1_WIN_V1",
+      "universalRuleEvidence": {
+        "pass": true,
+        "side": "home",
+        "checks": {
+          "ppgDirectionAgreement": true,
+          "selectedOverallPPG": true,
+          "selectedSplitPPG": true,
+          "opponentOverallPPG": true,
+          "opponentSplitPPG": true,
+          "opponentDefence": true
+        },
+        "gate": {
+          "pass": true,
+          "direction": "home",
+          "overallDirection": "home",
+          "splitDirection": "home",
+          "reason": "PPG agreement passed: overall and home/away split both favour Home (2.08-0.25 overall; 2-0.17 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 2.08,
+            "awayOverallPPG": 0.25,
+            "homeSplitPPG": 2,
+            "awaySplitPPG": 0.17,
+            "overallGap": 1.83,
+            "splitGap": 1.83
+          }
+        },
+        "selectedOverall": 2.08,
+        "selectedSplit": 2,
+        "opponentOverall": 0.25,
+        "opponentSplit": 0.17,
+        "opponentDefenceRate": 2.3,
+        "opponentDefenceBand": "leaky"
+      }
+    }
+  },
+  "1533049": {
+    "fixtureId": "1533049",
+    "home": "Taroona",
+    "away": "Olympia Warriors",
+    "league": "Tasmania Southern Championship",
+    "kickoff": "2026-07-18T02:15:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "BTTS Yes",
+      "confidence": 89,
+      "grade": "A2",
+      "engineIds": [],
+      "reasons": [
+        "Both teams meet 1.50 PPG in overall and venue splits (overall 1.78 / 2; split 1.8 / 2).",
+        "PPG agreement passed: overall and home/away split both favour Away (1.78-2 overall; 1.8-2 split).",
+        "The league is high-scoring at 5.74 goals per match and the draw price is 4.33.",
+        "Both defences are medium-to-leaky: Home 1.8 (leaky), Away 1.8 (leaky)."
+      ],
+      "warnings": [],
+      "dataQuality": 70,
+      "odds": 1.18,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "away",
+        "overallDirection": "away",
+        "splitDirection": "away",
+        "reason": "PPG agreement passed: overall and home/away split both favour Away (1.78-2 overall; 1.8-2 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.78,
+          "awayOverallPPG": 2,
+          "homeSplitPPG": 1.8,
+          "awaySplitPPG": 2,
+          "overallGap": -0.22,
+          "splitGap": -0.2
+        }
+      },
+      "universalRule": "GG_PPG_HIGH_SCORING_DEFENCE_V3",
+      "universalRuleEvidence": {
+        "homePPG": 1.78,
+        "awayPPG": 2,
+        "homeSplitPPG": 1.8,
+        "awaySplitPPG": 2,
+        "ppgAgreement": {
+          "pass": true,
+          "direction": "away",
+          "overallDirection": "away",
+          "splitDirection": "away",
+          "reason": "PPG agreement passed: overall and home/away split both favour Away (1.78-2 overall; 1.8-2 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 1.78,
+            "awayOverallPPG": 2,
+            "homeSplitPPG": 1.8,
+            "awaySplitPPG": 2,
+            "overallGap": -0.22,
+            "splitGap": -0.2
+          }
+        },
+        "leagueGPG": 5.74,
+        "draw": 4.33,
+        "gg": 1.18,
+        "defence": {
+          "homeRate": 1.8,
+          "awayRate": 1.8,
+          "homeBand": "leaky",
+          "awayBand": "leaky",
+          "homeMediumOrLeaky": true,
+          "awayMediumOrLeaky": true,
+          "homeLeaky": true,
+          "awayLeaky": true
+        }
+      }
+    }
+  },
+  "1533053": {
+    "fixtureId": "1533053",
+    "home": "Hobart City",
+    "away": "Clarence Zebras II",
+    "league": "Tasmania Southern Championship",
+    "kickoff": "2026-07-18T04:30:00.000Z",
+    "publishedAt": "2026-07-18T02:57:58.176Z",
+    "engineVersion": "5.6.0",
+    "decision": {
+      "market": "BTTS Yes",
+      "confidence": 87,
+      "grade": "A2",
+      "engineIds": [],
+      "reasons": [
+        "Both teams meet 1.50 PPG in overall and venue splits (overall 1.75 / 1.67; split 3 / 1.8).",
+        "PPG agreement passed: overall and home/away split both favour Home (1.75-1.67 overall; 3-1.8 split).",
+        "The league is high-scoring at 5.74 goals per match and the draw price is 5.00.",
+        "Both defences are medium-to-leaky: Home 1 (medium), Away 3.4 (leaky)."
+      ],
+      "warnings": [],
+      "dataQuality": 70,
+      "odds": 1.18,
+      "ppgAgreement": {
+        "pass": true,
+        "direction": "home",
+        "overallDirection": "home",
+        "splitDirection": "home",
+        "reason": "PPG agreement passed: overall and home/away split both favour Home (1.75-1.67 overall; 3-1.8 split).",
+        "missing": [],
+        "evidence": {
+          "homeOverallPPG": 1.75,
+          "awayOverallPPG": 1.67,
+          "homeSplitPPG": 3,
+          "awaySplitPPG": 1.8,
+          "overallGap": 0.08,
+          "splitGap": 1.2
+        }
+      },
+      "universalRule": "GG_PPG_HIGH_SCORING_DEFENCE_V3",
+      "universalRuleEvidence": {
+        "homePPG": 1.75,
+        "awayPPG": 1.67,
+        "homeSplitPPG": 3,
+        "awaySplitPPG": 1.8,
+        "ppgAgreement": {
+          "pass": true,
+          "direction": "home",
+          "overallDirection": "home",
+          "splitDirection": "home",
+          "reason": "PPG agreement passed: overall and home/away split both favour Home (1.75-1.67 overall; 3-1.8 split).",
+          "missing": [],
+          "evidence": {
+            "homeOverallPPG": 1.75,
+            "awayOverallPPG": 1.67,
+            "homeSplitPPG": 3,
+            "awaySplitPPG": 1.8,
+            "overallGap": 0.08,
+            "splitGap": 1.2
+          }
+        },
+        "leagueGPG": 5.74,
+        "draw": 5,
+        "gg": 1.18,
+        "defence": {
+          "homeRate": 1,
+          "awayRate": 3.4,
+          "homeBand": "medium",
+          "awayBand": "leaky",
+          "homeMediumOrLeaky": true,
+          "awayMediumOrLeaky": true,
+          "homeLeaky": false,
+          "awayLeaky": true
+        }
+      }
+    }
+  }
+}
