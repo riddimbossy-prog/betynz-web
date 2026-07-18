@@ -4,9 +4,9 @@ window.DATA_UPDATED = null;
 window.BETYNZ_META = {
   "product": "Betynz",
   "version": "2.5.0",
-  "engineVersion": "2.5.0",
+  "engineVersion": "2.0.0",
   "source": "waiting-for-live-sync",
-  "generatedAt": null,
+  "generatedAt": "2026-07-18T20:27:53.948Z",
   "dataUpdated": null,
   "isDemo": false,
   "isReady": false,
