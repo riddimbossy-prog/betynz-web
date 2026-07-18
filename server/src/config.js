@@ -1,6 +1,7 @@
-export const SERVICE_NAME = "BetsPapa Prediction API";
-export const SERVICE_VERSION = "1.8.3";
-export const ENGINE_VERSION = "papasense-v1.8.2";
+export const SERVICE_NAME = "Betynz Prediction API";
+export const SERVICE_VERSION = "6.2.0";
+export const ENGINE_VERSION = "betynz-transition-v6.2.0";
+export const PUBLIC_ENGINE_VERSIONS = [ENGINE_VERSION];
 
 export function getApiFootballKey() {
   return (
@@ -15,8 +16,8 @@ export const FINISHED_PROFILE_STATUSES = new Set(["FT"]);
 export const PREDICTABLE_STATUSES = new Set(["NS", "TBD"]);
 
 export const DEFAULT_ALLOWED_ORIGINS = [
-  "https://betspapa.com",
-  "https://www.betspapa.com",
+  "https://betynz.com",
+  "https://www.betynz.com",
   "https://riddimbossy-prog.github.io",
   "http://localhost:4173",
   "http://localhost:5500",

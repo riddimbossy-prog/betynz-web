@@ -255,6 +255,19 @@ adminRouter.post("/bootstrap-league", async (req, res, next) => {
   }
 });
 
+adminRouter.post("/refresh-board", async (req, res, next) => {
+  try {
+    const date = assertIsoDate(req.body?.date || todayUtc());
+    const supabase = getSupabaseAdmin();
+    const synced = await syncDate(supabase, date);
+    const graded = await gradePredictionsForDate(supabase, date);
+    const predictions = await generatePredictionsForDate(supabase, date);
+    res.json({ status: "ok", action: "refresh-board", date, synced, graded, predictions });
+  } catch (error) {
+    next(error);
+  }
+});
+
 adminRouter.post("/run-daily", async (req, res, next) => {
   try {
     const date = assertIsoDate(req.body?.date || todayUtc());

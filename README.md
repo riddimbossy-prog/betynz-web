@@ -1,86 +1,72 @@
-# Betynz.com — Real Product v2.0
+# Betynz v6.2.0 — Live Database Board
 
-**Tagline:** Smart Betting Predictions
+Betynz v6.2.0 replaces the former giant browser-side `data.js` bundle with a database-first dashboard.
 
-This is the deployable Betynz core product for GitHub Pages. It uses GitHub Actions as the private data-processing layer and publishes only generated public football data.
+## What this release does
 
-## What is real in v2.0
+- Automatically imports fixtures into Supabase through the protected Betynz API.
+- Displays every database fixture, even when a prediction is still being analysed.
+- Shows clear states: **Qualified**, **Analysing**, **No Banker**, **Data Pending**, **Live**, and **FT**.
+- Refreshes the public board every five minutes without reloading the page.
+- Loads today plus the next six days on demand.
+- Uses a small cached database response as the offline fallback.
+- Automatically refreshes today’s fixtures every 30 minutes with GitHub Actions.
+- Automatically fills seven-day fixture coverage once daily.
+- Grades completed predictions and updates the verified results record.
+- Uses one GitHub Pages deployment workflow.
+- Keeps the public frontend free of login and subscription controls.
 
-- API-Football fixture, standings, team statistics, odds and score pipeline
-- Optional TheStatsAPI xG and multi-book odds enrichment
-- Six-day forward board plus one-day score lookback
-- Fifteen independently implemented Olympian specialist engines
-- Zeus consensus, contradiction and data-quality gate
-- Pre-kickoff prediction locking for record integrity
-- Public results history based only on locked predictions
-- A1, A2, Watchlist and No Bet outcomes
-- Responsive black/orange dashboard, engine directory, banker board, results, methodology and data-status views
-- Local selection list and preferences
-- PWA support
-- GitHub Pages release built from a safe `dist/` folder
+## Repository layout
 
-## What is intentionally not faked
+- `dist/` — generated GitHub Pages release after `npm run build`
+- `server/` — Render/Node API
+- `supabase/migrations/202607180001_betynz_core.sql` — required football database schema
+- `.github/workflows/deploy-pages.yml` — validated website deployment
+- `.github/workflows/database-refresh.yml` — today-board refresh every 30 minutes
+- `.github/workflows/database-coverage.yml` — today plus six future days
+- `runtime-config.js` — public API base URLs and browser refresh interval
 
-There is no real user authentication, payment, premium subscription, community posting or bookmaker integration in this build. Those features require a private backend and should not be simulated in production.
+## Required production configuration
 
-## Required GitHub repository secrets
+### Supabase
 
+Run `supabase/migrations/202607180001_betynz_core.sql` in the Supabase SQL editor.
+
+### Render environment variables
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
 - `API_FOOTBALL_KEY`
-- `STATS_API_KEY`
-- `DAYS_BACK` — recommended value `1`
-- `DAYS_FWD` — recommended value `6`
+- `ADMIN_SYNC_SECRET`
+- `ALLOWED_ORIGINS=https://betynz.com,https://www.betynz.com,https://riddimbossy-prog.github.io`
 
-Never commit API keys to this repository.
+`ODDS_API_KEY` is optional in this release. The current database sync and prediction pipeline runs from API-Football data.
 
-## GitHub permission
+### GitHub repository secrets
 
-Open:
-
-`Settings → Actions → General → Workflow permissions`
-
-Select **Read and write permissions**.
-
-## First live run
-
-1. Upload all files in this folder to the root of `betynz-web`.
-2. Commit to `main`.
-3. Wait for **Deploy Betynz Product** to succeed.
-4. Open **Actions → Update Betynz Product Data → Run workflow**.
-5. When that workflow succeeds, it replaces the demo snapshot with real API data.
-
-## Product workflows
-
-### Deploy Betynz Product
-
-Validates the code, builds a public `dist/` folder, and deploys only safe public assets to GitHub Pages. Source scripts, private runtime files and internal model ledgers are not published.
-
-### Update Betynz Product Data
-
-Runs every six hours. It creates a temporary config from GitHub Secrets, fetches and enriches data, evaluates all Olympian engines, applies Zeus, locks eligible predictions, validates the snapshot and commits generated public data.
-
-### Update Betynz Live Scores
-
-Runs every 15 minutes. It refreshes match status and scores, settles locked predictions, updates the verified record and republishes the data snapshot.
-
-## Prediction integrity
-
-Predictions more than 12 hours from kickoff are provisional. Inside the 12-hour window, an eligible Zeus decision is locked. Only a decision that was locked before kickoff can enter `results-history.json`.
-
-Model scores are internal evidence scores, not guarantees or certified probabilities.
+- `ADMIN_SYNC_SECRET` — must exactly match Render
+- `BETYNZ_API_BASE_URL` — optional; defaults to `https://betynz-api.onrender.com`
 
 ## Local checks
 
 ```bash
-npm run snapshot
 npm run check
 npm run build
-npm run serve
 ```
 
-Open `http://localhost:8080`.
+The checks cover JavaScript syntax, database response mapping, release validation, and all backend engine tests.
 
-## v2.4 adaptive enrichment
+## Public API endpoints
 
-The live data workflow now uses a two-pass model. Pass one discovers every competition returned for today. Pass two ranks fixtures and spends deeper API calls only where they can materially improve a Zeus decision. The complete board remains visible, but A1/A2 public selections require independent deep evidence.
+- `GET /api/health`
+- `GET /api/dashboard/today?date=YYYY-MM-DD`
+- `GET /api/fixtures/today?date=YYYY-MM-DD`
+- `GET /api/predictions/today?date=YYYY-MM-DD`
+- `GET /api/results/recent`
 
-Run **Smart Global Coverage and Deep Enrichment** from GitHub Actions after installing the package. The hourly **Refresh Priority Evidence** workflow updates xG, odds movement and near-kickoff lineups for the current shortlist.
+Protected scheduler endpoints:
+
+- `POST /api/admin/refresh-board`
+- `POST /api/admin/run-daily`
+
+The browser never receives the Supabase service-role key or the football-provider key.

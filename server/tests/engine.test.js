@@ -68,7 +68,7 @@ test("reason trace explains why the selected market beat Double Chance", () => {
 });
 
 
-test("PapaSense v1.7 returns all four engine picks", () => {
+test("Betynz Core v1.7 returns all four engine picks", () => {
   const prediction = predictMatch(demoFixtures[0]);
   assert.deepEqual(Object.keys(prediction.enginePicks).sort(), [
     "aggressive",
@@ -103,7 +103,7 @@ test("Aggressive and safer engines use distinct selection policies", () => {
 });
 
 
-test("PapaSense blocks prior-only zombie predictions", () => {
+test("Betynz Core blocks prior-only zombie predictions", () => {
   assert.throws(
     () => predictMatch({
       fixtureId: "zombie-test",
@@ -135,9 +135,9 @@ test("Prediction output carries an analysis fingerprint when supplied", () => {
 });
 
 
-test("default engine is named Papa's Pick", () => {
+test("default engine is named Zeus Pick", () => {
   const prediction = predictMatch(demoFixtures[0]);
-  assert.equal(prediction.enginePicks.primary.engineName, "Papa's Pick");
+  assert.equal(prediction.enginePicks.primary.engineName, "Zeus Pick");
 });
 
 test("every engine pick contains a match-specific explanation paragraph", () => {

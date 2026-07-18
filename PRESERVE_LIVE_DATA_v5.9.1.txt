@@ -1,3 +1,0 @@
-This package intentionally omits data.js and scripts/data.js.
-Extract it over the existing repository so the current live board remains untouched.
-Do not delete your existing repository before copying these files.

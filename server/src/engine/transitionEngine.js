@@ -1224,7 +1224,7 @@ function buildEngineSuite({
     input,
     venue,
     goals,
-    engineName: "Papa"
+    engineName: "Zeus Core"
   });
   const aggressiveExplanation = buildPotosiStyleExplanation({
     market: aggressive,
@@ -1258,7 +1258,7 @@ function buildEngineSuite({
   const primaryReasons = primaryVenueAligned
     ? [
         sampleReason,
-        "Venue HT/FT direction agrees with the overall PapaSense market direction.",
+        "Venue HT/FT direction agrees with the overall Betynz Core market direction.",
         ...venue.reasons.slice(0, 2)
       ]
     : [
@@ -1267,13 +1267,13 @@ function buildEngineSuite({
       ];
 
   return {
-    primary: copyEnginePick(primary, "primary", "Papa's Pick", {
+    primary: copyEnginePick(primary, "primary", "Zeus Pick", {
       reasons: primaryReasons,
       cautions: !primary.qualified
         ? ["This is the default direction, but it remains below the strong-pick threshold."]
         : [],
       description:
-        "Papa's default pick uses venue, overall and recent HT/FT, goal support, market calibration and contradiction checks.",
+        "Zeus’ default pick uses venue, overall and recent HT/FT, goal support, market calibration and contradiction checks.",
       explanationParagraph: primaryExplanation
     }),
     aggressive: copyEnginePick(aggressive, "aggressive", "Aggressive", {
@@ -1282,7 +1282,7 @@ function buildEngineSuite({
         "Designed for users who accept higher variance for a sharper outcome."
       ],
       cautions: [
-        "Aggressive picks carry more variance and should not be treated as safer than Papa Primary."
+        "Aggressive picks carry more variance and should not be treated as safer than Zeus Core."
       ],
       description:
         "Higher-specificity route such as exact HT/FT, straight result, O2.5, GG or team O1.5.",
@@ -1429,8 +1429,8 @@ function buildDecisionTrace({
     mode,
     qualified: primary.qualified,
     headline: primary.qualified
-      ? "Papa’s strongest qualified market"
-      : "Papa’s best available direction",
+      ? "Zeus’ strongest qualified market"
+      : "Zeus’ best available direction",
     summary: `${primary.selection}. ${story.narrative}`,
     whyChosen,
     cautions,
@@ -1517,7 +1517,7 @@ function requireTeamEvidence(input) {
 
   if (homeSamples <= 0 || awaySamples <= 0) {
     const error = new Error(
-      "PapaSense refuses to publish a prior-only prediction. Both teams need real HT/FT history."
+      "Betynz Core refuses to publish a prior-only prediction. Both teams need real HT/FT history."
     );
     error.code = "PRIOR_ONLY_PREDICTION_BLOCKED";
     throw error;

@@ -153,7 +153,7 @@ export async function hydrateProfilesForFixtures(
   supabase,
   fixtures,
   teams,
-  { force = false } = {}
+  { force = false, targetTeamIds = null } = {}
 ) {
   const requirements = new Map();
 

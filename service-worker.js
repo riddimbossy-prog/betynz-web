@@ -1,64 +1,70 @@
-const CACHE='betynz-v3.1-banker-filters';
-const CORE=['/','/index.html','/styles.css?v=3.1','/app.js?v=3.1','/olympian-engine-core.js?v=3.1','/manifest.webmanifest','/assets/betynz-mark.svg','/assets/gods/zeus.png','/assets/gods/athena.png','/assets/gods/apollo.png','/assets/gods/ares.png','/assets/gods/poseidon.png','/assets/gods/hermes.png','/assets/gods/hera.png','/assets/gods/artemis.png','/assets/gods/hephaestus.png','/assets/gods/atlas.png','/assets/gods/demeter.png','/assets/gods/dionysus.png','/assets/gods/hades.png','/assets/gods/orion.png','/assets/gods/nike.png','/assets/gods/prometheus.png'];
+const CACHE="betynz-shell-v6.2.0";
+const CORE=[
+  "/",
+  "/index.html",
+  "/styles.css?v=6.2.0",
+  "/runtime-config.js?v=6.2.0",
+  "/data-source.js?v=6.2.0",
+  "/experience.js?v=6.2.0",
+  "/nav-core.js?v=6.2.0",
+  "/boot.js?v=6.2.0",
+  "/app.js?v=6.2.0",
+  "/rebel-engine-core.js?v=6.2.0",
+  "/olympian-engine-core.js?v=6.2.0",
+  "/manifest.webmanifest",
+  "/assets/betynz-logo.webp",
+  "/assets/betynz-mark.png",
+  "/assets/icon-192.png",
+  "/assets/icon-512.png",
+  "/assets/maskable-icon.png",
+  "/assets/gods/zeus.webp"
+];
 
-self.addEventListener('install',event=>{
-  event.waitUntil(
-    caches.open(CACHE)
-      .then(cache=>cache.addAll(CORE))
-      .then(()=>self.skipWaiting())
-  );
+self.addEventListener("install",event=>{
+  event.waitUntil((async()=>{
+    const cache=await caches.open(CACHE);
+    await Promise.allSettled(CORE.map(url=>cache.add(url)));
+    await self.skipWaiting();
+  })());
 });
 
-self.addEventListener('activate',event=>{
-  event.waitUntil(
-    caches.keys()
-      .then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))))
-      .then(()=>self.clients.claim())
-  );
+self.addEventListener("activate",event=>{
+  event.waitUntil((async()=>{
+    const keys=await caches.keys();
+    await Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
 
-self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET') return;
+self.addEventListener("message",event=>{
+  if(event.data&&event.data.type==="SKIP_WAITING")self.skipWaiting();
+});
+
+self.addEventListener("fetch",event=>{
+  if(event.request.method!=="GET")return;
   const url=new URL(event.request.url);
+  if(url.origin!==self.location.origin)return;
 
-  if(url.pathname.endsWith('/data.js')||url.pathname.endsWith('/api-status.json')){
-    event.respondWith(
-      fetch(event.request,{cache:'no-store'})
-        .then(response=>{
-          if(response.ok){
-            const copy=response.clone();
-            caches.open(CACHE).then(cache=>cache.put(event.request,copy));
-          }
-          return response;
-        })
-        .catch(()=>caches.match(event.request))
-    );
-    return;
-  }
-
-  if(event.request.mode==='navigate'){
-    event.respondWith(
-      fetch(event.request,{cache:'no-store'})
-        .then(response=>{
-          if(response.ok){
-            const copy=response.clone();
-            caches.open(CACHE).then(cache=>cache.put('/index.html',copy));
-          }
-          return response;
-        })
-        .catch(()=>caches.match('/index.html'))
-    );
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then(hit=>hit||fetch(event.request).then(response=>{
-        if(response.ok&&url.origin===self.location.origin){
-          const copy=response.clone();
-          caches.open(CACHE).then(cache=>cache.put(event.request,copy));
-        }
+  if(event.request.mode==="navigate"){
+    event.respondWith((async()=>{
+      try{
+        const response=await fetch(event.request,{cache:"no-store"});
+        if(response.ok){const cache=await caches.open(CACHE);cache.put("/index.html",response.clone())}
         return response;
-      }))
-  );
+      }catch(_){
+        return await caches.match("/index.html")||new Response("Betynz is temporarily offline.",{status:503,headers:{"Content-Type":"text/plain; charset=utf-8"}});
+      }
+    })());
+    return;
+  }
+
+  event.respondWith((async()=>{
+    const cached=await caches.match(event.request);
+    const network=fetch(event.request).then(async response=>{
+      if(response.ok){const cache=await caches.open(CACHE);cache.put(event.request,response.clone())}
+      return response;
+    }).catch(()=>null);
+    if(cached){event.waitUntil(network);return cached}
+    return await network||new Response("",{status:504});
+  })());
 });

@@ -1,4 +1,4 @@
-import { ENGINE_VERSION, PREDICTABLE_STATUSES } from "../config.js";
+import { ENGINE_VERSION, PUBLIC_ENGINE_VERSIONS, PREDICTABLE_STATUSES } from "../config.js";
 import { dateRangeUtc } from "../utils/date.js";
 import { fetchAllRows, throwIfSupabaseError } from "./supabaseHelpers.js";
 import { generatePredictionsForDate } from "./predictionService.js";
@@ -19,7 +19,7 @@ function publicJobState(job, { totalFixtures = 0, readyPredictions = 0 } = {}) {
       startedAt: null,
       completedAt: null,
       message: pending
-        ? "Papa is preparing the remaining picks in the background."
+        ? "Betynz is preparing the remaining picks in the background."
         : "All available picks are ready."
     };
   }
@@ -36,7 +36,7 @@ function publicJobState(job, { totalFixtures = 0, readyPredictions = 0 } = {}) {
     error: job.error || null,
     message:
       job.state === "running"
-        ? "Papa is preparing the remaining picks in the background."
+        ? "Betynz is preparing the remaining picks in the background."
         : job.state === "failed"
           ? "Background preparation stopped. Existing completed picks remain available."
           : pending
@@ -231,16 +231,27 @@ export async function listPublicPredictions(supabase, date) {
     .from("predictions")
     .select("*")
     .in("fixture_id", fixtureIds)
-    .eq("engine_version", ENGINE_VERSION)
+    .in("engine_version", PUBLIC_ENGINE_VERSIONS)
     .eq("published", true)
     .order("confidence", { ascending: false });
 
   throwIfSupabaseError(error, "Unable to load public predictions");
 
+  const versionRank = new Map(PUBLIC_ENGINE_VERSIONS.map((version, index) => [version, index]));
+  const uniquePredictions = [...(predictions || [])]
+    .sort((left, right) => {
+      const versionDiff = (versionRank.get(left.engine_version) ?? 99) - (versionRank.get(right.engine_version) ?? 99);
+      if (versionDiff) return versionDiff;
+      return String(right.updated_at || right.created_at || "").localeCompare(String(left.updated_at || left.created_at || ""));
+    })
+    .filter((prediction, index, rows) =>
+      rows.findIndex((item) => Number(item.fixture_id) === Number(prediction.fixture_id)) === index
+    );
+
   const { teamMap, leagueMap } = await loadEntityMaps(supabase, fixtures);
   const fixtureMap = new Map(fixtures.map((fixture) => [fixture.id, fixture]));
 
-  return (predictions || [])
+  return uniquePredictions
     .map((prediction) => {
       const fixture = fixtureMap.get(prediction.fixture_id);
       if (!fixture) return null;
@@ -395,7 +406,7 @@ export async function getDashboardStats(supabase, {
       supabase
         .from("predictions")
         .select("id,primary_market,primary_selection,confidence,market_scores,created_at,updated_at")
-        .eq("engine_version", ENGINE_VERSION)
+        .in("engine_version", PUBLIC_ENGINE_VERSIONS)
         .eq("published", true)
     ),
     fetchAllRows(() =>

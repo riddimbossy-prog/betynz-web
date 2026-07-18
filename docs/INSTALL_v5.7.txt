@@ -1,8 +1,0 @@
-BETYNZ v5.7 INSTALL
-
-1. Keep the hidden .git folder in your local repository.
-2. Replace the remaining repository contents with this package.
-3. Commit: Add branded PWA splash and first-run Betynz tour
-4. Push to GitHub.
-5. No prediction workflow rebuild is required for this visual/PWA update.
-6. Open the installed app once. The new service worker will refresh the cached files.

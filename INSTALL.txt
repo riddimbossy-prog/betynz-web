@@ -1,8 +1,0 @@
-Replace this file in your repository:
-.github/workflows/update-data.yml
-
-Commit message:
-Fix generated live-board archive workflow
-
-Then run:
-Actions > Smart Global Coverage and Deep Enrichment > Run workflow

@@ -1,8 +1,0 @@
-BETYNZ v5.9.2 INSTALL
-
-1. Extract the patch into the repository root.
-2. Commit and push to main.
-3. Run: Smart Global Coverage and Deep Enrichment.
-4. After it finishes green, run: Deploy Betynz Product.
-
-The patch intentionally does not contain data.js, so it cannot overwrite live games.

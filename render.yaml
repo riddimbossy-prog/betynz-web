@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: betspapa-api
+    name: betynz-api
     runtime: node
     rootDir: server
-    buildCommand: npm install
+    buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: true
@@ -12,12 +12,10 @@ services:
         value: production
       - key: SUPABASE_URL
         sync: false
-      - key: SUPABASE_ANON_KEY
-        sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
         sync: false
       - key: ALLOWED_ORIGINS
-        value: https://betspapa.com,https://www.betspapa.com
+        value: https://betynz.com,https://www.betynz.com,https://riddimbossy-prog.github.io
       - key: ADMIN_SYNC_SECRET
         sync: false
       - key: API_FOOTBALL_KEY

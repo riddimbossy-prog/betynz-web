@@ -1,8 +1,8 @@
 node_modules/
-dist/
-scripts/config.txt
-config.txt
+server/node_modules/
 .env
-.env.*
-*.log
+server/.env
+supabase/.env
+dist/
 .DS_Store
+*.log

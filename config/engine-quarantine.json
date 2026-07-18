@@ -1,4 +1,0 @@
-{
-  "_instructions": "Set an engine id to an object with reason and enabled=true, then run the main workflow. Example: \"ares\": {\"enabled\": true, \"reason\": \"Misfire review\"}.",
-  "engines": {}
-}

@@ -1,9 +1,0 @@
-BETYNZ v5.1 FREE LAUNCH
-
-1. Replace the repository files with this build while keeping the hidden .git folder.
-2. Commit: Launch Betynz with free full access and secure accounts
-3. Push to GitHub.
-4. Run Smart Global Coverage and Deep Enrichment.
-5. Hard-refresh once after deployment.
-
-No Paystack setup or payment secrets are required. Supabase is needed only for secure password/Google accounts and cross-device syncing.

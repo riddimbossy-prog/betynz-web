@@ -1,0 +1,66 @@
+BETYNZ v6.2.0 — INSTALLATION ORDER
+===================================
+
+1. BACK UP THE CURRENT GITHUB REPOSITORY
+   Download the current repository ZIP before replacing files.
+
+2. REPLACE THE REPOSITORY CONTENTS
+   Upload every file and folder from this v6.2.0 package to the repository root.
+   Delete old duplicate folders and workflows that are not in this package.
+   Keep only the three included workflows:
+     - deploy-pages.yml
+     - database-refresh.yml
+     - database-coverage.yml
+
+3. CREATE THE DATABASE TABLES
+   Open Supabase > SQL Editor.
+   Open:
+     supabase/migrations/202607180001_betynz_core.sql
+   Copy the complete SQL and run it once.
+
+4. DEPLOY THE API TO RENDER
+   Use the included render.yaml.
+   Add these secret environment variables in Render:
+     SUPABASE_URL
+     SUPABASE_SERVICE_ROLE_KEY
+     API_FOOTBALL_KEY
+     ADMIN_SYNC_SECRET
+
+   Confirm the service health URL returns status ok:
+     https://betynz-api.onrender.com/api/health
+
+5. ADD GITHUB ACTIONS SECRETS
+   GitHub repository > Settings > Secrets and variables > Actions.
+   Add:
+     ADMIN_SYNC_SECRET
+       Use exactly the same value used on Render.
+
+     BETYNZ_API_BASE_URL
+       Use https://betynz-api.onrender.com
+       This secret is optional because that address is already the fallback.
+
+6. RUN THE FIRST DATABASE FILL
+   GitHub > Actions > Fill Seven-Day Betynz Database > Run workflow.
+   Wait for the workflow to finish successfully.
+
+7. DEPLOY THE WEBSITE
+   GitHub > Actions > Deploy Betynz > Run workflow.
+   The workflow validates, tests, builds and deploys the dist folder.
+
+8. VERIFY THE BOARD
+   Open betynz.com in a private browser window.
+   Confirm:
+     - The status changes from Loading Games to Database Live.
+     - Today’s games appear automatically.
+     - Games without picks say Analysing or No Banker.
+     - Qualified predictions show their market and confidence.
+     - The board refreshes without a full page reload.
+
+9. PWA RESET FOR OLD INSTALLATIONS
+   Existing testers should close all Betynz tabs, remove the old installed app,
+   open betynz.com again, refresh once, and reinstall it.
+
+IMPORTANT
+---------
+Do not put SUPABASE_SERVICE_ROLE_KEY, API_FOOTBALL_KEY or ADMIN_SYNC_SECRET in
+runtime-config.js, index.html, GitHub Pages, or any browser file.

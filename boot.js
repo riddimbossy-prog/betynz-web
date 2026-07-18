@@ -1,15 +1,15 @@
 (function(){
   "use strict";
-  const VERSION="5.9.3";
-  const DATA_TIMEOUT=4500;
-  let booted=false;
-  let dataFinished=false;
-  let timedOut=false;
+  const VERSION="6.2.0";
+  const FIRST_PAINT_WAIT_MS=1800;
+  let appStarted=false;
 
   function ensureFallback(){
     if(!Array.isArray(window.MATCHES))window.MATCHES=[];
     if(!Array.isArray(window.BETYNZ_HISTORY))window.BETYNZ_HISTORY=[];
-    if(!window.BETYNZ_META||typeof window.BETYNZ_META!=="object")window.BETYNZ_META={source:"waiting-for-live-sync",isReady:false,fixtureCount:0,qualifiedCount:0};
+    if(!window.BETYNZ_META||typeof window.BETYNZ_META!=="object"){
+      window.BETYNZ_META={version:VERSION,source:"database-loading",isReady:false,fixtureCount:0,qualifiedCount:0};
+    }
     if(typeof window.BETYNZ_READY!=="boolean")window.BETYNZ_READY=false;
     if(typeof window.BETYNZ_DEMO!=="boolean")window.BETYNZ_DEMO=false;
   }
@@ -19,47 +19,42 @@
       const script=document.createElement("script");
       script.src=src;
       script.async=false;
-      script.onload=()=>resolve();
+      script.onload=resolve;
       script.onerror=()=>reject(new Error(`Failed to load ${src}`));
       document.body.appendChild(script);
     });
   }
 
-  async function boot(){
-    if(booted)return;
-    booted=true;
+  async function startApp(){
+    if(appStarted)return;
+    appStarted=true;
     ensureFallback();
-    try{
-      await loadScript(`app.js?v=${VERSION}`);
-      await loadScript(`community-features.js?v=${VERSION}`);
-    }catch(error){
-      console.error("Betynz boot failed",error);
+    try{await loadScript(`app.js?v=${VERSION}`)}
+    catch(error){
+      console.error("Betynz core failed to start",error);
       const status=document.getElementById("system-status");
-      if(status)status.textContent="App files failed to load — refresh once";
+      if(status)status.textContent="App failed to start — refresh once";
     }
   }
 
-  const dataScript=document.createElement("script");
-  dataScript.src=`data.js?v=${VERSION}`;
-  dataScript.async=true;
-  dataScript.onload=()=>{
-    dataFinished=true;
-    if(!timedOut){boot();return;}
-    // The UI was allowed to open after the timeout. Reload once so the completed
-    // verified board becomes the immutable dataset used by app.js.
-    try{
-      const key="betynz-late-data-reload-v593";
-      if(sessionStorage.getItem(key))return;
-      sessionStorage.setItem(key,"1");
-    }catch(_){}
-    location.reload();
-  };
-  dataScript.onerror=()=>{dataFinished=true;boot();};
-  document.body.appendChild(dataScript);
+  ensureFallback();
+  const source=window.BetynzDataSource;
+  const initial=source&&typeof source.loadInitial==="function"
+    ?source.loadInitial()
+    :Promise.reject(new Error("Database data source is missing"));
 
-  setTimeout(()=>{
-    if(dataFinished)return;
-    timedOut=true;
-    boot();
-  },DATA_TIMEOUT);
+  Promise.race([
+    initial.catch(()=>null),
+    new Promise(resolve=>setTimeout(resolve,FIRST_PAINT_WAIT_MS))
+  ]).then(startApp);
+
+  initial.then(()=>{
+    if(!appStarted)return startApp();
+    if(window.BetynzApp&&typeof window.BetynzApp.updateData==="function"){
+      window.BetynzApp.updateData({matches:window.MATCHES,history:window.BETYNZ_HISTORY,meta:window.BETYNZ_META});
+    }
+  }).catch(error=>{
+    console.warn("Betynz database did not answer during startup",error);
+    startApp();
+  });
 }());
