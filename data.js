@@ -1,15 +1,15 @@
 window.BETYNZ_DEMO = false;
-window.BETYNZ_READY = false;
-window.DATA_UPDATED = null;
+window.BETYNZ_READY = true;
+window.DATA_UPDATED = "2026-07-18T21:35:11.296Z";
 window.BETYNZ_META = {
   "product": "Betynz",
   "version": "2.5.0",
   "engineVersion": "2.0.0",
-  "source": "waiting-for-live-sync",
-  "generatedAt": "2026-07-18T20:27:53.948Z",
-  "dataUpdated": null,
+  "source": "API-Football (no fixtures returned)",
+  "generatedAt": "2026-07-18T21:35:11.368Z",
+  "dataUpdated": "2026-07-18T21:35:11.296Z",
   "isDemo": false,
-  "isReady": false,
+  "isReady": true,
   "fixtureCount": 0,
   "qualifiedCount": 0,
   "lockedCount": 0,
