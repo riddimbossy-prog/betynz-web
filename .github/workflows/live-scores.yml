@@ -1,4 +1,4 @@
-name: Refresh Live & Finished Scores and Deploy
+name: Refresh Today's Scores and Deploy
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   refresh:
-    name: Refresh live and finished scores
+    name: Refresh scores
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -31,9 +31,6 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Recover the last verified board before score refresh
-        run: node scripts/ensure-live-data.js --restore-history
-
       - name: Create private score configuration
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
@@ -45,7 +42,7 @@ jobs:
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           SEASON=$(date -u +%Y)
-          DAYS_BACK=2
+          DAYS_BACK=1
           EOF_CONFIG
           cp data.js scripts/data.js
 

@@ -5,12 +5,10 @@
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
   "use strict";
 
-  const VERSION="5.6.0";
-  const REBEL_API=(typeof require==="function"?(()=>{try{return require("./rebel-engine-core.js")}catch(_){return {}}})():typeof globalThis!=="undefined"?globalThis:{});
+  const VERSION="2.0.0";
   const FINISHED=new Set(["FT","AET","PEN","AWD","WO"]);
   const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,Number(v)||0));
-  const n=(v,f=null)=>{if(v===null||v===undefined||v==="")return f;const x=Number(v);return Number.isFinite(x)?x:f};
-  const marketPrice=v=>{if(v===null||v===undefined||v==="")return null;const x=Number(v);return Number.isFinite(x)&&x>1?x:null};
+  const n=(v,f=null)=>{const x=Number(v);return Number.isFinite(x)?x:f};
   const avg=a=>{const x=a.filter(Number.isFinite);return x.length?x.reduce((s,v)=>s+v,0)/x.length:null};
   const round=(v,d=1)=>Number.isFinite(v)?Number(v.toFixed(d)):null;
   const pct=v=>Math.round(clamp(v));
@@ -19,12 +17,12 @@
   const MARKET_ODDS={
     "Home Win":"home","Away Win":"away","Home DNB":"homeDnb","Away DNB":"awayDnb",
     "Double Chance 1X":"dc1x","Double Chance X2":"dcx2","Double Chance 12":"dc12",
-    "Over 1.5 Goals":"over15","Over 2.0 Asian Goals":"over20","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35",
-    "Under 2.5 Goals":"under25","Under 3.0 Asian Goals":"under30","Under 3.5 Goals":"under35","Under 4.5 Goals":"under45",
+    "Over 1.5 Goals":"over15","Over 2.5 Goals":"over25","Over 3.5 Goals":"over35",
+    "Under 2.5 Goals":"under25","Under 3.5 Goals":"under35","Under 4.5 Goals":"under45",
     "BTTS Yes":"bttsYes","BTTS No":"bttsNo",
     "Home Team Over 0.5 Goals":"homeOver05","Away Team Over 0.5 Goals":"awayOver05",
     "Home Team Over 1.5 Goals":"homeOver15","Away Team Over 1.5 Goals":"awayOver15",
-    "First Half Over 0.5":"fhOver05","First Half Over 1.5":"fhOver15","First Half Under 1.5":"fhUnder15",
+    "First Half Over 0.5":"fhOver05","First Half Under 1.5":"fhUnder15",
     "Second Half Over 0.5":"shOver05","Second Half Over 1.5":"shOver15"
   };
 
@@ -50,29 +48,8 @@
   function attack(m,side){return side==="home"?n(m.homeScoredAtHome,null):n(m.awayScoredAway,null)}
   function concede(m,side){return side==="home"?n(m.homeConcededAtHome,null):n(m.awayConcededAway,null)}
   function leagueGPG(m){return n(val(m,"leagueAvg.goalsPerGame"),n(val(m,"leagueTrends.gpg"),null))}
-  function defenceRate(m,side){return side==="home"?n(m.homeConcededAtHome,null):n(m.awayConcededAway,null)}
-  function defenceBand(rate){
-    const x=n(rate,null);
-    if(x==null)return"unknown";
-    if(x<1.00)return"tight";
-    if(x<1.50)return"medium";
-    return"leaky";
-  }
-  function defenceProfile(m){
-    const home=defenceRate(m,"home"),away=defenceRate(m,"away");
-    return{homeRate:home,awayRate:away,homeBand:defenceBand(home),awayBand:defenceBand(away),homeMediumOrLeaky:home!=null&&home>=1.00,awayMediumOrLeaky:away!=null&&away>=1.00,homeLeaky:home!=null&&home>=1.50,awayLeaky:away!=null&&away>=1.50};
-  }
   function odds(m,market){const k=MARKET_ODDS[market],x=k&&m.odds?n(m.odds[k],null):null;return x&&x>1?x:null}
   function implied(o){return o&&o>1?1/o:null}
-  function balancedOneXTwo(m){
-    const o=m&&m.odds||{},home=marketPrice(o.home),away=marketPrice(o.away);
-    if(home==null||away==null||home<=1||away<=1)return{pass:false,home,away,gap:null,favorite:null};
-    const gap=Math.abs(home-away),favorite=Math.min(home,away);
-    // Reuse the established Betynz balance detector: either the two win prices
-    // are almost level, or neither side is priced as a clear favourite.
-    const pass=gap<0.12||favorite>2.25;
-    return{pass,home,away,gap:round(gap,2),favorite};
-  }
   function positionalEdge(m){
     const h=n(m.homePos,null),a=n(m.awayPos,null),size=n(m.tableSize,20);
     return h&&a?clamp((a-h)/Math.max(8,size)*3,-1.2,1.2):0;
@@ -122,149 +99,6 @@
   }
   function no(engine,reason,dq,warnings=[]){return {bet:false,engine,version:VERSION,primary:"No Bet",confidence:0,reasons:[reason],warnings,dataQuality:dq}}
   function qualityGate(m,engine,min=54){const q=dataQuality(m);return q.score<min?no(engine,`Data quality ${q.score}/100 is below this engine's ${min}-point gate.`,q.score,q.missing):null}
-
-  function ppgDirectionAgreement(m){
-    const homeOverall=overallPPG(m,"home"),awayOverall=overallPPG(m,"away");
-    const homeSplit=venuePPG(m,"home"),awaySplit=venuePPG(m,"away");
-    const missing=[];
-    if(homeOverall==null)missing.push("home overall PPG");
-    if(awayOverall==null)missing.push("away overall PPG");
-    if(homeSplit==null)missing.push("home split PPG");
-    if(awaySplit==null)missing.push("away split PPG");
-    const overallGap=missing.length?null:homeOverall-awayOverall;
-    const splitGap=missing.length?null:homeSplit-awaySplit;
-    const direction=x=>x==null||Math.abs(x)<0.005?"level":x>0?"home":"away";
-    const overallDirection=direction(overallGap),splitDirection=direction(splitGap);
-    const pass=!missing.length&&overallDirection!=="level"&&overallDirection===splitDirection;
-    let reason;
-    if(missing.length)reason=`PPG confirmation is incomplete: ${missing.join(", ")} missing.`;
-    else if(overallDirection==="level"||splitDirection==="level")reason=`PPG confirmation is inconclusive: overall ${round(homeOverall,2)}-${round(awayOverall,2)}, split ${round(homeSplit,2)}-${round(awaySplit,2)}.`;
-    else if(overallDirection!==splitDirection)reason=`PPG conflict: overall favours ${overallDirection==="home"?"Home":"Away"} (${round(homeOverall,2)}-${round(awayOverall,2)}), but the home/away split favours ${splitDirection==="home"?"Home":"Away"} (${round(homeSplit,2)}-${round(awaySplit,2)}).`;
-    else reason=`PPG agreement passed: overall and home/away split both favour ${overallDirection==="home"?"Home":"Away"} (${round(homeOverall,2)}-${round(awayOverall,2)} overall; ${round(homeSplit,2)}-${round(awaySplit,2)} split).`;
-    return{pass,direction:pass?overallDirection:null,overallDirection,splitDirection,reason,missing,evidence:{homeOverallPPG:round(homeOverall,2),awayOverallPPG:round(awayOverall,2),homeSplitPPG:round(homeSplit,2),awaySplitPPG:round(awaySplit,2),overallGap:round(overallGap,2),splitGap:round(splitGap,2)}};
-  }
-  function marketDirection(market){
-    const x=String(market||"").trim();
-    if(x==="Double Chance 1X"||/^Home (Win|DNB|Double Chance|Win to Nil)/i.test(x)||/^Home Team Over/i.test(x)||/^(1\/1|X\/1|2\/1)$/i.test(x))return"home";
-    if(x==="Double Chance X2"||/^Away (Win|DNB|Double Chance|Win to Nil)/i.test(x)||/^Away Team Over/i.test(x)||/^(2\/2|X\/2|1\/2)$/i.test(x))return"away";
-    if(/^Home Team Under/i.test(x))return"away";
-    if(/^Away Team Under/i.test(x))return"home";
-    return null;
-  }
-  function applyPPGDirectionGate(m,out){
-    if(!out||!out.bet||!out.primary||String(out.primary).toLowerCase()==="no bet")return out;
-    const gate=ppgDirectionAgreement(m),engine=out.engine||"Engine",dq=out.dataQuality??dataQuality(m).score;
-    if(!gate.pass)return{...no(engine,gate.reason,dq,out.warnings||[]),ppgAgreement:gate};
-    const required=marketDirection(out.primary);
-    if(required&&required!==gate.direction){
-      const label=required==="home"?"Home":"Away";
-      return{...no(engine,`${label}-side market rejected because both overall and split PPG point to ${gate.direction==="home"?"Home":"Away"}.`,dq,[gate.reason,...(out.warnings||[])]),ppgAgreement:gate};
-    }
-    return{...out,reasons:[gate.reason,...(out.reasons||[])].slice(0,4),ppgAgreement:gate};
-  }
-
-  function resultRuleEvidence(m,side){
-    const selectedOverall=overallPPG(m,side),selectedSplit=venuePPG(m,side),opponent=side==="home"?"away":"home",opponentOverall=overallPPG(m,opponent),opponentSplit=venuePPG(m,opponent),defence=defenceProfile(m),opponentDefenceRate=side==="home"?defence.awayRate:defence.homeRate,opponentDefenceBand=side==="home"?defence.awayBand:defence.homeBand,gate=ppgDirectionAgreement(m);
-    const checks={
-      ppgDirectionAgreement:gate.pass&&gate.direction===side,
-      selectedOverallPPG:selectedOverall!=null&&selectedOverall>=2.00,
-      selectedSplitPPG:selectedSplit!=null&&selectedSplit>=2.00,
-      opponentOverallPPG:opponentOverall!=null&&opponentOverall<1.00,
-      opponentSplitPPG:opponentSplit!=null&&opponentSplit<1.00,
-      opponentDefence:opponentDefenceRate!=null&&opponentDefenceRate>=1.00
-    };
-    return{pass:Object.values(checks).every(Boolean),side,checks,gate,selectedOverall,selectedSplit,opponentOverall,opponentSplit,opponentDefenceRate,opponentDefenceBand};
-  }
-
-  function applyResultWinProtection(m,out){
-    if(!out||!out.bet)return out;
-    const market=standardMarket(out.primary),side=market==="Home Win"?"home":market==="Away Win"?"away":null;
-    if(!side)return out;
-    const rule=resultRuleEvidence(m,side);
-    if(rule.pass){
-      return{...out,reasons:[`${side==="home"?"Home":"Away"} clears the 2.00+ PPG versus sub-1.00 PPG win rule; opponent defence is ${rule.opponentDefenceBand} at ${round(rule.opponentDefenceRate,2)} conceded per venue match.`,...(out.reasons||[])].slice(0,4),universalRule:"PPG_2_VS_SUB1_WIN_V1",universalRuleEvidence:rule};
-    }
-    const downgraded=side==="home"?"Home DNB":"Away DNB";
-    const failed=Object.entries(rule.checks).filter(([,v])=>!v).map(([k])=>k).join(", ");
-    return{...out,primary:downgraded,confidence:pct((out.confidence||75)-3),reasons:[`Straight Win protection applied: the full 2.00+ versus sub-1.00 PPG and medium/leaky opponent-defence standard was not complete, so the market was downgraded to ${downgraded}.`,...(out.reasons||[])].slice(0,4),warnings:[`Win-rule checks missing: ${failed}.`,...(out.warnings||[])].slice(0,4),downgradedFrom:market,downgradeLevel:1,universalRule:"WIN_TO_DNB_PROTECTION_V1",universalRuleEvidence:rule};
-  }
-
-  function applyBoardSafetyGates(m,out){return applyResultWinProtection(m,applyPPGDirectionGate(m,out))}
-
-  function universalResultRule(m,predictions={}){
-    const q=dataQuality(m),home=resultRuleEvidence(m,"home"),away=resultRuleEvidence(m,"away"),rule=home.pass?home:away.pass?away:null;
-    if(!rule||q.score<68)return{pass:false,checks:{home:home.checks,away:away.checks,dataQuality:q.score>=68},evidence:{home,away,dataQuality:q.score}};
-    const side=rule.side,market=side==="home"?"Home Win":"Away Win";
-    const supporters=Object.entries(predictions||{}).filter(([id,x])=>id!=="zeus"&&x&&x.bet&&[market,side==="home"?"Home DNB":"Away DNB",side==="home"?"Double Chance 1X":"Double Chance X2"].includes(standardMarket(x.primary))).map(([id])=>id);
-    let confidence=88;if(rule.opponentDefenceBand==="leaky")confidence+=2;if(rule.selectedOverall>=2.20&&rule.selectedSplit>=2.20)confidence+=1;confidence=clamp(confidence,87,92);
-    const grade=confidence>=89&&q.score>=75?"A1":"A2";
-    const reasons=[
-      `${side==="home"?"Home":"Away"} averages ${round(rule.selectedOverall,2)} overall PPG and ${round(rule.selectedSplit,2)} split PPG.`,
-      `The opponent averages ${round(rule.opponentOverall,2)} overall and ${round(rule.opponentSplit,2)} split PPG, both below 1.00.`,
-      `Overall and split PPG agree on ${side==="home"?"Home":"Away"}; opponent defence is ${rule.opponentDefenceBand} at ${round(rule.opponentDefenceRate,2)} conceded per venue match.`
-    ];
-    const output=mk("Zeus",market,confidence,reasons,[],{dataQuality:q.score,grade,engineIds:supporters,ppgAgreement:rule.gate,universalRule:"PPG_2_VS_SUB1_WIN_V1",universalRuleEvidence:rule});
-    return{pass:true,checks:rule.checks,evidence:rule,supporters,output,decision:{market,confidence:output.confidence,grade,engineIds:supporters,reasons,warnings:[],dataQuality:q.score,odds:odds(m,market),ppgAgreement:rule.gate,universalRule:"PPG_2_VS_SUB1_WIN_V1",universalRuleEvidence:rule}};
-  }
-
-  function universalGGRule(m,predictions={}){
-    const homePPG=overallPPG(m,"home"),awayPPG=overallPPG(m,"away"),homeSplitPPG=venuePPG(m,"home"),awaySplitPPG=venuePPG(m,"away"),league=leagueGPG(m),o=m&&m.odds||{},ppgGate=ppgDirectionAgreement(m),defence=defenceProfile(m);
-    const draw=marketPrice(o.draw),gg=marketPrice(o.bttsYes);
-    const checks={
-      ppgDirectionAgreement:ppgGate.pass,
-      homeOverallPPG:homePPG!=null&&homePPG>=1.50,
-      awayOverallPPG:awayPPG!=null&&awayPPG>=1.50,
-      homeSplitPPG:homeSplitPPG!=null&&homeSplitPPG>=1.50,
-      awaySplitPPG:awaySplitPPG!=null&&awaySplitPPG>=1.50,
-      highScoringLeague:league!=null&&league>=2.80,
-      drawPrice:draw!=null&&draw>=3.70,
-      homeDefenceMediumOrLeaky:defence.homeMediumOrLeaky,
-      awayDefenceMediumOrLeaky:defence.awayMediumOrLeaky,
-      ggPriceAvailable:gg!=null
-    };
-    const pass=Object.values(checks).every(Boolean);
-    const supporters=Object.entries(predictions||{}).filter(([id,x])=>id!=="zeus"&&x&&x.bet&&standardMarket(x.primary)==="BTTS Yes").map(([id])=>id);
-    const evidence={homePPG,awayPPG,homeSplitPPG,awaySplitPPG,ppgAgreement:ppgGate,leagueGPG:league,draw,gg,defence};
-    if(!pass)return{pass:false,checks,evidence,supporters};
-    const q=dataQuality(m);let confidence=86;if(homePPG>=1.75&&awayPPG>=1.75&&homeSplitPPG>=1.75&&awaySplitPPG>=1.75)confidence+=1;if(league>=3.00)confidence+=1;if(defence.homeLeaky&&defence.awayLeaky)confidence+=1;confidence+=Math.min(2,supporters.length);confidence=clamp(confidence,84,91);
-    const grade=confidence>=88&&q.score>=72?"A1":"A2";
-    const reasons=[
-      `Both teams meet 1.50 PPG in overall and venue splits (overall ${round(homePPG,2)} / ${round(awayPPG,2)}; split ${round(homeSplitPPG,2)} / ${round(awaySplitPPG,2)}).`,
-      ppgGate.reason,
-      `The league is high-scoring at ${round(league,2)} goals per match and the draw price is ${draw.toFixed(2)}.`,
-      `Both defences are medium-to-leaky: Home ${round(defence.homeRate,2)} (${defence.homeBand}), Away ${round(defence.awayRate,2)} (${defence.awayBand}).`
-    ];
-    const output=mk("Zeus","BTTS Yes",confidence,reasons,[],{dataQuality:q.score,grade,engineIds:supporters,ppgAgreement:ppgGate,universalRule:"GG_PPG_HIGH_SCORING_DEFENCE_V3",universalRuleEvidence:evidence});
-    return{pass:true,checks,evidence,supporters,output,decision:{market:"BTTS Yes",confidence:output.confidence,grade,engineIds:supporters,reasons,warnings:[],dataQuality:q.score,odds:gg,ppgAgreement:ppgGate,universalRule:"GG_PPG_HIGH_SCORING_DEFENCE_V3",universalRuleEvidence:evidence}};
-  }
-
-  function universalLowPPGUnderRule(m,predictions={}){
-    const homePPG=overallPPG(m,"home"),awayPPG=overallPPG(m,"away"),homeSplitPPG=venuePPG(m,"home"),awaySplitPPG=venuePPG(m,"away"),league=leagueGPG(m),o=m&&m.odds||{},draw=marketPrice(o.draw),ppgGate=ppgDirectionAgreement(m),defence=defenceProfile(m);
-    const baseChecks={
-      ppgDirectionAgreement:ppgGate.pass,
-      homeOverallBelowOne:homePPG!=null&&homePPG<1.00,
-      awayOverallBelowOne:awayPPG!=null&&awayPPG<1.00,
-      homeSplitBelowOne:homeSplitPPG!=null&&homeSplitPPG<1.00,
-      awaySplitBelowOne:awaySplitPPG!=null&&awaySplitPPG<1.00,
-      mediumOrLowLeague:league!=null&&league<=2.79,
-      drawPrice:draw!=null&&draw<=3.00,
-      defenceData:defence.homeRate!=null&&defence.awayRate!=null
-    };
-    if(!Object.values(baseChecks).every(Boolean))return{pass:false,checks:baseChecks,evidence:{homePPG,awayPPG,homeSplitPPG,awaySplitPPG,league,draw,ppgGate,defence}};
-    const anyLeaky=defence.homeLeaky||defence.awayLeaky,market=anyLeaky?"Under 3.5 Goals":"Under 2.5 Goals",price=odds(m,market);
-    const checks={...baseChecks,selectedMarketPrice:price!=null};
-    if(!price)return{pass:false,checks,evidence:{homePPG,awayPPG,homeSplitPPG,awaySplitPPG,league,draw,ppgGate,defence,market}};
-    const supporters=Object.entries(predictions||{}).filter(([id,x])=>id!=="zeus"&&x&&x.bet&&standardMarket(x.primary)===market).map(([id])=>id),q=dataQuality(m);
-    let confidence=market==="Under 2.5 Goals"?86:83;if(league<=2.45)confidence+=1;if(!anyLeaky&&defence.homeBand==="tight"&&defence.awayBand==="tight")confidence+=1;confidence+=Math.min(2,supporters.length);confidence=clamp(confidence,82,90);
-    const grade=confidence>=88&&q.score>=72?"A1":"A2";
-    const reasons=[
-      `Both teams are below 1.00 PPG in overall and split samples (overall ${round(homePPG,2)} / ${round(awayPPG,2)}; split ${round(homeSplitPPG,2)} / ${round(awaySplitPPG,2)}).`,
-      `League scoring is ${round(league,2)} goals per match and draw odds are controlled at ${draw.toFixed(2)}.`,
-      anyLeaky?`At least one defence is leaky, so the safer line is Under 3.5 (Home ${round(defence.homeRate,2)}, Away ${round(defence.awayRate,2)}).`:`Neither defence is leaky, so Under 2.5 is retained (Home ${round(defence.homeRate,2)}, Away ${round(defence.awayRate,2)}).`
-    ];
-    const output=mk("Zeus",market,confidence,reasons,[],{dataQuality:q.score,grade,engineIds:supporters,ppgAgreement:ppgGate,universalRule:"LOW_PPG_MEDIUM_LOW_LEAGUE_UNDER_V1",universalRuleEvidence:{homePPG,awayPPG,homeSplitPPG,awaySplitPPG,league,draw,defence,market}});
-    return{pass:true,checks,evidence:output.universalRuleEvidence,supporters,output,decision:{market,confidence:output.confidence,grade,engineIds:supporters,reasons,warnings:[],dataQuality:q.score,odds:price,ppgAgreement:ppgGate,universalRule:"LOW_PPG_MEDIUM_LOW_LEAGUE_UNDER_V1",universalRuleEvidence:output.universalRuleEvidence}};
-  }
 
   function saferResult(m,b,engine,strict=0){
     const side=b.edge>=0?"home":"away",e=Math.abs(b.edge),att=side==="home"?b.ha:b.aa,oppAtt=side==="home"?b.aa:b.ha,oppDef=side==="home"?b.ad:b.hd;
@@ -434,27 +268,17 @@
     r.confidence=pct(r.confidence+3);r.reasons.unshift("Nike requires strong evidence plus an attack-to-conversion check.");return r;
   }
 
-  function spartacusRecommend(m){
-    if(typeof REBEL_API.spartacusRecommend!=="function")return no("Spartacus","The rebel movement module is unavailable.",dataQuality(m).score);
-    try{return REBEL_API.spartacusRecommend(m)}catch(_){return no("Spartacus","The rebel movement input could not be evaluated safely.",dataQuality(m).score)}
-  }
-  function leonidasRecommend(m){
-    if(typeof REBEL_API.leonidasRecommend!=="function")return no("Leonidas","The rebel movement module is unavailable.",dataQuality(m).score);
-    try{return REBEL_API.leonidasRecommend(m)}catch(_){return no("Leonidas","The rebel movement input could not be evaluated safely.",dataQuality(m).score)}
-  }
-
   const SPECIALISTS={
     prometheus:prometheusRecommend,athena:athenaRecommend,apollo:apolloRecommend,ares:aresRecommend,
     poseidon:poseidonRecommend,hermes:hermesRecommend,hera:heraRecommend,artemis:artemisRecommend,
     hephaestus:hephaestusRecommend,demeter:demeterRecommend,dionysus:dionysusRecommend,hades:hadesRecommend,
-    atlas:atlasRecommend,orion:orionRecommend,nike:nikeRecommend,spartacus:spartacusRecommend,leonidas:leonidasRecommend
+    atlas:atlasRecommend,orion:orionRecommend,nike:nikeRecommend
   };
-  const REBEL_IDS=new Set(["spartacus","leonidas"]);
-  const AUTH={athena:1.35,apollo:1.15,ares:1.1,poseidon:1.05,hermes:.65,hera:1.25,artemis:1.1,hephaestus:1.2,demeter:.95,dionysus:.9,hades:1.15,atlas:1.25,orion:1.25,nike:1.35,prometheus:.8,spartacus:.75,leonidas:1.05};
+  const AUTH={athena:1.35,apollo:1.15,ares:1.1,poseidon:1.05,hermes:.65,hera:1.25,artemis:1.1,hephaestus:1.2,demeter:.95,dionysus:.9,hades:1.15,atlas:1.25,orion:1.25,nike:1.35,prometheus:.8};
   function opposite(a,b){a=String(a);b=String(b);return (a.includes("Over 2.5")&&b.includes("Under 2.5"))||(a.includes("Under 2.5")&&b.includes("Over 2.5"))||(a==="BTTS Yes"&&b==="BTTS No")||(a==="BTTS No"&&b==="BTTS Yes")||(a==="Home Win"&&/^Away/.test(b))||(a==="Away Win"&&/^Home/.test(b));}
   function zeusRecommend(m){
     const engine="Zeus",q=dataQuality(m);if(q.score<68)return no(engine,`Data quality ${q.score}/100 is below Zeus's release gate.`,q.score,q.missing);
-    const outputs=Object.entries(SPECIALISTS).map(([id,fn])=>({id,...applyBoardSafetyGates(m,fn(m))})).filter(x=>x.bet&&x.primary!=="No Bet");
+    const outputs=Object.entries(SPECIALISTS).map(([id,fn])=>({id,...fn(m)})).filter(x=>x.bet&&x.primary!=="No Bet");
     if(outputs.length<2)return no(engine,"Fewer than two specialist engines produced a qualified candidate.",q.score);
     const groups={};for(const o of outputs){const k=o.primary;(groups[k]??={market:k,items:[],support:0}).items.push(o);groups[k].support+=(AUTH[o.id]||1)*clamp((o.confidence-68)/22,.15,1.4)}
     const ranked=Object.values(groups).sort((a,b)=>b.support-a.support||b.items.length-a.items.length);
@@ -464,13 +288,10 @@
     const authority=best.items.reduce((s,x)=>s+(AUTH[x.id]||1),0),avgConf=avg(best.items.map(x=>x.confidence))||0;
     const lead=best.support-(second?second.support:0);
     if(best.items.length<2||best.support<1.75||lead<0.35)return no(engine,"Consensus lead is too small to publish a final market.",q.score,[`Best support ${round(best.support,2)}, lead ${round(lead,2)}.`]);
-    const olympianItems=best.items.filter(x=>!REBEL_IDS.has(x.id));
-    const rebelItems=best.items.filter(x=>REBEL_IDS.has(x.id));
-    if(!olympianItems.length)return no(engine,"Rebel movement agrees internally, but no Olympian specialist confirms the market.",q.score,["Leonidas and Spartacus can challenge or confirm the board; they cannot publish alone."]);
     let confidence=clamp(avgConf+best.items.length*1.3+authority*.8,0,93);
     let grade="WATCH";
-    if(confidence>=88&&best.items.length>=3&&olympianItems.length>=2&&lead>=0.75)grade="A1";
-    else if(confidence>=82&&best.items.length>=2&&olympianItems.length>=1&&lead>=0.35)grade="A2";
+    if(confidence>=88&&best.items.length>=3&&lead>=0.75)grade="A1";
+    else if(confidence>=82&&best.items.length>=2&&lead>=0.35)grade="A2";
     else if(confidence<76)return no(engine,"Consensus score is below the public watchlist threshold.",q.score);
 
     // A public banker must be backed by independent deep evidence, not only the
@@ -491,32 +312,26 @@
     if(grade==="A1"&&(evidenceCount<3||!deepTagged)){grade="A2";confidence=Math.min(confidence,87);warnings.push("A1 downgraded because fewer than three independent deep-evidence pillars were available.");}
     if(grade==="A2"&&(evidenceCount<2||!deepTagged)){grade="WATCH";confidence=Math.min(confidence,81);warnings.push("Public release withheld until at least two deep-evidence pillars confirm the market.");}
 
-    const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100; deep evidence: ${evidenceCount}/7.${rebelItems.length?` Rebel confirmation: ${rebelItems.map(x=>x.id==="leonidas"?"Leonidas":"Spartacus").join(" + ")}.`:""}`];
-    const ppgAgreement=ppgDirectionAgreement(m);
-    return applyBoardSafetyGates(m,mk(engine,best.market,confidence,reasons,warnings,{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs,evidence,evidenceCount,ppgAgreement}));
+    const reasons=[`${best.items.length} specialist engines agree on ${best.market}.`,`Weighted support ${round(best.support,2)} leads the next market by ${round(lead,2)}.`,`Data quality: ${q.score}/100; deep evidence: ${evidenceCount}/7.`];
+    return mk(engine,best.market,confidence,reasons,warnings,{dataQuality:q.score,grade,support:round(best.support,2),lead:round(lead,2),engineIds:best.items.map(x=>x.id),specialists:outputs,evidence,evidenceCount});
   }
 
   function evaluateMatch(m){
-    const predictions={};for(const [id,fn] of Object.entries(SPECIALISTS))predictions[id]=applyBoardSafetyGates(m,fn(m));
+    const predictions={};for(const [id,fn] of Object.entries(SPECIALISTS))predictions[id]=fn(m);
     const zeus=zeusRecommend(m);predictions.zeus=zeus;
-    const automatic=[universalResultRule(m,predictions),universalGGRule(m,predictions),universalLowPPGUnderRule(m,predictions)].find(x=>x.pass);
-    if(automatic){predictions.zeus=automatic.output;return{predictions,decision:automatic.decision,rejection:null};}
-    return {predictions,decision:zeus.bet?{market:zeus.primary,confidence:zeus.confidence,grade:zeus.grade||"WATCH",engineIds:zeus.engineIds||[],reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,odds:odds(m,zeus.primary),ppgAgreement:zeus.ppgAgreement||ppgDirectionAgreement(m),universalRule:zeus.universalRule||null,universalRuleEvidence:zeus.universalRuleEvidence||null}:null,rejection:zeus.bet?null:{reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,ppgAgreement:zeus.ppgAgreement||ppgDirectionAgreement(m)}};
+    return {predictions,decision:zeus.bet?{market:zeus.primary,confidence:zeus.confidence,grade:zeus.grade||"WATCH",engineIds:zeus.engineIds||[],reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality,odds:odds(m,zeus.primary)}:null,rejection:zeus.bet?null:{reasons:zeus.reasons,warnings:zeus.warnings||[],dataQuality:zeus.dataQuality}};
   }
   function evaluateAll(matches){return (matches||[]).map(m=>({match:m,...evaluateMatch(m)}));}
 
-  return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,universalResultRule,universalGGRule,universalLowPPGUnderRule,balancedOneXTwo,defenceProfile,ppgDirectionAgreement,applyPPGDirectionGate,applyResultWinProtection,applyBoardSafetyGates,zeusRecommend,
-    prometheusRecommend:m=>applyBoardSafetyGates(m,prometheusRecommend(m)),athenaRecommend:m=>applyBoardSafetyGates(m,athenaRecommend(m)),apolloRecommend:m=>applyBoardSafetyGates(m,apolloRecommend(m)),aresRecommend:m=>applyBoardSafetyGates(m,aresRecommend(m)),poseidonRecommend:m=>applyBoardSafetyGates(m,poseidonRecommend(m)),hermesRecommend:m=>applyBoardSafetyGates(m,hermesRecommend(m)),
-    heraRecommend:m=>applyBoardSafetyGates(m,heraRecommend(m)),artemisRecommend:m=>applyBoardSafetyGates(m,artemisRecommend(m)),hephaestusRecommend:m=>applyBoardSafetyGates(m,hephaestusRecommend(m)),demeterRecommend:m=>applyBoardSafetyGates(m,demeterRecommend(m)),dionysusRecommend:m=>applyBoardSafetyGates(m,dionysusRecommend(m)),hadesRecommend:m=>applyBoardSafetyGates(m,hadesRecommend(m)),
-    atlasRecommend:m=>applyBoardSafetyGates(m,atlasRecommend(m)),orionRecommend:m=>applyBoardSafetyGates(m,orionRecommend(m)),nikeRecommend:m=>applyBoardSafetyGates(m,nikeRecommend(m)),spartacusRecommend:m=>applyBoardSafetyGates(m,spartacusRecommend(m)),leonidasRecommend:m=>applyBoardSafetyGates(m,leonidasRecommend(m)),settleMarket:function(market,h,a){
+  return {VERSION,MARKET_ODDS,dataQuality,evaluateMatch,evaluateAll,zeusRecommend,
+    prometheusRecommend,athenaRecommend,apolloRecommend,aresRecommend,poseidonRecommend,hermesRecommend,
+    heraRecommend,artemisRecommend,hephaestusRecommend,demeterRecommend,dionysusRecommend,hadesRecommend,
+    atlasRecommend,orionRecommend,nikeRecommend,settleMarket:function(market,h,a){
       h=n(h,null);a=n(a,null);if(h==null||a==null)return"Pending";const t=h+a,m=String(market||"");
       if(m==="Home Win")return h>a?"Won":"Lost";if(m==="Away Win")return a>h?"Won":"Lost";
       if(m==="Home DNB")return h===a?"Void":h>a?"Won":"Lost";if(m==="Away DNB")return h===a?"Void":a>h?"Won":"Lost";
       if(m==="Double Chance 1X")return h>=a?"Won":"Lost";if(m==="Double Chance X2")return a>=h?"Won":"Lost";
-      if(m==="Double Chance 12")return h!==a?"Won":"Lost";
-      if(m.includes("Over 2.0 Asian"))return t>2?"Won":t===2?"Void":"Lost";
-      if(m.includes("Under 3.0 Asian"))return t<3?"Won":t===3?"Void":"Lost";
-      if(m.includes("Over 1.5")&&!m.includes("Team"))return t>=2?"Won":"Lost";
+      if(m==="Double Chance 12")return h!==a?"Won":"Lost";if(m.includes("Over 1.5")&&!m.includes("Team"))return t>=2?"Won":"Lost";
       if(m.includes("Over 2.5"))return t>=3?"Won":"Lost";if(m.includes("Over 3.5"))return t>=4?"Won":"Lost";
       if(m.includes("Under 2.5"))return t<=2?"Won":"Lost";if(m.includes("Under 3.5"))return t<=3?"Won":"Lost";if(m.includes("Under 4.5"))return t<=4?"Won":"Lost";
       if(m==="BTTS Yes")return h>0&&a>0?"Won":"Lost";if(m==="BTTS No")return !(h>0&&a>0)?"Won":"Lost";

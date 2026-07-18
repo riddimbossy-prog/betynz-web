@@ -1,18 +1,6 @@
 name: Smart Global Coverage and Deep Enrichment
 
 on:
-  workflow_call:
-    secrets:
-      API_FOOTBALL_KEY:
-        required: true
-      STATS_API_KEY:
-        required: false
-      ODDS_API_KEY:
-        required: false
-      DAYS_FWD:
-        required: false
-      DAYS_BACK:
-        required: false
   workflow_dispatch:
   schedule:
     - cron: "17 */4 * * *"
@@ -30,19 +18,12 @@ env:
   DEEP_MAX_LEAGUES: ${{ vars.DEEP_MAX_LEAGUES || '18' }}
   DEEP_MAX_MATCHES: ${{ vars.DEEP_MAX_MATCHES || '48' }}
   TSA_MAX_MATCHES: ${{ vars.TSA_MAX_MATCHES || '24' }}
-  REBEL_ODDS_MAX_MATCHES: ${{ vars.REBEL_ODDS_MAX_MATCHES || '48' }}
 
 jobs:
   refresh:
     name: Cover every league, then deepen the best candidates
     runs-on: ubuntu-latest
     timeout-minutes: 55
-    env:
-      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-      STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
-      ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-      CONFIG_DAYS_FWD: ${{ secrets.DAYS_FWD }}
-      CONFIG_DAYS_BACK: ${{ secrets.DAYS_BACK }}
 
     steps:
       - name: Checkout repository
@@ -55,47 +36,27 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Reject demo data and recover the last verified board before refreshing
-        run: node scripts/ensure-live-data.js --restore-history
-
       - name: Validate API secrets
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
         run: |
           if [ -z "$API_FOOTBALL_KEY" ]; then
             echo "API_FOOTBALL_KEY is missing."
             exit 1
           fi
 
-      - name: Normalize API credentials
-        shell: bash
+      - name: Create global coverage configuration
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
         run: |
-          CLEAN_API_FOOTBALL_KEY="$(printf '%s' "$API_FOOTBALL_KEY" | tr -d '\r\n')"
-          CLEAN_STATS_API_KEY="$(printf '%s' "$STATS_API_KEY" | tr -d '\r\n')"
-          CLEAN_ODDS_API_KEY="$(printf '%s' "$ODDS_API_KEY" | tr -d '\r\n')"
-          if [ -z "$CLEAN_API_FOOTBALL_KEY" ]; then
-            echo "API_FOOTBALL_KEY is empty after normalization."
-            exit 1
-          fi
-          echo "::add-mask::$CLEAN_API_FOOTBALL_KEY"
-          if [ -n "$CLEAN_STATS_API_KEY" ]; then echo "::add-mask::$CLEAN_STATS_API_KEY"; fi
-          if [ -n "$CLEAN_ODDS_API_KEY" ]; then echo "::add-mask::$CLEAN_ODDS_API_KEY"; fi
-          printf 'API_FOOTBALL_KEY=%s\n' "$CLEAN_API_FOOTBALL_KEY" >> "$GITHUB_ENV"
-          printf 'STATS_API_KEY=%s\n' "$CLEAN_STATS_API_KEY" >> "$GITHUB_ENV"
-          printf 'ODDS_API_KEY=%s\n' "$CLEAN_ODDS_API_KEY" >> "$GITHUB_ENV"
-
-      - name: Create yesterday plus six-day global coverage configuration
-        run: |
-          DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
-          DAYS_BACK_SAFE="${CONFIG_DAYS_BACK:-1}"
-          if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
-          if ! [[ "$DAYS_BACK_SAFE" =~ ^[0-9]+$ ]] || [ "$DAYS_BACK_SAFE" -lt 1 ]; then DAYS_BACK_SAFE=1; fi
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
-          ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
-          TODAY_ONLY=false
-          DAYS_BACK=${DAYS_BACK_SAFE}
-          DAYS_FWD=${DAYS_FWD_SAFE}
+          TODAY_ONLY=true
+          DAYS_BACK=0
+          DAYS_FWD=0
           LEAGUES=ALL
           MAX_LEAGUES=0
           REQUEST_BUDGET=2500
@@ -107,7 +68,7 @@ jobs:
           EOF_CONFIG
           cp data.js scripts/data.js
 
-      - name: Discover every league from yesterday through the next six days
+      - name: Discover every league playing today
         working-directory: scripts
         run: node fetch-data.js
 
@@ -117,13 +78,12 @@ jobs:
       - name: Build adaptive enrichment plan
         run: node scripts/select-enrichment-plan.js
 
-      - name: Create yesterday plus six-day deep-pass configuration
+      - name: Create deep-pass configuration
         id: deep_config
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          STATS_API_KEY: ${{ secrets.STATS_API_KEY }}
         run: |
-          DAYS_FWD_SAFE="${CONFIG_DAYS_FWD:-6}"
-          DAYS_BACK_SAFE="${CONFIG_DAYS_BACK:-1}"
-          if ! [[ "$DAYS_FWD_SAFE" =~ ^[0-9]+$ ]]; then DAYS_FWD_SAFE=6; fi
-          if ! [[ "$DAYS_BACK_SAFE" =~ ^[0-9]+$ ]] || [ "$DAYS_BACK_SAFE" -lt 1 ]; then DAYS_BACK_SAFE=1; fi
           LEAGUES=$(node -e "const p=require('./scripts/enrichment-plan.json');process.stdout.write((p.selected.leagueIds||[]).join(','))")
           COUNT=$(node -e "const p=require('./scripts/enrichment-plan.json');process.stdout.write(String((p.selected.leagueIds||[]).length))")
           if [ -z "$LEAGUES" ]; then
@@ -134,11 +94,10 @@ jobs:
           cat > scripts/config.txt <<EOF_CONFIG
           API_KEY=${API_FOOTBALL_KEY}
           STATS_API_KEY=${STATS_API_KEY}
-          ODDS_API_KEY=${ODDS_API_KEY}
           SEASON=$(date -u +%Y)
-          TODAY_ONLY=false
-          DAYS_BACK=${DAYS_BACK_SAFE}
-          DAYS_FWD=${DAYS_FWD_SAFE}
+          TODAY_ONLY=true
+          DAYS_BACK=0
+          DAYS_FWD=0
           LEAGUES=${LEAGUES}
           MAX_LEAGUES=${COUNT}
           MAX_PROBES=${COUNT}
@@ -167,26 +126,19 @@ jobs:
         run: cp data.js scripts/data.js
 
       - name: Add priority xG, market movement and near-kickoff lineups
-        if: env.STATS_API_KEY != ''
+        if: ${{ secrets.STATS_API_KEY != '' }}
+        env:
+          TSA_MAX_MATCHES: ${{ env.TSA_MAX_MATCHES }}
         working-directory: scripts
         run: node enrich-xg.js
-
-      - name: Capture persistent multi-book movement for Leonidas and Spartacus
-        working-directory: scripts
-        env:
-          REBEL_ODDS_MAX_MATCHES: ${{ env.REBEL_ODDS_MAX_MATCHES }}
-        run: node enrich-rebel-odds.js
 
       - name: Promote final enriched board
         run: cp scripts/data.js data.js
 
-      - name: Require a verified non-empty live board
-        run: node scripts/ensure-live-data.js --require-live
-
       - name: Build Olympian prediction snapshot
         run: node scripts/build-snapshot.js
 
-      - name: Verify six-day coverage and deep evidence
+      - name: Verify global coverage and deep evidence
         run: |
           node <<'NODE'
           const fs = require('fs');
@@ -196,28 +148,17 @@ jobs:
           vm.runInContext(fs.readFileSync('data.js', 'utf8'), context);
           if (context.window.BETYNZ_DEMO === true) throw new Error('Generated board is still demo data.');
           const matches = Array.isArray(context.window.MATCHES) ? context.window.MATCHES : [];
-          const byDate = new Map();
-          for (const match of matches) {
-            const date = String(match.matchDate || match.kickoff || '').slice(0, 10) || 'Undated';
-            if (!byDate.has(date)) byDate.set(date, []);
-            byDate.get(date).push(match);
-          }
-          const dates = [...byDate.keys()].sort();
-          const leagues = new Set(matches.map(m => String(m.leagueId ?? m.league)).filter(Boolean));
-          const deep = matches.filter(m => m.enrichmentTier === 'deep');
+          const today = new Date().toISOString().slice(0, 10);
+          const todays = matches.filter(m => m.matchDate === today);
+          const leagues = new Set(todays.map(m => String(m.leagueId ?? m.league)).filter(Boolean));
+          const deep = todays.filter(m => m.enrichmentTier === 'deep');
           const stats = deep.filter(m => m.statsReal);
           const trends = deep.filter(m => m.leagueTrends && m.leagueTrends.sample);
           const h2h = deep.filter(m => m.h2h && m.h2h.played);
-          const xg = matches.filter(m => m.xgReal);
-          const spartacusReady = matches.filter(m => Number(m.rebelOddsCoverage && (m.rebelOddsCoverage.eligibleBookmakers ?? m.rebelOddsCoverage.bookmakers) || 0) >= 3).length;
-          const leonidasReady = matches.filter(m => Number(m.rebelOddsCoverage && (m.rebelOddsCoverage.eligibleBookmakers ?? m.rebelOddsCoverage.bookmakers) || 0) >= 5).length;
-          const rebelMoving = matches.filter(m => Number(m.rebelOddsCoverage && m.rebelOddsCoverage.movingBookmakers || 0) >= 3).length;
-          console.log(`Coverage: ${matches.length} fixtures across ${leagues.size} leagues and ${dates.length} active date(s).`);
-          for (const date of dates) console.log(`  ${date}: ${byDate.get(date).length} fixtures`);
+          const xg = todays.filter(m => m.xgReal);
+          console.log(`Coverage: ${todays.length} fixtures across ${leagues.size} leagues.`);
           console.log(`Deep evidence: ${deep.length} fixtures; stats=${stats.length}, trends=${trends.length}, h2h=${h2h.length}, xG=${xg.length}.`);
-          console.log(`Rebel odds: Spartacus-ready=${spartacusReady}, Leonidas-ready=${leonidasReady}, active movement=${rebelMoving}.`);
-          if (!matches.length) console.log('No fixtures were returned for the requested date window; publishing an honest empty board.');
-          if (dates.length === 1) console.log('Warning: only one active fixture date was returned by the API inside the requested window.');
+          if (!todays.length) console.log('No fixtures are scheduled today; publishing an honest empty board.');
           NODE
 
       - name: Validate generated product
@@ -236,82 +177,28 @@ jobs:
 
       - name: Archive generated public data
         continue-on-error: true
-        shell: bash
         run: |
-          set -u
           rm -f scripts/config.txt
-
-          ARCHIVE_DIR="$(mktemp -d)"
-          trap 'rm -rf "$ARCHIVE_DIR"' EXIT
-
-          copy_generated_file() {
-            local file="$1"
-            if [ -f "$file" ]; then
-              mkdir -p "$ARCHIVE_DIR/$(dirname "$file")"
-              cp -p "$file" "$ARCHIVE_DIR/$file"
-            fi
-          }
-
-          copy_generated_file data.js
-          copy_generated_file api-status.json
-          copy_generated_file prediction-locks.json
-          copy_generated_file results-history.json
-          copy_generated_file engine-audit.json
-          copy_generated_file daily-audit-report.json
-          copy_generated_file scripts/data.js
-
-          while IFS= read -r file; do
-            copy_generated_file "$file"
-          done < <(find scripts -maxdepth 1 -type f -name '*.json' -print)
-
+          if git ls-files --error-unmatch scripts/config.txt >/dev/null 2>&1; then
+            git restore --staged --worktree scripts/config.txt || true
+          fi
           git config user.name "Betynz Data Bot"
           git config user.email "actions@users.noreply.github.com"
-
+          git add -A -- data.js api-status.json prediction-locks.json results-history.json scripts/data.js scripts/*.json
+          if git diff --cached --quiet; then
+            echo "No public data changes to archive."
+            exit 0
+          fi
+          git commit -m "Refresh Betynz adaptive live board"
           for attempt in 1 2 3; do
-            echo "Archive attempt ${attempt}/3"
-
             git fetch origin main
-            git reset --hard origin/main
-            rm -f scripts/config.txt
-
-            cp -a "$ARCHIVE_DIR/." .
-
-            add_generated_file() {
-              local file="$1"
-              if [ -f "$file" ]; then
-                git add -- "$file"
-              fi
-            }
-
-            add_generated_file data.js
-            add_generated_file api-status.json
-            add_generated_file prediction-locks.json
-            add_generated_file results-history.json
-            add_generated_file engine-audit.json
-            add_generated_file daily-audit-report.json
-            add_generated_file scripts/data.js
-
-            while IFS= read -r file; do
-              add_generated_file "$file"
-            done < <(find scripts -maxdepth 1 -type f -name '*.json' -print)
-
-            if git diff --cached --quiet; then
-              echo "No public data changes to archive."
+            if git rebase origin/main && git push origin HEAD:main; then
               exit 0
             fi
-
-            git commit -m "Refresh Betynz adaptive live board"
-
-            if git push origin HEAD:main; then
-              echo "Generated public data archived successfully."
-              exit 0
-            fi
-
-            echo "Push attempt ${attempt} failed; retrying against the latest main branch."
+            git rebase --abort || true
             sleep $((attempt * 3))
           done
-
-          echo "Archive push failed after three attempts; the Pages artifact is already ready for deployment."
+          echo "Archive push failed; the Pages artifact is already ready for deployment."
           exit 1
 
       - name: Remove private runtime configuration

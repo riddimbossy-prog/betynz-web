@@ -1,26 +1,31 @@
-# Betynz Core v6.0
+# Betynz Multi-Engine Build Package v1
 
-A lightweight GitHub Pages football-analysis app with 16 Olympian engines, Spartacus, Leonidas, Zeus consensus, live scores, settlement and transparent match explanations.
+This package contains the complete implementation blueprint for integrating four independent football prediction engines into Betynz:
 
-## Public pages
+1. Control Edge Engine v1.0
+2. League Signal Matrix Engine v2.0
+3. Market Flow Engine v2.0
+4. Goal Compression Engine v1.0
 
-- Dashboard
-- Match Board
-- Olympian and Rebel Engines
-- Bankers
-- Results
-- Methodology
-- Responsible Play
+A fifth component, the Betynz Decision Core, combines the engine outputs and publishes one final market or No Bet.
 
-## Startup architecture
+## Package contents
 
-`nav-core.js` makes desktop, mobile, Z Fold and tablet navigation responsive immediately. `boot.js` loads the verified board and starts the full app. The service worker returns the last verified `data.js` quickly and refreshes it in the background.
+- `docs/Betynz_Multi_Engine_Master_Spec.md` — complete build and integration specification
+- `docs/Implementation_Checklist.md` — staged implementation checklist
+- `schemas/normalized-match.ts` — normalized fixture and statistics interfaces
+- `schemas/engine-result.ts` — common engine-result and final-prediction contracts
+- `config/engine-weights.json` — starter Decision Core weights
+- `config/league-profile-example.json` — example league-market signal record
+- `config/no-bet-reasons.json` — standardized rejection codes
+- `pseudocode/prediction-runner.ts` — top-level orchestration example
+- `pseudocode/decision-core.ts` — candidate aggregation and release-gate example
+- `tests/Test_Plan.md` — required calculation, boundary, conflict, settlement and UI tests
 
-## Workflows
+## Critical rules
 
-- **Deploy Betynz Product** — code deployment and self-healing live-board check
-- **Smart Global Coverage and Deep Enrichment** — fixtures, evidence, odds and predictions
-- **Refresh Live & Finished Scores and Deploy** — scores and settlement
-- **Refresh Priority Evidence** — xG and Rebel odds refresh
-
-Never place API keys in public files. Keep keys in GitHub Actions secrets.
+- One fixture produces one final market or No Bet.
+- No engine publishes directly to the public board.
+- Missing mandatory data means No Bet.
+- League patterns propose; odds activate; team statistics confirm; compression protects.
+- Historical predictions must retain the input snapshot and exact engine versions used.

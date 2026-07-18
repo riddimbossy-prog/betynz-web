@@ -826,102 +826,73 @@ const FINISHED = new Set(["FT","AET","PEN"]);
     const cacheKey = `${leagueId}|${seasonForStandings}|${date}`;
     if (oddsCache[cacheKey]) return oddsCache[cacheKey];
     const oddsByFixture = {};
-
-    const numberOdd = value => {
-      const n = Number(value);
-      return Number.isFinite(n) && n > 1 ? n : null;
-    };
-    const findBet = (bets, re) => (bets || []).find(b => re.test(b && b.name || ""));
-    const pickValue = (bet, re) => {
-      if (!bet || !Array.isArray(bet.values)) return null;
-      const row = bet.values.find(x => re.test(String(x && x.value || "")));
-      return row ? numberOdd(row.odd) : null;
-    };
-    const parseBook = bk => {
-      const bets = Array.isArray(bk && bk.bets) ? bk.bets : [];
-      global.__betNames = global.__betNames || new Set();
-      bets.forEach(b => { if (b && b.name) global.__betNames.add(b.name); });
-      const vals = {};
-      const add = (key, value) => { if (value != null) vals[key] = value; };
-
-      const mw = findBet(bets, /match winner|1x2|full time result/i);
-      add("home", pickValue(mw, /^(home|1)$/i));
-      add("draw", pickValue(mw, /^(draw|x)$/i));
-      add("away", pickValue(mw, /^(away|2)$/i));
-
-      const ou = findBet(bets, /goals over\/under|over\/under|total goals/i);
-      add("over15", pickValue(ou, /over 1\.5/i)); add("under15", pickValue(ou, /under 1\.5/i));
-      add("over20", pickValue(ou, /^over 2(?:\.0)?$/i));
-      add("over25", pickValue(ou, /over 2\.5/i)); add("under25", pickValue(ou, /under 2\.5/i));
-      add("under30", pickValue(ou, /^under 3(?:\.0)?$/i));
-      add("over35", pickValue(ou, /over 3\.5/i)); add("under35", pickValue(ou, /under 3\.5/i));
-
-      const homeTotals = findBet(bets, /(?:home|team 1).*(?:team )?(?:total|over\/under)|(?:team )?(?:total|over\/under).*(?:home|team 1)/i);
-      add("homeOver15", pickValue(homeTotals, /over 1\.5/i)); add("homeOver25", pickValue(homeTotals, /over 2\.5/i));
-      const awayTotals = findBet(bets, /(?:away|team 2).*(?:team )?(?:total|over\/under)|(?:team )?(?:total|over\/under).*(?:away|team 2)/i);
-      add("awayOver15", pickValue(awayTotals, /over 1\.5/i)); add("awayOver25", pickValue(awayTotals, /over 2\.5/i));
-
-      const btts = findBet(bets, /both teams (to )?score|btts/i);
-      add("bttsYes", pickValue(btts, /^yes/i)); add("bttsNo", pickValue(btts, /^no/i));
-
-      const dc = findBet(bets, /double chance/i);
-      add("dc1x", pickValue(dc, /home\/draw|1x|^1\/x/i));
-      add("dc12", pickValue(dc, /home\/away|12|^1\/2/i));
-      add("dcx2", pickValue(dc, /draw\/away|x2|^x\/2/i));
-
-      const dnb = findBet(bets, /draw no bet|dnb/i);
-      add("homeDnb", pickValue(dnb, /^(home|1)$/i));
-      add("awayDnb", pickValue(dnb, /^(away|2)$/i));
-
-      const fh = findBet(bets, /first half winner|1st half (winner|result)|half[- ]?time result|ht result/i);
-      add("fhHome", pickValue(fh, /^(home|1)$/i)); add("fhDraw", pickValue(fh, /^(draw|x)$/i)); add("fhAway", pickValue(fh, /^(away|2)$/i));
-
-      const fhou = findBet(bets, /(first|1st) half.*over\/under|over\/under.*(first|1st) half|goals.*(first|1st) half/i);
-      add("fhOver05", pickValue(fhou, /over 0\.5/i)); add("fhOver15", pickValue(fhou, /over 1\.5/i)); add("fhUnder15", pickValue(fhou, /under 1\.5/i));
-
-      const htft = findBet(bets, /half time\/full time|half[- ]?time.*full[- ]?time|ht\/ft|htft/i);
-      const htftMap = {
-        htft11:/^(1\/1|1-1|home\/home)$/i, htftX1:/^(x\/1|x-1|draw\/home)$/i,
-        htft21:/^(2\/1|2-1|away\/home)$/i, htft1X:/^(1\/x|1-x|home\/draw)$/i,
-        htftXX:/^(x\/x|x-x|draw\/draw)$/i, htft2X:/^(2\/x|2-x|away\/draw)$/i,
-        htft12:/^(1\/2|1-2|home\/away)$/i, htftX2:/^(x\/2|x-2|draw\/away)$/i,
-        htft22:/^(2\/2|2-2|away\/away)$/i
-      };
-      for (const [key,re] of Object.entries(htftMap)) add(key,pickValue(htft,re));
-
-      if (vals.bttsYes != null) vals.gg = vals.bttsYes;
-      if (vals.bttsNo != null) vals.ng = vals.bttsNo;
-      return vals;
-    };
-
     try {
       const odRes = await apiGet(`/odds?league=${leagueId}&season=${seasonForStandings}&date=${date}`, cfg.API_KEY); requests++;
-      const fetchedAt = new Date().toISOString();
       for (const entry of (odRes.response || [])) {
         const fid = entry.fixture && entry.fixture.id;
         if (!fid) continue;
-        const books = [];
+        let vals = null;
         for (const bk of (entry.bookmakers || [])) {
-          const current = parseBook(bk);
-          if (!Object.keys(current).length) continue;
-          books.push({
-            bookmaker: bk.name || bk.bookmaker || `Book ${books.length+1}`,
-            bookmakerId: bk.id || null,
-            timestamp: entry.update || entry.updated_at || fetchedAt,
-            current,
-            marketPairs: Object.keys(current).length,
-            source: "API-Football"
-          });
+          const bets = bk.bets || [];
+          global.__betNames = global.__betNames || new Set();
+          bets.forEach(b => { if (b && b.name) global.__betNames.add(b.name); }); // debug: distinct bet names
+          const findBet = re => bets.find(b => re.test(b.name || ""));
+          // 1X2 / Match Winner
+          const mw = findBet(/match winner|1x2|full time result/i);
+          if (mw && mw.values) {
+            const get = lbl => { const v = mw.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+            const h = get("^home|^1$"), d = get("^draw|^x$"), a = get("^away|^2$");
+            if (h && a) {
+              vals = { home: h, draw: d, away: a };
+              // --- extra markets from the SAME bookmaker (free, same response) ---
+              // Over/Under (values look like "Over 2.5" / "Under 2.5")
+              const ou = findBet(/goals over\/under|over\/under|total goals/i);
+              if (ou && ou.values) {
+                const ouGet = lbl => { const v = ou.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+                vals.over15 = ouGet("over 1\\.5");  vals.under15 = ouGet("under 1\\.5");
+                vals.over25 = ouGet("over 2\\.5");  vals.under25 = ouGet("under 2\\.5");
+                vals.over35 = ouGet("over 3\\.5");  vals.under35 = ouGet("under 3\\.5");
+              }
+              // Both Teams To Score
+              const btts = findBet(/both teams (to )?score|btts/i);
+              if (btts && btts.values) {
+                const bGet = lbl => { const v = btts.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+                vals.bttsYes = bGet("^yes"); vals.bttsNo = bGet("^no");
+              }
+              // Double Chance
+              const dc = findBet(/double chance/i);
+              if (dc && dc.values) {
+                const dGet = lbl => { const v = dc.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+                vals.dc1x = dGet("home/draw|1x|^1\\/x"); vals.dc12 = dGet("home/away|12|^1\\/2"); vals.dcx2 = dGet("draw/away|x2|^x\\/2");
+              }
+              // --- MARKET INDICATOR ENGINE inputs (same odds response, zero extra calls) ---
+              // First-Half 1X2
+              const fh = findBet(/first half winner|1st half (winner|result)|half[- ]?time result|ht result/i);
+              if (fh && fh.values) {
+                const fGet = lbl => { const v = fh.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+                vals.fhHome = fGet("^home|^1$"); vals.fhDraw = fGet("^draw|^x$"); vals.fhAway = fGet("^away|^2$");
+              }
+              // First-Half Over/Under
+              const fhou = findBet(/(first|1st) half.*over\/under|over\/under.*(first|1st) half|goals.*(first|1st) half/i);
+              if (fhou && fhou.values) {
+                const foGet = lbl => { const v = fhou.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+                vals.fhOver05 = foGet("over 0\\.5"); vals.fhOver15 = foGet("over 1\\.5"); vals.fhUnder15 = foGet("under 1\\.5");
+              }
+              // GG / NG spec aliases (BTTS prices already parsed above)
+              if (vals.bttsYes != null) vals.gg = vals.bttsYes;
+              if (vals.bttsNo  != null) vals.ng = vals.bttsNo;
+              // GG2+ (both-teams-score-2+ / multigoal family) — defensive multi-pattern;
+              // stays null if this book doesn't price it, engine must treat null as "no signal"
+              const g2 = findBet(/both teams.*score.*2|gg\s*2|multi ?goals?/i);
+              if (g2 && g2.values) {
+                const gGet = lbl => { const v = g2.values.find(x => new RegExp(lbl,"i").test(x.value)); return v ? parseFloat(v.odd) : null; };
+                vals.gg2 = gGet("^yes$|^2\\+$|2\\+ goals");
+              }
+              break;
+            }
+          }
         }
-        if (!books.length) continue;
-        const preferred = ["Pinnacle","Bet365","Betfair","1xBet","Marathonbet"];
-        books.sort((a,b)=>{
-          const ai=preferred.findIndex(x=>a.bookmaker.toLowerCase().includes(x.toLowerCase()));
-          const bi=preferred.findIndex(x=>b.bookmaker.toLowerCase().includes(x.toLowerCase()));
-          return (ai<0?99:ai)-(bi<0?99:bi) || b.marketPairs-a.marketPairs;
-        });
-        const consensus = books.find(b=>b.current.home&&b.current.draw&&b.current.away) || books[0];
-        oddsByFixture[fid] = { odds: {...consensus.current}, books };
+        if (vals) oddsByFixture[fid] = vals;
       }
       await sleep(SLEEP);
     } catch (e) { /* odds optional — ignore failures */ }
@@ -1152,8 +1123,7 @@ const FINISHED = new Set(["FT","AET","PEN"]);
         sameGroup, isKnockout,
         isTournament: multiGroup || isKnockout,
         round: roundName || null,
-        odds: (oddsByFixture[fx.fixture.id] && oddsByFixture[fx.fixture.id].odds) || null,
-        oddsBooksCurrent: (oddsByFixture[fx.fixture.id] && oddsByFixture[fx.fixture.id].books) || [],
+        odds: oddsByFixture[fx.fixture.id] || null,
         h2h,
       });
       console.log(`  + [${date}] ${fx.teams.home.name} vs ${fx.teams.away.name}${played?` (${fx.goals.home}-${fx.goals.away} FT)`:""}  [${leagueName}]${isKnockout?" (KO)":""}`);
@@ -1168,28 +1138,7 @@ const FINISHED = new Set(["FT","AET","PEN"]);
       process.exitCode = 1;
       return;
     }
-
-    // Never erase a healthy public board merely because one API run returns
-    // zero fixtures. UI-only releases used to replace live data.js with the
-    // packaged empty bootstrap; a later empty API response then made every
-    // game disappear. Preserve the last verified live board and let the UI
-    // mark it stale until a successful refresh replaces it.
-    let previousCount = 0;
-    try {
-      const previousSource = fs.readFileSync(path.join(HERE, "data.js"), "utf8");
-      const previousMatch = previousSource.match(/window\.MATCHES\s*=\s*(\[[\s\S]*\]);?\s*$/);
-      if (previousMatch && !/window\.BETYNZ_DEMO\s*=\s*true/.test(previousSource)) {
-        const previousRows = JSON.parse(previousMatch[1]);
-        previousCount = Array.isArray(previousRows) ? previousRows.length : 0;
-      }
-    } catch (_) {}
-
-    if (previousCount > 0) {
-      console.log(`\nAPI-Football returned no fixtures for the requested window. Retaining the last verified board (${previousCount} fixtures) instead of publishing an empty site.\n`);
-      return;
-    }
-
-    console.log("\nAPI-Football returned no fixtures and no prior verified board exists. Publishing an honest empty live board.\n");
+    console.log("\nAPI-Football returned no fixtures for the requested window. Publishing an honest empty live board.\n");
     fs.writeFileSync(path.join(HERE, "data.js"),
       "/* AUTO-GENERATED empty live board — do not edit by hand. */\n\n" +
       "window.BETYNZ_DEMO = false;\n" +
