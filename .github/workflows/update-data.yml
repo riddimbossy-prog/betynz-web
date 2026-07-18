@@ -236,28 +236,82 @@ jobs:
 
       - name: Archive generated public data
         continue-on-error: true
+        shell: bash
         run: |
+          set -u
           rm -f scripts/config.txt
-          if git ls-files --error-unmatch scripts/config.txt >/dev/null 2>&1; then
-            git restore --staged --worktree scripts/config.txt || true
-          fi
+
+          ARCHIVE_DIR="$(mktemp -d)"
+          trap 'rm -rf "$ARCHIVE_DIR"' EXIT
+
+          copy_generated_file() {
+            local file="$1"
+            if [ -f "$file" ]; then
+              mkdir -p "$ARCHIVE_DIR/$(dirname "$file")"
+              cp -p "$file" "$ARCHIVE_DIR/$file"
+            fi
+          }
+
+          copy_generated_file data.js
+          copy_generated_file api-status.json
+          copy_generated_file prediction-locks.json
+          copy_generated_file results-history.json
+          copy_generated_file engine-audit.json
+          copy_generated_file daily-audit-report.json
+          copy_generated_file scripts/data.js
+
+          while IFS= read -r file; do
+            copy_generated_file "$file"
+          done < <(find scripts -maxdepth 1 -type f -name '*.json' -print)
+
           git config user.name "Betynz Data Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A -- data.js api-status.json prediction-locks.json results-history.json scripts/data.js scripts/*.json
-          if git diff --cached --quiet; then
-            echo "No public data changes to archive."
-            exit 0
-          fi
-          git commit -m "Refresh Betynz adaptive live board"
+
           for attempt in 1 2 3; do
+            echo "Archive attempt ${attempt}/3"
+
             git fetch origin main
-            if git rebase origin/main && git push origin HEAD:main; then
+            git reset --hard origin/main
+            rm -f scripts/config.txt
+
+            cp -a "$ARCHIVE_DIR/." .
+
+            add_generated_file() {
+              local file="$1"
+              if [ -f "$file" ]; then
+                git add -- "$file"
+              fi
+            }
+
+            add_generated_file data.js
+            add_generated_file api-status.json
+            add_generated_file prediction-locks.json
+            add_generated_file results-history.json
+            add_generated_file engine-audit.json
+            add_generated_file daily-audit-report.json
+            add_generated_file scripts/data.js
+
+            while IFS= read -r file; do
+              add_generated_file "$file"
+            done < <(find scripts -maxdepth 1 -type f -name '*.json' -print)
+
+            if git diff --cached --quiet; then
+              echo "No public data changes to archive."
               exit 0
             fi
-            git rebase --abort || true
+
+            git commit -m "Refresh Betynz adaptive live board"
+
+            if git push origin HEAD:main; then
+              echo "Generated public data archived successfully."
+              exit 0
+            fi
+
+            echo "Push attempt ${attempt} failed; retrying against the latest main branch."
             sleep $((attempt * 3))
           done
-          echo "Archive push failed; the Pages artifact is already ready for deployment."
+
+          echo "Archive push failed after three attempts; the Pages artifact is already ready for deployment."
           exit 1
 
       - name: Remove private runtime configuration
