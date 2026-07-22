@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: betynz-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: https://betynz.com,https://www.betynz.com,https://riddimbossy-prog.github.io
+      - key: ADMIN_SYNC_SECRET
+        sync: false
+      - key: API_FOOTBALL_KEY
+        sync: false
+      - key: ODDS_API_KEY
+        sync: false
+      - key: FOOTBALL_API_KEY
+        sync: false
+      - key: API_STATS_KEY
+        sync: false
